@@ -15,6 +15,10 @@ export const pool = new Pool({
   ssl: insecureLocalDb ? false : { rejectUnauthorized: false },
 });
 
+export async function checkDatabase(): Promise<void> {
+  await pool.query("SELECT 1");
+}
+
 export async function initSchema(): Promise<void> {
   await pool.query(`
     CREATE TABLE IF NOT EXISTS entities (
@@ -59,5 +63,20 @@ export async function initSchema(): Promise<void> {
     CREATE INDEX IF NOT EXISTS oidc_models_user_code_idx ON oidc_models (model, user_code);
     CREATE INDEX IF NOT EXISTS oidc_models_uid_idx ON oidc_models (model, uid);
     CREATE INDEX IF NOT EXISTS oidc_models_expires_at_idx ON oidc_models (expires_at);
+    CREATE TABLE IF NOT EXISTS activities (
+      id BIGSERIAL PRIMARY KEY,
+      entity_id INTEGER REFERENCES entities(id),
+      person_id INTEGER REFERENCES people(id),
+      actor_email TEXT NOT NULL,
+      occurred_at TIMESTAMPTZ NOT NULL,
+      summary TEXT NOT NULL,
+      next_action TEXT,
+      next_action_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+      CHECK (entity_id IS NOT NULL OR person_id IS NOT NULL)
+    );
+    CREATE INDEX IF NOT EXISTS activities_entity_id_idx ON activities (entity_id, occurred_at DESC);
+    CREATE INDEX IF NOT EXISTS activities_person_id_idx ON activities (person_id, occurred_at DESC);
+
   `);
 }

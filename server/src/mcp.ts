@@ -12,12 +12,98 @@ import * as crm from "./crm.js";
 // description.
 const contactSchema = z.object({
   type: z.enum(["phone", "email", "website", "whatsapp", "other"]),
-  value: z.string(),
-  label: z.string().optional(),
+  value: z.string().trim().min(1).max(500),
+  label: z.string().trim().min(1).max(100).optional(),
 });
 
-function buildServer(): McpServer {
+function buildServer(actorEmail: string): McpServer {
   const server = new McpServer({ name: "microcrm", version: "0.1.0" });
+
+  server.tool(
+    "create_entity",
+    "Create an organization or pharmacy that does not already exist. Search first. " +
+      "An exact name-and-city match is returned instead of creating a duplicate.",
+    {
+      name: z.string().trim().min(1).max(300),
+      type: z.enum(["organization", "pharmacy_location"]),
+      city: z.string().trim().min(1).max(200).optional(),
+      country: z.string().trim().min(1).max(200).optional(),
+      website: z.string().trim().url().max(500).optional(),
+      lead_tier: z.enum(["high", "medium", "watch", "unscored"]).optional(),
+      contacts: z.array(contactSchema).max(20).optional(),
+    },
+    async ({ name, type, city, country, website, lead_tier, contacts }) => {
+      const result = await crm.createEntity({
+        name,
+        type,
+        city,
+        country,
+        website,
+        leadTier: lead_tier,
+        contacts,
+      });
+      return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+    },
+  );
+
+  server.tool(
+    "capture_lead_interaction",
+    "Capture a business card or meeting in one transaction. Search the organization first " +
+      "and pass organization_id when known. This matches an existing person by exact name " +
+      "within that organization or creates them, merges new contacts without replacing old " +
+      "ones, maintains the person/company link in both records, and records an attributed " +
+      "activity plus optional follow-up. Use the colleague's actual meeting time and timezone " +
+      "when known; otherwise occurred_at defaults to now.",
+    {
+      person_name: z.string().trim().min(1).max(300),
+      organization_id: z.number().int().positive().optional(),
+      title: z.string().trim().min(1).max(200).optional(),
+      role_function: z.string().trim().min(1).max(300).optional(),
+      contacts: z.array(contactSchema).max(20).optional(),
+      linkedin_url: z.string().trim().url().max(500).optional(),
+      summary: z.string().trim().min(1).max(5000),
+      occurred_at: z.string().datetime({ offset: true }).optional(),
+      next_action: z.string().trim().min(1).max(1000).optional(),
+      next_action_at: z.string().datetime({ offset: true }).optional(),
+    },
+    async ({
+      person_name,
+      organization_id,
+      title,
+      role_function,
+      contacts,
+      linkedin_url,
+      summary,
+      occurred_at,
+      next_action,
+      next_action_at,
+    }) => {
+      try {
+        const result = await crm.captureLeadInteraction({
+          personName: person_name,
+          organizationId: organization_id,
+          title,
+          roleFunction: role_function,
+          contacts,
+          linkedinUrl: linkedin_url,
+          summary,
+          occurredAt: occurred_at,
+          nextAction: next_action,
+          nextActionAt: next_action_at,
+          actorEmail,
+        });
+        return { content: [{ type: "text", text: JSON.stringify(result, null, 2) }] };
+      } catch (err) {
+        return {
+          content: [{
+            type: "text",
+            text: err instanceof Error ? err.message : "Could not capture lead interaction.",
+          }],
+          isError: true,
+        };
+      }
+    },
+  );
 
   server.tool(
     "search_entities",
@@ -68,6 +154,9 @@ function buildServer(): McpServer {
       "fields.",
     {
       id: z.number().int(),
+      city: z.string().trim().min(1).max(200).optional(),
+      country: z.string().trim().min(1).max(200).optional(),
+      website: z.string().trim().url().max(500).optional(),
       lead_tier: z.enum(["high", "medium", "watch", "unscored"]).optional(),
       bam_fit: z.string().optional(),
       commercial_position: z.string().optional(),
@@ -75,8 +164,9 @@ function buildServer(): McpServer {
       cannabis_status: z.string().optional(),
       cannabis_relevance_status: z.string().optional(),
       cannabis_evidence_strength: z.string().optional(),
-      contacts: z.array(contactSchema).optional(),
-      add_note: z.string().optional().describe("Appended, not a replacement"),
+      target_classes: z.array(z.string().trim().min(1).max(200)).max(30).optional(),
+      contacts: z.array(contactSchema).max(20).optional(),
+      add_note: z.string().trim().min(1).max(5000).optional().describe("Appended, not a replacement"),
     },
     async ({ id, add_note, ...fields }) => {
       const patch = Object.fromEntries(
@@ -126,7 +216,7 @@ function buildServer(): McpServer {
 
   server.tool(
     "update_person",
-    "Update one person. `contacts` REPLACES the entire contacts list (fetch " +
+    "Update or correct one existing person. `contacts` REPLACES the entire contacts list (fetch " +
       "get_person first if you're adding to existing contacts rather than " +
       "replacing them) -- each one must be {type, value, label?}, type one " +
       "of phone/email/website/whatsapp/other. `add_note` appends a " +
@@ -134,8 +224,11 @@ function buildServer(): McpServer {
       "summary) rather than replacing them.",
     {
       id: z.number().int(),
-      contacts: z.array(contactSchema).optional(),
-      add_note: z.string().optional().describe("Appended, not a replacement"),
+      name: z.string().trim().min(1).max(300).optional(),
+      resolution_status: z.enum(["confirmed", "provisional", "resolved"]).optional(),
+      linkedin_url: z.string().trim().url().max(500).optional(),
+      contacts: z.array(contactSchema).max(20).optional(),
+      add_note: z.string().trim().min(1).max(5000).optional().describe("Appended, not a replacement"),
     },
     async ({ id, add_note, ...fields }) => {
       const patch = Object.fromEntries(
@@ -165,7 +258,7 @@ function buildServer(): McpServer {
 // session/connection state to keep alive between calls. Simple, and fine at
 // this traffic scale (a handful of teammates hitting a lead database).
 export async function handleMcpRequest(req: Request, res: Response) {
-  const server = buildServer();
+  const server = buildServer(String(res.locals.accountId ?? "unknown"));
   const transport = new StreamableHTTPServerTransport({
     sessionIdGenerator: undefined,
   });

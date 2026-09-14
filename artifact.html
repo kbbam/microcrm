@@ -312,28 +312,30 @@
   var dataSource = 'snapshot'; // 'snapshot' (the embedded JSON at build time) or 'live' (microcrm connector)
   var mcpHandle = null; // set once the mcp capability resolves; used by ensureFullDetail
   var fetchingIds = {}; // in-flight get_entity/get_person calls, keyed 'entities:12' / 'people:7' -- dedupes
+  var liveDetailLoaded = {}; // unlike `contacts`, this proves detail came from Postgres, not the snapshot
 
   // In live mode, the list/nav/filters run off lean summary rows (see
   // liveSync below) so syncing all ~300+296 records stays small and fast.
   // A record only gets its full detail (contacts, relationships, evidence,
-  // notes, ...) fetched -- and only once, cached from then on -- when it's
-  // actually opened. 'contacts' is present on every full record and on none
-  // of the summaries, so it doubles as the "do we have full detail yet?" flag.
+  // notes, activities, ...) fetched when it's actually opened. Embedded
+  // snapshot records already contain `contacts`, so only liveDetailLoaded can
+  // truthfully distinguish a Postgres detail response from stale snapshot data.
   function ensureFullDetail(kind, id){
     if (dataSource !== 'live' || !mcpHandle) return;
     var store = kind === 'entities' ? byId : peopleById;
     var rec = store[id];
-    if (!rec || ('contacts' in rec)) return;
     var key = kind + ':' + id;
+    if (!rec || liveDetailLoaded[key]) return;
     if (fetchingIds[key]) return;
     fetchingIds[key] = true;
     var tool = kind === 'entities' ? 'get_entity' : 'get_person';
     mcpHandle.callTool('microcrm', tool, { id: id }).then(function(result){
       delete fetchingIds[key];
       var full = result && result.payload;
-      if (!full || !state.selected || state.selected.kind !== kind || state.selected.id !== id) return;
+      if (!full) return;
       store[id] = full;
-      renderDetail();
+      liveDetailLoaded[key] = true;
+      if (state.selected && state.selected.kind === kind && state.selected.id === id) renderDetail();
     }).catch(function(){
       delete fetchingIds[key];
       // Leave the summary in place -- renderDetail already degrades to
@@ -446,6 +448,18 @@
         '<div class="ct-body"><div class="ct-label">'+esc(typeLabel)+'</div>'+valueHtml+'</div>'+
         (extra ? '<div class="ct-extra">'+extra+'</div>' : '')+
         '</div>';
+    }).join('');
+  }
+
+  function renderActivities(activities){
+    return (activities||[]).map(function(a){
+      var when = a.occurred_at ? new Date(a.occurred_at).toLocaleString() : '';
+      var meta = [when, a.actor_email].filter(Boolean).map(esc).join(' · ');
+      var next = a.next_action
+        ? '<div style="margin-top:7px;color:var(--text)"><b>Next:</b> '+esc(a.next_action)+
+          (a.next_action_at ? ' · '+esc(new Date(a.next_action_at).toLocaleString()) : '')+'</div>'
+        : '';
+      return '<div class="evidence-item"><div class="ev-source">'+meta+'</div><div>'+esc(a.summary)+'</div>'+next+'</div>';
     }).join('');
   }
 
@@ -809,6 +823,7 @@
       if(isGroup) tabBody += section('Member locations ('+memberRels.length+')', memberHtml || '<div class="no-data">Classified as a group/cooperation but no member locations recorded yet.</div>');
       if(e.evidence_summary) tabBody += section('Research notes', '<div class="no-data" style="font-style:normal;">'+esc(e.evidence_summary)+'</div>');
       if(e.notes) tabBody += section('Activity notes', '<div class="no-data" style="font-style:normal;white-space:pre-wrap;">'+esc(e.notes)+'</div>');
+      if((e.activities||[]).length) tabBody += section('Meetings & follow-ups', renderActivities(e.activities));
       if(!tabBody) tabBody = '<div class="no-data">No overview details captured yet.</div>';
     } else if(activeTab === 'people'){
       tabBody += peopleHtml ? section('People here', peopleHtml) : '<div class="no-data">No people captured yet for this organization. Add one via a field observation.</div>';
@@ -856,6 +871,7 @@
     if(p.linkedin_url) html += '<div class="dt-meta"><a href="'+esc(p.linkedin_url)+'" target="_blank" rel="noopener">LinkedIn profile</a></div>';
     html += section('Roles / affiliations', rolesHtml || '<div class="no-data">No organization affiliation recorded.</div>');
     html += section('Contacts', contactsHtml);
+    if((p.activities||[]).length) html += section('Meetings & follow-ups', renderActivities(p.activities));
     html += section('Event presence', presenceHtml);
     html += section('Observations', obsHtml);
     if(p.notes) html += section('Notes', '<div class="no-data" style="font-style:normal;">'+esc(p.notes)+'</div>');
@@ -928,6 +944,7 @@
       // been loaded in full.
       function mergeRows(map, rows){
         rows.forEach(function(row){
+          delete liveDetailLoaded[(map === byId ? 'entities:' : 'people:') + row.id];
           var existing = map[row.id];
           if (existing && ('contacts' in existing)) {
             for (var k in row) existing[k] = row[k];

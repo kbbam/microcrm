@@ -9,7 +9,10 @@ sharing the project's Postgres database.
 
 - `POST /mcp` — the MCP server (Streamable HTTP transport), gated behind an
   OAuth access token (`Authorization: Bearer <token>`). Tools: `search_entities`,
-  `get_entity`, `update_entity`, `search_people`, `get_person`, `update_person`.
+  `get_entity`, `update_entity`, `create_entity`, `search_people`, `get_person`,
+  `update_person`, and `capture_lead_interaction`. The capture tool atomically
+  matches or creates a person, links them to an existing organization, merges
+  business-card contacts, and records an attributed meeting/follow-up activity.
 - `/.well-known/openid-configuration`, `/auth`, `/token`, `/reg`, `/jwks` —
   standard OAuth 2.1 (PKCE + dynamic client registration) endpoints, backed
   by [`oidc-provider`](https://github.com/panva/node-oidc-provider). This is
@@ -19,6 +22,8 @@ sharing the project's Postgres database.
   body `{"email": "..."}`. Creates a user row and a one-time `/setup?token=...`
   link for them to set a password.
 - `GET/POST /setup?token=...` — where an invited person sets their password.
+- `GET /livez`, `GET /readyz`, `GET /version` — process liveness, database
+  readiness, and deployed Git revision diagnostics.
 
 ## Environment variables
 
@@ -41,6 +46,14 @@ DATABASE_URL=postgresql://postgres:test@localhost:5432/microcrm \
 DATABASE_URL=postgresql://postgres:test@localhost:5432/microcrm \
   LOCAL_INSECURE_DB=1 ADMIN_TOKEN=dev-secret PUBLIC_URL=http://localhost:8080 \
   npm start
+```
+
+Integration tests require an isolated Postgres database and never use the
+production database:
+
+```bash
+DATABASE_URL=postgresql://postgres:test@localhost:5432/microcrm_test \
+  LOCAL_INSECURE_DB=1 npm test
 ```
 
 `LOCAL_INSECURE_DB=1` is the only way to talk to Postgres without TLS —
@@ -67,11 +80,13 @@ DATABASE_URL=<printed-url> npm run migrate
 
 ## Known limitations (by design, see the repo's plan history)
 
-- OAuth grants/tokens/interactions live in `oidc-provider`'s in-memory
-  adapter, not Postgres — a redeploy invalidates in-flight logins/tokens
-  (users just re-authenticate), but this keeps the service simple for a
-  single-instance deployment.
+- OAuth grants, tokens, interactions, and dynamically registered clients are
+  persisted in Postgres through `PgAdapter`; normal redeploys should preserve
+  sessions.
 - Writes made through this connector do **not** sync back to `data.json`,
   the git repo, or the published Claude Artifact. Postgres is the source of
   truth for anything edited here; the static file/Artifact are a snapshot
   from whenever `build.py` was last run.
+- Never run the snapshot migration against production without a backup and a
+  reviewed reconciliation plan: its full-document upserts can overwrite live
+  connector edits.

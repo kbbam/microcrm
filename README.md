@@ -4,9 +4,9 @@ A lightweight, single-file CRM for tracking organizations, pharmacies, and
 people around the German **Expopharm** trade fair — built for BAM/Cureous
 business development.
 
-There's no backend and no build tooling required to view it: `index.html`
-is a fully self-contained page (data included) that runs entirely in the
-browser.
+`index.html` is a fully self-contained snapshot that runs entirely in the
+browser. The production system also has an OAuth-protected MCP backend in
+`server/`; Claude can use it to read and write the live Postgres dataset.
 
 ## Structure
 
@@ -33,6 +33,9 @@ browser.
   ```bash
   python3 build.py
   ```
+
+- **`server/`** — the TypeScript MCP/OAuth API and Postgres persistence layer.
+  See `server/README.md` for local development and deployment details.
 
 - **`research/`** — the scripts and intermediate data behind how `data.json`
   was built up, kept for provenance/auditability rather than active use:

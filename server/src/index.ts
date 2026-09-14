@@ -1,5 +1,5 @@
 import express from "express";
-import { initSchema } from "./db.js";
+import { checkDatabase, initSchema } from "./db.js";
 import { oidc, registerInteractionRoutes, requireAccessToken } from "./oidc.js";
 import { setupGet, setupPost } from "./setup.js";
 import { requireAdmin, createInviteHandler } from "./admin.js";
@@ -32,7 +32,21 @@ async function main() {
     next();
   });
 
+  app.get("/livez", (_req, res) => res.json({ ok: true }));
+  // Keep the original route for existing probes, but use /readyz as the
+  // Railway deployment health check because it verifies persistence too.
   app.get("/healthz", (_req, res) => res.json({ ok: true }));
+  app.get("/readyz", async (_req, res) => {
+    try {
+      await checkDatabase();
+      res.json({ ok: true });
+    } catch {
+      res.status(503).json({ ok: false, error: "database unavailable" });
+    }
+  });
+  app.get("/version", (_req, res) => res.json({
+    sha: process.env.RAILWAY_GIT_COMMIT_SHA ?? process.env.BUILD_SHA ?? "unknown",
+  }));
 
   // RFC 8414 / RFC 9728 discovery. oidc-provider only serves OIDC Discovery
   // (/.well-known/openid-configuration) out of the box, but MCP clients

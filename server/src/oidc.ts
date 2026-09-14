@@ -240,6 +240,20 @@ export async function requireAccessToken(
       res.status(401).json({ error: "invalid or expired token" });
       return;
     }
+    // An opaque token issued by this provider is not automatically valid for
+    // every protected resource. Require both the MCP audience/resource and
+    // the scope granted for it before allowing CRM reads or writes.
+    if (
+      !accessToken.resourceIndicators.has(MCP_RESOURCE) ||
+      !accessToken.scopes.has("mcp")
+    ) {
+      setWwwAuthenticate(res);
+      res.status(403).json({ error: "token is not authorized for microcrm" });
+      return;
+    }
+    // Pass the authenticated account into the MCP handlers so every CRM
+    // activity can be attributed to the colleague who captured it.
+    res.locals.accountId = accessToken.accountId;
     next();
   } catch {
     setWwwAuthenticate(res);
