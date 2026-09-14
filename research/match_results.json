@@ -1,0 +1,542 @@
+[
+  {
+    "entity_id": 218,
+    "entity_name": "Johannes-Apotheke Gröbenzell",
+    "entity_city": "Gröbenzell",
+    "best_legacy_idx": 778,
+    "best_legacy_name": "Johannes-Apotheke Klinikversorgung, Groebenzell",
+    "best_legacy_city": "Groebenzell",
+    "score": 115.0
+  },
+  {
+    "entity_id": 245,
+    "entity_name": "Marien Apotheke München",
+    "entity_city": "München",
+    "best_legacy_idx": 770,
+    "best_legacy_name": "Mohren Apotheke , Muenchen",
+    "best_legacy_city": "Muenchen",
+    "score": 106.66666666666667
+  },
+  {
+    "entity_id": 234,
+    "entity_name": "Adler Apotheke Hamburg",
+    "entity_city": "Hamburg",
+    "best_legacy_idx": 214,
+    "best_legacy_name": "Beseler Apotheke, Hamburg",
+    "best_legacy_city": "Hamburg",
+    "score": 101.95652173913044
+  },
+  {
+    "entity_id": 215,
+    "entity_name": "Vita Apotheke Hamburg",
+    "entity_city": "Hamburg",
+    "best_legacy_idx": 6,
+    "best_legacy_name": "Alexander Apotheke St. Georg, Hamburg",
+    "best_legacy_city": "Hamburg",
+    "score": 101.48648648648648
+  },
+  {
+    "entity_id": 211,
+    "entity_name": "Koala-Apotheke Berlin-Pankow",
+    "entity_city": "Berlin",
+    "best_legacy_idx": 4,
+    "best_legacy_name": "Adam Apotheke , Berlin",
+    "best_legacy_city": "Berlin",
+    "score": 100.71428571428571
+  },
+  {
+    "entity_id": 214,
+    "entity_name": "Castello-Apotheke Berlin",
+    "entity_city": "Berlin",
+    "best_legacy_idx": 4,
+    "best_legacy_name": "Adam Apotheke , Berlin",
+    "best_legacy_city": "Berlin",
+    "score": 100.71428571428571
+  },
+  {
+    "entity_id": 236,
+    "entity_name": "Moritz Apotheke Nürnberg",
+    "entity_city": "Nürnberg",
+    "best_legacy_idx": 815,
+    "best_legacy_name": "Domos Apotheke, Nuernberg",
+    "best_legacy_city": "Nuernberg",
+    "score": 100.71428571428571
+  },
+  {
+    "entity_id": 265,
+    "entity_name": "Pluspunkt Apotheke Wedding, Berlin",
+    "entity_city": "Berlin",
+    "best_legacy_idx": 4,
+    "best_legacy_name": "Adam Apotheke , Berlin",
+    "best_legacy_city": "Berlin",
+    "score": 100.71428571428571
+  },
+  {
+    "entity_id": 170,
+    "entity_name": "Sonnen-Apotheke Mönchengladbach",
+    "entity_city": "",
+    "best_legacy_idx": 301,
+    "best_legacy_name": "Sonnen-Apotheke , Moenchengladbach",
+    "best_legacy_city": "Mönchengladbach",
+    "score": 100.0
+  },
+  {
+    "entity_id": 243,
+    "entity_name": "Johannes Apotheke (Klinikversorgung)",
+    "entity_city": "",
+    "best_legacy_idx": 778,
+    "best_legacy_name": "Johannes-Apotheke Klinikversorgung, Groebenzell",
+    "best_legacy_city": "Groebenzell",
+    "score": 100.0
+  },
+  {
+    "entity_id": 261,
+    "entity_name": "Apotheke am Rathaus Haßloch (LINDA Apotheke am Rathaus)",
+    "entity_city": "Haßloch",
+    "best_legacy_idx": 403,
+    "best_legacy_name": "Pfalz Apotheke, Hassloch",
+    "best_legacy_city": "Haßloch/Pfalz",
+    "score": 100.0
+  },
+  {
+    "entity_id": 208,
+    "entity_name": "Marien Apotheke Göttingen",
+    "entity_city": "Göttingen",
+    "best_legacy_idx": 285,
+    "best_legacy_name": "Kreuzberg-Apotheke, Goettingen",
+    "best_legacy_city": "Göttingen",
+    "score": 99.44444444444444
+  },
+  {
+    "entity_id": 263,
+    "entity_name": "Diemeltal Apotheke, Marsberg (Sauerlandkraut)",
+    "entity_city": "Marsberg",
+    "best_legacy_idx": 271,
+    "best_legacy_name": "Marien-Apotheke, Marsberg",
+    "best_legacy_city": "Marsberg",
+    "score": 97.92682926829268
+  },
+  {
+    "entity_id": 254,
+    "entity_name": "Ruhrpottblüte Apotheke (easyApotheke Altenessen im Süd-Karree, Essen)",
+    "entity_city": "Essen",
+    "best_legacy_idx": 702,
+    "best_legacy_name": "Goethe Apotheke, Essen",
+    "best_legacy_city": "Essen",
+    "score": 95.0
+  },
+  {
+    "entity_id": 259,
+    "entity_name": "easyApotheke Wandsbek, Hamburg",
+    "entity_city": "Hamburg",
+    "best_legacy_idx": 203,
+    "best_legacy_name": "Distel Apotheke, Hamburg",
+    "best_legacy_city": "Hamburg",
+    "score": 91.92307692307692
+  },
+  {
+    "entity_id": 255,
+    "entity_name": "easyApotheke Bayreuth-Süd",
+    "entity_city": "Bayreuth",
+    "best_legacy_idx": 828,
+    "best_legacy_name": "Mohren Apotheke, Bayreuth",
+    "best_legacy_city": "Bayreuth",
+    "score": 91.0
+  },
+  {
+    "entity_id": 207,
+    "entity_name": "Paracelsus Apotheke OHG",
+    "entity_city": "Mehlingen",
+    "best_legacy_idx": 46,
+    "best_legacy_name": "Jaegers Paracelsus Apotheke, Hattingen",
+    "best_legacy_city": "Hattingen",
+    "score": 90.47619047619048
+  },
+  {
+    "entity_id": 206,
+    "entity_name": "Central-Apotheke Walldürn",
+    "entity_city": "Walldürn",
+    "best_legacy_idx": 414,
+    "best_legacy_name": "Central Apotheke Walldorf, Walldorf",
+    "best_legacy_city": "Walldorf",
+    "score": 90.19607843137254
+  },
+  {
+    "entity_id": 217,
+    "entity_name": "Altstadt Apotheke Magdeburg OHG",
+    "entity_city": "Magdeburg",
+    "best_legacy_idx": 290,
+    "best_legacy_name": "Hufeland Apotheke, Magdeburg - Cracau",
+    "best_legacy_city": "Magdeburg",
+    "score": 88.46938775510205
+  },
+  {
+    "entity_id": 242,
+    "entity_name": "Büttel Apotheke Nersingen",
+    "entity_city": "Nersingen",
+    "best_legacy_idx": 98,
+    "best_legacy_name": "Apotheke im real,-, Singen",
+    "best_legacy_city": "Singen ",
+    "score": 88.46938775510205
+  },
+  {
+    "entity_id": 109,
+    "entity_name": "Bahnhof-Apotheke Kempten",
+    "entity_city": "",
+    "best_legacy_idx": 801,
+    "best_legacy_name": "Burg-Apotheke, Kempten",
+    "best_legacy_city": "Kempten",
+    "score": 86.48648648648648
+  },
+  {
+    "entity_id": 235,
+    "entity_name": "Rathaus-Apotheke (Benedikt Bühler)",
+    "entity_city": "",
+    "best_legacy_idx": 808,
+    "best_legacy_name": "Rathaus Apotheke, Vogt",
+    "best_legacy_city": "Vogt",
+    "score": 86.48648648648648
+  },
+  {
+    "entity_id": 258,
+    "entity_name": "easyApotheke Rathaus Galerie, Essen",
+    "entity_city": "Essen",
+    "best_legacy_idx": 312,
+    "best_legacy_name": "Heidhauser Apotheke, Essen",
+    "best_legacy_city": "Essen",
+    "score": 86.1864406779661
+  },
+  {
+    "entity_id": 201,
+    "entity_name": "Linden-Apotheke Grünberg",
+    "entity_city": "Grünberg",
+    "best_legacy_idx": 299,
+    "best_legacy_name": "Gruene Apotheke, Hilden",
+    "best_legacy_city": "Hilden",
+    "score": 85.1063829787234
+  },
+  {
+    "entity_id": 231,
+    "entity_name": "Central-Apotheke Wernau",
+    "entity_city": "Wernau",
+    "best_legacy_idx": 164,
+    "best_legacy_name": "Central-Apotheke , Zwickau",
+    "best_legacy_city": "Zwickau",
+    "score": 85.1063829787234
+  },
+  {
+    "entity_id": 202,
+    "entity_name": "Apotheke am Markt Bielefeld",
+    "entity_city": "Bielefeld",
+    "best_legacy_idx": 264,
+    "best_legacy_name": "Markt Apotheke , Verl",
+    "best_legacy_city": "Verl",
+    "score": 84.84848484848484
+  },
+  {
+    "entity_id": 216,
+    "entity_name": "Adler-Apotheke Brilon",
+    "entity_city": "Brilon",
+    "best_legacy_idx": 105,
+    "best_legacy_name": "Adler Apotheke, Wehr",
+    "best_legacy_city": "Wehr",
+    "score": 84.84848484848484
+  },
+  {
+    "entity_id": 114,
+    "entity_name": "Meilwald Apotheke Erlangen",
+    "entity_city": "",
+    "best_legacy_idx": 603,
+    "best_legacy_name": "Baeren-Apotheke, Erlangen",
+    "best_legacy_city": "Erlangen",
+    "score": 82.92682926829268
+  },
+  {
+    "entity_id": 266,
+    "entity_name": "Pluspunkt Apotheke im Anger 1, Erfurt (Cannabis Pluspunkt)",
+    "entity_city": "Erfurt",
+    "best_legacy_idx": 709,
+    "best_legacy_name": "Pluspunkt Apotheke, Krefeld",
+    "best_legacy_city": "Krefeld",
+    "score": 81.81818181818181
+  },
+  {
+    "entity_id": 110,
+    "entity_name": "Apotheke Deiker Höfe",
+    "entity_city": "",
+    "best_legacy_idx": 588,
+    "best_legacy_name": "Apotheke Sebalder Hoefe, Nuernberg",
+    "best_legacy_city": "Nürnberg",
+    "score": 80.0
+  },
+  {
+    "entity_id": 241,
+    "entity_name": "Engel-Apotheke Ochsenfurt",
+    "entity_city": "Ochsenfurt",
+    "best_legacy_idx": 484,
+    "best_legacy_name": "Engel Apotheke , Landau",
+    "best_legacy_city": "Landau in der Pfalz",
+    "score": 80.0
+  },
+  {
+    "entity_id": 244,
+    "entity_name": "Schlossberg Apotheke Karlsruhe",
+    "entity_city": "Karlsruhe",
+    "best_legacy_idx": 104,
+    "best_legacy_name": "Schlossberg Apotheke, Emmendingen",
+    "best_legacy_city": "Emmendingen",
+    "score": 80.0
+  },
+  {
+    "entity_id": 233,
+    "entity_name": "Alamannen-Apotheke Holzgerlingen",
+    "entity_city": "Holzgerlingen",
+    "best_legacy_idx": 339,
+    "best_legacy_name": "St. Georg Apotheke, Lingen",
+    "best_legacy_city": "Lingen",
+    "score": 79.28571428571428
+  },
+  {
+    "entity_id": 257,
+    "entity_name": "easyApotheke Lübecker Straße, Magdeburg",
+    "entity_city": "Magdeburg",
+    "best_legacy_idx": 290,
+    "best_legacy_name": "Hufeland Apotheke, Magdeburg - Cracau",
+    "best_legacy_city": "Magdeburg",
+    "score": 77.16216216216216
+  },
+  {
+    "entity_id": 118,
+    "entity_name": "BezirksApotheke Berlin",
+    "entity_city": "",
+    "best_legacy_idx": 174,
+    "best_legacy_name": "Ansbacher Apotheke, Berlin",
+    "best_legacy_city": "Berlin",
+    "score": 76.59574468085106
+  },
+  {
+    "entity_id": 246,
+    "entity_name": "Nordring Apotheke",
+    "entity_city": "",
+    "best_legacy_idx": 559,
+    "best_legacy_name": "Park Apotheke , Erding",
+    "best_legacy_city": "Erding",
+    "score": 75.67567567567568
+  },
+  {
+    "entity_id": 204,
+    "entity_name": "Apotheke Schug am Turm",
+    "entity_city": "Kemnath",
+    "best_legacy_idx": 775,
+    "best_legacy_name": "Turm Apotheke, Sauerlach",
+    "best_legacy_city": "Sauerlach",
+    "score": 75.55555555555556
+  },
+  {
+    "entity_id": 98,
+    "entity_name": "Medicampus Apotheke",
+    "entity_city": "Bad Salzuflen",
+    "best_legacy_idx": 624,
+    "best_legacy_name": "Medicum Apotheke , Cham",
+    "best_legacy_city": "Cham",
+    "score": 75.0
+  },
+  {
+    "entity_id": 205,
+    "entity_name": "Vital-Apotheke Bad Saulgau",
+    "entity_city": "Bad Saulgau",
+    "best_legacy_idx": 473,
+    "best_legacy_name": "Elztal Apotheke Dallau, Elztal",
+    "best_legacy_city": "Elztal",
+    "score": 75.0
+  },
+  {
+    "entity_id": 240,
+    "entity_name": "Apotheke Scharpf OHG",
+    "entity_city": "",
+    "best_legacy_idx": 1,
+    "best_legacy_name": "Berlin Apotheke an der Charite , Schneider & Oleski oHG, Berlin",
+    "best_legacy_city": "Berlin",
+    "score": 75.0
+  },
+  {
+    "entity_id": 230,
+    "entity_name": "Alte Apotheke 1691 Dr. Inka Krude e. K.",
+    "entity_city": "Bochum",
+    "best_legacy_idx": 43,
+    "best_legacy_name": "Alte Apotheke , Dortmund",
+    "best_legacy_city": "Dortmund",
+    "score": 74.28571428571428
+  },
+  {
+    "entity_id": 238,
+    "entity_name": "Jahreszeiten Apotheke (Jan Harbecke)",
+    "entity_city": "Münster",
+    "best_legacy_idx": 348,
+    "best_legacy_name": "Inda Apotheke, Aachen",
+    "best_legacy_city": "Aachen-Kornelimünster",
+    "score": 74.25925925925927
+  },
+  {
+    "entity_id": 212,
+    "entity_name": "Schlossgarten-Apotheke Angelbachtal",
+    "entity_city": "Angelbachtal",
+    "best_legacy_idx": 742,
+    "best_legacy_name": "Angelbach-Apotheke, Muehlhausen",
+    "best_legacy_city": "Muehlhausen",
+    "score": 73.84615384615384
+  },
+  {
+    "entity_id": 219,
+    "entity_name": "Holzwarth Apotheke Dorsten",
+    "entity_city": "Dorsten",
+    "best_legacy_idx": 149,
+    "best_legacy_name": "Schwan Apotheke, Dresden",
+    "best_legacy_city": "Dresden",
+    "score": 73.46938775510205
+  },
+  {
+    "entity_id": 113,
+    "entity_name": "Gabrieli-Apotheke Eichstätt",
+    "entity_city": "",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 115,
+    "entity_name": "Palmen Apotheke Ottobrunn",
+    "entity_city": "",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 116,
+    "entity_name": "Margarethen Apotheke Reichertshofen",
+    "entity_city": "",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 122,
+    "entity_name": "Medios Apotheke Anike Oleski e.Kfr.",
+    "entity_city": "",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 213,
+    "entity_name": "Bußmanns Apotheke am Kerkmannplatz",
+    "entity_city": "Ahlen",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 228,
+    "entity_name": "St. Vitus Apotheke (Iris Blaschke)",
+    "entity_city": "Gilching",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 229,
+    "entity_name": "Apotheke Johannstadt, Willum Ullrich OHG",
+    "entity_city": "Dresden",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 232,
+    "entity_name": "Grund Apotheke Freital",
+    "entity_city": "Freital",
+    "best_legacy_idx": 43,
+    "best_legacy_name": "Alte Apotheke , Dortmund",
+    "best_legacy_city": "Dortmund",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 237,
+    "entity_name": "Lender Apotheke (Michael Becker)",
+    "entity_city": "Sasbach",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 239,
+    "entity_name": "Rondell Apotheke (Uta Hauptmann)",
+    "entity_city": "",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 262,
+    "entity_name": "tri-Haus Apotheke, Arnsberg (Hanfwerk Sauerland)",
+    "entity_city": "Arnsberg",
+    "best_legacy_idx": 820,
+    "best_legacy_name": "Email Apotheke",
+    "best_legacy_city": "Amberg",
+    "score": 72.72727272727272
+  },
+  {
+    "entity_id": 252,
+    "entity_name": "easyApotheke CityLebenstedt",
+    "entity_city": "Salzgitter",
+    "best_legacy_idx": 791,
+    "best_legacy_name": "easyApotheke, Eggenfelden",
+    "best_legacy_city": "Eggenfelden",
+    "score": 70.58823529411765
+  },
+  {
+    "entity_id": 253,
+    "entity_name": "Heidegras.shop / easyApotheke Marktcenter Uelzen",
+    "entity_city": "Uelzen",
+    "best_legacy_idx": 791,
+    "best_legacy_name": "easyApotheke, Eggenfelden",
+    "best_legacy_city": "Eggenfelden",
+    "score": 66.66666666666666
+  },
+  {
+    "entity_id": 256,
+    "entity_name": "easyApotheke Dietzenbach",
+    "entity_city": "Dietzenbach",
+    "best_legacy_idx": 791,
+    "best_legacy_name": "easyApotheke, Eggenfelden",
+    "best_legacy_city": "Eggenfelden",
+    "score": 66.66666666666666
+  },
+  {
+    "entity_id": 260,
+    "entity_name": "easyApotheke isarCenter, Ottobrunn",
+    "entity_city": "Ottobrunn",
+    "best_legacy_idx": 791,
+    "best_legacy_name": "easyApotheke, Eggenfelden",
+    "best_legacy_city": "Eggenfelden",
+    "score": 66.66666666666666
+  },
+  {
+    "entity_id": 267,
+    "entity_name": "QA Sandbox — Contact Test Pharmacy",
+    "entity_city": "Munich",
+    "best_legacy_idx": 388,
+    "best_legacy_name": "Stern-Apotheke, Darmstadt",
+    "best_legacy_city": "Darmstadt",
+    "score": 42.857142857142854
+  }
+]

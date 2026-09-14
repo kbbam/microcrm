@@ -1,0 +1,289 @@
+[
+  {
+    "legacy_id": "LEGACY-57327427580c",
+    "legacy_name": "Adler-Apotheke, Regensburg",
+    "legacy_street": "Watmarkt 9",
+    "legacy_plz": "93047",
+    "legacy_city": "Regensburg",
+    "legacy_phone": "+49 94151554",
+    "legacy_email": "info@adler-regensburg.de",
+    "matched_source": "weed_de",
+    "matched_pharmacy_id": "6a0171c3fcd184e71f703d01"
+  },
+  {
+    "legacy_id": "LEGACY-467646b4c3cf",
+    "legacy_name": "Apotheke Butz, Heimsheim",
+    "legacy_street": "Moensheimer Str. 50",
+    "legacy_plz": "71296",
+    "legacy_city": "Heimsheim",
+    "legacy_phone": "+49 7033469530",
+    "legacy_email": "heimsheim@apobutz.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "zpal96lyjdvolx0ts6bmj0ik"
+  },
+  {
+    "legacy_id": "LEGACY-6933c5e3c0a5",
+    "legacy_name": "Apotheke Hake, Ennigerloh",
+    "legacy_street": "Elmstrasse 11-13",
+    "legacy_plz": "59320",
+    "legacy_city": "Ennigerloh",
+    "legacy_phone": "+49 25243737",
+    "legacy_email": "info@apotheke-hake.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "ts5y0hwy1y90ff163oj651dz"
+  },
+  {
+    "legacy_id": "LEGACY-1279705bd578",
+    "legacy_name": "Apotheke an der Friedenseiche, Hamburg",
+    "legacy_street": "Eppendorfer Marktplatz 2",
+    "legacy_plz": "20251",
+    "legacy_city": "Hamburg",
+    "legacy_phone": "+49 40488778",
+    "legacy_email": "apotheke-friedenseiche@gmx.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "rlgkguz7pfbsqj1o5esn9fwo"
+  },
+  {
+    "legacy_id": "LEGACY-5f2759feddab",
+    "legacy_name": "Bahnhof Apotheke , Reutlingen",
+    "legacy_street": "Kaiserstr. 11",
+    "legacy_plz": "72764",
+    "legacy_city": "Reutlingen",
+    "legacy_phone": "+49 7121490011",
+    "legacy_email": null,
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "p37hsftr0vmxfwdfeqtfqu2f"
+  },
+  {
+    "legacy_id": "LEGACY-262b392f9001",
+    "legacy_name": "Bahnhof-Apotheke , Eberbach",
+    "legacy_street": "Bahnhofsplatz 7",
+    "legacy_plz": "69412",
+    "legacy_city": "Eberbach/Neckar",
+    "legacy_phone": "+49 62715456",
+    "legacy_email": "service1@apotheke-eberbach.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "mti056dfil3ofuf2zmo7jtdv"
+  },
+  {
+    "legacy_id": "LEGACY-16e47f472d83",
+    "legacy_name": "Burg-Apotheke, Kempten",
+    "legacy_street": "Kronenstr. 11",
+    "legacy_plz": "87435",
+    "legacy_city": "Kempten",
+    "legacy_phone": "+49 83127356",
+    "legacy_email": "info@burg-apotheke-kempten.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "n13dman1350oxfz2boblcwn0"
+  },
+  {
+    "legacy_id": "LEGACY-ffbf3a45f6f0",
+    "legacy_name": "Christophorus Apotheke Trostberg, Trostberg",
+    "legacy_street": "Lehemeirstr. 2",
+    "legacy_plz": "83308",
+    "legacy_city": "Trostberg",
+    "legacy_phone": "+49 862161058",
+    "legacy_email": "trostapo@t-online.de",
+    "matched_source": "weed_de",
+    "matched_pharmacy_id": "6707f64b53cc3686452b3f09"
+  },
+  {
+    "legacy_id": "LEGACY-2f70909eecf4",
+    "legacy_name": "Einhorn- Apotheke, Bad Windsheim",
+    "legacy_street": "Marktplatz 3",
+    "legacy_plz": "91438",
+    "legacy_city": "Bad Windsheim",
+    "legacy_phone": "+49 98412074",
+    "legacy_email": "info@patriamed.de",
+    "matched_source": "flowzz",
+    "matched_pharmacy_id": "30"
+  },
+  {
+    "legacy_id": "LEGACY-6094dd97f1da",
+    "legacy_name": "Engel Apotheke am Rathaus, Kassel",
+    "legacy_street": "Obere Königsstr. 21",
+    "legacy_plz": "34117",
+    "legacy_city": "Kassel",
+    "legacy_phone": "+49 56115707",
+    "legacy_email": "engelapothekekassel@gmail.com",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "e10lyi76nr7a7ztkmo2s28wj"
+  },
+  {
+    "legacy_id": "LEGACY-2e269b7cc364",
+    "legacy_name": "Erftland Apotheke, Kerpen",
+    "legacy_street": "Kerpener Str. 32",
+    "legacy_plz": "50170",
+    "legacy_city": "Kerpen",
+    "legacy_phone": "+49 227352654",
+    "legacy_email": "info@erftland-apotheke.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "lc8fiftors7ppp9gowpzwdtl"
+  },
+  {
+    "legacy_id": "LEGACY-535b1d6681cf",
+    "legacy_name": "Heidelberg-Apotheke, Bisingen",
+    "legacy_street": "Heidelbergstr. 22",
+    "legacy_plz": "72406",
+    "legacy_city": "Bisingen",
+    "legacy_phone": "+49 74768411",
+    "legacy_email": "hb@ertelt.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "q90449im0rh7f9ixk5qv4tqk"
+  },
+  {
+    "legacy_id": "LEGACY-f59863b706bf",
+    "legacy_name": "Kissel Apotheke, Frankfurt",
+    "legacy_street": "Mörfelder Landstr. 235",
+    "legacy_plz": "60598",
+    "legacy_city": "Frankfurt am Main",
+    "legacy_phone": "+49 6968974730",
+    "legacy_email": "service@kissel-apotheke.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "j10jrwnxe22ha7mz59mfyhjx"
+  },
+  {
+    "legacy_id": "LEGACY-577e659b625d",
+    "legacy_name": "Kronen-Apotheke , Sankt Augustin",
+    "legacy_street": "Kölnstr. 107",
+    "legacy_plz": "53757",
+    "legacy_city": "St. Augustin",
+    "legacy_phone": "+49 224127013",
+    "legacy_email": "info@kronen-apotheke-augustin.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "ktomio8wj30wy4107qhhrddn"
+  },
+  {
+    "legacy_id": "LEGACY-6bcbc8dd5e58",
+    "legacy_name": "Merkur Apotheke, Nuernberg",
+    "legacy_street": "Breitscheidstr. 5",
+    "legacy_plz": "90459",
+    "legacy_city": "Nuernberg",
+    "legacy_phone": "+49 911442134",
+    "legacy_email": "merkurapo@t-online.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "so88y0snrp5y0ke0iyzcu0vy"
+  },
+  {
+    "legacy_id": "LEGACY-1406a85620df",
+    "legacy_name": "Merkur-Apotheke, Dortmund",
+    "legacy_street": "Jasminstrasse 5",
+    "legacy_plz": "44289",
+    "legacy_city": "Dortmund",
+    "legacy_phone": "+49 231400844",
+    "legacy_email": "info@merkur-apotheke-dortmund.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "eyrkxoasd6bh2qsyxuonsupo"
+  },
+  {
+    "legacy_id": "LEGACY-5a4818f59f79",
+    "legacy_name": "Neckar-Apotheke, Mannheim",
+    "legacy_street": "Mittelstr. 16",
+    "legacy_plz": "68169",
+    "legacy_city": "Mannheim",
+    "legacy_phone": "+49 621333702",
+    "legacy_email": null,
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "ahlujyl44eujplaf5fhjyi31"
+  },
+  {
+    "legacy_id": "LEGACY-4fb900d96bd4",
+    "legacy_name": "Post Apotheke, Kassel",
+    "legacy_street": "Friedrich-Ebert-Str. 27",
+    "legacy_plz": "34117",
+    "legacy_city": "Kassel",
+    "legacy_phone": "+49 5612885650",
+    "legacy_email": "info@post-apotheke-kassel.de",
+    "matched_source": "weed_de",
+    "matched_pharmacy_id": "6904d063f43e17c633906ee3"
+  },
+  {
+    "legacy_id": "LEGACY-6005f1caf237",
+    "legacy_name": "Rats Apotheke, Stralsund",
+    "legacy_street": "Alter Markt 6",
+    "legacy_plz": "18439",
+    "legacy_city": "Stralsund",
+    "legacy_phone": "+49 3831298045",
+    "legacy_email": "info@apotheke-stralsund.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "vc5brmech891iushtjlze4jr"
+  },
+  {
+    "legacy_id": "LEGACY-9bbaec1310e7",
+    "legacy_name": "Rosen Apotheke , Greifswald",
+    "legacy_street": "Hans-Beimler-Straße 1-3",
+    "legacy_plz": "17491",
+    "legacy_city": "Greifswald",
+    "legacy_phone": "+49 3834820595",
+    "legacy_email": "fragen@rosen-apotheke-greifswald.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "beemsjxurs661umtdyr9lk9v"
+  },
+  {
+    "legacy_id": "LEGACY-cb66c9d4f860",
+    "legacy_name": "Rosen Apotheke , Neuwied",
+    "legacy_street": "Dierdorfer Str. 115",
+    "legacy_plz": "56564",
+    "legacy_city": "Neuwied",
+    "legacy_phone": "+49 263127363",
+    "legacy_email": "info@rosen-apotheke-neuwied.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "i14fbchr0tcymy6se72xb5ij"
+  },
+  {
+    "legacy_id": "LEGACY-b0b0d6821068",
+    "legacy_name": "Schloss-Apotheke , Marktoberdorf",
+    "legacy_street": "Eberle-Kögl-Str. 16",
+    "legacy_plz": "87616",
+    "legacy_city": "Marktoberdorf",
+    "legacy_phone": "+49 83422201",
+    "legacy_email": "service@apo-schloss.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "e11v0u0vglix05q869mt7mma"
+  },
+  {
+    "legacy_id": "LEGACY-f40266a2904f",
+    "legacy_name": "Stadt Apotheke , Saarbruecken",
+    "legacy_street": "Bahnhofstrasse 37",
+    "legacy_plz": "66111",
+    "legacy_city": "Saarbruecken",
+    "legacy_phone": "+49 681948890",
+    "legacy_email": "mail@stadtapotheke-sb.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "zt74hyn38sfr9e6hop1qsn3r"
+  },
+  {
+    "legacy_id": "LEGACY-117bac17f291",
+    "legacy_name": "Tiergarten-Apotheke, Konstanz",
+    "legacy_street": "Wessenbergstraße 28",
+    "legacy_plz": "78462",
+    "legacy_city": "Konstanz",
+    "legacy_phone": "+49 753127051",
+    "legacy_email": "info@apotheke-konstanz.de",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "vqma98ynwg0q92pjora82gtm"
+  },
+  {
+    "legacy_id": "LEGACY-adf0c3ba7f33",
+    "legacy_name": "Widder Apotheke, Wuppertal",
+    "legacy_street": "Wittener Str. 20",
+    "legacy_plz": "42277",
+    "legacy_city": "Wuppertal",
+    "legacy_phone": "+49 20243045450",
+    "legacy_email": "info@widder-apotheke.com",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "hdxqag2wtc1be6c48cuxrhjm"
+  },
+  {
+    "legacy_id": "LEGACY-83f74b9187cc",
+    "legacy_name": "Wieslauf-Apotheke, Rudersberg",
+    "matched_source": "flowzz",
+    "matched_pharmacy_id": "17"
+  },
+  {
+    "legacy_id": "LEGACY-2d89ea6f26cc",
+    "legacy_name": "Witzleben Apotheke 24, Berlin",
+    "matched_source": "canngo",
+    "matched_pharmacy_id": "ten4rxor3vxdjtqlrey5idq4"
+  }
+]

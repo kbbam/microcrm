@@ -1,0 +1,1213 @@
+[
+  {
+    "id": 100,
+    "name": "AZM Pharma GmbH",
+    "city": null,
+    "website": "https://www.azmpharma.com",
+    "tier": "medium"
+  },
+  {
+    "id": 101,
+    "name": "Adjupharm GmbH",
+    "city": null,
+    "website": "https://www.adjupharm.de/",
+    "tier": "medium"
+  },
+  {
+    "id": 105,
+    "name": "Canify AG",
+    "city": null,
+    "website": "https://www.canify.com",
+    "tier": "medium"
+  },
+  {
+    "id": 107,
+    "name": "Cannamedical Pharma GmbH",
+    "city": null,
+    "website": null,
+    "tier": "medium"
+  },
+  {
+    "id": 102,
+    "name": "Cansativa GmbH",
+    "city": null,
+    "website": "https://www.cansativa.de",
+    "tier": "medium"
+  },
+  {
+    "id": 104,
+    "name": "Four 20 Pharma GmbH",
+    "city": null,
+    "website": "https://420pharma.de/",
+    "tier": "medium"
+  },
+  {
+    "id": 99,
+    "name": "GM MEDICAL GmbH",
+    "city": null,
+    "website": null,
+    "tier": "medium"
+  },
+  {
+    "id": 220,
+    "name": "Grünhorn Gruppe",
+    "city": "Leipzig",
+    "website": "https://www.gruenhorn.group/de/",
+    "tier": "medium"
+  },
+  {
+    "id": 251,
+    "name": "Origine Nature",
+    "city": "Sainte-Agathe-des-Monts",
+    "website": "https://originenature.com/",
+    "tier": "medium"
+  },
+  {
+    "id": 226,
+    "name": "Remexian Pharma GmbH",
+    "city": null,
+    "website": null,
+    "tier": "medium"
+  },
+  {
+    "id": 103,
+    "name": "canymed GmbH",
+    "city": null,
+    "website": "https://www.canymed.com/",
+    "tier": "medium"
+  },
+  {
+    "id": 177,
+    "name": "Acculife Pharma",
+    "city": null,
+    "website": "https://acculifepharma.co.ug/",
+    "tier": "watch"
+  },
+  {
+    "id": 135,
+    "name": "Active Pharma",
+    "city": null,
+    "website": "https://activepharma.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 120,
+    "name": "BAP Pharma",
+    "city": null,
+    "website": "https://bappharma.com/",
+    "tier": "watch"
+  },
+  {
+    "id": 227,
+    "name": "BRP Renaud mbB",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 16,
+    "name": "Beldimed",
+    "city": null,
+    "website": "https://beldimed.com/",
+    "tier": "watch"
+  },
+  {
+    "id": 174,
+    "name": "Delfarma Sp. z o.o.",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 27,
+    "name": "Docmondo",
+    "city": null,
+    "website": "https://docmondo.com/",
+    "tier": "watch"
+  },
+  {
+    "id": 121,
+    "name": "DoktorABC",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 33,
+    "name": "EUROPACCESS - Your Pharma Partner",
+    "city": null,
+    "website": "https://europaccess-pharma.com/",
+    "tier": "watch"
+  },
+  {
+    "id": 173,
+    "name": "Eureco-Pharma B.V.",
+    "city": null,
+    "website": "https://eureco-pharma.nl/",
+    "tier": "watch"
+  },
+  {
+    "id": 34,
+    "name": "Europharm GmbH",
+    "city": "Schiffweiler",
+    "website": "https://europharm.gmbh/",
+    "tier": "watch"
+  },
+  {
+    "id": 35,
+    "name": "Expert Med Import Export",
+    "city": null,
+    "website": "https://expert-med.eu/",
+    "tier": "watch"
+  },
+  {
+    "id": 176,
+    "name": "FC - Farmacie Centrali",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 186,
+    "name": "Farmaceutica Santa Caterina SpA",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 146,
+    "name": "Farmacie Mizar",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 140,
+    "name": "Farmacie Nardone",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 42,
+    "name": "GP Nord",
+    "city": "Riga",
+    "website": "https://gpnord.com/",
+    "tier": "watch"
+  },
+  {
+    "id": 248,
+    "name": "IhreApotheken GmbH & Co. KGaA",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 46,
+    "name": "Inthera",
+    "city": "Budapest",
+    "website": "https://inthera.net/",
+    "tier": "watch"
+  },
+  {
+    "id": 49,
+    "name": "Kymos Group",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 50,
+    "name": "LINDA Apotheken",
+    "city": "Cologne",
+    "website": "https://www.linda.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 126,
+    "name": "Mario Group Pharma",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 163,
+    "name": "Medsurge Healthcare",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 191,
+    "name": "NOWEDA Apothekergenossenschaft eG",
+    "city": null,
+    "website": "https://www.noweda.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 180,
+    "name": "PHARMORE GmbH",
+    "city": null,
+    "website": "https://www.pharmore.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 72,
+    "name": "PHOENIX Pharmahandel GmbH & Co KG",
+    "city": "Mannheim",
+    "website": "https://www.phoenix-online.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 145,
+    "name": "Peli BioThermal",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 264,
+    "name": "Pluspunkt Apotheken (brand/cooperation)",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 249,
+    "name": "SaniPlus Apotheken",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 147,
+    "name": "SinoPlaSan GmbH",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 129,
+    "name": "SofarMorra",
+    "city": null,
+    "website": "https://www.sofarmamorra.it/",
+    "tier": "watch"
+  },
+  {
+    "id": 87,
+    "name": "TE.AM Pharmahandel GmbH",
+    "city": "Gevelsberg",
+    "website": "https://www.team-pharmahandel.de/",
+    "tier": "watch"
+  },
+  {
+    "id": 153,
+    "name": "axicorp",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 247,
+    "name": "easyApotheke (Holding) AG",
+    "city": null,
+    "website": null,
+    "tier": "watch"
+  },
+  {
+    "id": 158,
+    "name": "4Stand",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 2,
+    "name": "ABDA - Bundesvereinigung Deutscher Apothekerverbände e. V.",
+    "city": null,
+    "website": "https://www.abda.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 221,
+    "name": "ADG Apotheken-Dienstleistungsgesellschaft mbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 12,
+    "name": "ARKON SOLUTIONS LLP",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 13,
+    "name": "ATHEER PHARMA",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 151,
+    "name": "ATIV Service",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 157,
+    "name": "Acnos Pharma",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 4,
+    "name": "Align Health",
+    "city": null,
+    "website": "https://alignhealth.io/",
+    "tier": "unscored"
+  },
+  {
+    "id": 162,
+    "name": "Altamedics GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 5,
+    "name": "Alu-Lids",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 6,
+    "name": "Ancanex Pharma Trading FZCO",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 8,
+    "name": "Apofolio Software und Service GmbH Köln",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 164,
+    "name": "Aristo Group",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 11,
+    "name": "Arkon Solution",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 193,
+    "name": "Aurora Deutschland GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 17,
+    "name": "BRRY GmbH",
+    "city": "Mönchengladbach",
+    "website": "https://www.brry.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 14,
+    "name": "Bahnhof-Apotheke Apotheker A. & D. Wolz OHG",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 152,
+    "name": "BlisterCenter Aschaffenburg",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 18,
+    "name": "Bundesverband der Pharmazeutischen Industrie",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 19,
+    "name": "Bundesverband der Pharmaziestudierenden in Deutschland e.V. (BPhD e.V.)",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 22,
+    "name": "CAPTEUR PROTECT",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 24,
+    "name": "CS-Pharma GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 195,
+    "name": "Candoro ethics GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 197,
+    "name": "Cannovum Health GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 196,
+    "name": "Canopy Growth Germany GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 222,
+    "name": "Catharos.de",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 183,
+    "name": "Chiesi Deutschland",
+    "city": null,
+    "website": "https://www.chiesi.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 198,
+    "name": "DEMECAN Holding GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 141,
+    "name": "DKV Deutsche Krankenversicherung",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 225,
+    "name": "DePexPro",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 128,
+    "name": "Delfi Technologies",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 25,
+    "name": "Deutscher Apotheker Verlag",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 127,
+    "name": "Dineras",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 149,
+    "name": "Dr. B. Scheffler",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 29,
+    "name": "Dr. Jaglas",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 199,
+    "name": "Drapalin Pharmaceuticals GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 32,
+    "name": "ETL ADVISION",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 124,
+    "name": "FD Specialist Consultancy",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 150,
+    "name": "FIEGE",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 38,
+    "name": "French Mush",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 133,
+    "name": "GEDISA",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 143,
+    "name": "GenSure Biotech",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 41,
+    "name": "GlobalRx",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 178,
+    "name": "Healthcare Sellution GmbH",
+    "city": null,
+    "website": "https://www.healthcare-sellution.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 43,
+    "name": "Himalaya Wellness Europe",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 44,
+    "name": "Hitado GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 171,
+    "name": "Hommel Pharma GmbH & Co. KG",
+    "city": null,
+    "website": "https://hommel-pharma.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 165,
+    "name": "IQVIA Germany",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 47,
+    "name": "Juta Pharma GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 48,
+    "name": "KRAMER GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 172,
+    "name": "Kairion GmbH",
+    "city": null,
+    "website": "https://kairion.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 51,
+    "name": "Lumino",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 155,
+    "name": "MD Education",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 59,
+    "name": "MWO Health",
+    "city": null,
+    "website": "http://www.mwoffice.de",
+    "tier": "unscored"
+  },
+  {
+    "id": 52,
+    "name": "MadriChem GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 53,
+    "name": "Mario Pharma Llc.",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 194,
+    "name": "Materia Deutschland GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 55,
+    "name": "Mauve Mailorder Software GmbH & Co KG.",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 138,
+    "name": "MedHubPlace",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 56,
+    "name": "Medi-Clear",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 57,
+    "name": "Meditech Deutschland",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 130,
+    "name": "Medivise",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 190,
+    "name": "Medyk Lek Panek Sp. z o.o. Sp. K",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 58,
+    "name": "Mom's Garden GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 132,
+    "name": "Morningstar Pharma",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 62,
+    "name": "NOODDIS",
+    "city": "Beynost",
+    "website": "https://nooddis.fr/",
+    "tier": "unscored"
+  },
+  {
+    "id": 224,
+    "name": "NOVENTI Health SE",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 63,
+    "name": "NOVENTI awinta Warenwirtschaft",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 159,
+    "name": "OMMAX",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 64,
+    "name": "Oblix Pharma LLP",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 65,
+    "name": "Orange Pharma",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 67,
+    "name": "PARI",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 69,
+    "name": "PAYONE",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 71,
+    "name": "PHARMATECHNIK",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 185,
+    "name": "PHARMATECHNIK GmbH & Co. KG",
+    "city": null,
+    "website": "https://www.pharmatechnik.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 108,
+    "name": "PS Pharma Group",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 75,
+    "name": "PSS - Pharma Service Systeme GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 148,
+    "name": "Paesel + Lorei GmbH & Co. KG",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 68,
+    "name": "Parksley Global Pvt. Ltd.",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 154,
+    "name": "PhShop",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 70,
+    "name": "Pharm-Medics Inc.",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 223,
+    "name": "Pharmazeutische Zeitung (PZ)",
+    "city": null,
+    "website": "https://www.pharmazeutische-zeitung.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 137,
+    "name": "Pharmediq",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 131,
+    "name": "Pharmedo",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 73,
+    "name": "PhytoVitality",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 156,
+    "name": "Prahem Laboratories LLP",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 74,
+    "name": "Prevenova GmbH | Bindex®",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 77,
+    "name": "Remi Health",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 78,
+    "name": "Robano Express Thermo Logistics",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 81,
+    "name": "SMINA GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 106,
+    "name": "Semdor Pharma Group GmbH",
+    "city": null,
+    "website": "https://semdor-group.com/",
+    "tier": "unscored"
+  },
+  {
+    "id": 83,
+    "name": "Specialist Pharmacy",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 84,
+    "name": "Steuerberater für Apotheken",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 85,
+    "name": "Swiss Solutions",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 134,
+    "name": "TempSecure Logistics",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 89,
+    "name": "TempTrans GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 200,
+    "name": "Tilray Deutschland GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 91,
+    "name": "Treuhand Hannover - gemeinsam steuern.",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 92,
+    "name": "Treuhand Hannover Steuerberatung und Wirtschaftsberatung für Heilberufe GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 94,
+    "name": "Unipharma SA",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 95,
+    "name": "Unirex Healthcare",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 96,
+    "name": "VMI Care",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 97,
+    "name": "WEFRA LIFE",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 192,
+    "name": "WMG Pharma GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 3,
+    "name": "adexa_gewerkschaft",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 7,
+    "name": "apo_stb",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 9,
+    "name": "apomap_gmbh",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 10,
+    "name": "apothekia GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 167,
+    "name": "de Faire Medical",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 26,
+    "name": "direkt + online GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 36,
+    "name": "expopharm",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 39,
+    "name": "gamma_pharmacyequipment",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 40,
+    "name": "globalamz",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 161,
+    "name": "good healthcare group",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 45,
+    "name": "huebbers.com_",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 168,
+    "name": "komm.passion | Team Farner",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 54,
+    "name": "marktplatz_der_gesundheit",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 169,
+    "name": "marpinion GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 60,
+    "name": "mycovital_gesundheits_gmbh",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 66,
+    "name": "page one GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 117,
+    "name": "scanacs direct GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 79,
+    "name": "scanacs_direct",
+    "city": "Dresden",
+    "website": "https://scanacs.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 86,
+    "name": "tadpharma",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 111,
+    "name": "telekonnekt GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 88,
+    "name": "telekonnekt_gmbh",
+    "city": null,
+    "website": "https://telekonnekt.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 136,
+    "name": "tibeos",
+    "city": null,
+    "website": "https://www.tibeos.de/",
+    "tier": "unscored"
+  },
+  {
+    "id": 93,
+    "name": "troniTAG GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  },
+  {
+    "id": 160,
+    "name": "ysura GmbH",
+    "city": null,
+    "website": null,
+    "tier": "unscored"
+  }
+]
