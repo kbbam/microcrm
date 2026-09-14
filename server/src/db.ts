@@ -38,9 +38,26 @@ export async function initSchema(): Promise<void> {
       expires_at TIMESTAMPTZ NOT NULL,
       used_at TIMESTAMPTZ
     );
+    -- oidc-provider's persistent storage (sessions, grants, access/refresh
+    -- tokens, authorization codes, interactions, clients, ...): one table
+    -- for every model it manages, keyed by (model, id). Without this, every
+    -- restart (a deploy, a crash, Railway recycling the container) wipes
+    -- every logged-in user's session and forces a full re-authentication --
+    -- unacceptable for people using this day to day.
+    CREATE TABLE IF NOT EXISTS oidc_models (
+      model TEXT NOT NULL,
+      id TEXT NOT NULL,
+      payload JSONB NOT NULL,
+      grant_id TEXT,
+      user_code TEXT,
+      uid TEXT,
+      expires_at TIMESTAMPTZ,
+      consumed_at TIMESTAMPTZ,
+      PRIMARY KEY (model, id)
+    );
+    CREATE INDEX IF NOT EXISTS oidc_models_grant_id_idx ON oidc_models (grant_id);
+    CREATE INDEX IF NOT EXISTS oidc_models_user_code_idx ON oidc_models (model, user_code);
+    CREATE INDEX IF NOT EXISTS oidc_models_uid_idx ON oidc_models (model, uid);
+    CREATE INDEX IF NOT EXISTS oidc_models_expires_at_idx ON oidc_models (expires_at);
   `);
-  // OAuth grants/tokens/interactions (oidc-provider) intentionally use the
-  // default in-memory adapter, not Postgres: this service runs as a single
-  // Railway instance, and losing in-flight authorization state on a redeploy
-  // just means affected users re-authenticate. Not worth a custom adapter.
 }

@@ -1,11 +1,17 @@
 import Provider, { errors as oidcErrors } from "oidc-provider";
 import type { Request, Response } from "express";
 import { verifyLogin } from "./users.js";
+import { PgAdapter } from "./pg-adapter.js";
 
 const ISSUER = process.env.PUBLIC_URL ?? "http://localhost:8080";
 const MCP_RESOURCE = `${ISSUER}/mcp`;
 
 export const oidc = new Provider(ISSUER, {
+  // Persist sessions/grants/tokens/dynamically-registered clients in
+  // Postgres, not oidc-provider's default in-memory store -- otherwise every
+  // restart (a deploy, a crash, Railway recycling the container) silently
+  // logs everyone out and they'd need to notice and reconnect mid-task.
+  adapter: PgAdapter,
   // We don't pre-register clients: Claude (and any other MCP client) registers
   // itself via RFC 7591 dynamic client registration, the standard remote-MCP
   // connector flow.
