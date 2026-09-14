@@ -317,6 +317,37 @@
   var byId = {}; entities.forEach(function(e){ byId[e.id] = e; });
   var peopleById = {}; people.forEach(function(p){ peopleById[p.id] = p; });
   var dataSource = 'snapshot'; // 'snapshot' (the embedded JSON at build time) or 'live' (microcrm connector)
+  var mcpHandle = null; // set once the mcp capability resolves; used by ensureFullDetail
+  var fetchingIds = {}; // in-flight get_entity/get_person calls, keyed 'entities:12' / 'people:7' -- dedupes
+
+  // In live mode, the list/nav/filters run off lean summary rows (see
+  // liveSync below) so syncing all ~300+296 records stays small and fast.
+  // A record only gets its full detail (contacts, relationships, evidence,
+  // notes, ...) fetched -- and only once, cached from then on -- when it's
+  // actually opened. 'contacts' is present on every full record and on none
+  // of the summaries, so it doubles as the "do we have full detail yet?" flag.
+  function ensureFullDetail(kind, id){
+    if (dataSource !== 'live' || !mcpHandle) return;
+    var store = kind === 'entities' ? byId : peopleById;
+    var rec = store[id];
+    if (!rec || ('contacts' in rec)) return;
+    var key = kind + ':' + id;
+    if (fetchingIds[key]) return;
+    fetchingIds[key] = true;
+    var tool = kind === 'entities' ? 'get_entity' : 'get_person';
+    mcpHandle.callTool('microcrm', tool, { id: id }).then(function(result){
+      delete fetchingIds[key];
+      var full = result && result.payload;
+      if (!full || !state.selected || state.selected.kind !== kind || state.selected.id !== id) return;
+      store[id] = full;
+      renderDetail();
+    }).catch(function(){
+      delete fetchingIds[key];
+      // Leave the summary in place -- renderDetail already degrades to
+      // whatever fields it has rather than erroring, so the record stays
+      // usable (just sparse) instead of stuck on a spinner forever.
+    });
+  }
 
   var state = { view: 'entities', q: '', tierFilter: null, typeFilter: null, cannabisFilters: [], cannabisOpen: false, selected: null, detailTab: 'overview' };
 
@@ -479,6 +510,7 @@
       if(!state.selected || state.selected.kind!==view || state.selected.id!==id){ state.detailTab = 'overview'; }
       state.selected = { kind: view, id: id };
       els.layout.classList.add('showing-detail');
+      ensureFullDetail(view, id);
     } else {
       state.selected = null;
       els.layout.classList.remove('showing-detail');
@@ -892,18 +924,35 @@
 
     window.claude.use('mcp').then(function(mcp){
       if (!mcp) return;
+      mcpHandle = mcp;
       var CONNECTOR = 'microcrm';
 
+      // Merge freshly-fetched summary rows into a keyed map: a row already
+      // holding full detail (has 'contacts' -- from the initial snapshot, or
+      // from ensureFullDetail's on-demand fetch) gets its summary fields
+      // updated in place rather than being clobbered back down to a summary,
+      // so an open record's detail view never regresses/flickers once it's
+      // been loaded in full.
+      function mergeRows(map, rows){
+        rows.forEach(function(row){
+          var existing = map[row.id];
+          if (existing && ('contacts' in existing)) {
+            for (var k in row) existing[k] = row[k];
+          } else {
+            map[row.id] = row;
+          }
+        });
+      }
+
       function applyLive(){
-        byId = {}; entities.forEach(function(e){ byId[e.id] = e; });
-        peopleById = {}; people.forEach(function(p){ peopleById[p.id] = p; });
         dataSource = 'live';
         syncFromHash();
       }
 
-      mcp.watchTool(CONNECTOR, 'search_entities', { limit: 1000 }, function(ev){
+      mcp.watchTool(CONNECTOR, 'search_entities', { limit: 1000, fields: 'summary' }, function(ev){
         if (ev.type === 'data' && Array.isArray(ev.result.payload)) {
-          entities = ev.result.payload;
+          mergeRows(byId, ev.result.payload);
+          entities = Object.keys(byId).map(function(k){ return byId[k]; });
           applyLive();
         }
         // errors (not connected, denied, transient): keep whatever is
@@ -911,9 +960,10 @@
         // read-only sync path, degrading to the snapshot is always safe.
       });
 
-      mcp.watchTool(CONNECTOR, 'search_people', { limit: 1000 }, function(ev){
+      mcp.watchTool(CONNECTOR, 'search_people', { limit: 1000, fields: 'summary' }, function(ev){
         if (ev.type === 'data' && Array.isArray(ev.result.payload)) {
-          people = ev.result.payload;
+          mergeRows(peopleById, ev.result.payload);
+          people = Object.keys(peopleById).map(function(k){ return peopleById[k]; });
           applyLive();
         }
       });

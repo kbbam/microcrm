@@ -25,12 +25,25 @@ function sanitizePatch(
   return clean;
 }
 
+// A full entity (contacts, relationships, evidence, long excerpt text, ...)
+// runs to a few KB each; 296 of them in one search result is ~700KB of JSON.
+// That's fine for an agent's targeted query (a handful of rows), but the
+// artifact's initial full-dataset sync was requesting all 296 in one call at
+// full detail, which is both wasteful and a real risk of tripping some
+// transport's size limit -- summary mode returns just what a list view / a
+// name lookup needs; get_entity still returns full detail for one record.
+const ENTITY_SUMMARY_PROJECTION =
+  "jsonb_build_object('id', data->'id', 'name', data->'name', 'type', data->'type', 'city', data->'city', 'country', data->'country', 'lead_tier', data->'lead_tier', 'cannabis_status', data->'cannabis_status')";
+const PEOPLE_SUMMARY_PROJECTION =
+  "jsonb_build_object('id', data->'id', 'name', data->'name', 'roles', data->'roles', 'resolution_status', data->'resolution_status')";
+
 export async function searchEntities(opts: {
   query?: string;
   type?: string;
   leadTier?: string;
   cannabisStatus?: string;
   limit?: number;
+  summary?: boolean;
 }) {
   const clauses: string[] = [];
   const params: unknown[] = [];
@@ -55,9 +68,10 @@ export async function searchEntities(opts: {
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const limit = Math.min(Math.max(opts.limit ?? 25, 1), 1000);
   params.push(limit);
+  const projection = opts.summary ? ENTITY_SUMMARY_PROJECTION : "data";
 
   const { rows } = await pool.query(
-    `SELECT data FROM entities ${where} ORDER BY id LIMIT $${params.length}`,
+    `SELECT ${projection} AS data FROM entities ${where} ORDER BY id LIMIT $${params.length}`,
     params,
   );
   return rows.map((r) => r.data);
@@ -114,7 +128,7 @@ export async function appendPersonNote(id: number, note: string) {
   return rows[0]?.data ?? null;
 }
 
-export async function searchPeople(opts: { query?: string; limit?: number }) {
+export async function searchPeople(opts: { query?: string; limit?: number; summary?: boolean }) {
   const clauses: string[] = [];
   const params: unknown[] = [];
 
@@ -126,9 +140,10 @@ export async function searchPeople(opts: { query?: string; limit?: number }) {
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const limit = Math.min(Math.max(opts.limit ?? 25, 1), 1000);
   params.push(limit);
+  const projection = opts.summary ? PEOPLE_SUMMARY_PROJECTION : "data";
 
   const { rows } = await pool.query(
-    `SELECT data FROM people ${where} ORDER BY id LIMIT $${params.length}`,
+    `SELECT ${projection} AS data FROM people ${where} ORDER BY id LIMIT $${params.length}`,
     params,
   );
   return rows.map((r) => r.data);

@@ -21,21 +21,26 @@ function buildServer(): McpServer {
 
   server.tool(
     "search_entities",
-    "Search organizations/pharmacy locations by name, type, lead tier, or cannabis status.",
+    "Search organizations/pharmacy locations by name, type, lead tier, or cannabis status. " +
+      "Pass fields:'summary' for a lightweight listing (id/name/type/city/country/lead_tier/" +
+      "cannabis_status only) when you don't need full detail on every match -- e.g. fetching " +
+      "many rows at once. Follow up with get_entity for full detail on the one you actually need.",
     {
       query: z.string().optional().describe("Case-insensitive substring match on name"),
       type: z.enum(["organization", "pharmacy_location", "person"]).optional(),
       lead_tier: z.enum(["high", "medium", "watch", "unscored"]).optional(),
       cannabis_status: z.string().optional(),
       limit: z.number().int().min(1).max(1000).optional(),
+      fields: z.enum(["summary", "full"]).optional().describe("Default 'full'"),
     },
-    async ({ query, type, lead_tier, cannabis_status, limit }) => {
+    async ({ query, type, lead_tier, cannabis_status, limit, fields }) => {
       const results = await crm.searchEntities({
         query,
         type,
         leadTier: lead_tier,
         cannabisStatus: cannabis_status,
         limit,
+        summary: fields === "summary",
       });
       return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }] };
     },
@@ -96,13 +101,15 @@ function buildServer(): McpServer {
 
   server.tool(
     "search_people",
-    "Search people by name.",
+    "Search people by name. Pass fields:'summary' for a lightweight listing " +
+      "(id/name/roles/resolution_status only). Follow up with get_person for full detail.",
     {
       query: z.string().optional(),
       limit: z.number().int().min(1).max(1000).optional(),
+      fields: z.enum(["summary", "full"]).optional().describe("Default 'full'"),
     },
-    async ({ query, limit }) => {
-      const results = await crm.searchPeople({ query, limit });
+    async ({ query, limit, fields }) => {
+      const results = await crm.searchPeople({ query, limit, summary: fields === "summary" });
       return { content: [{ type: "text", text: JSON.stringify(results, null, 2) }] };
     },
   );
