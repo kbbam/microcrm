@@ -80,6 +80,40 @@ export async function updateEntity(id: number, patch: Record<string, unknown>) {
   return rows[0]?.data ?? null;
 }
 
+// Notes are append-only on purpose: they're not in ENTITY_PATCH_KEYS /
+// PEOPLE_PATCH_KEYS, so the only way to change them is through here, which
+// always appends to the existing text rather than letting a shallow-merge
+// patch silently overwrite a colleague's earlier notes.
+function appendNoteText(existing: unknown, note: string): string {
+  const stamp = new Date().toISOString().slice(0, 16).replace("T", " ");
+  const entry = `[${stamp}] ${note}`;
+  return typeof existing === "string" && existing.length > 0
+    ? `${existing}\n\n${entry}`
+    : entry;
+}
+
+export async function appendEntityNote(id: number, note: string) {
+  const current = await getEntity(id);
+  if (!current) return null;
+  const updated = appendNoteText((current as any).notes, note);
+  const { rows } = await pool.query(
+    `UPDATE entities SET data = jsonb_set(data, '{notes}', to_jsonb($2::text)) WHERE id = $1 RETURNING data`,
+    [id, updated],
+  );
+  return rows[0]?.data ?? null;
+}
+
+export async function appendPersonNote(id: number, note: string) {
+  const current = await getPerson(id);
+  if (!current) return null;
+  const updated = appendNoteText((current as any).notes, note);
+  const { rows } = await pool.query(
+    `UPDATE people SET data = jsonb_set(data, '{notes}', to_jsonb($2::text)) WHERE id = $1 RETURNING data`,
+    [id, updated],
+  );
+  return rows[0]?.data ?? null;
+}
+
 export async function searchPeople(opts: { query?: string; limit?: number }) {
   const clauses: string[] = [];
   const params: unknown[] = [];

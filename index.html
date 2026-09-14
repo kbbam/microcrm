@@ -782,7 +782,8 @@
       if(qf) tabBody += '<div class="quickfacts">'+qf+'</div>';
       tabBody += section('Target classes', tagsHtml ? '<div class="taglist">'+tagsHtml+'</div>' : '<div class="no-data">Not yet classified against the BAM taxonomy.</div>');
       if(isGroup) tabBody += section('Member locations ('+memberRels.length+')', memberHtml || '<div class="no-data">Classified as a group/cooperation but no member locations recorded yet.</div>');
-      if(e.evidence_summary) tabBody += section('Notes', '<div class="no-data" style="font-style:normal;">'+esc(e.evidence_summary)+'</div>');
+      if(e.evidence_summary) tabBody += section('Research notes', '<div class="no-data" style="font-style:normal;">'+esc(e.evidence_summary)+'</div>');
+      if(e.notes) tabBody += section('Activity notes', '<div class="no-data" style="font-style:normal;white-space:pre-wrap;">'+esc(e.notes)+'</div>');
       if(!tabBody) tabBody = '<div class="no-data">No overview details captured yet.</div>';
     } else if(activeTab === 'people'){
       tabBody += peopleHtml ? section('People here', peopleHtml) : '<div class="no-data">No people captured yet for this organization. Add one via a field observation.</div>';
