@@ -1,8 +1,9 @@
-import Provider from "oidc-provider";
+import Provider, { errors as oidcErrors } from "oidc-provider";
 import type { Request, Response } from "express";
 import { verifyLogin } from "./users.js";
 
 const ISSUER = process.env.PUBLIC_URL ?? "http://localhost:8080";
+const MCP_RESOURCE = `${ISSUER}/mcp`;
 
 export const oidc = new Provider(ISSUER, {
   // We don't pre-register clients: Claude (and any other MCP client) registers
@@ -18,6 +19,25 @@ export const oidc = new Provider(ISSUER, {
     registration: { enabled: true, initialAccessToken: false },
     devInteractions: { enabled: false },
     revocation: { enabled: true },
+    // Required for MCP clients: they send a `resource` parameter (RFC 8707)
+    // on the authorize request identifying this connector's MCP endpoint,
+    // and without this enabled oidc-provider rejects it outright with
+    // invalid_target -- before the user ever sees a login page.
+    resourceIndicators: {
+      enabled: true,
+      defaultResource: () => MCP_RESOURCE,
+      getResourceServerInfo: (_ctx: unknown, resourceIndicator: string) => {
+        if (resourceIndicator !== MCP_RESOURCE) {
+          throw new (oidcErrors as any).InvalidTarget(
+            `unknown resource indicator: ${resourceIndicator}`,
+          );
+        }
+        return {
+          scope: "openid offline_access mcp",
+          accessTokenFormat: "opaque",
+        };
+      },
+    },
   },
   pkce: { required: () => true },
   scopes: ["openid", "offline_access", "mcp"],
@@ -143,7 +163,7 @@ export function registerInteractionRoutes(
   post("/interaction/:uid/consent", async (req, res) => {
     try {
       const interaction = await oidc.interactionDetails(req, res);
-      const { session, params, grantId } = interaction;
+      const { session, params, grantId, prompt } = interaction;
 
       const grant = grantId
         ? await oidc.Grant.find(grantId)
@@ -153,6 +173,21 @@ export function registerInteractionRoutes(
           });
 
       grant!.addOIDCScope(String(params.scope ?? "openid"));
+
+      // With resourceIndicators enabled, granting the OIDC scope alone isn't
+      // enough -- oidc-provider also tracks per-resource consent separately
+      // and re-prompts (a second "consent" interaction, indistinguishable in
+      // the UI from the first) until each requested resource's scopes are
+      // granted too.
+      const missingResourceScopes = (prompt.details as any)?.missingResourceScopes as
+        | Record<string, string[]>
+        | undefined;
+      if (missingResourceScopes) {
+        for (const [resource, scopes] of Object.entries(missingResourceScopes)) {
+          grant!.addResourceScope(resource, scopes.join(" "));
+        }
+      }
+
       const finalGrantId = await grant!.save();
 
       await oidc.interactionFinished(
