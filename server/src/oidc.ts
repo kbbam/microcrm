@@ -202,6 +202,19 @@ export function registerInteractionRoutes(
   });
 }
 
+// RFC 9728: any unauthenticated (or invalid-token) request to the resource
+// must point the client back at this resource's protected-resource metadata
+// so it can (re-)discover the authorization server -- this is the header a
+// well-behaved MCP client actually relies on, the .well-known paths are the
+// fallback a client may check instead of or in addition to this.
+function setWwwAuthenticate(res: Response) {
+  const base = process.env.PUBLIC_URL ?? "http://localhost:8080";
+  res.set(
+    "WWW-Authenticate",
+    `Bearer resource_metadata="${base}/.well-known/oauth-protected-resource/mcp"`,
+  );
+}
+
 export async function requireAccessToken(
   req: Request,
   res: Response,
@@ -209,6 +222,7 @@ export async function requireAccessToken(
 ) {
   const auth = req.headers.authorization;
   if (!auth?.startsWith("Bearer ")) {
+    setWwwAuthenticate(res);
     res.status(401).json({ error: "missing bearer token" });
     return;
   }
@@ -216,11 +230,13 @@ export async function requireAccessToken(
   try {
     const accessToken = await oidc.AccessToken.find(token);
     if (!accessToken) {
+      setWwwAuthenticate(res);
       res.status(401).json({ error: "invalid or expired token" });
       return;
     }
     next();
   } catch {
+    setWwwAuthenticate(res);
     res.status(401).json({ error: "invalid token" });
   }
 }

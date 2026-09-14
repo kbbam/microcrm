@@ -76,8 +76,18 @@ async function main() {
   // Admin: generate one-time invite links (static bearer secret).
   app.post("/admin/invites", jsonBody, requireAdmin, createInviteHandler);
 
-  // MCP endpoint, gated behind an OAuth access token.
+  // MCP endpoint, gated behind an OAuth access token. GET/DELETE aren't
+  // meaningful for our stateless Streamable HTTP setup (no SSE stream, no
+  // server-assigned session to tear down), but some clients probe them --
+  // for reachability, or to open/close a stream this transport doesn't
+  // support -- and without a handler here they'd fall through to
+  // oidc.callback() below and get its unrelated, confusing 404 page instead
+  // of a real answer about this endpoint.
+  const mcpMethodNotAllowed = (_req: express.Request, res: express.Response) =>
+    res.status(405).json({ error: "method not allowed; use POST" });
   app.post("/mcp", jsonBody, requireAccessToken, handleMcpRequest);
+  app.get("/mcp", requireAccessToken, mcpMethodNotAllowed);
+  app.delete("/mcp", requireAccessToken, mcpMethodNotAllowed);
 
   // oidc-provider's own login/consent screens. Must be registered before
   // oidc.callback() below, since that middleware handles (and ends) every
