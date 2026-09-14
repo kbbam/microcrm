@@ -15,7 +15,7 @@ function buildServer(): McpServer {
       type: z.enum(["organization", "pharmacy_location", "person"]).optional(),
       lead_tier: z.enum(["high", "medium", "watch", "unscored"]).optional(),
       cannabis_status: z.string().optional(),
-      limit: z.number().int().min(1).max(200).optional(),
+      limit: z.number().int().min(1).max(1000).optional(),
     },
     async ({ query, type, lead_tier, cannabis_status, limit }) => {
       const results = await crm.searchEntities({
@@ -59,7 +59,7 @@ function buildServer(): McpServer {
     "Search people by name.",
     {
       query: z.string().optional(),
-      limit: z.number().int().min(1).max(200).optional(),
+      limit: z.number().int().min(1).max(1000).optional(),
     },
     async ({ query, limit }) => {
       const results = await crm.searchPeople({ query, limit });

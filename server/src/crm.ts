@@ -53,7 +53,7 @@ export async function searchEntities(opts: {
   }
 
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
-  const limit = Math.min(Math.max(opts.limit ?? 25, 1), 200);
+  const limit = Math.min(Math.max(opts.limit ?? 25, 1), 1000);
   params.push(limit);
 
   const { rows } = await pool.query(
@@ -90,7 +90,7 @@ export async function searchPeople(opts: { query?: string; limit?: number }) {
   }
 
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
-  const limit = Math.min(Math.max(opts.limit ?? 25, 1), 200);
+  const limit = Math.min(Math.max(opts.limit ?? 25, 1), 1000);
   params.push(limit);
 
   const { rows } = await pool.query(

@@ -309,6 +309,7 @@
   var entities = DATA.entities, people = DATA.people;
   var byId = {}; entities.forEach(function(e){ byId[e.id] = e; });
   var peopleById = {}; people.forEach(function(p){ peopleById[p.id] = p; });
+  var dataSource = 'snapshot'; // 'snapshot' (the embedded JSON at build time) or 'live' (microcrm connector)
 
   var state = { view: 'entities', q: '', tierFilter: null, typeFilter: null, cannabisFilters: [], cannabisOpen: false, selected: null, detailTab: 'overview' };
 
@@ -502,7 +503,10 @@
     els.navFoot.innerHTML =
       '<div><b>'+entities.length+'</b> entities</div>'+
       '<div><b>'+high+'</b> high-tier leads</div>'+
-      '<div><b>'+people.length+'</b> people</div>';
+      '<div><b>'+people.length+'</b> people</div>'+
+      '<div style="margin-top:4px">'+(dataSource==='live'
+        ? '<span style="color:var(--tier-high)">● live</span>'
+        : '<span>○ snapshot</span>')+'</div>';
 
     var current = NAV_ITEMS.filter(function(it){ return it.key===state.view; })[0];
     els.pageTitle.textContent = current ? current.label : '';
@@ -868,5 +872,44 @@
   }
 
   syncFromHash();
+
+  // Live data via the "microcrm" custom MCP connector, when this page is
+  // viewed as a Claude Artifact with that capability granted. Falls back
+  // to the embedded snapshot above -- silently, since a viewer without the
+  // connector (or a standalone/GitHub-Pages open of this file, where
+  // window.claude doesn't exist at all) should just see the static
+  // dataset with no error state.
+  (function liveSync(){
+    if (!window.claude || typeof window.claude.use !== 'function') return;
+
+    window.claude.use('mcp').then(function(mcp){
+      if (!mcp) return;
+      var CONNECTOR = 'microcrm';
+
+      function applyLive(){
+        byId = {}; entities.forEach(function(e){ byId[e.id] = e; });
+        peopleById = {}; people.forEach(function(p){ peopleById[p.id] = p; });
+        dataSource = 'live';
+        syncFromHash();
+      }
+
+      mcp.watchTool(CONNECTOR, 'search_entities', { limit: 1000 }, function(ev){
+        if (ev.type === 'data' && Array.isArray(ev.result.payload)) {
+          entities = ev.result.payload;
+          applyLive();
+        }
+        // errors (not connected, denied, transient): keep whatever is
+        // already rendered rather than show a blocking error -- this is a
+        // read-only sync path, degrading to the snapshot is always safe.
+      });
+
+      mcp.watchTool(CONNECTOR, 'search_people', { limit: 1000 }, function(ev){
+        if (ev.type === 'data' && Array.isArray(ev.result.payload)) {
+          people = ev.result.payload;
+          applyLive();
+        }
+      });
+    }).catch(function(){ /* no mcp capability available -- stay on snapshot */ });
+  })();
 })();
 </script>
