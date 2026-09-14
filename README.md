@@ -17,10 +17,18 @@ browser.
   locations) and `people`, with contacts, relationships, cannabis-dispensing
   evidence, SIS marketplace cross-references, and event-attendance notes.
 - **`index.html`** — the built, self-contained page (`template.html` +
-  `data.json` merged together). This is what you open in a browser or
-  publish as a static site.
-- **`build.py`** — regenerates `index.html` from `template.html` +
-  `data.json`. Run this after editing either source file:
+  `data.json` merged together, plus its own `<!DOCTYPE html>`/`<head>` with a
+  `<meta charset="utf-8">`). This is what you open in a browser or publish as
+  a static site (e.g. GitHub Pages). The explicit charset matters: without it,
+  a browser opening the file directly has to guess the encoding and gets it
+  wrong for the German names in the data (renders as mojibake).
+- **`artifact.html`** — the same merged content as `index.html`, but as a bare
+  fragment with no `<!DOCTYPE>`/`<html>`/`<head>`/`<body>`. This is the source
+  to use when (re-)publishing to Claude Artifacts, which wraps the file in its
+  own such skeleton (charset included) at publish time — feeding it
+  `index.html` instead would nest two `<head>`/`<body>` pairs.
+- **`build.py`** — regenerates `index.html` and `artifact.html` from
+  `template.html` + `data.json`. Run this after editing either source file:
 
   ```bash
   python3 build.py
