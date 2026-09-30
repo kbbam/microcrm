@@ -37,7 +37,7 @@ The fixture proves implementation behavior through an HTTP transport; it is not 
 
 ## Isolated pilot and remaining proof
 
-The orchestrator reports a separate workspace created at `https://bam-sales-coach-test.twenty.com`. Onboarding, isolated API credentials, source consent, and live integration proof remain pending. Do not use the sponsor's production credentials as the isolated workspace key. Do not delete seeded demo opportunities merely to make setup pass.
+The orchestrator reports a separate workspace created at `https://bam-sales-coach-test.twenty.com`. Onboarding completed on the Basic seven-day plan. Isolated API credential creation awaits action-time owner approval; source fidelity and live integration proof remain pending. The workspace visibly contains prefilled/existing records, so its emptiness must not be assumed and local coach scope is restricted to a reserved synthetic account. Do not use the sponsor's production credentials as the isolated workspace key. Do not delete seeded demo opportunities merely to make setup pass.
 
 `sales-coach/scripts/setup-pipeline.mjs` is an admin-only setup utility, not a coach tool. It requires an explicit absolute `--env` credential-file path and defaults to dry-run. Application additionally requires `--apply --isolated`, an empty opportunity workspace, and unchanged stage metadata since its read. It configures the native stage options/default and reads back the native enum; no third pipeline field is introduced. If Twenty seeds demo pursuits, the utility deliberately refuses application: the operator must review native setup/migration in that isolated workspace rather than silently remove or remap them.
 
