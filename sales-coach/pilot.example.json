@@ -1,0 +1,15 @@
+{
+  "contextDir": ".runtime/ilya",
+  "actor": {
+    "id": "bruman@jpgrowery.com",
+    "role": "executive"
+  },
+  "twenty": {
+    "baseUrl": "https://YOUR-ISOLATED-TWENTY-INSTANCE",
+    "apiKeyEnv": "COACH_TWENTY_API_KEY",
+    "scopeCompanyIds": [],
+    "writeEnabled": false,
+    "externalEffectsReviewed": false,
+    "scopeMode": "accounts"
+  }
+}
