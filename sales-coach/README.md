@@ -23,7 +23,7 @@ Use a separate trusted configuration with `actor.role` set to `leader` or `admin
 node launch.mjs --config /absolute/path/leader.json --mode leader --prompt "Review retained evidence and coaching observations."
 ```
 
-Chat text cannot change the authenticated role. The coach cannot confirm its own consequential proposals. The human confirmation commands live in `cli.mjs`, outside the model's tools.
+Chat text cannot change the host-configured coach role. The host must protect the trusted configurations; this local package does not authenticate individual humans or bind a configured actor to a Twenty account. The coach cannot confirm its own consequential proposals. The human confirmation commands live in `cli.mjs`, outside the model's tools.
 
 ## Durable reconstruction jobs
 
@@ -37,7 +37,7 @@ node jobs.mjs status JOB_ID
 node jobs.mjs list
 ```
 
-Status includes the retained originals, authenticated actor, every attempt, native JSONL log, error log and final summary. `completed` means the native attempt finished; inspect its summary for missing coverage, pending proposals and required human input. It does not assert that CRM setup or every account ambiguity is resolved. CRM and source failures remain explicit.
+Status includes the retained originals, host-configured actor, every attempt, native JSONL log, error log and final summary. `completed` means the native attempt finished; inspect its summary for missing coverage, pending proposals and required human input. It does not assert that CRM setup or every account ambiguity is resolved. CRM and source failures remain explicit.
 
 ```sh
 node jobs.mjs resume JOB_ID
@@ -48,7 +48,7 @@ Resume starts a fresh native process over the same originals and durable account
 
 ## Twenty and human controls
 
-Twenty setup, actor scope and write authorization are supplied in the trusted config. Keep credentials in the configured environment variable or credential file; never paste tokens into the conversation. The default unconfigured example above can reconstruct retained sources but cannot verify CRM integration.
+Twenty setup, actor scope and write authorization are supplied in the trusted config. The configured coach role and Twenty credential principal are separate. `coach_status` reports the credential principal, workspace membership, CRM permission role and human UI access as unverified; configuring a connector or passing synthetic tests does not establish them. Before calling the pilot ready, verify the actual regular executive can read/create/edit the permitted records in the isolated Twenty UI, and independently verify the connector credential’s role, workspace and authorized scope. A separately authorized service credential may support the coach, but is not proof of the executive’s own permissions. Keep credentials in the configured environment variable or credential file; never paste tokens into the conversation. The default unconfigured example above can reconstruct retained sources but cannot verify CRM integration.
 
 ```sh
 node cli.mjs pending

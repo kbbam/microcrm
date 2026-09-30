@@ -47,7 +47,7 @@ test('a different live OS process excludes concurrent native and human CLI work'
   await lease.release();
 });
 
-test('chat mode cannot elevate an executive or silently use an admin credential', () => {
+test('launch mode enforces the host-configured coach role independently of CRM credentials', () => {
   const config = role => ({ contextDir: 'data', actor: { id: 'human', role } });
   validateMode(config('executive'), 'coach');
   validateMode(config('admin'), 'leader');

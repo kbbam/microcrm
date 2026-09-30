@@ -1,0 +1,4 @@
+PASS: configured executive role blocks leader report at service layer.
+READINESS GAP REPRODUCED: executive config accepts a separately supplied API key without verified key role, membership, workspace identity, or relation to configured actor.
+This mock does not establish the synthetic key really has an admin role; it establishes absent verification and independent identities.
+Native role QA config: /tmp/bam-coach-role-qa-Td77xa/native.json

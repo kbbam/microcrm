@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: runtime retains inference model identity while removing built-in coding tool exposure
+ok 1 - runtime retains inference model identity while removing built-in coding tool exposure
+  ---
+  duration_ms: 4.5525
+  type: 'test'
+  ...
+# Subtest: only one active native process owns a durable context; a dead owner is recoverable
+ok 2 - only one active native process owns a durable context; a dead owner is recoverable
+  ---
+  duration_ms: 440.3875
+  type: 'test'
+  ...
+# Subtest: a different live OS process excludes concurrent native and human CLI work
+ok 3 - a different live OS process excludes concurrent native and human CLI work
+  ---
+  duration_ms: 181.566125
+  type: 'test'
+  ...
+# Subtest: launch mode enforces the host-configured coach role independently of CRM credentials
+ok 4 - launch mode enforces the host-configured coach role independently of CRM credentials
+  ---
+  duration_ms: 0.548208
+  type: 'test'
+  ...
+# Subtest: unrelated connector/API credentials and runtime overrides are not inherited
+ok 5 - unrelated connector/API credentials and runtime overrides are not inherited
+  ---
+  duration_ms: 0.300708
+  type: 'test'
+  ...
+# Subtest: invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+ok 6 - invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+  ---
+  duration_ms: 1.313459
+  type: 'test'
+  ...
+# Subtest: MCP status distinguishes configured coach authority from unverified Twenty access
+ok 7 - MCP status distinguishes configured coach authority from unverified Twenty access
+  ---
+  duration_ms: 143.579125
+  type: 'test'
+  ...
+# Subtest: source-text role impersonation cannot expose leader_report to an executive MCP session
+ok 8 - source-text role impersonation cannot expose leader_report to an executive MCP session
+  ---
+  duration_ms: 189.762708
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1440.879333

@@ -1,0 +1,194 @@
+
+> bam-sales-coach@0.1.0 test
+> node --test test/*.test.mjs
+
+TAP version 13
+# Subtest: rich provenance, correction history and terminal opportunity survive repeated input and restart
+ok 1 - rich provenance, correction history and terminal opportunity survive repeated input and restart
+  ---
+  duration_ms: 279.77275
+  type: 'test'
+  ...
+# Subtest: human CRM changes refresh operational values without flattening original social and objection context
+ok 2 - human CRM changes refresh operational values without flattening original social and objection context
+  ---
+  duration_ms: 167.529375
+  type: 'test'
+  ...
+# Subtest: ordinary writes auto apply, consequential proposals require trusted human confirmation and repeated proposal is idempotent
+ok 3 - ordinary writes auto apply, consequential proposals require trusted human confirmation and repeated proposal is idempotent
+  ---
+  duration_ms: 350.640375
+  type: 'test'
+  ...
+# Subtest: uncertain patch is reconciled after restart rather than repeated against a changed revision
+ok 4 - uncertain patch is reconciled after restart rather than repeated against a changed revision
+  ---
+  duration_ms: 63.665667
+  type: 'test'
+  ...
+# Subtest: full leader report includes executive account, teachable moment and cross-functional signal, unrelated role denied
+ok 5 - full leader report includes executive account, teachable moment and cross-functional signal, unrelated role denied
+  ---
+  duration_ms: 31.114625
+  type: 'test'
+  ...
+# Subtest: actual child completion persists log, summary and original source for later restart
+ok 6 - actual child completion persists log, summary and original source for later restart
+  ---
+  duration_ms: 384.134917
+  type: 'test'
+  ...
+# Subtest: actual failing child retains failure detail and can run another durable attempt
+ok 7 - actual failing child retains failure detail and can run another durable attempt
+  ---
+  duration_ms: 473.478708
+  type: 'test'
+  ...
+# Subtest: lost worker is reported interrupted rather than silently completed
+ok 8 - lost worker is reported interrupted rather than silently completed
+  ---
+  duration_ms: 25.631333
+  type: 'test'
+  ...
+# Subtest: different trusted actor cannot inspect another actor job
+ok 9 - different trusted actor cannot inspect another actor job
+  ---
+  duration_ms: 23.863459
+  type: 'test'
+  ...
+# Subtest: cancel does not signal a live PID without the matching worker ownership witness
+ok 10 - cancel does not signal a live PID without the matching worker ownership witness
+  ---
+  duration_ms: 28.903875
+  type: 'test'
+  ...
+# Subtest: cancel signals only the live process group with its matching owned worker witness
+ok 11 - cancel signals only the live process group with its matching owned worker witness
+  ---
+  duration_ms: 47.82125
+  type: 'test'
+  ...
+# Subtest: runtime retains inference model identity while removing built-in coding tool exposure
+ok 12 - runtime retains inference model identity while removing built-in coding tool exposure
+  ---
+  duration_ms: 6.59525
+  type: 'test'
+  ...
+# Subtest: only one active native process owns a durable context; a dead owner is recoverable
+ok 13 - only one active native process owns a durable context; a dead owner is recoverable
+  ---
+  duration_ms: 119.13525
+  type: 'test'
+  ...
+# Subtest: a different live OS process excludes concurrent native and human CLI work
+ok 14 - a different live OS process excludes concurrent native and human CLI work
+  ---
+  duration_ms: 443.93925
+  type: 'test'
+  ...
+# Subtest: launch mode enforces the host-configured coach role independently of CRM credentials
+ok 15 - launch mode enforces the host-configured coach role independently of CRM credentials
+  ---
+  duration_ms: 0.58675
+  type: 'test'
+  ...
+# Subtest: unrelated connector/API credentials and runtime overrides are not inherited
+ok 16 - unrelated connector/API credentials and runtime overrides are not inherited
+  ---
+  duration_ms: 0.370792
+  type: 'test'
+  ...
+# Subtest: invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+ok 17 - invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+  ---
+  duration_ms: 1.63725
+  type: 'test'
+  ...
+# Subtest: MCP status distinguishes configured coach authority from unverified Twenty access
+ok 18 - MCP status distinguishes configured coach authority from unverified Twenty access
+  ---
+  duration_ms: 109.812834
+  type: 'test'
+  ...
+# Subtest: source-text role impersonation cannot expose leader_report to an executive MCP session
+ok 19 - source-text role impersonation cannot expose leader_report to an executive MCP session
+  ---
+  duration_ms: 83.294959
+  type: 'test'
+  ...
+# Subtest: account scope, scoped task targets and pagination coverage
+ok 20 - account scope, scoped task targets and pagination coverage
+  ---
+  duration_ms: 207.2665
+  type: 'test'
+  ...
+# Subtest: writes require two deployment flags and bounded permitted fields
+ok 21 - writes require two deployment flags and bounded permitted fields
+  ---
+  duration_ms: 12.288083
+  type: 'test'
+  ...
+# Subtest: successful atomic patch and readback; stale baseline never overwrites human
+ok 22 - successful atomic patch and readback; stale baseline never overwrites human
+  ---
+  duration_ms: 302.097333
+  type: 'test'
+  ...
+# Subtest: concurrent edit between read and patch is protected by server-side revision filter
+ok 23 - concurrent edit between read and patch is protected by server-side revision filter
+  ---
+  duration_ms: 61.917083
+  type: 'test'
+  ...
+# Subtest: Won is soft judgment without signature/order gate; incompatible native stages fail closed
+ok 24 - Won is soft judgment without signature/order gate; incompatible native stages fail closed
+  ---
+  duration_ms: 43.631625
+  type: 'test'
+  ...
+# Subtest: note create attaches to account; interrupted target creation retries stable IDs without duplicates
+ok 25 - note create attaches to account; interrupted target creation retries stable IDs without duplicates
+  ---
+  duration_ms: 178.807209
+  type: 'test'
+  ...
+# Subtest: scope is mandatory even for reads; arbitrary object/template injection rejected
+ok 26 - scope is mandatory even for reads; arbitrary object/template injection rejected
+  ---
+  duration_ms: 3.007334
+  type: 'test'
+  ...
+# Subtest: account communications follow targets, and participant reads remain in scope
+ok 27 - account communications follow targets, and participant reads remain in scope
+  ---
+  duration_ms: 53.38725
+  type: 'test'
+  ...
+# Subtest: bounded relationship discovery discloses incomplete context coverage
+ok 28 - bounded relationship discovery discloses incomplete context coverage
+  ---
+  duration_ms: 182.762416
+  type: 'test'
+  ...
+# Subtest: trusted isolated workspace mode reconstructs a new account and its related CRM projections
+ok 29 - trusted isolated workspace mode reconstructs a new account and its related CRM projections
+  ---
+  duration_ms: 119.995375
+  type: 'test'
+  ...
+# Subtest: default account scope refuses an unreserved new account ID
+ok 30 - default account scope refuses an unreserved new account ID
+  ---
+  duration_ms: 1.50225
+  type: 'test'
+  ...
+1..30
+# tests 30
+# suites 0
+# pass 30
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1967.285792
