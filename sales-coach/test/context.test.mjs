@@ -95,7 +95,34 @@ test('uncertain patch is reconciled after restart rather than repeated against a
   const change = await service.propose({ accountId: 'buyer', object: 'company', id: 'buyer', values: { name: 'Corrected' }, expectedUpdatedAt: '1', sourceIds: [source.id], estimatedErrorCost: 'low', highlyConsequential: false, reason: 'Routine correction' });
   assert.equal(change.state, 'uncertain');
   const restarted = await new CoachService({ contextDir: service.store.directory, actor, adapter }).init();
-  assert.equal((await restarted.resume())[0].state, 'applied');
+  const resumed = (await restarted.resume())[0];
+  assert.equal(resumed.state, 'applied');
+  assert.equal(resumed.error, null);
+  assert.equal(resumed.errorCode, null);
+  assert.equal(writes, 1);
+});
+test('successful retry clears resolved setup failure without creating a duplicate projection', async t => {
+  let enabled = false, writes = 0;
+  const adapter = { create: async ({ values }) => {
+    if (!enabled) throw Object.assign(new Error('Writes disabled'), { code: 'WRITES_DISABLED' });
+    writes++;
+    return { record: { ...values, updatedAt: '2026-09-30T00:00:00Z' } };
+  } };
+  const service = await setup(t, adapter);
+  const source = await service.store.source({ sourceKey: 'synthetic-retry', text: 'Synthetic task fixture, no external effect.' });
+  const blocked = await service.propose({ accountId: 'buyer', object: 'task', values: { title: 'Synthetic fixture' }, sourceIds: [source.id], estimatedErrorCost: 'low', highlyConsequential: false, reason: 'Synthetic internal projection' });
+  assert.equal(blocked.state, 'blocked');
+  assert.equal(blocked.errorCode, 'WRITES_DISABLED');
+  enabled = true;
+  const retried = await service.retry(blocked.id);
+  assert.equal(retried.state, 'applied');
+  assert.equal(retried.error, null);
+  assert.equal(retried.errorCode, null);
+  const repeated = await service.apply(retried);
+  assert.equal(repeated.recordId, blocked.createId);
+  const legacy = await service.apply({ ...retried, error: 'Resolved setup failure', errorCode: 'WRITES_DISABLED' });
+  assert.equal(legacy.error, null);
+  assert.equal(legacy.errorCode, null);
   assert.equal(writes, 1);
 });
 test('full leader report includes executive account, teachable moment and cross-functional signal, unrelated role denied', async t => {

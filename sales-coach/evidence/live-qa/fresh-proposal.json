@@ -1,0 +1,55 @@
+{
+  "at": "2026-09-30T11:57:13.203Z",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "reservedAccountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "humanCurrentReadback": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:54:18.128Z",
+    "title": "QA Human correction — summary already drafted",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  },
+  "outcome": {
+    "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+    "object": "task",
+    "recordId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "values": {
+      "title": "QA Coach reconciled — summary already drafted"
+    },
+    "expectedUpdatedAt": "2026-09-30T11:54:18.128Z",
+    "sourceIds": [
+      "99f2204abdd8b14a347df210ac1a2cdac11f382be8dc418f8dd6dd33487a9119"
+    ],
+    "estimatedErrorCost": "low",
+    "highlyConsequential": false,
+    "reason": "Owner-authorized synthetic fresh-baseline coach edit after a genuine human UI correction. Preserve its meaning and retained original; no external effects or commercial commitments.",
+    "id": "483c414bc6cd7285ae0d144f43d6aca7cca247f81662afa171c0ba513f45ca29",
+    "createId": "2cc3ffed-4677-4b1a-8d77-f92da14c81c7",
+    "state": "applied",
+    "proposedBy": {
+      "id": "kb@jpgrowery.com",
+      "role": "executive"
+    },
+    "proposedAt": "2026-09-30T11:57:05.047Z",
+    "appliedAt": "2026-09-30T11:57:11.009Z",
+    "error": null,
+    "errorCode": null
+  },
+  "after": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:57:08.206Z",
+    "title": "QA Coach reconciled — summary already drafted",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "at": "2026-09-30T11:46:29.223Z",
+  "workspace": "bam-sales-coach-test.twenty.com",
+  "workflow": {
+    "http": 200,
+    "data": {
+      "workflowAutomatedTriggers": {
+        "totalCount": 1,
+        "pageInfo": {
+          "hasNextPage": false
+        }
+      },
+      "workflowVersions": {
+        "totalCount": 2,
+        "pageInfo": {
+          "hasNextPage": true
+        }
+      },
+      "workflows": {
+        "totalCount": 2,
+        "pageInfo": {
+          "hasNextPage": true
+        },
+        "edges": [
+          {
+            "node": {
+              "id": "b5c071be-dfe0-5b94-abb9-5511eb136bb9",
+              "statuses": [
+                "ACTIVE"
+              ],
+              "lastPublishedVersionId": "52fd2d9e-62d3-5871-b0ac-22a961d60b30"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "metadataRelevant": [
+    {
+      "name": "applicationSdkClientChecksums",
+      "args": [
+        {
+          "name": "applicationId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "isApplicationStopped",
+      "args": [
+        {
+          "name": "applicationUniversalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "applicationConnectedAccounts",
+      "args": [
+        {
+          "name": "applicationId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "applicationConnectionProviders",
+      "args": [
+        {
+          "name": "applicationId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findOneLogicFunction",
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "LogicFunctionIdInput",
+              "kind": "INPUT_OBJECT"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findManyLogicFunctions",
+      "args": []
+    },
+    {
+      "name": "getLogicFunctionSourceCode",
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "LogicFunctionIdInput",
+              "kind": "INPUT_OBJECT"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findApplicationRegistrationByClientId",
+      "args": [
+        {
+          "name": "clientId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findApplicationRegistrationByUniversalIdentifier",
+      "args": [
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findManyApplicationRegistrations",
+      "args": []
+    },
+    {
+      "name": "findOneApplicationRegistration",
+      "args": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findApplicationRegistrationStats",
+      "args": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findApplicationRegistrationVariables",
+      "args": [
+        {
+          "name": "applicationRegistrationId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "applicationRegistrationTarballUrl",
+      "args": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findClaimableApplicationRegistration",
+      "args": [
+        {
+          "name": "sourcePackage",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "findManyApplications",
+      "args": []
+    },
+    {
+      "name": "findOneApplication",
+      "args": [
+        {
+          "name": "id",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ]
+    },
+    {
+      "name": "findInstallApplicationJobStatus",
+      "args": [
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "findUninstallApplicationJobStatus",
+      "args": [
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "webhooks",
+      "args": []
+    },
+    {
+      "name": "webhook",
+      "args": [
+        {
+          "name": "id",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "exportApplication",
+      "args": [
+        {
+          "name": "universalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "applicationCoreGraphqlSchema",
+      "args": [
+        {
+          "name": "applicationUniversalIdentifier",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "String",
+              "kind": "SCALAR"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "currentUserApplicationAuthorizations",
+      "args": []
+    }
+  ],
+  "metaHttp": 200
+}

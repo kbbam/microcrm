@@ -1,0 +1,31 @@
+{
+  "at": "2026-09-30T11:49:03.518Z",
+  "findManyLogicFunctions": [
+    {
+      "id": "829cc38e-1058-5b64-beb6-55a856cc19a9",
+      "name": "Extract domain from email",
+      "databaseEventTriggerSettings": null,
+      "workflowActionTriggerSettings": null
+    },
+    {
+      "id": "09be5de2-8766-5e61-9120-0ca5a712677d",
+      "name": "Is this a personal email?",
+      "databaseEventTriggerSettings": null,
+      "workflowActionTriggerSettings": null
+    },
+    {
+      "id": "3d375e68-3d7c-5c3b-a20a-809597a1ed7f",
+      "name": "Find matching company by domain",
+      "databaseEventTriggerSettings": null,
+      "workflowActionTriggerSettings": null
+    },
+    {
+      "id": "0b7b3be0-1fae-463a-a40b-6345df03ffd8",
+      "name": "exa_web_search",
+      "databaseEventTriggerSettings": null,
+      "workflowActionTriggerSettings": null
+    }
+  ],
+  "webhooks": [],
+  "emailClassificationSource": "const psl = require('psl');\n\nconst PERSONAL_EMAIL_DOMAINS = new Set([\n  'aol.com',\n  'att.net',\n  'btinternet.com',\n  'comcast.net',\n  'fastmail.com',\n  'free.fr',\n  'gmx.com',\n  'gmx.de',\n  'googlemail.com',\n  'hotmail.com',\n  'hotmail.fr',\n  'icloud.com',\n  'laposte.net',\n  'live.com',\n  'mac.com',\n  'mail.com',\n  'me.com',\n  'msn.com',\n  'orange.fr',\n  'outlook.com',\n  'outlook.fr',\n  'pm.me',\n  'proton.me',\n  'protonmail.com',\n  'sfr.fr',\n  'verizon.net',\n  'wanadoo.fr',\n  'yahoo.co.jp',\n  'yahoo.co.uk',\n  'yahoo.com',\n  'yandex.com',\n  'yandex.ru',\n  'zoho.com',\n  'gmail.com',\n]);\n\nexport const main = async (params) => {\n  const email =\n    typeof params?.primaryEmail === 'string'\n      ? params.primaryEmail.trim().toLowerCase()\n      : '';\n\n  if (!email || !email.includes('@')) {\n    return { isPersonal: true };\n  }\n\n  const host = email.split('@')[1] ?? '';\n  const registrableDomain = host ? (psl.get(host) ?? '') : '';\n\n  return {\n    isPersonal:\n      !registrableDomain ||\n      PERSONAL_EMAIL_DOMAINS.has(host) ||\n      PERSONAL_EMAIL_DOMAINS.has(registrableDomain),\n  };\n};"
+}

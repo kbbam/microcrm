@@ -61,10 +61,10 @@ Review the exact proposal, evidence and consequences before human confirmation. 
 
 Run `npm test` for the package's checks. Synthetic native proof is distinct from live Twenty/source verification.
 
-For an empty isolated Twenty test workspace, inspect the pipeline setup plan before applying it:
+For the verified isolated Twenty test workspace, inspect the additive pipeline plan. This preserves existing stages, defaults and pursuit records:
 
 ```sh
-node scripts/setup-pipeline.mjs --env /Users/user/microcrm/sales-coach/.env.twenty-test.local --url https://bam-sales-coach-test.twenty.com
+node scripts/setup-pipeline.mjs --env /Users/user/microcrm/sales-coach/.env.twenty-test.local --url https://bam-sales-coach-test.twenty.com --add-missing
 ```
 
-The test credential file must exist first. Applying requires explicit `--apply --isolated` and an empty workspace. Keep this separate from production configuration.
+The ignored test credential file may contain only `TWENTY_API_KEY`. Applying additionally requires `--apply --isolated`; retain nonsecret before/after proof with `--evidence /absolute/path/to/evidence.json`. Without `--add-missing`, replacement setup refuses any existing pursuits. Keep setup separate from production configuration and review outbound effects before enabling coach writes. The test workspace's additive setup is already verified in `evidence/twenty-pipeline-live.json`.

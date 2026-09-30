@@ -68,14 +68,14 @@ export class CoachService {
     return change;
   }
   async apply(change) {
-    if (change.state === 'applied') return change;
+    if (change.state === 'applied') return change.error || change.errorCode ? this.store.putChange({ ...change, error: null, errorCode: null }) : change;
     if (!['ready', 'confirmed', 'applying', 'uncertain'].includes(change.state)) throw new Error('Matching trusted human confirmation required');
     if (!this.adapter) return this.store.putChange({ ...change, state: 'blocked', error: 'CRM connection not configured', errorCode: 'NOT_CONFIGURED' });
     if (['uncertain', 'applying'].includes(change.state) && change.recordId) {
       const current = (await this.adapter.read({ object: change.object, id: change.recordId })).records[0];
       if (current && Object.entries(change.values).every(([field, value]) => changeDigest(current[field]) === changeDigest(value))) {
         await this.store.rememberCRM(change.accountId, change.object, current);
-        return this.store.putChange({ ...change, state: 'applied', reconciled: true, appliedAt: new Date().toISOString() });
+        return this.store.putChange({ ...change, state: 'applied', reconciled: true, appliedAt: new Date().toISOString(), error: null, errorCode: null });
       }
     }
     await this.store.putChange({ ...change, state: 'applying' });
@@ -87,7 +87,7 @@ export class CoachService {
         result = await this.adapter.create({ object: change.object, values: { ...change.values, id: change.createId } });
       }
       await this.store.rememberCRM(change.accountId, change.object, result.record);
-      return this.store.putChange({ ...change, state: 'applied', recordId: result.record.id, appliedAt: new Date().toISOString() });
+      return this.store.putChange({ ...change, state: 'applied', recordId: result.record.id, appliedAt: new Date().toISOString(), error: null, errorCode: null });
     } catch (error) {
       const noEffect = ['WRITES_DISABLED', 'SCOPE_REQUIRED', 'OUT_OF_SCOPE', 'CONFLICT', 'BASELINE_REQUIRED', 'FORBIDDEN_FIELD', 'READ_ONLY_OBJECT', 'INVALID_STAGE', 'PIPELINE_SETUP_REQUIRED', 'INVALID_VALUES', 'INVALID_ID', 'UNSUPPORTED_OBJECT'];
       return this.store.putChange({ ...change, state: noEffect.includes(error.code) ? 'blocked' : 'uncertain', error: error.message, errorCode: error.code ?? null });
