@@ -1,0 +1,170 @@
+{
+  "at": "2026-10-01T13:51:44.860Z",
+  "context": "owner-qa",
+  "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+  "independentOriginals": [
+    {
+      "evidenceId": "1297fa44-54c5-4b3e-bbaa-dc326068b844",
+      "filename": "qa-anna-conversation.png",
+      "size": 91242,
+      "actualSHA256": "b90769578159c7e9936189b6eaaa17fccd658da0c0f9e96a6a992f0cab36e9b8",
+      "verifiedStatus": "original-preserved",
+      "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10"
+      ]
+    },
+    {
+      "evidenceId": "25f6ef36-66a0-4ee4-a096-1be0f82023e5",
+      "filename": "qa-customer-note.txt",
+      "size": 747,
+      "actualSHA256": "f811feb54f6ffdffa741bc404c1b722c38f8193023ce79c2bab1596e5aeeca01",
+      "verifiedStatus": "original-preserved",
+      "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10"
+      ]
+    }
+  ],
+  "txtTranscription": {
+    "sourceId": "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c",
+    "evidenceId": "25f6ef36-66a0-4ee4-a096-1be0f82023e5",
+    "representation": "transcription",
+    "textChars": 743,
+    "textSHA256": "f811feb54f6ffdffa741bc404c1b722c38f8193023ce79c2bab1596e5aeeca01"
+  },
+  "latestCommitments": [
+    {
+      "id": "08b50d06-8af6-4ca0-9736-23ff0fe0d77d",
+      "text": "Executive owes Anna the written shelf-life summary for the Autumn trial, promised by 5 Oct 2026 (date only, no time). Update from the 1 Oct conversation screenshot: the executive's own message says the summary is drafted but not yet sent. So: drafted = per executive's message; sent = no as of the screenshot; Anna has not received it; fulfilment is open. Whether the draft has been reviewed or approved is not stated.",
+      "status": "human-account",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+        "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c",
+        "2ca5f7fdec85c6e5a7853b4a6ae2b203e242b6e5b69b015616e146dc23de6d84"
+      ]
+    }
+  ],
+  "task": {
+    "id": "892c9be7-5ca4-45cb-9f38-a76f8cd6c720",
+    "title": "Prepare shelf-life summary for Anna by 5 Oct 2026 \u2014 QA Northstar Autumn trial",
+    "dueAt": null,
+    "bodyMarkdown": "Synthetic QA task. Executive promised Anna a written shelf-life summary by 5 October 2026 (date only; no time was given). It supports the Autumn trial order only; Anna asked that the Spring repeat order be kept separate. Per the executive's own message in the 1 Oct 2026 conversation screenshot, the summary is DRAFTED but NOT YET SENT. Remaining step: executive reviews and sends it to Anna (the coach does not send). Neither opportunity is won; no order is accepted."
+  },
+  "opportunities": [
+    {
+      "id": "6fd8eed5-3b66-402e-9f69-349febe96c69",
+      "name": "QA Autumn trial order (synthetic)",
+      "stage": "ENGAGED"
+    },
+    {
+      "id": "31375bb8-c4ac-41f2-b2e9-76b55c605cf7",
+      "name": "QA Spring repeat order (synthetic)",
+      "stage": "ENGAGED"
+    }
+  ],
+  "independentTwentyReadback": {
+    "at": "2026-10-01T13:52:41.294Z",
+    "taskId": "892c9be7-5ca4-45cb-9f38-a76f8cd6c720",
+    "dueAt": null,
+    "title": "Prepare shelf-life summary for Anna by 5 Oct 2026 \u2014 QA Northstar Autumn trial",
+    "bodyMarkdown": "Synthetic QA task. Executive promised Anna a written shelf-life summary by 5 October 2026 (date only; no time was given). It supports the Autumn trial order only; Anna asked that the Spring repeat order be kept separate. Per the executive's own message in the 1 Oct 2026 conversation screenshot, the summary is DRAFTED but NOT YET SENT. Remaining step: executive reviews and sends it to Anna (the coach does not send). Neither opportunity is won; no order is accepted.",
+    "opportunities": [
+      {
+        "id": "31375bb8-c4ac-41f2-b2e9-76b55c605cf7",
+        "name": "QA Spring repeat order (synthetic)",
+        "stage": "ENGAGED"
+      },
+      {
+        "id": "6fd8eed5-3b66-402e-9f69-349febe96c69",
+        "name": "QA Autumn trial order (synthetic)",
+        "stage": "ENGAGED"
+      }
+    ]
+  },
+  "txtRetryPrePNGObservation": {
+    "preparation": "unknown",
+    "commitmentEntryId": "08b50d06-8af6-4ca0-9736-23ff0fe0d77d",
+    "sourceIds": [
+      "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+      "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c"
+    ],
+    "basis": "Read-only stored account inspection before screenshot update; original unsupported claim retained as historical entry with same stable ID."
+  },
+  "pngCompletedClientInspection": {
+    "sourceId": "2ca5f7fdec85c6e5a7853b4a6ae2b203e242b6e5b69b015616e146dc23de6d84",
+    "evidenceId": "1297fa44-54c5-4b3e-bbaa-dc326068b844",
+    "representation": "transcription",
+    "textChars": 720,
+    "linkedCurrentEntryKinds": [
+      "objection",
+      "commitment",
+      "opportunity",
+      "signal"
+    ],
+    "currentCommitment": {
+      "id": "08b50d06-8af6-4ca0-9736-23ff0fe0d77d",
+      "text": "Executive owes Anna the written shelf-life summary for the Autumn trial, promised by 5 Oct 2026 (date only, no time). Update from the 1 Oct conversation screenshot: the executive's own message says the summary is drafted but not yet sent. So: drafted = per executive's message; sent = no as of the screenshot; Anna has not received it; fulfilment is open. Whether the draft has been reviewed or approved is not stated.",
+      "status": "human-account",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+        "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c",
+        "2ca5f7fdec85c6e5a7853b4a6ae2b203e242b6e5b69b015616e146dc23de6d84"
+      ]
+    },
+    "taskIds": [
+      "892c9be7-5ca4-45cb-9f38-a76f8cd6c720"
+    ],
+    "opportunityIds": [
+      "6fd8eed5-3b66-402e-9f69-349febe96c69",
+      "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+    ],
+    "duplicateProjectionObserved": false
+  },
+  "latestInstructionDeployment": {
+    "id": "35825395-b00c-47a5-a45b-f1f7c72fec71",
+    "status": "SUCCESS",
+    "instructionSHA256": "b8c0e53a68c89586e2b374dd5589ec84484bd7b71c38ff1b2b2e8e13be3662f6",
+    "runningFileHashVerified": true,
+    "actualClaudeInstructionReceiptVerified": true
+  },
+  "authenticatedHumanRejection": {
+    "proposalId": "69413037798cab9208f0859434dfe7b471c9153dba27ed587610dbae54036082",
+    "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+    "opportunityId": "6fd8eed5-3b66-402e-9f69-349febe96c69",
+    "requestedStage": "WON",
+    "persistedDecision": "rejected",
+    "rejectedBy": {
+      "id": "kb@jpgrowery.com",
+      "role": "executive"
+    },
+    "rejectedAt": "2026-10-01T13:57:23.517Z",
+    "independentTwentyStage": "ENGAGED",
+    "sourceIds": [
+      "2ca5f7fdec85c6e5a7853b4a6ae2b203e242b6e5b69b015616e146dc23de6d84",
+      "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+      "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c"
+    ]
+  },
+  "openBehavioralFeedback": [
+    {
+      "observed": "An ordinary follow-up without explicit BAM invocation did not fetch current instructions and asserted an accepted-order-only Won rule.",
+      "requirement": "Won business milestone remains unconfigured soft regulation; do not invent universal accepted-order or signature requirement.",
+      "status": "corrected in final central instructions and verified in next explicit ordinary Claude episode; older reply remains historical defect evidence"
+    }
+  ],
+  "behavioralVerification": {
+    "chat": "https://claude.ai/chat/09f9bc7d-fc3f-422a-b508-b6abb440a083",
+    "priorityResponse": "Two short paragraphs identify sending the drafted Autumn summary, qualify blocker coverage and leave subsequent sending unknown.",
+    "wonProcedureResponse": "Fetched final central instruction version; explicitly corrected prior accepted-order-only claim and explained unconfigured procedural convention rather than technical gate. No mutation tools called.",
+    "screenshots": [
+      "outputs/sales-coach-v1/claude-install/coach-priority-result.png",
+      "outputs/sales-coach-v1/claude-install/won-procedure-result.png",
+      "outputs/sales-coach-v1/claude-install/human-rejection-result.png"
+    ]
+  },
+  "remainingAcceptance": [
+    "Actual physical Android skill/connector original-file capture",
+    "Meaningful email/calendar provider sync and source fidelity; isolated executive currently has no connected Twenty account, awaiting owner new-access approval"
+  ]
+}

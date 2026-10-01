@@ -51,3 +51,26 @@ test('source-text role impersonation cannot expose leader_report to an executive
   const allowed = await leader.client.callTool({ name: 'leader_report', arguments: {} });
   assert.notEqual(allowed.isError, true);
 });
+
+test('CRM projection rejects slug account IDs before storage or side effects and reuses a new company UUID', async t => {
+  const creates = [];
+  const adapter = { async create({ object, values }) { creates.push({ object, values }); return { record: { ...values, updatedAt: '2026-10-01T00:00:00Z' } }; } };
+  const { client, service } = await session(t, 'executive', adapter);
+  const source = JSON.parse((await client.callTool({ name: 'retain_source', arguments: { sourceKey: 'synthetic:new-company', text: 'Create a synthetic QA company named Northstar Verification.' } })).content[0].text);
+  const args = { accountId: 'qa-northstar-verification', object: 'company', values: { name: 'Northstar Verification' }, sourceIds: [source.id], estimatedErrorCost: 'low', highlyConsequential: false, reason: 'Isolated synthetic internal company record.' };
+  const rejected = await client.callTool({ name: 'crm_propose_change', arguments: args });
+  assert.equal(rejected.isError, true);
+  assert.equal(creates.length, 0);
+  assert.deepEqual(await service.store.changes(), []);
+  // Non-CRM rich context retains its existing opaque identity contract.
+  const context = await client.callTool({ name: 'update_account_context', arguments: { accountId: 'opaque-context', entries: [{ kind: 'note', text: 'Provisional relationship context.', sourceIds: [source.id], status: 'human-account' }] } });
+  assert.notEqual(context.isError, true);
+  const accountId = 'ca2b5d68-55a9-49aa-ae85-97e949dc9eb1';
+  const created = JSON.parse((await client.callTool({ name: 'crm_propose_change', arguments: { ...args, accountId } })).content[0].text);
+  assert.equal(created.state, 'applied');
+  assert.equal(created.recordId, accountId);
+  assert.equal(creates[0].values.id, accountId);
+  const replay = JSON.parse((await client.callTool({ name: 'crm_propose_change', arguments: { ...args, accountId } })).content[0].text);
+  assert.equal(replay.id, created.id);
+  assert.equal(creates.length, 1);
+});

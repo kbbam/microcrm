@@ -14,7 +14,8 @@ an uncommitted working tree was already a released Git revision.
 - API service: `coach-api`, `da71343e-b263-4715-948f-20b03e755c5b`
 - Separate PostgreSQL service: `099941ee-5168-47b1-b729-0de0ac7872e7`
 - Evidence/config volume: `72eaabfa-c28a-4249-8b50-37fc02523d62`, `/var/lib/bam-coach`
-- Final deployment: `d1fb7b02-2bc2-4209-b1db-669e6961f6a1`
+- Original thirteen-check deployment: `d1fb7b02-2bc2-4209-b1db-669e6961f6a1`
+- Current healthy QA deployment: `35825395-b00c-47a5-a45b-f1f7c72fec71`
 
 The deployed checks covered real registration/PKCE/login/consent, a 160,000-character
 transcription, 440,487 original bytes with exact upload/download equality, evidence
@@ -31,19 +32,32 @@ the Dockerfile, exact server/coach source and dependency files, and QA deploymen
 configuration. No local credential files, retained company evidence or snapshots
 were uploaded. New OAuth signing/cookie secrets live in QA variables, not Git.
 
-## Owner onboarding still required
+## Current client acceptance
 
-Two new invited users exist only in the empty `owner-qa` context:
+**Superseded setup status, 1 October 2026:** the owner has now completed both new
+passwords and the executive's Claude OAuth sign-in. The coach skill is published
+to JPgrowery and installed by default, and the custom remote connector is connected.
+The owner approved Always allow for its bounded internal tools; consequential writes
+still require authenticated human review. The isolated Twenty credential is now
+installed only in the QA service secret; see `twenty-linkage.md` for the final
+deployment and seven passing real CRM checks. The historical setup status below
+describes the earlier thirteen-check deployment, not the current configuration.
+Actual desktop ordinary-chat capture, exact-original preservation, durable fresh-chat
+retrieval, current instructions in an existing chat and authenticated human rejection
+are verified. See `claude-client-proof.md` and
+`ordinary-client-independent-proof.json`. Android acceptance remains open.
+
+Two new isolated users have completed setup for `owner-qa`:
 `kb@jpgrowery.com` is executive and `kb@cureous.me` is admin. Neither password has
 been set by a builder. Setup URLs remain in a private local control file, excluded
 from repository evidence. No email was sent and no existing account credentials
 were changed. The context is bound to executive `kb@jpgrowery.com`.
 
-The owner still needs to set these new account passwords, authorize the Claude
-organization skill/custom connector, and consent to linking the isolated Twenty
-test workspace credential. No Twenty or Google credential is currently installed
-on this QA host. Confirmed synthetic CRM changes therefore correctly remain blocked
-with `NOT_CONFIGURED`; the proof does not claim a deployed live CRM write.
+The QA host is linked only to the isolated Twenty workspace, with independently
+verified routine CRM creates/updates/readback. The executive's Twenty email settings
+currently show no connected account. New Google email/calendar access is awaiting
+explicit owner approval, and meaningful provider synchronization/source fidelity
+is not yet claimed. No Google credential is installed directly on the QA host.
 
 The earlier actual Android-to-HTTPS experiment establishes the client transfer
 capability. The installed coach must still be exercised in an ordinary Android

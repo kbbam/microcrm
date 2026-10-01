@@ -117,7 +117,7 @@ test('consequential change exposes a human review link and no agent approval too
     sourceKey: 'synthetic:trial', text: 'Executive reports a trial request requiring review.',
   } }));
   const change = unpack(await exec.callTool({ name: 'crm_propose_change', arguments: {
-    accountId: 'northstar', object: 'task', values: { title: 'Review trial terms' },
+    accountId: 'd7bc31cb-7e3b-4e86-97dd-f99716e241e3', object: 'task', values: { title: 'Review trial terms' },
     sourceIds: [source.id], estimatedErrorCost: 'high', highlyConsequential: false,
     reason: 'Incorrect terms could misdirect the executive.',
   } }));
