@@ -86,6 +86,62 @@ test('account communications follow targets, and participant reads remain in sco
   assert.deepEqual((await adapter.read({object:'message'})).records.map(r=>r.text),['Account source']);
   assert.deepEqual((await adapter.read({object:'messageParticipant'})).records.map(r=>r.handle),['synthetic@example.invalid']);
 });
+test('protected message fields are unavailable evidence, distinct from empty, absent and readable content', async t => {
+  const {adapter,records}=await fixture(t,{scopeMode:'workspace'});
+  const restricted='FIELD_RESTRICTED_ADDITIONAL_PERMISSIONS_REQUIRED';
+  records.messages=[
+    {id:company,subject:'Visible subject',text:restricted,messageThreadId:task},
+    {id:other,subject:restricted,text:'Genuine customer text',messageThreadId:task},
+    {id:task,subject:'Empty body',text:'',messageThreadId:task},
+    {id:'00000000-0000-4000-a000-000000000004',subject:'Absent body',text:null,messageThreadId:task},
+  ];
+  const result=await adapter.read({object:'message'});
+  assert.equal(result.records[0].text,null);
+  assert.deepEqual(result.records[0].contentAvailability.text,{status:'restricted',reason:'additional-permissions-required'});
+  assert.equal(result.records[0].subject,'Visible subject');
+  assert.equal(result.records[1].subject,null);
+  assert.equal(result.records[1].text,'Genuine customer text');
+  assert.equal(result.records[1].contentAvailability.text.status,'available');
+  assert.equal(result.records[2].text,'');
+  assert.equal(result.records[2].contentAvailability.text.status,'empty');
+  assert.equal(result.records[3].contentAvailability.text.status,'notProvided');
+  assert.equal(JSON.stringify(result).includes(restricted),false);
+  assert.equal(records.messages[0].text,restricted,'sanitize the returned projection without altering provider records');
+  assert.equal(result.coverage.complete,true,'all records were paginated, independent of content access');
+  assert.equal(result.coverage.contentAccessUnrestricted,false);
+  assert.equal(result.coverage.contentAvailability.restrictedRecordCount,2);
+  assert.deepEqual(result.coverage.contentAvailability.fields.text,{available:1,empty:1,notProvided:1,restricted:1});
+  assert.equal(result.coverage.sourceCapabilities.body,'plain-text-when-authorized');
+  assert.match(result.coverage.warning,/withheld.*additional permissions/);
+});
+test('calendar and participant restriction sentinels are not returned as event or identity facts', async t => {
+  const {adapter,records}=await fixture(t,{scopeMode:'workspace'});
+  const restricted='FIELD_RESTRICTED_ADDITIONAL_PERMISSIONS_REQUIRED';
+  records.calendarEvents=[{id:task,title:restricted,description:'Actual meeting description',location:restricted,startsAt:'2026-10-05T12:00:00Z',isCanceled:false}];
+  records.calendarEventParticipants=[{id:other,calendarEventId:task,displayName:restricted,handle:'buyer@example.invalid'}];
+  const event=await adapter.read({object:'calendarEvent'});
+  assert.equal(event.records[0].title,null);
+  assert.equal(event.records[0].location,null);
+  assert.equal(event.records[0].description,'Actual meeting description');
+  assert.equal(event.records[0].contentAvailability.isCanceled.status,'available','false is not an absent value');
+  assert.equal(event.coverage.contentAccessUnrestricted,false);
+  const participant=await adapter.read({object:'calendarEventParticipant'});
+  assert.equal(participant.records[0].displayName,null);
+  assert.equal(participant.records[0].handle,'buyer@example.invalid');
+  assert.equal(participant.coverage.contentAccessUnrestricted,false);
+  assert.equal(JSON.stringify([event,participant]).includes(restricted),false);
+});
+test('readable content is preserved exactly and content access is separate from page coverage', async t => {
+  const {adapter,records}=await fixture(t,{scopeMode:'workspace'});
+  const body='Actual text mentioning FIELD_RESTRICTED_ADDITIONAL_PERMISSIONS_REQUIRED as part of a sentence.\nSecond line.';
+  records.messages=[{id:company,subject:'Visible',text:body},{id:other,subject:'Second',text:'Another body'}];
+  const result=await adapter.read({object:'message',limit:1});
+  assert.equal(result.records[0].text,body,'only the exact provider sentinel is interpreted as restricted');
+  assert.equal(result.coverage.complete,false);
+  assert.equal(result.coverage.contentAccessUnrestricted,true);
+  assert.equal(result.coverage.contentAvailability.restrictedRecordCount,0);
+  assert.equal(result.coverage.warning,undefined);
+});
 test('bounded relationship discovery discloses incomplete context coverage',async t=>{
   const {adapter,records}=await fixture(t);
   records.noteTargets=Array.from({length:1001},(_,i)=>({id:other,targetCompanyId:company,noteId:task}));

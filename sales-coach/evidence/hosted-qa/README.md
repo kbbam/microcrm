@@ -15,7 +15,7 @@ an uncommitted working tree was already a released Git revision.
 - Separate PostgreSQL service: `099941ee-5168-47b1-b729-0de0ac7872e7`
 - Evidence/config volume: `72eaabfa-c28a-4249-8b50-37fc02523d62`, `/var/lib/bam-coach`
 - Original thirteen-check deployment: `d1fb7b02-2bc2-4209-b1db-669e6961f6a1`
-- Current healthy QA deployment: `35825395-b00c-47a5-a45b-f1f7c72fec71`
+- Current healthy QA deployment: `23d80b4a-22cd-40d8-8cbd-199b8a541123`
 
 The deployed checks covered real registration/PKCE/login/consent, a 160,000-character
 transcription, 440,487 original bytes with exact upload/download equality, evidence
@@ -44,8 +44,10 @@ deployment and seven passing real CRM checks. The historical setup status below
 describes the earlier thirteen-check deployment, not the current configuration.
 Actual desktop ordinary-chat capture, exact-original preservation, durable fresh-chat
 retrieval, current instructions in an existing chat and authenticated human rejection
-are verified. See `claude-client-proof.md` and
-`ordinary-client-independent-proof.json`. Android acceptance remains open.
+are verified. The owner also completed the ordinary Android capture; independent
+original hashing, transcription and provisional association are verified in
+`mobile-source-verification.json`. See `claude-client-proof.md` and
+`ordinary-client-independent-proof.json`. Mobile speed and default response length remain next-iteration concerns.
 
 Two new isolated users have completed setup for `owner-qa`:
 `kb@jpgrowery.com` is executive and `kb@cureous.me` is admin. Neither password has
@@ -54,11 +56,16 @@ from repository evidence. No email was sent and no existing account credentials
 were changed. The context is bound to executive `kb@jpgrowery.com`.
 
 The QA host is linked only to the isolated Twenty workspace, with independently
-verified routine CRM creates/updates/readback. The executive's Twenty email settings
-currently show no connected account. New Google email/calendar access is awaiting
-explicit owner approval, and meaningful provider synchronization/source fidelity
-is not yet claimed. No Google credential is installed directly on the QA host.
+verified routine CRM creates/updates/readback. The owner connected email/calendar and selected the configuration recorded in
+`owner-source-settings.md`. Read-only live verification found readable bodies on
+57 of 110 messages, multiple-message threads, participants and account links, and
+synchronized calendar fields. Other communication fields remain restricted by
+Twenty and are now explicitly represented as unavailable rather than text.
+Provider synchronization completeness, original MIME and email attachment bytes
+are not claimed. No Google credential is installed directly on the QA host.
 
-The earlier actual Android-to-HTTPS experiment establishes the client transfer
-capability. The installed coach must still be exercised in an ordinary Android
-Claude conversation; a synthetic HTTP client is not that final client proof.
+The earlier Android-to-HTTPS experiment established the client transfer capability.
+The owner has now exercised the installed coach in an ordinary Android conversation;
+its unchanged original and linked transcription/context are independently verified.
+The 58.530-second visible request/reply interval and overlong completion are retained
+as next-iteration feedback, not hidden by the passing byte-transfer check.

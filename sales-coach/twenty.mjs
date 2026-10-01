@@ -29,6 +29,39 @@ const stableTargetId = (object,id,companyId) => {
   const hex = createHash('sha256').update(`${object}:${id}:${companyId}`).digest('hex');
   return `${hex.slice(0,8)}-${hex.slice(8,12)}-5${hex.slice(13,16)}-a${hex.slice(17,20)}-${hex.slice(20,32)}`;
 };
+// Twenty may return this sentinel in place of a protected scalar without a
+// GraphQL error. It is an access result, never customer evidence.
+const RESTRICTED_FIELD = 'FIELD_RESTRICTED_ADDITIONAL_PERMISSIONS_REQUIRED';
+const communicationFields = {
+  message: ['headerMessageId', 'messageThreadId', 'subject', 'text', 'receivedAt', 'isDraft'],
+  calendarEvent: ['title', 'description', 'location', 'startsAt', 'endsAt', 'isCanceled', 'iCalUid'],
+  messageParticipant: ['messageId', 'personId', 'role', 'handle', 'displayName'],
+  calendarEventParticipant: ['calendarEventId', 'personId', 'handle', 'displayName', 'isOrganizer', 'responseStatus'],
+};
+const communicationContent = (object, records) => {
+  const fields = communicationFields[object];
+  if (!fields) return { records };
+  const summary = Object.fromEntries(fields.map(field => [field, { available: 0, empty: 0, notProvided: 0, restricted: 0 }]));
+  let restrictedRecordCount = 0;
+  const sanitized = records.map(record => {
+    const result = { ...record, contentAvailability: {} };
+    let restricted = false;
+    for (const field of fields) {
+      const value = record[field];
+      const status = value === RESTRICTED_FIELD ? 'restricted' : value == null ? 'notProvided' : value === '' ? 'empty' : 'available';
+      summary[field][status]++;
+      result.contentAvailability[field] = { status };
+      if (status === 'restricted') {
+        result[field] = null;
+        result.contentAvailability[field].reason = 'additional-permissions-required';
+        restricted = true;
+      }
+    }
+    if (restricted) restrictedRecordCount++;
+    return result;
+  });
+  return { records: sanitized, contentAvailability: { restrictedRecordCount, fields: summary } };
+};
 
 /** A fixed-template, account-scoped Twenty transport. The runner owns consequence review. */
 export class TwentyAdapter {
@@ -72,7 +105,10 @@ export class TwentyAdapter {
     const data = await this.request(`query CoachRead($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${selection(object)}}}pageInfo{hasNextPage endCursor}totalCount}}`, { filter, limit, offset });
     const c = data[plural];
     if (!c || !Array.isArray(c.edges) || !c.pageInfo) fail('CRM_RESPONSE', 'CRM returned an invalid connection.');
-    return { records: c.edges.map(e => e.node), coverage: { returned: c.edges.length, totalCount: c.totalCount, hasNextPage: c.pageInfo.hasNextPage, endCursor: c.pageInfo.endCursor, complete: offset === 0 && !c.pageInfo.hasNextPage, limit, offset } };
+    const content = communicationContent(object, c.edges.map(e => e.node));
+    // This is only absence of explicit restrictions in the returned page;
+    // null/omitted fields, provider synchronization and original bytes remain separate.
+    return { records: content.records, coverage: { returned: c.edges.length, totalCount: c.totalCount, hasNextPage: c.pageInfo.hasNextPage, endCursor: c.pageInfo.endCursor, complete: offset === 0 && !c.pageInfo.hasNextPage, limit, offset, ...(content.contentAvailability ? { contentAccessUnrestricted: content.contentAvailability.restrictedRecordCount === 0, contentAvailability: content.contentAvailability } : {}) } };
   }
   async collect(object, filter) {
     if (!filter) return {records:[],complete:true};
@@ -107,17 +143,20 @@ export class TwentyAdapter {
     const result = scope.filter ? await this.page(object, id ? { and: [scope.filter, { id: { eq: id } }] } : scope.filter, id ? 1 : limit, offset) : {records:[],coverage:{returned:0,totalCount:0,hasNextPage:false,endCursor:null,complete:offset===0,limit,offset}};
     result.coverage.scopeComplete = scope.complete;
     if (object === 'message') result.coverage.sourceCapabilities = {
-      body: 'plain-text', participants: 'separate-messageParticipant-read', threadId: true,
+      body: 'plain-text-when-authorized', participants: 'separate-messageParticipant-read', threadId: true,
+      fieldAccess: 'per-record-contentAvailability; restricted values are not evidence',
       originalMime: false, attachmentBytes: false, mailboxSynchronization: 'unverified',
       scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
     };
     if (object === 'calendarEvent') result.coverage.sourceCapabilities = {
       representation: 'synchronized-event-fields', participants: 'separate-calendarEventParticipant-read',
+      fieldAccess: 'per-record-contentAvailability; restricted values are not evidence',
       providerOriginal: false, calendarSynchronization: 'unverified',
       scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
     };
     result.coverage.complete &&= scope.complete;
     if (!scope.complete) result.coverage.warning = 'Account relationship discovery reached its 1000-record bound; context coverage is partial.';
+    if (result.coverage.contentAccessUnrestricted === false) result.coverage.warning = [result.coverage.warning, 'Twenty withheld one or more communication fields because additional permissions are required; record pagination does not establish full content access.'].filter(Boolean).join(' ');
     return result;
   }
   writeGuard() {

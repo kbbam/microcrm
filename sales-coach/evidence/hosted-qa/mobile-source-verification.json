@@ -1,0 +1,123 @@
+{
+  "at": "2026-10-01T14:45:52.612Z",
+  "mobile": {
+    "executionProvenance": "Owner reports running this ordinary conversation on Android; coordinator inspected synchronized web conversation and independently inspected durable server state.",
+    "chat": "https://claude.ai/chat/b403ef89-d097-4649-af52-39c6d646fa05",
+    "actor": {
+      "id": "kb@jpgrowery.com",
+      "role": "executive"
+    },
+    "evidenceId": "7387faf7-4bd4-4020-becc-d2cba2ba3523",
+    "filename": "1000022944.png",
+    "mimeType": "image/png",
+    "size": 701134,
+    "expectedSHA256FromEarlierOwnerFileInspection": "be7de34732cb2d593fb2d5ce059cf57bb006e41e9391b5cd8fb88f08776189d1",
+    "independentStoredSHA256": "be7de34732cb2d593fb2d5ce059cf57bb006e41e9391b5cd8fb88f08776189d1",
+    "requestedAt": "2026-10-01T14:37:21.621Z",
+    "storedAt": "2026-10-01T14:37:24.431Z",
+    "uploadReceiptElapsedMs": 2810,
+    "transcriptionSourceId": "989718d3e57b2e0388c961c1f4c1c0d7595e6a2317c4c753ffb625aed56b3ad8",
+    "transcriptionChars": 1877,
+    "transcriptionCapturedAt": "2026-10-01T14:37:35.386Z",
+    "contextSavedAt": "2026-10-01T14:37:53.866Z",
+    "sourceLinkedContextEntries": 3,
+    "association": "provisional, explicitly no supported Northstar opportunity link",
+    "crmMutationsFromThisCapture": 0,
+    "ownerFeedback": "Response is slow; optimize in the next iteration.",
+    "observedBehaviorIssues": [
+      "Overlong completion reply",
+      "Unnecessary timezone reasoning about unrelated screenshot",
+      "Year inferred from current date and screenshot clock treated as present; current source entry must be corrected",
+      "Advice from status/proposal inventory rather than fresh account context"
+    ],
+    "endToEndLatencyMs": null,
+    "latencyNote": "Visible synced-chat timestamp interval is 58.530 seconds, consistent with independent server chronology; this is not a phone stopwatch or full per-tool instrumentation. Upload issuance to durable receipt is 2.810 seconds.",
+    "visibleUserMessageAt": "2026-10-01T14:36:58.392Z",
+    "visibleAssistantReplyAt": "2026-10-01T14:37:56.922Z",
+    "visibleChatTimestampIntervalMs": 58530,
+    "coordinatorAssistedCorrection": {
+      "executedThrough": "ordinary synced Claude conversation after owner Android run",
+      "currentTranscriptionSourceId": "32c202fc6711799a6277587358af96508aa1ca8f62ac7850a75589363c36bde5",
+      "currentOccurredAt": null,
+      "priorTranscriptionRetained": true,
+      "latestContextRevisions": 2,
+      "sameEntryIdsReused": true,
+      "provisionalAssociationRetained": true,
+      "originalBytesUnchanged": true,
+      "freshAccountContextFetched": true,
+      "opportunityChanges": 0,
+      "screenshot": "outputs/sales-coach-v1/claude-install/mobile-correction-result.png"
+    }
+  },
+  "twentySnapshot": {
+    "readOnly": true,
+    "mail": {
+      "readRecords": 110,
+      "reportedTotal": 110,
+      "readableSubjectAndBody": 57,
+      "restrictedSubjectAndBody": 53,
+      "providerSyncComplete": false
+    },
+    "calendar": {
+      "sampledRecords": 200,
+      "reportedTotal": 896,
+      "readableTitles": 190,
+      "restrictedTitles": 10,
+      "entireCollectionRead": false
+    },
+    "participantSample": {
+      "messageParticipantTotal": 337,
+      "calendarEventParticipantTotal": 9083,
+      "handlesReadable": true,
+      "personLinksObserved": true
+    },
+    "bodyRestrictionMarker": "FIELD_RESTRICTED_ADDITIONAL_PERMISSIONS_REQUIRED",
+    "originalEmailMimeAvailable": false,
+    "emailAttachmentBytesAvailable": false,
+    "limits": "Collection counts are a changing snapshot; exclusions/channel visibility/provider synchronization remain separate. No private mail bodies are retained in this proof.",
+    "primarySource": "https://github.com/twentyhq/twenty/blob/bde7ed498dc404cc180e7707ad7282d5f7aff62e/packages/twenty-server/src/modules/messaging/common/query-hooks/message/apply-messages-visibility-restrictions.service.ts",
+    "liveRestrictedFieldFix": {
+      "verifiedAt": "2026-10-01T14:59:05.287Z",
+      "pageLimit": 100,
+      "restrictedRecordCount": 49,
+      "readableBodiesOnPage": 51,
+      "contentAccessUnrestricted": false,
+      "providerMarkerReturnedAsText": false,
+      "nullRestrictedFieldsWithExplicitAvailability": true,
+      "mailboxSyncStillUnverified": true
+    },
+    "threadProof": {
+      "at": "2026-10-01T14:55:51.695Z",
+      "messagesRead": 110,
+      "participantsRead": 337,
+      "threadTargetsRead": 157,
+      "currentCollectionsFullyPaginated": true,
+      "readableThreads": 27,
+      "readableMultiMessageThreads": 11,
+      "checkedThread": {
+        "id": "3385999f-ac5d-48e8-be19-eca299d4bb1f",
+        "readableMessages": 7,
+        "participantRows": 48,
+        "participantRoles": [
+          "CC",
+          "TO",
+          "FROM"
+        ],
+        "participantPersonLinks": 48,
+        "targets": 13,
+        "companyTargets": 4,
+        "personTargets": 9,
+        "opportunityTargets": 0
+      },
+      "limits": "Source bodies/subjects and participant addresses omitted. Completed Twenty collections are not full provider-mailbox coverage; these links do not determine opportunity identity."
+    }
+  },
+  "deployment": {
+    "id": "23d80b4a-22cd-40d8-8cbd-199b8a541123",
+    "status": "SUCCESS",
+    "instructionSHA256": "c6e8413e0b4bc1f2a0eb8b6dfb79fe11b693f93da3c33674d9eee4b227e84445",
+    "adapterSHA256": "16ddce51cc219612a01408c3a3c824e61ef3b084e1129d3208a897599e3e0470",
+    "runningHashesVerified": true,
+    "coachTestsPassed": 54
+  }
+}

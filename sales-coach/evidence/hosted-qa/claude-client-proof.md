@@ -1,6 +1,6 @@
 # Ordinary Claude client acceptance, 1 October 2026
 
-Status: desktop workflow verified after corrections; physical Android and live mailbox fidelity remain open. The first capture below is historical defect evidence, not the final intake result.
+Status: desktop workflow verified after corrections; ordinary Android capture and bounded live-source access now have separate proof; full provider fidelity and mobile latency remain limited. The first capture below is historical defect evidence, not the final intake result.
 
 The owner set both new isolated Business OS passwords and completed executive
 OAuth consent. The JPgrowery organization skill `bam-sales-coach` v1 is installed
@@ -77,9 +77,12 @@ Independent persisted evidence: `ordinary-client-independent-proof.json`.
 Final screenshots retained in coordinator outputs:
 `coach-priority-result.png` and `human-rejection-result.png`.
 
-The isolated executive's Twenty email settings show no connected account.
-Connecting Google mail/calendar is awaiting the owner's explicit new-access
-approval. A scoped API read or synthetic thread is not proof of mailbox sync.
+The owner has since connected email/calendar. Actual read-only source verification
+found usable message bodies, shared thread IDs, participant/person links and
+account targets; other records remain subject to Twenty field restrictions.
+The adapter now marks those fields unavailable explicitly. See
+`mobile-source-verification.json` for ordinary Android original-byte/context proof
+and actual source access; whole-provider synchronization remains unverified.
 
 Final isolated deployment `35825395-b00c-47a5-a45b-f1f7c72fec71` is healthy;
 its running instruction hash matches the receipt shown in ordinary Claude.
