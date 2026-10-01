@@ -1,0 +1,8 @@
+{
+  "backup": "private production-initial.sql",
+  "sha256": "1d911f71d797c22c9f0e64213c4548c2b337ab6bc4a4979be74846e7dd1e7e0d",
+  "bytes": 8821,
+  "restore": "isolated matching PostgreSQL 18 database, unchanged dump",
+  "restoredCounts": "2|2|2|0",
+  "ownerPasswordsSet": false
+}

@@ -1,0 +1,48 @@
+[
+  {
+    "path": "/readyz",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 11,
+    "url": "https://business-os-production-1193.up.railway.app/readyz"
+  },
+  {
+    "path": "/version",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 50,
+    "url": "https://business-os-production-1193.up.railway.app/version"
+  },
+  {
+    "path": "/",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 4105,
+    "url": "https://business-os-production-1193.up.railway.app/"
+  },
+  {
+    "path": "/.well-known/oauth-authorization-server",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 1599,
+    "url": "https://business-os-production-1193.up.railway.app/.well-known/oauth-authorization-server"
+  },
+  {
+    "path": "/.well-known/oauth-protected-resource/coach/mcp",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 183,
+    "url": "https://business-os-production-1193.up.railway.app/.well-known/oauth-protected-resource/coach/mcp"
+  },
+  {
+    "path": "/account/twenty/status",
+    "status": 200,
+    "contentType": "text/html; charset=utf-8",
+    "bytes": 4054,
+    "url": "https://business-os-production-1193.up.railway.app/account/twenty/login"
+  },
+  {
+    "path": "/coach/mcp",
+    "status": 401
+  }
+]

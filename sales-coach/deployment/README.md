@@ -1,5 +1,7 @@
 # Isolated coach service image
 
+Current authorized production pilot, activation and recovery: [production runbook](production.md). The historical preparation proof below does not describe the latest cloud release.
+
 Build from the **repository root**, never the existing Railway `server/` root:
 
 ```sh

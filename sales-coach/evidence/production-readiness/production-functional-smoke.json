@@ -1,0 +1,101 @@
+{
+  "host": "https://business-os-production-1193.up.railway.app",
+  "release": "d8a355bbf3ac8151a3eae196ff1186f1a5b1a9ce",
+  "startedAt": "2026-10-01T18:47:23.042Z",
+  "synthetic": true,
+  "isolatedContext": true,
+  "realOwnerPasswordsChanged": false,
+  "outboundEffects": false,
+  "checks": [
+    {
+      "name": "permanent-host-readiness-and-release",
+      "ok": true,
+      "at": "2026-10-01T18:47:23.777Z"
+    },
+    {
+      "name": "public-one-time-setup-sets-only-synthetic-account-password",
+      "ok": true,
+      "at": "2026-10-01T18:47:24.704Z"
+    },
+    {
+      "name": "public-PKCE-login-and-explicit-human-consent-issues-refresh-token",
+      "ok": true,
+      "at": "2026-10-01T18:47:27.484Z"
+    },
+    {
+      "name": "before-restart-actual-MCP-instructions-and-executive-tool-scope",
+      "ok": true,
+      "at": "2026-10-01T18:54:12.140Z"
+    },
+    {
+      "name": "ordinary-typed-update-retains-exact-source-and-operational-context",
+      "ok": true,
+      "at": "2026-10-01T18:54:13.174Z"
+    },
+    {
+      "name": "single-original-upload-hash-receipt-and-both-download-routes",
+      "ok": true,
+      "at": "2026-10-01T18:54:17.482Z"
+    },
+    {
+      "name": "deployed-CRM-note-write-readback-and-idempotent-proposal-retry",
+      "ok": true,
+      "at": "2026-10-01T18:54:21.236Z"
+    },
+    {
+      "name": "before-restart-missing-own-email-and-calendar-authorization-reports-explicit-gap",
+      "ok": true,
+      "at": "2026-10-01T18:54:23.952Z"
+    },
+    {
+      "name": "restart-health-and-correct-release",
+      "ok": true,
+      "at": "2026-10-01T18:57:45.076Z"
+    },
+    {
+      "name": "access-token-expires-and-refresh-grant-survives-restart-and-rotates",
+      "ok": true,
+      "at": "2026-10-01T18:57:45.747Z"
+    },
+    {
+      "name": "after-restart-actual-MCP-instructions-and-executive-tool-scope",
+      "ok": true,
+      "at": "2026-10-01T18:57:47.012Z"
+    },
+    {
+      "name": "source-context-and-original-bytes-persist-through-restart",
+      "ok": true,
+      "at": "2026-10-01T18:57:49.348Z"
+    },
+    {
+      "name": "after-restart-missing-own-email-and-calendar-authorization-reports-explicit-gap",
+      "ok": true,
+      "at": "2026-10-01T18:57:50.047Z"
+    },
+    {
+      "name": "archived-fixture-grants-and-original-capability-denied-after-cleanup",
+      "ok": true,
+      "at": "2026-10-01T18:58:50.436Z"
+    }
+  ],
+  "provisioningRepair": {
+    "observed": "Railway SSH provisioned private files as uid 0; app runs uid 1000.",
+    "effect": "Public MCP initialization returned HTTP 503 despite successful OAuth.",
+    "resolved": "Runtime volume files and directories assigned to uid/gid 1000 while preserving private file modes; public MCP verified afterward.",
+    "applicationCodeChanged": false,
+    "finalPermissions": {
+      "uid": 1000,
+      "gid": 1000,
+      "directoryMode": "700",
+      "fileMode": "600"
+    }
+  },
+  "restartDeploymentId": "5b17a946-1ac3-4b5b-962e-0ec161c3f593",
+  "completedAt": "2026-10-01T18:58:50.437Z",
+  "completed": true,
+  "fixtureCentralAccessDisabled": true,
+  "fixtureOriginalsAndContextArchived": true,
+  "syntheticCrmNoteRecoverablySoftDeleted": true,
+  "androidVerified": false,
+  "realOwnerSourceAuthorization": "awaiting-owner-consent"
+}
