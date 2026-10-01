@@ -7,7 +7,16 @@ const company='00000000-0000-4000-a000-000000000001';
 const other='00000000-0000-4000-a000-000000000002';
 const task='00000000-0000-4000-a000-000000000003';
 const rev='2026-09-30T00:00:00.000Z';
-const matches=(row,f)=>!f||Object.entries(f).every(([key,value])=>key==='and'?value.every(x=>matches(row,x)):key==='or'?value.some(x=>matches(row,x)):('in'in value?value.in.includes(row[key]):row[key]===value.eq));
+const sqlLike=(text,pattern)=>{
+  let regex='';
+  for(let i=0;i<pattern.length;i++){
+    const character=pattern[i];
+    if(character==='\\'&&i+1<pattern.length) regex+=pattern[++i].replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    else regex+=character==='%'?'.*':character==='_'?'.':character.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  }
+  return new RegExp(`^${regex}$`,'i').test(text??'');
+};
+const matches=(row,f)=>!f||Object.entries(f).every(([key,value])=>key==='and'?value.every(x=>matches(row,x)):key==='or'?value.some(x=>matches(row,x)):'ilike'in value?sqlLike(row[key],value.ilike):'in'in value?value.in.includes(row[key]):'eq'in value?row[key]===value.eq:matches(row[key]??{},value));
 async function fixture(t,{badStage=false,race=false,failAttach=false,scopeMode='accounts'}={}) {
   const records={companies:[{id:company,name:'Synthetic account',updatedAt:rev},{id:other,name:'Outside pilot',updatedAt:rev}],people:[],opportunities:[],notes:[],tasks:[{id:task,title:'Human task',updatedAt:rev}],taskTargets:[{id:other,targetCompanyId:company,taskId:task,updatedAt:rev}],noteTargets:[],messages:[],calendarEvents:[],messageThreadTargets:[],calendarEventTargets:[]};
   const calls=[]; let attachmentFailed=false;
@@ -17,7 +26,7 @@ async function fixture(t,{badStage=false,race=false,failAttach=false,scopeMode='
     const {query,variables:v}=JSON.parse(text);calls.push({query,variables:v}); let data;
     if(query.includes('__type')) data={stage:{enumValues:(badStage?['NEW']:['APPROACHING','ENGAGED','COMMERCIAL','WON','LOST']).map(name=>({name}))},query:{fields:Object.values(plural).map(name=>({name}))},mutation:{fields:[]}};
     else if(query.startsWith('query')) {
-      const p=query.match(/\{(\w+)\(filter:/)[1];const all=(records[p]??[]).filter(r=>matches(r,v.filter));const slice=all.slice(v.offset??0,(v.offset??0)+v.limit);
+      const p=query.match(/\{(\w+)\(filter:/)[1];const all=(records[p]??[]).filter(r=>matches(p==='messageParticipants'?{...r,message:records.messages.find(m=>m.id===r.messageId)}:r,v.filter));const slice=all.slice(v.offset??0,(v.offset??0)+v.limit);
       data={[p]:{edges:slice.map(node=>({node})),totalCount:all.length,pageInfo:{hasNextPage:(v.offset??0)+v.limit<all.length,endCursor:null}}};
     }else if(query.includes('CoachPatch')) {
       const p=query.match(/\{update(\w+)\(/)[1];const key=p[0].toLowerCase()+p.slice(1);
@@ -41,6 +50,38 @@ test('account scope, scoped task targets and pagination coverage',async t=>{
   records.companies.push({id:company,name:'page two',updatedAt:rev});
   const first=await adapter.read({object:'company',limit:1});assert.equal(first.coverage.complete,false);assert.equal(first.coverage.hasNextPage,true);
   assert.equal((await adapter.read({object:'company',limit:1,offset:1})).coverage.complete,false);
+});
+
+test('named email and participant filters stay inside account scope and do not turn substring wildcards into broader access',async t=>{
+  const {adapter,records,calls}=await fixture(t);
+  records.messageThreadTargets.push({id:company,targetCompanyId:company,messageThreadId:task},{id:other,targetCompanyId:other,messageThreadId:other});
+  records.messages.push({id:company,messageThreadId:task,subject:'Trial 100%_confirmed',text:'Authorized source'},
+    {id:other,messageThreadId:other,subject:'Trial 100%_confirmed',text:'Outside source'},
+    {id:task,messageThreadId:task,subject:'Trial 100xconfirmed',text:'Different literal substring'});
+  records.messageParticipants=[{id:company,messageId:company,handle:'anna@example.test'},{id:other,messageId:other,handle:'outside@example.test'},{id:task,messageId:task,handle:'other-message@example.test'}];
+  const found=await adapter.read({object:'message',subjectContains:'100%_confirmed'});
+  assert.deepEqual(found.records.map(r=>r.id),[company]);
+  assert.equal(found.coverage.requestedSubset.subjectContains,'100%_confirmed');
+  assert.equal(found.coverage.sourceCapabilities.mailboxSynchronization,'unverified');
+  assert.equal((await adapter.read({object:'message',messageThreadId:other})).records.length,0);
+  assert.equal((await adapter.read({object:'messageParticipant',messageThreadId:other})).records.length,0);
+  const participants=await adapter.read({object:'messageParticipant',messageThreadId:task,messageId:company});
+  assert.deepEqual(participants.records.map(r=>r.handle),['anna@example.test']);
+  const discovery=calls.filter(c=>c.query.includes('messages(')&&c.query.includes('node{id}'));
+  assert(discovery.length>0,'participant scope discovers identifiers without fetching bodies');
+  const before=calls.length;
+  for(const args of [{object:'company',subjectContains:'trial'},{object:'calendarEvent',messageThreadId:task},{object:'message',messageId:company},{object:'message',subjectContains:'   '}])
+    await assert.rejects(adapter.read(args),{code:'INVALID_FILTER'});
+  assert.equal(calls.length,before,'invalid selector fails before provider access');
+});
+
+test('workspace email thread and message participant intersection narrows the provider query',async t=>{
+  const {adapter,records}=await fixture(t,{scopeMode:'workspace'});
+  records.messages.push({id:company,messageThreadId:task,subject:'QA trial'},{id:other,messageThreadId:other,subject:'Other'});
+  records.messageParticipants=[{id:company,messageId:company},{id:other,messageId:other}];
+  assert.deepEqual((await adapter.read({object:'message',subjectContains:'qa TRIAL'})).records.map(r=>r.id),[company]);
+  assert.deepEqual((await adapter.read({object:'messageParticipant',messageThreadId:task})).records.map(r=>r.id),[company]);
+  assert.equal((await adapter.read({object:'messageParticipant',messageThreadId:task,messageId:other})).records.length,0);
 });
 test('writes require two deployment flags and bounded permitted fields',async t=>{
   const {adapter,calls}=await fixture(t);adapter.writeEnabled=false;

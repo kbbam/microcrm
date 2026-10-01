@@ -4,6 +4,9 @@ import { mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { CoachService } from '../service.mjs';
+import { buildServer } from '../mcp.mjs';
+import { Client } from '@modelcontextprotocol/sdk/client/index.js';
+import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 
 const actor = { id: 'bruman@jpgrowery.com', role: 'executive' };
 async function setup(t, adapter) {
@@ -193,4 +196,195 @@ test('a shared thread supports passage-level many-to-many pursuits, account cont
     { sourceRefs: [{ sourceId: human.id }] },
     { sourceRefs: [{ sourceId: source.id, passage: { start: 0, end: source.text.length + 1 } }] }
   ]) await assert.rejects(() => service.store.update({ accountId: 'northstar', entries: [{ ...entries[0], ...invalid }] }));
+});
+
+test('routine working context returns current interpretations and fresh CRM while full source/history remain retrievable', async t => {
+  let version = 1;
+  const adapter = { read: async ({ object }) => ({ records: object === 'company' ? [{ id: 'buyer', name: `Buyer ${version}`, updatedAt: String(version) }] : [], coverage: { scopeComplete: true, hasNextPage: false } }) };
+  const service = await setup(t, adapter);
+  const first = await service.captureContext({ accountId: 'buyer', title: 'Buyer', submittedSource: { sourceKey: 'chat:first', text: 'I promised Anna the sheet on Monday.' }, entries: [{ id: 'promise', kind: 'commitment', text: 'Send sheet Monday.', status: 'human-account' }] });
+  assert.equal(first.originalFilePreserved, false);
+  assert.equal(first.entries[0].revision, 1);
+  await service.context({ accountId: 'buyer' });
+  version = 2;
+  const correction = await service.captureContext({ accountId: 'buyer', submittedSource: { sourceKey: 'chat:correction', text: 'Correction: it was Tuesday, not Monday.' }, entries: [{ id: 'promise', kind: 'commitment', text: 'Send sheet Tuesday.', status: 'human-account', sourceIds: [first.sourceId] }] });
+  assert.equal(correction.entries[0].revision, 2);
+  assert.deepEqual(correction.entries[0].sourceIds, [first.sourceId, correction.sourceId]);
+  const brief = await service.context({ accountId: 'buyer', brief: true });
+  assert.equal(brief.account.crm['company:buyer'].record.name, 'Buyer 2');
+  assert.equal(brief.refreshed, true);
+  assert.equal(brief.account.entries.length, 1);
+  assert.equal(brief.account.entries[0].text, 'Send sheet Tuesday.');
+  assert.equal(brief.account.entries[0].actor.id, actor.id);
+  assert.equal(brief.history.retainedEntries, 4);
+  assert(brief.sources.every(source => source.text === undefined));
+  assert(brief.sources.find(source => source.id === correction.sourceId).actor.id === actor.id);
+  const restarted = await new CoachService({ contextDir: service.store.directory, actor, adapter }).init();
+  const full = await restarted.context({ accountId: 'buyer', refresh: false });
+  assert.equal(full.account.entries.length, 4);
+  assert.equal(full.sources.find(source => source.id === first.sourceId).text, 'I promised Anna the sheet on Monday.');
+  assert.equal(full.sources.find(source => source.id === correction.sourceId).kind, 'executive-statement');
+  assert.equal(full.sources.find(source => source.id === correction.sourceId).metadata.submittedBy, actor.id);
+  assert.equal((await restarted.store.sources([correction.sourceId]))[0].representation, 'original-text');
+  const repeated = await restarted.captureContext({ accountId: 'buyer', submittedSource: { sourceKey: 'chat:correction', text: 'Correction: it was Tuesday, not Monday.' }, entries: [{ id: 'promise', kind: 'commitment', text: 'Send sheet Tuesday.', status: 'human-account', sourceIds: [first.sourceId] }] });
+  assert.equal(repeated.entries[0].revision, 2);
+  assert.equal((await restarted.store.account('buyer')).entries.length, 4);
+  await assert.rejects(restarted.captureContext({ accountId: 'buyer', entries: [{ kind: 'note', text: 'Unsourced fact', status: 'fact', sourceIds: [] }] }), /provenance/);
+});
+
+test('independent CRM refreshes run together, failures remain explicit and sequential persistence keeps every result', async t => {
+  const started = [];
+  let release;
+  const allStarted = new Promise(resolve => { release = resolve; });
+  const adapter = { read: async ({ object }) => {
+    started.push(object);
+    if (started.length === 5) release();
+    await allStarted;
+    if (object === 'person') throw new Error('Permission denied');
+    return { records: [{ id: object === 'company' ? 'buyer' : `${object}-1`, updatedAt: '1' }], coverage: { scopeComplete: true, hasNextPage: false } };
+  } };
+  const service = await setup(t, adapter);
+  const context = await service.context({ accountId: 'buyer', brief: true });
+  assert.equal(started.length, 5);
+  assert.equal(Object.keys(context.account.crm).length, 4);
+  assert.equal(context.refreshed, false);
+  assert.equal(context.coverage.find(item => item.object === 'person').error, 'Permission denied');
+  assert.equal((await service.store.account('buyer')).entries.length, 4);
+});
+
+test('an empty page with additional records cannot claim a fresh account or erase prior CRM context', async t => {
+  const adapter = { read: async ({ object }) => ({ records: [], coverage: { scopeComplete: true, hasNextPage: object === 'task' } }) };
+  const service = await setup(t, adapter);
+  await service.store.rememberCRM('buyer', 'task', { id: 'task-1', title: 'Known task', updatedAt: '1' });
+  const context = await service.context({ accountId: 'buyer', brief: true });
+  assert.equal(context.refreshed, false);
+  assert.match(context.coverage.find(item => item.object === 'task' && item.error).error, /incomplete/);
+  assert.equal(context.account.crm['task:task-1'].record.title, 'Known task');
+  assert.equal(context.account.crm['task:task-1'].available, true, 'partial coverage cannot establish deletion');
+});
+
+test('cold retained account ID resolves by current company name and follows human renames without replacing explicit titles', async t => {
+  const service = await setup(t);
+  await service.store.rememberCRM('buyer', 'company', { id: 'buyer', name: 'Northstar Pharmacy', updatedAt: '1' });
+  assert.deepEqual((await service.store.search('northstar')).map(account => account.title), ['Northstar Pharmacy']);
+  assert.equal((await service.store.account('buyer')).title, 'buyer', 'display title must not rewrite retained history');
+  assert.equal((await service.context({ accountId: 'buyer', refresh: false, brief: true })).account.title, 'Northstar Pharmacy');
+  await service.store.rememberCRM('buyer', 'company', { id: 'buyer', name: 'Renamed Pharmacy', updatedAt: '2' });
+  assert.equal((await service.store.search('Northstar')).length, 0);
+  assert.equal((await service.store.search('Renamed'))[0].title, 'Renamed Pharmacy');
+  const source = await service.store.source({ sourceKey: 'chat:title', text: 'Use my working label Pilot account.' });
+  await service.store.update({ accountId: 'buyer', title: 'Pilot account', entries: [{ kind: 'note', text: 'Explicit working account label.', status: 'human-account', sourceIds: [source.id] }] });
+  assert.equal((await service.store.search('Renamed'))[0].title, 'Pilot account');
+  assert.equal((await service.store.search('Pilot'))[0].title, 'Pilot account');
+  assert.equal((await service.context({ accountId: 'buyer', refresh: false, brief: true })).account.title, 'Pilot account');
+});
+
+test('typed capture derives stable provenance scoped to account and actor without inventing an event date', async t => {
+  const service = await setup(t);
+  const input = { accountId: 'buyer', submittedSource: { text: 'Anna prefers email.' }, entries: [{ id: 'preference', kind: 'social', text: 'Anna prefers email.', status: 'human-account' }] };
+  const first = await service.captureContext(input);
+  const restarted = new CoachService({ contextDir: service.store.directory, actor });
+  assert.equal((await restarted.captureContext(input)).sourceId, first.sourceId);
+  assert.equal((await restarted.store.account('buyer')).entries.length, 1);
+  const source = (await restarted.store.sources([first.sourceId]))[0];
+  assert.equal(source.text, input.submittedSource.text);
+  assert.equal(source.occurredAt, null);
+  const otherAccount = await restarted.captureContext({ ...input, accountId: 'other' });
+  const leader = new CoachService({ contextDir: service.store.directory, actor: { id: 'leader@example.test', role: 'leader' } });
+  const otherActor = await leader.captureContext(input);
+  assert.notEqual(otherAccount.sourceId, first.sourceId);
+  assert.notEqual(otherActor.sourceId, first.sourceId);
+  assert.equal((await leader.store.sources([otherActor.sourceId]))[0].actor.id, 'leader@example.test');
+});
+
+test('targeted thread retrieval joins paginated messages and participants without broadening discovery scope', async t => {
+  const calls = [];
+  let release;
+  const bothStarted = new Promise(resolve => { release = resolve; });
+  let started = 0;
+  const adapter = { read: async query => {
+    calls.push(query);
+    if (query.subjectContains) return { records: [{ id: 'one', messageThreadId: 'thread-a' }], coverage: { hasNextPage: false, scopeComplete: true } };
+    if (query.offset === 0) { if (++started === 2) release(); await bothStarted; }
+    assert.equal(query.messageThreadId, 'thread-a');
+    if (query.object === 'messageParticipant') return { records: [{ id: 'person-1', messageId: 'one', role: 'FROM' }], coverage: { hasNextPage: false, scopeComplete: true } };
+    return { records: [{ id: query.offset ? 'two' : 'one', messageThreadId: 'thread-a' }], coverage: { hasNextPage: !query.offset, scopeComplete: true } };
+  } };
+  const service = await setup(t, adapter);
+  const result = await service.read({ object: 'message', subjectContains: 'specific subject', includeThreadContext: true });
+  assert.deepEqual(result.records.map(record => record.id), ['one', 'two']);
+  assert.equal(result.coverage.complete, true);
+  assert.equal(result.threadContext.participants.records[0].role, 'FROM');
+  assert.equal(result.threadContext.status, 'retrieved');
+  assert.equal(calls.length, 4);
+  assert(calls.every(query => !('includeThreadContext' in query)), 'host option is never passed as a raw provider filter');
+});
+
+test('ambiguous, partial or unauthorized discovery cannot expand into thread reads', async t => {
+  for (const [records, coverage, expected] of [
+    [[{ messageThreadId: 'a' }, { messageThreadId: 'b' }], { hasNextPage: false }, 'ambiguous'],
+    [[{ messageThreadId: 'a' }], { hasNextPage: true }, 'discovery-incomplete'],
+    [[{ messageThreadId: 'a' }], { scopeComplete: false }, 'unavailable'],
+    [[], { hasNextPage: false }, 'unavailable'],
+  ]) {
+    let calls = 0;
+    const service = await setup(t, { read: async () => { calls++; return { records, coverage }; } });
+    assert.equal((await service.read({ object: 'message', subjectContains: 'same title', includeThreadContext: true })).threadContext.status, expected);
+    assert.equal(calls, 1);
+    await assert.rejects(service.read({ object: 'company', includeThreadContext: true }), /targeted message/);
+    assert.equal(calls, 1);
+  }
+});
+
+test('thread page cap and provider failure never claim a complete conversation', async t => {
+  const service = await setup(t, { read: async ({ object, subjectContains }) => {
+    if (subjectContains) return { records: [{ messageThreadId: 'a' }], coverage: { hasNextPage: false } };
+    return { records: Array.from({ length: 100 }, (_, i) => ({ id: `${object}-${i}` })), coverage: { hasNextPage: true } };
+  } });
+  const capped = await service.read({ object: 'message', subjectContains: 'large thread', includeThreadContext: true });
+  assert.equal(capped.records.length, 1000);
+  assert.equal(capped.coverage.complete, false);
+  assert.equal(capped.threadContext.participants.coverage.complete, false);
+  service.adapter.read = async ({ subjectContains }) => {
+    if (subjectContains) return { records: [{ messageThreadId: 'a' }], coverage: { hasNextPage: false } };
+    throw new Error('Provider unavailable');
+  };
+  await assert.rejects(service.read({ object: 'message', subjectContains: 'thread', includeThreadContext: true }), /Provider unavailable/);
+});
+
+test('one MCP thread call retains exact message and participant records with reusable evidence IDs', async t => {
+  const message = { id: 'message-a', messageThreadId: 'thread-a', text: 'A request, not an agreed promise.', receivedAt: '2026-10-01T10:00:00Z' };
+  const participant = { id: 'participant-a', messageId: 'message-a', role: 'FROM', handle: 'synthetic@example.test', updatedAt: '2026-10-01T10:00:00Z' };
+  const service = await setup(t, { read: async ({ object }) => ({ records: [object === 'message' ? message : participant], coverage: { hasNextPage: false, scopeComplete: true } }) });
+  const server = buildServer(service);
+  const client = new Client({ name: 'thread-intake-proof', version: '1' });
+  const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+  await server.connect(serverTransport);
+  await client.connect(clientTransport);
+  t.after(async () => { await client.close(); await server.close(); });
+  const result = await client.callTool({ name: 'crm_read', arguments: { object: 'message', subjectContains: 'specific subject', includeThreadContext: true } });
+  assert(!result.isError);
+  const data = JSON.parse(result.content[0].text);
+  const retainedMessage = (await service.store.sources([data.sources[0].sourceId]))[0];
+  const retainedParticipant = (await service.store.sources([data.threadContext.participants.sources[0].sourceId]))[0];
+  assert.deepEqual(JSON.parse(retainedMessage.text), message);
+  assert.equal(retainedMessage.kind, 'email');
+  assert.deepEqual(JSON.parse(retainedParticipant.text), participant);
+  assert.equal(data.threadContext.participants.sources[0].recordId, participant.id);
+});
+
+test('incremental typed corrections preserve prior provenance and replaying old input cannot revert the latest interpretation', async t => {
+  const service = await setup(t);
+  const initial = { accountId: 'buyer', submittedSource: { text: 'Technical questions go to Anna; delivery to Marta.' }, entries: [{ id: 'routing', kind: 'social', text: 'Technical: Anna. Delivery: Marta.', status: 'human-account' }] };
+  const first = await service.captureContext(initial);
+  const correction = { accountId: 'buyer', submittedSource: { text: 'Use DOCX for technical summaries.' }, entries: [{ id: 'routing', kind: 'social', text: 'Technical: Anna, DOCX. Delivery: Marta.', status: 'human-account' }] };
+  const second = await service.captureContext(correction);
+  assert.deepEqual(second.entries[0].sourceIds, [first.sourceId, second.sourceId]);
+  const replay = await service.captureContext(initial);
+  assert.equal(replay.entries[0].revision, 1);
+  const current = await service.context({ accountId: 'buyer', brief: true, refresh: false });
+  assert.equal(current.account.entries[0].text, correction.entries[0].text);
+  assert.equal(current.account.entries[0].revision, 2);
+  assert.equal(current.history.retainedEntries, 2);
+  assert.deepEqual((await service.captureContext(correction)).entries[0].sourceIds, second.entries[0].sourceIds);
 });

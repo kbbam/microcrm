@@ -133,3 +133,31 @@ test('gateway refuses path traversal and unrecognized role instead of granting c
   await assert.rejects(gateway.buildServer({ id: 'exec@example.test', role: 'executive', contextKey: '../pilot' }), /Authorized/);
   await assert.rejects(gateway.buildServer({ id: 'exec@example.test', role: 'owner', contextKey: 'pilot' }), /Authorized/);
 });
+
+test('one typed context call binds exact executive words to interpretations without granting file or CRM write authority', async t => {
+  const { client } = await fixture(t);
+  const exec = await client('exec');
+  const instructions = unpack(await exec.callTool({ name: 'get_coach_instructions', arguments: {} }));
+  assert.equal(instructions.identity.id, 'exec@example.test');
+  assert.equal(instructions.crmConfigured, false);
+  const receipt = unpack(await exec.callTool({ name: 'update_account_context', arguments: {
+    accountId: 'buyer', title: 'Buyer', submittedSource: { text: 'Anna asked for a trial; quantities are still unclear.' },
+    entries: [{ id: 'trial', kind: 'gap', text: 'Trial quantity unknown.', status: 'unknown', association: { scope: 'provisional' } }],
+  } }));
+  assert.equal(receipt.entries[0].revision, 1);
+  assert.equal(receipt.originalFilePreserved, false);
+  const source = unpack(await exec.callTool({ name: 'get_source', arguments: { sourceId: receipt.sourceId } }));
+  assert.equal(source.text, 'Anna asked for a trial; quantities are still unclear.');
+  assert.equal(source.actor.id, 'exec@example.test');
+  const context = unpack(await exec.callTool({ name: 'get_account_context', arguments: { accountId: 'buyer', brief: true } }));
+  assert.equal(context.account.entries[0].sourceIds[0], receipt.sourceId);
+  assert.equal(Object.keys(context.account.crm).length, 0);
+  assert.equal(context.sources[0].text, undefined);
+  const invalid = await exec.callTool({ name: 'update_account_context', arguments: {
+    accountId: 'buyer', submittedSource: { sourceKey: 'forged-file', text: 'File', representation: 'transcription', evidenceId: 'fake' },
+    entries: [{ kind: 'note', text: 'File', status: 'fact' }],
+  } });
+  assert.equal(invalid.isError, true);
+  const denied = await exec.callTool({ name: 'update_account_context', arguments: { accountId: 'buyer', entries: [{ kind: 'note', text: 'No source', status: 'fact' }] } });
+  assert.equal(denied.isError, true);
+});

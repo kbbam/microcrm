@@ -100,26 +100,26 @@ export class TwentyAdapter {
     if (companyId && !this.scope.includes(uuid(companyId))) fail('OUT_OF_SCOPE', 'Company is outside approved pilot scope.');
     return companyId ? [companyId] : this.scope;
   }
-  async page(object, filter, limit, offset = 0) {
+  async page(object, filter, limit, offset = 0, identifiersOnly = false) {
     const [type, plural] = config[object];
-    const data = await this.request(`query CoachRead($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${selection(object)}}}pageInfo{hasNextPage endCursor}totalCount}}`, { filter, limit, offset });
+    const data = await this.request(`query CoachRead($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${identifiersOnly ? 'id' : selection(object)}}}pageInfo{hasNextPage endCursor}totalCount}}`, { filter, limit, offset });
     const c = data[plural];
     if (!c || !Array.isArray(c.edges) || !c.pageInfo) fail('CRM_RESPONSE', 'CRM returned an invalid connection.');
-    const content = communicationContent(object, c.edges.map(e => e.node));
+    const content = identifiersOnly ? { records: c.edges.map(e => e.node) } : communicationContent(object, c.edges.map(e => e.node));
     // This is only absence of explicit restrictions in the returned page;
     // null/omitted fields, provider synchronization and original bytes remain separate.
     return { records: content.records, coverage: { returned: c.edges.length, totalCount: c.totalCount, hasNextPage: c.pageInfo.hasNextPage, endCursor: c.pageInfo.endCursor, complete: offset === 0 && !c.pageInfo.hasNextPage, limit, offset, ...(content.contentAvailability ? { contentAccessUnrestricted: content.contentAvailability.restrictedRecordCount === 0, contentAvailability: content.contentAvailability } : {}) } };
   }
-  async collect(object, filter) {
+  async collect(object, filter, identifiersOnly = false) {
     if (!filter) return {records:[],complete:true};
     const records = []; let complete = false;
     for (let offset = 0; offset < 1000; offset += 100) {
-      const page = await this.page(object, filter, 100, offset); records.push(...page.records);
+      const page = await this.page(object, filter, 100, offset, identifiersOnly); records.push(...page.records);
       if (!page.coverage.hasNextPage) { complete = true; break; }
     }
     return { records, complete };
   }
-  async scopeFilter(object, companyIds) {
+  async scopeFilter(object, companyIds, selectors = {}) {
     if (companyIds===null) return {filter:{},complete:true};
     if (object === 'company') return { filter: { id: { in: companyIds } }, complete: true };
     if (['person','opportunity'].includes(object)) return { filter: { companyId: { in: companyIds } }, complete: true };
@@ -131,16 +131,41 @@ export class TwentyAdapter {
     }
     const mapping = { note: ['noteTarget','noteId'], task: ['taskTarget','taskId'], message: ['messageThreadTarget','messageThreadId'], calendarEvent: ['calendarEventTarget','calendarEventId'], messageParticipant: ['message','messageId'], calendarEventParticipant: ['calendarEvent','calendarEventId'] };
     const [parent, field] = mapping[object]; const scope = await this.scopeFilter(parent, companyIds);
-    const related = await this.collect(parent, scope.filter);
+    const lookupClauses = [];
+    if (parent === 'message') {
+      if (selectors.messageId !== undefined) lookupClauses.push({ id: { eq: selectors.messageId } });
+      if (selectors.messageThreadId !== undefined) lookupClauses.push({ messageThreadId: { eq: selectors.messageThreadId } });
+    }
+    const related = await this.collect(parent, scope.filter && (lookupClauses.length ? { and: [scope.filter, ...lookupClauses] } : scope.filter), parent === 'message');
     const ids = related.records.map(r => parent.endsWith('Target') ? r[field] : r.id).filter(Boolean);
     return { filter: ids.length ? { [object === 'message' ? 'messageThreadId' : object.endsWith('Participant') ? field : 'id']: { in: [...new Set(ids)] } } : null, complete: scope.complete && related.complete };
   }
-  async read({ object, id, companyId, limit = 50, offset = 0 }) {
+  async read({ object, id, companyId, limit = 50, offset = 0, subjectContains, messageThreadId, messageId }) {
     object = kind(object); const companies = this.accountScope(companyId);
     if (!Number.isInteger(limit) || limit < 1 || limit > 100 || !Number.isInteger(offset) || offset < 0 || offset > 10000) fail('INVALID_BOUND', 'Read limit must be 1–100 and offset 0–10000.');
     if (id) uuid(id);
-    const scope = await this.scopeFilter(object, companies);
-    const result = scope.filter ? await this.page(object, id ? { and: [scope.filter, { id: { eq: id } }] } : scope.filter, id ? 1 : limit, offset) : {records:[],coverage:{returned:0,totalCount:0,hasNextPage:false,endCursor:null,complete:offset===0,limit,offset}};
+    const clauses = [];
+    if (subjectContains !== undefined) {
+      if (object !== 'message' || typeof subjectContains !== 'string' || !subjectContains.trim() || subjectContains.length > 500) fail('INVALID_FILTER', 'Subject substring is supported only for messages and must be 1–500 nonblank characters.');
+      // Provider ilike is a pattern operator. User input stays a literal
+      // substring: wildcard and escape characters cannot broaden the request.
+      const literal = subjectContains.replace(/[\\%_]/g, character => `\\${character}`);
+      clauses.push({ subject: { ilike: `%${literal}%` } });
+    }
+    if (messageThreadId !== undefined) {
+      if (!['message', 'messageParticipant', 'messageThreadTarget'].includes(object)) fail('INVALID_FILTER', 'Thread filter is supported only for messages, message participants and thread targets.');
+      uuid(messageThreadId);
+      clauses.push(object === 'messageParticipant' ? { message: { messageThreadId: { eq: messageThreadId } } } : { messageThreadId: { eq: messageThreadId } });
+    }
+    if (messageId !== undefined) {
+      if (object !== 'messageParticipant') fail('INVALID_FILTER', 'Parent message filter is supported only for message participants.');
+      clauses.push({ messageId: { eq: uuid(messageId) } });
+    }
+    if (id) clauses.push({ id: { eq: id } });
+    const scope = await this.scopeFilter(object, companies, { messageThreadId, messageId });
+    const filter = scope.filter && (clauses.length ? { and: [scope.filter, ...clauses] } : scope.filter);
+    const result = filter ? await this.page(object, filter, id ? 1 : limit, offset) : {records:[],coverage:{returned:0,totalCount:0,hasNextPage:false,endCursor:null,complete:offset===0,limit,offset}};
+    if (subjectContains !== undefined || messageThreadId !== undefined || messageId !== undefined) result.coverage.requestedSubset = { ...(subjectContains !== undefined ? { subjectContains } : {}), ...(messageThreadId !== undefined ? { messageThreadId } : {}), ...(messageId !== undefined ? { messageId } : {}) };
     result.coverage.scopeComplete = scope.complete;
     if (object === 'message') result.coverage.sourceCapabilities = {
       body: 'plain-text-when-authorized', participants: 'separate-messageParticipant-read', threadId: true,

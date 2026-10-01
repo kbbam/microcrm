@@ -63,7 +63,7 @@ export function createGateway({ configRoot, publicUrl, serviceFactory = loadServ
     tool('get_coach_instructions', 'Retrieve the current centrally maintained coach behavior at the start of work. The response version identifies exactly which instructions were read.', {}, async () => {
       const instructions = await readFile(instructionsPath, 'utf8');
       return { version: createHash('sha256').update(instructions).digest('hex'), instructions,
-        identity: service.actor, authority: 'authenticated-business-os-access',
+        identity: service.actor, crmConfigured: !!service.adapter, authority: 'authenticated-business-os-access',
         runtime: 'Claude performs this conversation; these tools do not execute a hosted model or unattended worker' };
     });
     tool('prepare_evidence_upload', 'Request a short-lived address for one original file. Use code to PUT the unchanged sandbox file bytes to uploadUrl, with contentType. No base64 argument or second user upload. Check the receipt before claiming preservation.', {

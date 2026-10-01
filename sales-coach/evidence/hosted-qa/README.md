@@ -15,7 +15,7 @@ an uncommitted working tree was already a released Git revision.
 - Separate PostgreSQL service: `099941ee-5168-47b1-b729-0de0ac7872e7`
 - Evidence/config volume: `72eaabfa-c28a-4249-8b50-37fc02523d62`, `/var/lib/bam-coach`
 - Original thirteen-check deployment: `d1fb7b02-2bc2-4209-b1db-669e6961f6a1`
-- Current healthy QA deployment: `23d80b4a-22cd-40d8-8cbd-199b8a541123`
+- Current healthy QA deployment: `b6a98f7a-2da5-449c-afa6-9b8fd62a1b03`
 
 The deployed checks covered real registration/PKCE/login/consent, a 160,000-character
 transcription, 440,487 original bytes with exact upload/download equality, evidence
@@ -69,3 +69,7 @@ The owner has now exercised the installed coach in an ordinary Android conversat
 its unchanged original and linked transcription/context are independently verified.
 The 58.530-second visible request/reply interval and overlong completion are retained
 as next-iteration feedback, not hidden by the passing byte-transfer check.
+
+## Ordinary text and synthetic-email QA
+
+See [routine-client-proof.md](routine-client-proof.md) for the bounded conversation buffer, exact typed capture/correction, compact fresh context, one-call thread/participant reads, actual client timings, source/CRM readback and unresolved acceptance issues. This is an isolated QA iteration; no production readiness claim is made.

@@ -1,0 +1,536 @@
+{
+  "at": "2026-10-01T17:15:05.395Z",
+  "readOnly": true,
+  "codeHashes": {
+    "service.mjs": "95b495d1649af73a198230346695e24f4f7e0145f97553416a982531c3a27895",
+    "twenty.mjs": "c200842a464022acd37d6ce807f8b8adb62dfddfbd43567bf6faf1b738f7fd0a",
+    "skill/SKILL.md": "8f914167a32e47f170c517defe1cf499505d82dacc51030eda608d91933d1a41"
+  },
+  "socialRevisions": [
+    {
+      "kind": "social",
+      "text": "Anna's communication preferences (executive's account): email for technical questions; a short phone call for delivery timing. Anna's own wording not seen.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "digest": "b2bddf6f6fb0ca39da02edb094ae51aed87feafa90a0e4025dd5aedfd4b8a759",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T15:46:17.322Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Delivery questions go to her warehouse colleague Pavel. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Pavel is wanted is not stated.",
+      "sourceIds": [
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "e91ade9353c66825f22b49d76cfd663d682d6e29330abecd07fc52ad34258a81",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:00:50.352Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Delivery questions go to Marta (corrected from Pavel, who was named in error). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "b6714a54555ec297fe797033524c882f20fabbe13e62aa7e44082c4914ca34e8",
+      "revision": 3,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:01:15.928Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries should be sent as a PDF with a brief email introduction. Delivery questions go to Marta (corrected from Pavel, who was named in error). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "a24cd251e6df7bf5e49a247673de0e88de0a1941fac4ad8cf3e798fc0cc8ef15",
+      "revision": 4,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:07:17.128Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries should be sent as a DOCX (corrected from PDF) with a brief email introduction. Delivery questions go to Marta (corrected from Pavel, who was named in error). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "eba4a4a2e75687ba00089982b77aba933da1014980f9d869cd5ae3c3db26619d",
+      "revision": 5,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:08:19.602Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries should be sent as a DOCX (corrected from PDF) with a brief email introduction that now includes a one-line purpose statement. Delivery questions go to Marta (corrected from Pavel, who was named in error). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "8e40eda6e92e2e97bd34f78510dbd61ec2e393d725a2094b40c8f53ebead1a57",
+      "revision": 6,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:15:45.081Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries are sent as a DOCX (unchanged; not PDF) with a brief email introduction that includes a one-line purpose statement and is now limited to two sentences. Delivery questions go to Marta (corrected from Pavel, who was named in error; unchanged). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+        "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "02b2eeb1dd6dda733b007ba1b37a5d92d0f4062402dba72f772cdf07343a36f0",
+      "digest": "9467b2b9306d8d780a2ecaa8d9522ad251a4d7b9d51b9ecffc5331a0eb4bc007",
+      "revision": 7,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:42:55.866Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries are sent as a DOCX (unchanged; not PDF) with a brief email introduction that includes a one-line purpose statement and is limited to one sentence (corrected from two). Delivery questions go to Marta (corrected from Pavel, who was named in error; unchanged). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing; whether a call with Marta is wanted is not stated.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+        "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282",
+        "6fb2654b3743ba8aa629afe5d2e55a0f5a676260fe6286a85eb04f9987f5e998"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "aeb0da2a7cc5eb0d656293bd397e12a2ac08b712d6e0519ee2789024c94f4120",
+      "digest": "91a5e20d7dfce5f00113f014670c1da4b281a3d8ad83ae873a1aabe3b83695f3",
+      "revision": 8,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:45:31.606Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries are sent as a DOCX (unchanged; not PDF) with a brief email introduction that includes a one-line purpose statement and is limited to one sentence (corrected from two). Delivery questions go to Marta (corrected from Pavel, who was named in error; unchanged), and Marta prefers delivery questions by email (executive's account). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+        "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282",
+        "6fb2654b3743ba8aa629afe5d2e55a0f5a676260fe6286a85eb04f9987f5e998",
+        "c94af781f6791accafb0c140ff9c040739853081b02e38f79cddedc2ee23b066"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "4cb7e29bca10c4a8386d7aa89f2831173c6dec8b60aa8e4ddbd1b33312ab8227",
+      "digest": "c5ff756c27abea8ed5c44e2c4b0d79cccb34f02880f5aee9c028944710c51070",
+      "revision": 9,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:50:07.238Z"
+    },
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries are sent as a DOCX (unchanged; not PDF) with a brief email introduction that includes a one-line purpose statement and is limited to one sentence (corrected from two). Delivery questions go to Marta (corrected from Pavel, who was named in error; unchanged), and Marta prefers a phone call for delivery questions (corrected from email; executive's account). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+        "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282",
+        "6fb2654b3743ba8aa629afe5d2e55a0f5a676260fe6286a85eb04f9987f5e998",
+        "c94af781f6791accafb0c140ff9c040739853081b02e38f79cddedc2ee23b066",
+        "eca5844cd4e479b4ea337f7bbc9ca98175cdc13b73913716077a551633ad6853"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "5030694a2519a1658cfe8d59e86ba4b6b8a1d32d7f00081ee5ab9b8ce29fe0bb",
+      "digest": "1b9d9e0cb190f843a966567f3bb3627edbece2928e76e53180493c294a54c1a8",
+      "revision": 10,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:51:51.456Z"
+    }
+  ],
+  "typedSources": [
+    {
+      "id": "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+      "text": "Also remember: Anna prefers email for technical questions and a short phone call for delivery timing.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+      "text": "Also remember: Anna wants delivery questions routed to her warehouse colleague Pavel; keep technical questions with Anna.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+      "text": "Correction: delivery questions should go to Marta, not Pavel.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "0bb6d055280388d5ffc12e10ff272f7399324072fa2aab54675833cc626b1450",
+      "text": "Yes, I agreed to 6 October 2026 for the Autumn summary. Keep the translation check on 4 October. Update the internal task; do not send anything.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+      "text": "Remember: Anna prefers technical summaries as a PDF with a brief email introduction.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+      "text": "Correction: Anna prefers DOCX, not PDF, for technical summaries.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+      "text": "Anna now wants the brief introduction to include a one-line purpose statement. Add that to the same task without changing its dates, status or format.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "b3c97ff86dcfcd0515016348f286759e17a37f3e01a1297380f18c0070cdb597",
+      "text": "For this synthetic QA exchange, kbolgarov@gmail.com and kbolgarov+101@gmail.com represent Anna, the customer; kb@jpgrowery.com is me as executive. Keep 120 units provisional. Also correct the activity: absence of the summary from this thread does not prove it was never sent elsewhere. Its current sending status is unverified.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282",
+      "text": "Remember: Anna wants the introduction limited to two sentences; keep the DOCX format and delivery questions routed to Marta.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "6fb2654b3743ba8aa629afe5d2e55a0f5a676260fe6286a85eb04f9987f5e998",
+      "text": "Correction: make that one sentence, not two.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "c94af781f6791accafb0c140ff9c040739853081b02e38f79cddedc2ee23b066",
+      "text": "Remember: Marta prefers delivery questions by email.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    },
+    {
+      "id": "eca5844cd4e479b4ea337f7bbc9ca98175cdc13b73913716077a551633ad6853",
+      "text": "Correction: Marta prefers a phone call for delivery questions, not email.",
+      "kind": "executive-statement",
+      "representation": "original-text",
+      "submittedBy": "kb@jpgrowery.com"
+    }
+  ],
+  "checks": {
+    "exactMartaCorrection": true,
+    "correctLatestContact": true,
+    "priorPavelVersionPreserved": true,
+    "exactFormatCorrection": true,
+    "correctLatestFormat": true,
+    "priorPDFVersionPreserved": true,
+    "quietCorrectionExactOriginal": true,
+    "latestIntroOneSentence": true,
+    "priorTwoSentenceVersionPreserved": true,
+    "carriedForwardEvidenceLineage": true,
+    "humanStatusPreserved": true,
+    "taskCorrectedTitle": true,
+    "taskTranslationCheck": true,
+    "taskHistoricalClaimQualified": true,
+    "activitySendingUnknown": true,
+    "resolvedAgreementGap": true,
+    "noInventedTime": true,
+    "twoDistinctOpportunities": true,
+    "stagesNotWon": true,
+    "emailOriginalsRetained": true,
+    "springProvisionalContext": true,
+    "latestDeliveryChannelCorrected": true,
+    "newestStatementExact": true
+  },
+  "passed": true,
+  "latestRelevantEntries": [
+    {
+      "id": "5391c915-0bcb-4c28-b8c1-5efe7c497526",
+      "kind": "social",
+      "text": "Anna's contact preferences (executive's account; Anna's own wording not seen): technical questions stay with Anna, by email. Technical summaries are sent as a DOCX (unchanged; not PDF) with a brief email introduction that includes a one-line purpose statement and is limited to one sentence (corrected from two). Delivery questions go to Marta (corrected from Pavel, who was named in error; unchanged), and Marta prefers a phone call for delivery questions (corrected from email; executive's account). Marta's role is not stated. This updates the earlier note that Anna prefers a short phone call for delivery timing.",
+      "sourceIds": [
+        "3dcfaec97155115e13fdf2a488c41121d4371cee12aa268ef4132bfc9eb9a995",
+        "c975da996539694a4095f24545eee81ec97b45296d8d680dc4b416226d607f6c",
+        "865b7ae79f8836407ee965be51dab87df083d58843ec30a313dc18d9899ae131",
+        "34e5dc2f208e4807693ad9dc03602084e01ad0a8e8de8ac862b564d63608a5e6",
+        "be1bbd82c45c89df7732778461ba135781518eee311e57d1df1ed184ceb81f30",
+        "d7b76efcb0b8f00b40ae95c2d1fbfbff9b781765b78125bb6ad7856ac4e4d8f0",
+        "a23a7bf152f9178a93e2ce379313081f793024a0fed518ed0d7d933986905282",
+        "6fb2654b3743ba8aa629afe5d2e55a0f5a676260fe6286a85eb04f9987f5e998",
+        "c94af781f6791accafb0c140ff9c040739853081b02e38f79cddedc2ee23b066",
+        "eca5844cd4e479b4ea337f7bbc9ca98175cdc13b73913716077a551633ad6853"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "5030694a2519a1658cfe8d59e86ba4b6b8a1d32d7f00081ee5ab9b8ce29fe0bb",
+      "digest": "1b9d9e0cb190f843a966567f3bb3627edbece2928e76e53180493c294a54c1a8",
+      "revision": 10,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:51:51.456Z"
+    },
+    {
+      "id": "b5090f6a-3f50-4854-9a46-6f5059428b05",
+      "kind": "gap",
+      "text": "Still unknown: Autumn trial batch size and decision timing; whether Spring's provisional 120 units and week of 12 Apr 2027 become firm (unit price also unknown); whether the German summary has been sent (status unverified). Resolved: 6 Oct 2026 agreed for the Autumn summary; the thread's reply sender is Anna's test address. Spring delivery-week questions go to Marta per Anna's stated routing.",
+      "sourceIds": [
+        "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+        "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+        "0bb6d055280388d5ffc12e10ff272f7399324072fa2aab54675833cc626b1450",
+        "b3c97ff86dcfcd0515016348f286759e17a37f3e01a1297380f18c0070cdb597"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "digest": "148fd55443c0cffc9999bafa0a57be008263001e67008ef547c5bc476e5f529c",
+      "revision": 5,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:20:46.828Z"
+    },
+    {
+      "id": "ae5c6d61-870e-426b-a99d-22c227939d54",
+      "kind": "activity",
+      "text": "Email thread '[BAM QA synthetic] Northstar trial and repeat order \u2014 2026-10-01'. Message 1 (1 Oct, 15:30 UTC, executive kb@jpgrowery.com to Anna's test address kbolgarov+101@gmail.com): states the German Autumn summary plan (translation check 4 Oct, send 5 Oct) and asks Anna to confirm Spring provisional quantity and delivery week, keeping the two separate. Message 2 (1 Oct, 15:35 UTC, from Anna's test address kbolgarov@gmail.com): asks for the German summary by 6 Oct instead of 5 Oct, and gives a provisional 120 units for the week of 12 April 2027 for Spring; neither is an accepted order. The summary does not appear in this thread, but that does not show it was never sent elsewhere; its current sending status is unverified.",
+      "sourceIds": [
+        "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+        "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+        "b3c97ff86dcfcd0515016348f286759e17a37f3e01a1297380f18c0070cdb597"
+      ],
+      "status": "fact",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69",
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "sourceRefs": [
+        {
+          "sourceId": "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+          "messageId": "c928cfbe-143c-468c-8d0a-f4989985034e"
+        },
+        {
+          "sourceId": "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+          "messageId": "a466f296-3327-48d8-a494-8f8c072f8c36"
+        }
+      ],
+      "digest": "c252c2bab9594d17ad493742b2a51eaa8ff36e4e4ef8703abd3109bc18062465",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:20:46.827Z"
+    },
+    {
+      "id": "46a46507-ca99-411f-91bd-9d08aa0f0b00",
+      "kind": "opportunity",
+      "text": "Autumn trial order: Anna wants a small initial batch (quantity not stated). Not won; no order accepted.",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+        "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "digest": "31a6d7d0448154daaa888196dc3ac89f802d4d2a66a8fa7c938e0a42042f5b31",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T13:47:48.136Z"
+    },
+    {
+      "id": "3ad94a35-b419-4318-a197-8ef4f868dd26",
+      "kind": "opportunity",
+      "text": "Spring repeat order: in the 1 Oct email thread, Anna's reply (from her test address) gives a provisional plan of 120 units for the week of 12 April 2027. The reply says it is not an accepted order. Kept provisional per the executive. Not won; no order accepted. Unit price is unknown. Separate pursuit from the Autumn trial, as Anna asked.",
+      "sourceIds": [
+        "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+        "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+        "b3c97ff86dcfcd0515016348f286759e17a37f3e01a1297380f18c0070cdb597"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "digest": "0761298896af739ef2aa5c30ae08965c5f7b4219eb66e77ebd242c7a52e8902c",
+      "revision": 5,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T16:20:46.828Z"
+    }
+  ],
+  "emailSources": [
+    {
+      "id": "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+      "messageId": "c928cfbe-143c-468c-8d0a-f4989985034e",
+      "threadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
+      "bodyChars": 602
+    },
+    {
+      "id": "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+      "messageId": "a466f296-3327-48d8-a494-8f8c072f8c36",
+      "threadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
+      "bodyChars": 293
+    }
+  ],
+  "task": {
+    "id": "892c9be7-5ca4-45cb-9f38-a76f8cd6c720",
+    "title": "Prepare German shelf-life summary for Anna by 6 Oct 2026 \u2014 QA Northstar Autumn trial",
+    "status": "IN_PROGRESS",
+    "dueAt": null,
+    "body": "Synthetic QA task. Executive promised Anna a written shelf-life summary, now due 6 October 2026 (date only; no time was given). Anna asked in the 1 Oct email thread to move it from 5 Oct to 6 Oct, and the executive agreed. The summary is to be in German; the translation check stays on 4 October 2026. Format (executive's account): Anna prefers technical summaries as a DOCX, not PDF, with a brief email introduction; the introduction should now include a one-line purpose statement. It supports the Autumn trial order only; Anna asked that the Spring repeat order be kept separate. Historical evidence: in the 1 Oct 2026 conversation screenshot, the executive's own message said the summary was drafted but not yet sent. Current sending status is UNVERIFIED: the summary's absence from the 1 Oct email thread does not show it was never sent elsewhere. Remaining step: executive confirms whether it has been sent and, if not, reviews and sends it to Anna (the coach does not send). Neither opportunity is won; no order is accepted."
+  },
+  "opportunities": [
+    {
+      "id": "31375bb8-c4ac-41f2-b2e9-76b55c605cf7",
+      "name": "QA Spring repeat order (synthetic)",
+      "stage": "ENGAGED"
+    },
+    {
+      "id": "6fd8eed5-3b66-402e-9f69-349febe96c69",
+      "name": "QA Autumn trial order (synthetic)",
+      "stage": "ENGAGED"
+    }
+  ],
+  "deployment": "b6a98f7a-2da5-449c-afa6-9b8fd62a1b03",
+  "unchangedReadbackComparison": {
+    "socialRevisions": true,
+    "typedSources": true,
+    "syntheticLatestEntries": true,
+    "task": true,
+    "opportunities": true,
+    "runtimeHashes": true
+  }
+}

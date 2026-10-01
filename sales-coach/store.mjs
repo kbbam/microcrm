@@ -10,6 +10,11 @@ const key = value => {
 const canonical = value => JSON.stringify(value, (_, v) => v && typeof v === 'object' && !Array.isArray(v)
   ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v) ?? 'undefined';
 export const changeDigest = value => hash(canonical(value));
+export const accountDisplayTitle = account => {
+  const company = account.crm?.[`company:${account.id}`];
+  const currentName = company?.available !== false && company?.record?.name;
+  return (!account.title || account.title === account.id) && typeof currentName === 'string' && currentName.trim() ? currentName : account.title || account.id;
+};
 
 export class ContextStore {
   constructor(directory, actor) {
@@ -144,7 +149,7 @@ export class ContextStore {
   async search(query = '') {
     const files = await readdir(join(this.directory, 'accounts'));
     const accounts = await Promise.all(files.filter(f => f.endsWith('.json')).map(f => readFile(join(this.directory, 'accounts', f), 'utf8').then(JSON.parse)));
-    return accounts.filter(a => `${a.title} ${a.id}`.toLowerCase().includes(query.toLowerCase())).map(a => ({ id: a.id, title: a.title, entries: a.entries.length }));
+    return accounts.filter(a => `${a.title} ${a.id} ${accountDisplayTitle({ ...a, title: a.id })}`.toLowerCase().includes(query.toLowerCase())).map(a => ({ id: a.id, title: accountDisplayTitle(a), entries: a.entries.length }));
   }
   async observation(event) {
     if (!event.observation?.trim()) throw new Error('Observation text required');

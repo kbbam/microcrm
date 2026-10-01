@@ -1,0 +1,276 @@
+{
+  "at": "2026-10-01T16:17:29.160Z",
+  "readOnly": true,
+  "elapsedMs": 1616,
+  "status": "retrieved",
+  "threadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
+  "messages": [
+    {
+      "id": "a466f296-3327-48d8-a494-8f8c072f8c36",
+      "bodyChars": 293
+    },
+    {
+      "id": "c928cfbe-143c-468c-8d0a-f4989985034e",
+      "bodyChars": 602
+    }
+  ],
+  "messageCoverage": {
+    "returned": 2,
+    "totalCount": 2,
+    "hasNextPage": false,
+    "endCursor": "eyJpZCI6ImM5MjhjZmJlLTE0M2MtNDY4Yy04ZDBhLWY0OTg5OTg1MDM0ZSJ9",
+    "complete": true,
+    "limit": 100,
+    "offset": 0,
+    "contentAccessUnrestricted": true,
+    "contentAvailability": {
+      "restrictedRecordCount": 0,
+      "fields": {
+        "headerMessageId": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "messageThreadId": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "subject": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "text": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "receivedAt": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "isDraft": {
+          "available": 2,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        }
+      }
+    },
+    "requestedSubset": {
+      "messageThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92"
+    },
+    "scopeComplete": true,
+    "sourceCapabilities": {
+      "body": "plain-text-when-authorized",
+      "participants": "separate-messageParticipant-read",
+      "threadId": true,
+      "fieldAccess": "per-record-contentAvailability; restricted values are not evidence",
+      "originalMime": false,
+      "attachmentBytes": false,
+      "mailboxSynchronization": "unverified",
+      "scope": "approved-isolated-workspace"
+    },
+    "pages": [
+      {
+        "returned": 2,
+        "totalCount": 2,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImM5MjhjZmJlLTE0M2MtNDY4Yy04ZDBhLWY0OTg5OTg1MDM0ZSJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "contentAccessUnrestricted": true,
+        "contentAvailability": {
+          "restrictedRecordCount": 0,
+          "fields": {
+            "headerMessageId": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "messageThreadId": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "subject": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "text": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "receivedAt": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "isDraft": {
+              "available": 2,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            }
+          }
+        },
+        "requestedSubset": {
+          "messageThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92"
+        },
+        "scopeComplete": true,
+        "sourceCapabilities": {
+          "body": "plain-text-when-authorized",
+          "participants": "separate-messageParticipant-read",
+          "threadId": true,
+          "fieldAccess": "per-record-contentAvailability; restricted values are not evidence",
+          "originalMime": false,
+          "attachmentBytes": false,
+          "mailboxSynchronization": "unverified",
+          "scope": "approved-isolated-workspace"
+        }
+      }
+    ]
+  },
+  "participants": [
+    {
+      "id": "153846fd-5cd3-4c20-be9c-0f33c6d98851",
+      "messageId": "c928cfbe-143c-468c-8d0a-f4989985034e",
+      "role": "TO"
+    },
+    {
+      "id": "75fbc8e4-72c1-4958-bf84-b0c0c04c5b28",
+      "messageId": "c928cfbe-143c-468c-8d0a-f4989985034e",
+      "role": "FROM"
+    },
+    {
+      "id": "8fbdb1be-909c-43cf-844d-2ba29d1260a2",
+      "messageId": "a466f296-3327-48d8-a494-8f8c072f8c36",
+      "role": "CC"
+    },
+    {
+      "id": "9759ddc6-d043-4b5a-a7d6-8fc3f4935ce3",
+      "messageId": "a466f296-3327-48d8-a494-8f8c072f8c36",
+      "role": "FROM"
+    },
+    {
+      "id": "e3f6b457-ed59-4b5e-be12-34cfc68ff5a2",
+      "messageId": "a466f296-3327-48d8-a494-8f8c072f8c36",
+      "role": "TO"
+    }
+  ],
+  "participantCoverage": {
+    "returned": 5,
+    "totalCount": 5,
+    "hasNextPage": false,
+    "endCursor": "eyJpZCI6ImUzZjZiNDU3LWVkNTktNGI1ZS1iZTEyLTM0Y2ZjNjhmZjVhMiJ9",
+    "complete": true,
+    "limit": 100,
+    "offset": 0,
+    "contentAccessUnrestricted": true,
+    "contentAvailability": {
+      "restrictedRecordCount": 0,
+      "fields": {
+        "messageId": {
+          "available": 5,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "personId": {
+          "available": 5,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "role": {
+          "available": 5,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "handle": {
+          "available": 5,
+          "empty": 0,
+          "notProvided": 0,
+          "restricted": 0
+        },
+        "displayName": {
+          "available": 4,
+          "empty": 1,
+          "notProvided": 0,
+          "restricted": 0
+        }
+      }
+    },
+    "requestedSubset": {
+      "messageThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92"
+    },
+    "scopeComplete": true,
+    "pages": [
+      {
+        "returned": 5,
+        "totalCount": 5,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImUzZjZiNDU3LWVkNTktNGI1ZS1iZTEyLTM0Y2ZjNjhmZjVhMiJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "contentAccessUnrestricted": true,
+        "contentAvailability": {
+          "restrictedRecordCount": 0,
+          "fields": {
+            "messageId": {
+              "available": 5,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "personId": {
+              "available": 5,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "role": {
+              "available": 5,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "handle": {
+              "available": 5,
+              "empty": 0,
+              "notProvided": 0,
+              "restricted": 0
+            },
+            "displayName": {
+              "available": 4,
+              "empty": 1,
+              "notProvided": 0,
+              "restricted": 0
+            }
+          }
+        },
+        "requestedSubset": {
+          "messageThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92"
+        },
+        "scopeComplete": true
+      }
+    ]
+  }
+}
