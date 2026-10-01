@@ -103,6 +103,16 @@ export class TwentyAdapter {
     const scope = await this.scopeFilter(object, companies);
     const result = scope.filter ? await this.page(object, id ? { and: [scope.filter, { id: { eq: id } }] } : scope.filter, id ? 1 : limit, offset) : {records:[],coverage:{returned:0,totalCount:0,hasNextPage:false,endCursor:null,complete:offset===0,limit,offset}};
     result.coverage.scopeComplete = scope.complete;
+    if (object === 'message') result.coverage.sourceCapabilities = {
+      body: 'plain-text', participants: 'separate-messageParticipant-read', threadId: true,
+      originalMime: false, attachmentBytes: false, mailboxSynchronization: 'unverified',
+      scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
+    };
+    if (object === 'calendarEvent') result.coverage.sourceCapabilities = {
+      representation: 'synchronized-event-fields', participants: 'separate-calendarEventParticipant-read',
+      providerOriginal: false, calendarSynchronization: 'unverified',
+      scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
+    };
     result.coverage.complete &&= scope.complete;
     if (!scope.complete) result.coverage.warning = 'Account relationship discovery reached its 1000-record bound; context coverage is partial.';
     return result;

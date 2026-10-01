@@ -5,6 +5,8 @@ import { PgAdapter } from "./pg-adapter.js";
 
 const ISSUER = process.env.PUBLIC_URL ?? "http://localhost:8080";
 const MCP_RESOURCE = `${ISSUER}/mcp`;
+export const COACH_RESOURCE = `${ISSUER}/coach/mcp`;
+export const coachEnabled = () => process.env.COACH_ENABLED === "1";
 
 export const oidc = new Provider(ISSUER, {
   // Persist sessions/grants/tokens/dynamically-registered clients in
@@ -33,20 +35,20 @@ export const oidc = new Provider(ISSUER, {
       enabled: true,
       defaultResource: () => MCP_RESOURCE,
       getResourceServerInfo: (_ctx: unknown, resourceIndicator: string) => {
-        if (resourceIndicator !== MCP_RESOURCE) {
+        if (resourceIndicator !== MCP_RESOURCE && !(coachEnabled() && resourceIndicator === COACH_RESOURCE)) {
           throw new (oidcErrors as any).InvalidTarget(
             `unknown resource indicator: ${resourceIndicator}`,
           );
         }
         return {
-          scope: "openid offline_access mcp",
+          scope: resourceIndicator === COACH_RESOURCE ? "coach" : "openid offline_access mcp",
           accessTokenFormat: "opaque",
         };
       },
     },
   },
   pkce: { required: () => true },
-  scopes: ["openid", "offline_access", "mcp"],
+  scopes: ["openid", "offline_access", "mcp", "coach"],
   claims: { openid: ["sub"] },
   ttl: {
     AccessToken: 60 * 60 * 8, // 8h
@@ -213,30 +215,31 @@ export function registerInteractionRoutes(
 // so it can (re-)discover the authorization server -- this is the header a
 // well-behaved MCP client actually relies on, the .well-known paths are the
 // fallback a client may check instead of or in addition to this.
-function setWwwAuthenticate(res: Response) {
+function setWwwAuthenticate(res: Response, metadataPath = "/mcp") {
   const base = process.env.PUBLIC_URL ?? "http://localhost:8080";
   res.set(
     "WWW-Authenticate",
-    `Bearer resource_metadata="${base}/.well-known/oauth-protected-resource/mcp"`,
+    `Bearer resource_metadata="${base}/.well-known/oauth-protected-resource${metadataPath}"`,
   );
 }
 
-export async function requireAccessToken(
+export function accessTokenGuard(resource: string, scope: string, metadataPath: string, findToken = (token: string) => oidc.AccessToken.find(token)) {
+return async function (
   req: Request,
   res: Response,
   next: () => void,
 ) {
   const auth = req.headers.authorization;
   if (!auth?.startsWith("Bearer ")) {
-    setWwwAuthenticate(res);
+    setWwwAuthenticate(res, metadataPath);
     res.status(401).json({ error: "missing bearer token" });
     return;
   }
   const token = auth.slice(7);
   try {
-    const accessToken = await oidc.AccessToken.find(token);
+    const accessToken = await findToken(token);
     if (!accessToken) {
-      setWwwAuthenticate(res);
+      setWwwAuthenticate(res, metadataPath);
       res.status(401).json({ error: "invalid or expired token" });
       return;
     }
@@ -244,11 +247,11 @@ export async function requireAccessToken(
     // every protected resource. Require both the MCP audience/resource and
     // the scope granted for it before allowing CRM reads or writes.
     if (
-      !accessToken.resourceIndicators.has(MCP_RESOURCE) ||
-      !accessToken.scopes.has("mcp")
+      !(Array.isArray(accessToken.aud) ? accessToken.aud.includes(resource) : accessToken.aud === resource) ||
+      !accessToken.scopes.has(scope)
     ) {
-      setWwwAuthenticate(res);
-      res.status(403).json({ error: "token is not authorized for microcrm" });
+      setWwwAuthenticate(res, metadataPath);
+      res.status(403).json({ error: "token is not authorized for this resource" });
       return;
     }
     // Pass the authenticated account into the MCP handlers so every CRM
@@ -256,7 +259,11 @@ export async function requireAccessToken(
     res.locals.accountId = accessToken.accountId;
     next();
   } catch {
-    setWwwAuthenticate(res);
+    setWwwAuthenticate(res, metadataPath);
     res.status(401).json({ error: "invalid token" });
   }
+};
 }
+
+export const requireAccessToken = accessTokenGuard(MCP_RESOURCE, "mcp", "/mcp");
+export const requireCoachAccessToken = accessTokenGuard(COACH_RESOURCE, "coach", "/coach/mcp");

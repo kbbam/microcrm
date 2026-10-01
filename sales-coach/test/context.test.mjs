@@ -137,3 +137,60 @@ test('full leader report includes executive account, teachable moment and cross-
   assert.equal(report.accounts[0].entries[0].kind, 'signal');
   assert.equal(report.performanceVerdict, null);
 });
+
+test('transcription and original file metadata remain linked through deferred retrieval and corrections', async t => {
+  const service = await setup(t);
+  const original = await service.store.source({ sourceKey: 'screenshot:phone-1', text: 'Trial: 12 units [unclear date]',
+    representation: 'transcription', metadata: { filename: 'phone.png', mimeType: 'image/png', byteSize: 440487,
+      sha256: '8ceb9ed759ab7abc94bbb184a112bfb21ffaf8455df1d99475cbd63b645f25d0', retrievalState: 'pending' } });
+  const linked = await service.store.source({ sourceKey: original.sourceKey, text: original.text,
+    metadata: { providerFileId: 'drive-123', retrievalState: 'verified' } });
+  assert.equal(linked.id, original.id);
+  assert.equal(linked.evidenceId, original.evidenceId);
+  assert.equal(linked.representation, 'transcription');
+  assert.equal(linked.metadata.filename, 'phone.png');
+  assert.equal(linked.metadataHistory[0].metadata.retrievalState, 'pending');
+  assert.equal(linked.metadataHistory[1].metadata.retrievalState, 'verified');
+  assert.equal(linked.occurredAt, null, 'intake time must not invent event date');
+  await service.store.source({ sourceKey: original.sourceKey, text: original.text, metadata: { retrievalState: 'verified' } });
+  assert.equal((await service.store.sources([original.id]))[0].metadataHistory.length, 2);
+  const correction = await service.store.source({ sourceKey: original.sourceKey, text: 'Trial: 12 units on October 3', representation: 'transcription' });
+  assert.notEqual(correction.id, original.id);
+  assert.equal(correction.evidenceId, original.evidenceId);
+  const restarted = await new CoachService({ contextDir: service.store.directory, actor }).init();
+  const retained = await restarted.store.sources([original.id, correction.id]);
+  assert.equal(retained[0].text, original.text);
+  assert.equal(retained[0].metadataHistory.length, 2);
+  assert.equal(retained[1].text, correction.text);
+  await assert.rejects(() => service.store.source({ sourceKey: original.sourceKey, text: original.text, representation: 'original-text' }), /representation cannot/);
+  await assert.rejects(() => service.store.source({ sourceKey: original.sourceKey, text: original.text, evidenceId: 'different-evidence' }), /identity cannot/);
+});
+
+test('a shared thread supports passage-level many-to-many pursuits, account context and unresolved association history', async t => {
+  const service = await setup(t);
+  const source = await service.store.source({ sourceKey: 'email:shared-thread', text: 'Ship repeat order Friday. Trial needs 12 units. Trust matters for both.', metadata: { threadId: 'thread-1', participants: ['anna@example.com'] } });
+  const entries = [
+    { id: 'delivery', kind: 'commitment', text: 'Ship repeat order Friday.', status: 'fact', sourceIds: [source.id], association: { scope: 'opportunities', opportunityIds: ['repeat-order'] }, sourceRefs: [{ sourceId: source.id, messageId: 'message-1', passage: { start: 0, end: 24 } }] },
+    { id: 'trial', kind: 'gap', text: 'Trial needs 12 units; uncertain whether a separate pursuit.', status: 'unknown', sourceIds: [source.id], association: { scope: 'provisional', candidateOpportunityIds: ['repeat-order'] }, sourceRefs: [{ sourceId: source.id, messageId: 'message-1', passage: { start: 25, end: 46 } }] },
+    { id: 'trust', kind: 'social', text: 'Trust matters across the relationship.', status: 'human-account', sourceIds: [source.id], association: { scope: 'account', opportunityIds: [] } },
+    { id: 'common-signal', kind: 'signal', text: 'Shared commercial signal.', status: 'inference', sourceIds: [source.id], association: { scope: 'opportunities', opportunityIds: ['repeat-order', 'trial-order'] } }
+  ];
+  await service.store.update({ accountId: 'northstar', entries });
+  const human = await service.store.source({ sourceKey: 'executive:trial-confirmation', text: 'Yes, the trial is a separate opportunity.' });
+  await service.store.update({ accountId: 'northstar', entries: [{ ...entries[1], kind: 'opportunity', status: 'human-account', sourceIds: [source.id, human.id], association: { scope: 'opportunities', opportunityIds: ['trial-order'] } }] });
+  const restarted = await new CoachService({ contextDir: service.store.directory, actor }).init();
+  const context = await restarted.context({ accountId: 'northstar' });
+  const trialHistory = context.account.entries.filter(entry => entry.id === 'trial');
+  assert.deepEqual(trialHistory.map(entry => entry.association.scope), ['provisional', 'opportunities']);
+  assert.equal(trialHistory[1].revision, 2);
+  assert.equal(context.account.entries.find(entry => entry.id === 'trust').association.scope, 'account');
+  assert.deepEqual(context.account.entries.find(entry => entry.id === 'common-signal').association.opportunityIds, ['repeat-order', 'trial-order']);
+  assert.equal(context.sources.find(item => item.id === source.id).text, source.text);
+  assert.equal(Object.keys(context.account.crm).length, 0, 'provisional classification must not create CRM pursuits');
+  for (const invalid of [
+    { association: { scope: 'provisional', opportunityIds: ['repeat-order'] } },
+    { association: { scope: 'opportunities', opportunityIds: [] } },
+    { sourceRefs: [{ sourceId: human.id }] },
+    { sourceRefs: [{ sourceId: source.id, passage: { start: 0, end: source.text.length + 1 } }] }
+  ]) await assert.rejects(() => service.store.update({ accountId: 'northstar', entries: [{ ...entries[0], ...invalid }] }));
+});

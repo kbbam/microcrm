@@ -93,7 +93,8 @@ export class CoachService {
       return this.store.putChange({ ...change, state: noEffect.includes(error.code) ? 'blocked' : 'uncertain', error: error.message, errorCode: error.code ?? null });
     }
   }
-  // Called only by the trusted human CLI, never registered as an agent tool.
+  // Called by the authenticated human review host or trusted developer CLI;
+  // never registered as an agent tool.
   async confirm(id) {
     const change = await this.store.change(id);
     if (change.state !== 'awaiting-confirmation') throw new Error('Proposal is not awaiting confirmation');
