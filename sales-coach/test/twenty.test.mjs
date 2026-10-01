@@ -110,3 +110,11 @@ test('trusted isolated workspace mode reconstructs a new account and its related
 test('default account scope refuses an unreserved new account ID',async t=>{
   const {adapter}=await fixture(t);await assert.rejects(adapter.create({object:'company',values:{id:task,name:'Unapproved new account'}}),{code:'OUT_OF_SCOPE'});
 });
+test('person email writes require separate trusted automation review; ordinary fields remain available',async t=>{
+  const {adapter}=await fixture(t);
+  const emails={primaryEmail:'synthetic@example.invalid',additionalEmails:[]};
+  await assert.rejects(adapter.values('person',{emails},false),{code:'UNREVIEWED_EXTERNAL_EFFECT'});
+  assert.deepEqual(await adapter.values('person',{name:{firstName:'Synthetic',lastName:'Person'},jobTitle:'Buyer'},false),{name:{firstName:'Synthetic',lastName:'Person'},jobTitle:'Buyer'});
+  adapter.allowPersonEmailWrites=true;
+  assert.deepEqual(await adapter.values('person',{emails},false),{emails});
+});

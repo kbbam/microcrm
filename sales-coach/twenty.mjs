@@ -32,12 +32,15 @@ const stableTargetId = (object,id,companyId) => {
 
 /** A fixed-template, account-scoped Twenty transport. The runner owns consequence review. */
 export class TwentyAdapter {
-  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false }) {
+  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false, allowPersonEmailWrites = false }) {
     const url = new URL(baseUrl);
     if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) fail('INVALID_URL', 'Invalid CRM base URL.');
     this.baseUrl = url.href.replace(/\/$/, '').replace(/\/(graphql|metadata)$/, '');
     this.apiKey = apiKey; this.fetch = fetchImpl;
     this.writeEnabled = writeEnabled === true; this.externalEffectsReviewed = externalEffectsReviewed === true;
+    // Deployment-specific permission: the pilot has an observed email-to-company
+    // automation. Broader internal-write approval does not authorize that effect.
+    this.allowPersonEmailWrites = allowPersonEmailWrites === true;
     if (!['accounts','workspace'].includes(scopeMode)) fail('INVALID_SCOPE_MODE','Use accounts scope or explicitly authorized isolated workspace scope.');
     // Trusted deployment configuration, never an argument supplied by the model.
     this.scopeMode=scopeMode;
@@ -125,6 +128,7 @@ export class TwentyAdapter {
     if (!values || Object.getPrototypeOf(values) !== Object.prototype) fail('INVALID_VALUES', 'Values must be a plain object.');
     const allowed = new Set([...config[object][3], ...(create ? ['id'] : []), ...(['note','task'].includes(object) && create ? ['companyId'] : [])]);
     if (!config[object][3].length) fail('READ_ONLY_OBJECT', 'Communications and their synchronization records are read-only.');
+    if (object === 'person' && 'emails' in values && !this.allowPersonEmailWrites) fail('UNREVIEWED_EXTERNAL_EFFECT', 'Person email writes require a separate trusted review of CRM automation effects.');
     for (const field of Object.keys(values)) if (!allowed.has(field)) fail('FORBIDDEN_FIELD', `Field ${field} is outside the internal projection boundary.`);
     for (const [field,value] of Object.entries(values)) {
       if (field === 'id' || field.endsWith('Id')) { if (value !== null) uuid(value); }

@@ -89,7 +89,7 @@ export class CoachService {
       await this.store.rememberCRM(change.accountId, change.object, result.record);
       return this.store.putChange({ ...change, state: 'applied', recordId: result.record.id, appliedAt: new Date().toISOString(), error: null, errorCode: null });
     } catch (error) {
-      const noEffect = ['WRITES_DISABLED', 'SCOPE_REQUIRED', 'OUT_OF_SCOPE', 'CONFLICT', 'BASELINE_REQUIRED', 'FORBIDDEN_FIELD', 'READ_ONLY_OBJECT', 'INVALID_STAGE', 'PIPELINE_SETUP_REQUIRED', 'INVALID_VALUES', 'INVALID_ID', 'UNSUPPORTED_OBJECT'];
+      const noEffect = ['WRITES_DISABLED', 'SCOPE_REQUIRED', 'OUT_OF_SCOPE', 'CONFLICT', 'BASELINE_REQUIRED', 'FORBIDDEN_FIELD', 'READ_ONLY_OBJECT', 'INVALID_STAGE', 'PIPELINE_SETUP_REQUIRED', 'INVALID_VALUES', 'INVALID_ID', 'UNSUPPORTED_OBJECT', 'UNREVIEWED_EXTERNAL_EFFECT'];
       return this.store.putChange({ ...change, state: noEffect.includes(error.code) ? 'blocked' : 'uncertain', error: error.message, errorCode: error.code ?? null });
     }
   }
