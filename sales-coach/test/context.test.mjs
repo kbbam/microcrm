@@ -388,3 +388,144 @@ test('incremental typed corrections preserve prior provenance and replaying old 
   assert.equal(current.history.retainedEntries, 2);
   assert.deepEqual((await service.captureContext(correction)).entries[0].sourceIds, second.entries[0].sourceIds);
 });
+
+test('retained account and source access revokes immediately across MCP reads, captures and pending proposals', async t => {
+  const service = await setup(t);
+  const first = await service.captureContext({ accountId: 'buyer', title: 'Private Buyer', submittedSource: { text: 'Private commitment.' }, entries: [{ id: 'promise', kind: 'commitment', text: 'Private commitment.', status: 'human-account' }] });
+  const hold = await service.propose({ accountId: 'buyer', object: 'company', id: 'buyer', values: { name: 'Disputed name' }, sourceIds: [first.sourceId], estimatedErrorCost: 'high', highlyConsequential: true, reason: 'Disputed correction' });
+  let allowed = true, unavailable = false, authorizations = 0;
+  service.enforceRetainedScope = true;
+  service.accountAuthorizer = async () => { authorizations++; if (unavailable) throw new Error('Provider offline'); return allowed; };
+  assert.equal((await service.context({ accountId: 'buyer', refresh: false })).account.title, 'Private Buyer');
+  assert.equal((await service.sources([first.sourceId]))[0].text, 'Private commitment.');
+  allowed = false;
+  const server = buildServer(service);
+  const client = new Client({ name: 'retained-acl-proof', version: '1' });
+  const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+  await server.connect(serverTransport); await client.connect(clientTransport);
+  t.after(async () => { await client.close(); await server.close(); });
+  const call = async (name, args = {}) => client.callTool({ name, arguments: args });
+  for (const [name, args] of [
+    ['get_account_context', { accountId: 'buyer', refresh: false }],
+    ['get_source', { sourceId: first.sourceId }],
+    ['update_account_context', { accountId: 'buyer', submittedSource: { text: 'Overwrite private commitment.' }, entries: [{ kind: 'note', text: 'Overwrite', status: 'human-account' }] }],
+    ['record_observation', { accountId: 'buyer', observation: 'Secret report', sourceIds: [first.sourceId] }],
+  ]) {
+    const result = await call(name, args);
+    assert.equal(result.isError, true, name);
+    assert(!result.content[0].text.includes('Private commitment.'), name);
+  }
+  assert.deepEqual(JSON.parse((await call('search_accounts')).content[0].text), []);
+  const status = JSON.parse((await call('coach_status')).content[0].text);
+  assert.deepEqual(status.sources, []); assert.deepEqual(status.changes, []);
+  await assert.rejects(service.confirm(hold.id), { code: 'OUT_OF_SCOPE' });
+  await assert.rejects(service.propose({ ...hold, id: 'buyer' }), { code: 'OUT_OF_SCOPE' });
+  assert.equal((await service.store.account('buyer')).entries.length, 1);
+  assert.equal((await service.store.listSources()).length, 1);
+  assert.equal((await service.store.observations()).length, 0);
+  allowed = true; unavailable = true;
+  await assert.rejects(service.context({ accountId: 'buyer', refresh: false }), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+  await assert.rejects(service.searchAccounts(), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+  await assert.rejects(service.sources([first.sourceId]), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+  assert(authorizations > 10, 'Current scope is checked again on later operations');
+});
+
+test('source authorization covers historical links, actor-only evidence and provider sources without context links', async t => {
+  const service = await setup(t);
+  const shared = await service.store.source({ sourceKey: 'shared:1', text: 'Shared private history.' });
+  await service.store.update({ accountId: 'allowed', entries: [{ kind: 'note', text: shared.text, status: 'human-account', sourceIds: [shared.id] }] });
+  await service.store.update({ accountId: 'revoked', entries: [{ id: 'history', kind: 'note', text: shared.text, status: 'human-account', sourceIds: [shared.id] }] });
+  await service.store.update({ accountId: 'revoked', entries: [{ id: 'history', kind: 'note', text: 'Latest interpretation cleared.', status: 'unknown', sourceIds: [] }] });
+  const own = await service.store.source({ sourceKey: 'own:1', text: 'Unassociated executive notes.' });
+  const foreign = await new CoachService({ contextDir: service.store.directory, actor: { id: 'another@example.test', role: 'executive' } }).init();
+  const foreignSource = await foreign.store.source({ sourceKey: 'foreign:1', text: 'Another executive notes.' });
+  const provider = await service.store.source({ sourceKey: 'twenty:message:message-a:1', text: '{"id":"message-a","text":"Original private message"}', kind: 'email' });
+  let visible = true;
+  service.enforceRetainedScope = true;
+  service.accountAuthorizer = async id => id === 'allowed';
+  service.adapter = { read: async () => ({ records: visible ? [{ id: 'message-a' }] : [], coverage: { scopeComplete: true, complete: true } }) };
+  assert.equal((await service.sources([own.id]))[0].text, own.text);
+  await assert.rejects(service.sources([shared.id]), { code: 'OUT_OF_SCOPE' });
+  const scoped = await service.context({ accountId: 'allowed', refresh: false });
+  assert.equal(scoped.account.entries.length, 0, 'Revoked shared evidence does not block unrelated current-authorized account context');
+  assert.equal(scoped.coverage.find(item => item.object === 'retained-context').omittedEntries, 1);
+  await assert.rejects(service.sources([foreignSource.id]), { code: 'OUT_OF_SCOPE' });
+  assert.equal((await service.sources([provider.id]))[0].id, provider.id);
+  visible = false;
+  await assert.rejects(service.sources([provider.id]), { code: 'OUT_OF_SCOPE' });
+  service.adapter.read = async () => ({ records: [{ id: 'message-a', text: null }], coverage: { scopeComplete: true, complete: true, contentAccessUnrestricted: false } });
+  await assert.rejects(service.sources([provider.id]), { code: 'OUT_OF_SCOPE' });
+  await assert.rejects(service.retainSource({ sourceKey: shared.sourceKey, text: shared.text, metadata: { accountId: 'allowed' } }), { code: 'OUT_OF_SCOPE' });
+  await assert.rejects(service.retainSource({ sourceKey: provider.sourceKey, text: provider.text, kind: 'email' }), { code: 'OUT_OF_SCOPE' });
+  assert.equal((await service.store.sources([shared.id]))[0].metadata.accountId, undefined, 'Denied duplicate cannot change metadata');
+});
+
+test('retained scope defaults to a fresh adapter company check and never falls back to cached context', async t => {
+  const service = await setup(t);
+  await service.captureContext({ accountId: 'buyer', submittedSource: { text: 'Retained context.' }, entries: [{ kind: 'note', text: 'Retained context.', status: 'human-account' }] });
+  service.enforceRetainedScope = true;
+  await assert.rejects(service.context({ accountId: 'buyer', refresh: false }), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+  service.adapter = { read: async query => { assert.equal(query.companyId, 'buyer'); return { records: [], coverage: { complete: true } }; } };
+  await assert.rejects(service.context({ accountId: 'buyer', refresh: false }), { code: 'OUT_OF_SCOPE' });
+  service.adapter.read = async () => ({ records: [{ id: 'buyer' }], coverage: { complete: false } });
+  await assert.rejects(service.context({ accountId: 'buyer', refresh: false }), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+});
+
+test('one tool operation checks shared account authority once, and the next tool sees revocation', async t => {
+  const service = await setup(t);
+  for (let i = 0; i < 8; i++) await service.captureContext({ accountId: 'buyer', submittedSource: { text: `Historical statement ${i}.` }, entries: [{ kind: 'note', text: `Statement ${i}.`, status: 'human-account' }] });
+  let checks = 0, allowed = true;
+  service.enforceRetainedScope = true;
+  service.accountAuthorizer = async () => { checks++; return allowed; };
+  assert.equal((await service.serial(() => service.context({ accountId: 'buyer', refresh: false }))).sources.length, 8);
+  assert.equal(checks, 1, 'Source lineage does not cause redundant provider authority queries inside one tool');
+  allowed = false;
+  await assert.rejects(service.serial(() => service.context({ accountId: 'buyer', refresh: false })), { code: 'OUT_OF_SCOPE' });
+  assert.equal(checks, 2, 'No authority result survives a tool operation');
+});
+
+test('source metadata reassociation retains earlier account authority even without account context entries', async t => {
+  const service = await setup(t);
+  const allowed = new Set(['alpha', 'beta', 'gamma']);
+  service.enforceRetainedScope = true;
+  service.accountAuthorizer = async accountId => allowed.has(accountId);
+  const input = { sourceKey: 'chat:metadata-association', text: 'Alpha original terms; Gamma delivery constraints.' };
+  const first = await service.retainSource({ ...input, metadata: { accountId: 'alpha', accountIds: ['gamma'] } });
+  await service.retainSource({ ...input, metadata: { accountId: 'beta', accountIds: [] } });
+  assert.equal((await service.store.search()).length, 0, 'This source has never been associated through a context entry');
+  assert.equal((await service.sources([first.id]))[0].text, input.text);
+  for (const revoked of ['alpha', 'gamma']) {
+    allowed.delete(revoked);
+    await assert.rejects(service.sources([first.id]), { code: 'OUT_OF_SCOPE' });
+    assert.deepEqual(await service.listSources(), []);
+    await assert.rejects(service.retainSource({ ...input, metadata: { accountId: 'beta' } }), { code: 'OUT_OF_SCOPE' });
+    allowed.add(revoked);
+  }
+  const original = (await service.store.sources([first.id]))[0];
+  assert.equal(original.text, input.text);
+  assert.equal(original.metadataHistory.length, 2, 'Revocation protects the original and its attribution history without deleting them');
+});
+
+test('pending high-consequence genuinely new company stays visible in coach status while unassigned existing accounts remain denied', async t => {
+  const service = await setup(t);
+  const newCompany = 'e75fa427-7533-4fda-a7a0-2e2c11a71001';
+  const existingUnassigned = 'e75fa427-7533-4fda-a7a0-2e2c11a71002';
+  service.enforceRetainedScope = true;
+  service.accountAuthorizer = async (accountId, { createCompany = false } = {}) => accountId === newCompany && createCompany;
+  const source = await service.retainSource({ sourceKey: 'chat:new-company', text: 'Please create this new company; ownership needs confirmation.' });
+  const proposal = { accountId: newCompany, object: 'company', values: { name: 'Synthetic New Company' }, sourceIds: [source.id], estimatedErrorCost: 'high', highlyConsequential: false, reason: 'Confirm this company creation.' };
+  const pending = await service.propose(proposal);
+  assert.equal(pending.state, 'awaiting-confirmation');
+  await assert.rejects(service.propose({ ...proposal, accountId: existingUnassigned }), { code: 'OUT_OF_SCOPE' });
+  const server = buildServer(service);
+  const client = new Client({ name: 'pending-company-status-proof', version: '1' });
+  const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
+  await server.connect(serverTransport); await client.connect(clientTransport);
+  t.after(async () => { await client.close(); await server.close(); });
+  const response = await client.callTool({ name: 'coach_status', arguments: {} });
+  assert.equal(response.isError, undefined);
+  const status = JSON.parse(response.content[0].text);
+  assert.equal(status.changes.length, 1);
+  assert.equal(status.changes[0].id, pending.id);
+  assert.equal(status.changes[0].state, 'awaiting-confirmation');
+});

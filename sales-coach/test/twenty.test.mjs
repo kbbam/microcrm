@@ -215,3 +215,17 @@ test('person email writes require separate trusted automation review; ordinary f
   adapter.allowPersonEmailWrites=true;
   assert.deepEqual(await adapter.values('person',{emails},false),{emails});
 });
+
+
+test('provider rich-text defaults permit interrupted creation retry without treating changed supplied text as identical', async t => {
+  const {adapter,records}=await fixture(t,{failAttach:true});
+  const values={id:task,companyId:company,title:'Synthetic note',bodyV2:{markdown:'Keep the exact supplied text.'}};
+  await assert.rejects(adapter.create({object:'note',values}),{code:'CRM_SCHEMA_OR_ACCESS'});
+  records.notes[0].bodyV2={blocknote:null,markdown:'Keep the exact supplied text.'};
+  const recovered=await adapter.create({object:'note',values});
+  assert.equal(recovered.record.bodyV2.markdown,values.bodyV2.markdown);
+  assert.equal(records.notes.length,1);
+  assert.equal(records.noteTargets.length,1);
+  await assert.rejects(adapter.create({object:'note',values:{...values,bodyV2:{markdown:'Different supplied text.'}}}),{code:'ID_COLLISION'});
+  assert.equal(records.notes.length,1);
+});

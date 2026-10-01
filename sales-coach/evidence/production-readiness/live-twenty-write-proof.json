@@ -1,0 +1,101 @@
+{
+  "at": "2026-10-01T18:16:56.541Z",
+  "accountId": "01347f9c-1cb1-420e-87f4-d785391946e9",
+  "synthetic": true,
+  "outboundEffects": false,
+  "checks": [
+    {
+      "object": "note",
+      "operation": "create-readback",
+      "ok": true
+    },
+    {
+      "object": "note",
+      "operation": "stable-retry",
+      "ok": true
+    },
+    {
+      "object": "note",
+      "operation": "patch-readback",
+      "ok": true
+    },
+    {
+      "object": "note",
+      "operation": "conflict",
+      "ok": true,
+      "code": "CONFLICT"
+    },
+    {
+      "object": "task",
+      "operation": "create-readback",
+      "ok": true
+    },
+    {
+      "object": "task",
+      "operation": "stable-retry",
+      "ok": true
+    },
+    {
+      "object": "task",
+      "operation": "patch-readback",
+      "ok": true
+    },
+    {
+      "object": "task",
+      "operation": "conflict",
+      "ok": true,
+      "code": "CONFLICT"
+    },
+    {
+      "object": "opportunity",
+      "operation": "create-readback",
+      "ok": true
+    },
+    {
+      "object": "opportunity",
+      "operation": "stable-retry",
+      "ok": true
+    },
+    {
+      "object": "opportunity",
+      "operation": "patch-readback",
+      "ok": true
+    },
+    {
+      "object": "opportunity",
+      "operation": "conflict",
+      "ok": true,
+      "code": "CONFLICT"
+    },
+    {
+      "object": "company",
+      "operation": "real-unassigned-read-denied",
+      "ok": true
+    },
+    {
+      "operation": "real-unassigned-authorization-denied",
+      "ok": true,
+      "code": "OUT_OF_SCOPE"
+    },
+    {
+      "object": "note",
+      "operation": "recoverable-test-cleanup",
+      "ok": true
+    },
+    {
+      "object": "task",
+      "operation": "recoverable-test-cleanup",
+      "ok": true
+    },
+    {
+      "object": "opportunity",
+      "operation": "recoverable-test-cleanup",
+      "ok": true
+    },
+    {
+      "object": "company",
+      "operation": "recoverable-test-cleanup",
+      "ok": true
+    }
+  ]
+}

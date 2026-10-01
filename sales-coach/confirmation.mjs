@@ -8,13 +8,15 @@ export async function reviewProposal(service, id) {
   let change;
   try { change = await service.store.change(id); }
   catch (error) { if (error.code === 'ENOENT') throw fail(404, 'This proposal was not found in your coach context.'); throw error; }
+  await service.authorizeAccount(change.accountId, { createCompany: change.object === 'company' && !change.recordId });
+  await service.sources(change.sourceIds ?? []);
   if (change.state !== 'awaiting-confirmation' && change.reviewedSnapshot) {
     const { accountTitle, previous, sources } = change.reviewedSnapshot;
     const review = { change, accountTitle, previous, sources };
     return { ...review, digest: changeDigest(review) };
   }
   const [account, sources] = await Promise.all([
-    service.store.account(change.accountId), service.store.sources(change.sourceIds ?? []),
+    service.store.account(change.accountId), service.sources(change.sourceIds ?? []),
   ]);
   const previous = change.recordId ? account.crm?.[`${change.object}:${change.recordId}`] : null;
   const review = { change, accountTitle: account.title, sources, previous: previous ?? null };

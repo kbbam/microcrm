@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto';
+import { matchesSuppliedValue } from './store.mjs';
 
 export class TwentyError extends Error {
   constructor(code, message) { super(message); this.name = 'TwentyError'; this.code = code; }
@@ -24,6 +25,7 @@ const config = {
 };
 const aliases = Object.fromEntries(Object.entries(config).flatMap(([k,v]) => [[k,k],[v[1],k]]));
 const kind = object => aliases[object] ?? fail('UNSUPPORTED_OBJECT', 'This CRM object is outside the coach tool boundary.');
+const trustedField = value => { if (typeof value !== 'string' || !/^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(value)) fail('INVALID_ASSIGNMENT', 'Trusted assignment field must be a GraphQL identifier.'); return value; };
 const selection = object => `id createdAt updatedAt ${config[object][2]}`;
 const stableTargetId = (object,id,companyId) => {
   const hex = createHash('sha256').update(`${object}:${id}:${companyId}`).digest('hex');
@@ -65,7 +67,7 @@ const communicationContent = (object, records) => {
 
 /** A fixed-template, account-scoped Twenty transport. The runner owns consequence review. */
 export class TwentyAdapter {
-  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false, allowPersonEmailWrites = false }) {
+  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false, allowPersonEmailWrites = false, assignment, messageChannelIds = [], calendarChannelIds = [], sourceOwnershipRequired = false, resolveSourceChannels, stageField = 'stage', stageEnumName, nativeStageOnCreate }) {
     const url = new URL(baseUrl);
     if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) fail('INVALID_URL', 'Invalid CRM base URL.');
     this.baseUrl = url.href.replace(/\/$/, '').replace(/\/(graphql|metadata)$/, '');
@@ -74,10 +76,23 @@ export class TwentyAdapter {
     // Deployment-specific permission: the pilot has an observed email-to-company
     // automation. Broader internal-write approval does not authorize that effect.
     this.allowPersonEmailWrites = allowPersonEmailWrites === true;
-    if (!['accounts','workspace'].includes(scopeMode)) fail('INVALID_SCOPE_MODE','Use accounts scope or explicitly authorized isolated workspace scope.');
+    if (!['accounts','workspace','assigned'].includes(scopeMode)) fail('INVALID_SCOPE_MODE','Use accounts scope or explicitly authorized isolated workspace scope.');
     // Trusted deployment configuration, never an argument supplied by the model.
     this.scopeMode=scopeMode;
     this.scope = [...new Set(scopeCompanyIds.map(uuid))];
+    this.messageChannelIds = [...new Set(messageChannelIds.map(uuid))];
+    this.calendarChannelIds = [...new Set(calendarChannelIds.map(uuid))];
+    this.sourceOwnershipRequired = sourceOwnershipRequired === true;
+    this.resolveSourceChannels = resolveSourceChannels;
+    this.stageField = trustedField(stageField);
+    if (stageField !== 'stage' && !stageEnumName) fail('INVALID_STAGE_CONFIG', 'Custom coach stage requires a verified enum type name.');
+    this.stageEnumName = trustedField(stageEnumName ?? 'OpportunityStageEnum');
+    this.nativeStageOnCreate = nativeStageOnCreate;
+    if (nativeStageOnCreate !== undefined && (typeof nativeStageOnCreate !== 'string' || !nativeStageOnCreate.trim())) fail('INVALID_STAGE_CONFIG', 'Native creation stage must be an explicit verified value.');
+    if (scopeMode === 'assigned') {
+      if (!assignment) fail('INVALID_ASSIGNMENT', 'Assigned scope requires trusted member and verified assignment fields.');
+      this.assignment = { memberId: uuid(assignment.memberId), companyOwnerField: trustedField(assignment.companyOwnerField), opportunityOwnerField: trustedField(assignment.opportunityOwnerField) };
+    }
   }
   async request(query, variables = {}) {
     let response;
@@ -91,21 +106,32 @@ export class TwentyAdapter {
     return body.data;
   }
   async metadata() {
-    const result = await this.request('{ stage: __type(name: "OpportunityStageEnum") { enumValues { name } } query: __type(name: "Query") { fields { name } } mutation: __type(name: "Mutation") { fields { name } } }');
-    return { stages: result.stage?.enumValues?.map(v => v.name) ?? [], readableObjects: Object.keys(config).filter(o => result.query?.fields?.some(f => f.name === config[o][1])), pipelineCompatible: stages.every(s => result.stage?.enumValues?.some(v => v.name === s)) };
+    const result = await this.request(`{ stage: __type(name: "${this.stageEnumName}") { enumValues { name } } nativeStage: __type(name: "OpportunityStageEnum") { enumValues { name } } query: __type(name: "Query") { fields { name } } mutation: __type(name: "Mutation") { fields { name } } }`);
+    return { stageField: this.stageField, stages: result.stage?.enumValues?.map(v => v.name) ?? [], nativeStages: result.nativeStage?.enumValues?.map(v => v.name) ?? [], readableObjects: Object.keys(config).filter(o => result.query?.fields?.some(f => f.name === config[o][1])), pipelineCompatible: stages.every(s => result.stage?.enumValues?.some(v => v.name === s)) };
   }
   accountScope(companyId) {
     if (this.scopeMode==='workspace') return companyId ? [uuid(companyId)] : null;
+    if (this.scopeMode==='assigned') return companyId ? [uuid(companyId)] : undefined;
     if (!this.scope.length) fail('SCOPE_REQUIRED', 'Configure approved company IDs before CRM access.');
     if (companyId && !this.scope.includes(uuid(companyId))) fail('OUT_OF_SCOPE', 'Company is outside approved pilot scope.');
     return companyId ? [companyId] : this.scope;
   }
+  recordSelection(object) {
+    const extra = [];
+    if (this.scopeMode === 'assigned' && object === 'company') extra.push(this.assignment.companyOwnerField);
+    if (this.scopeMode === 'assigned' && object === 'opportunity') extra.push(this.assignment.opportunityOwnerField);
+    if (object === 'opportunity' && this.stageField !== 'stage') extra.push(this.stageField);
+    return `${selection(object)} ${extra.join(' ')}`.trim();
+  }
+  matchesValues(object, record, data) {
+    return Object.entries(data).every(([field, value]) => matchesSuppliedValue(object === 'opportunity' && this.stageField !== 'stage' && field === 'stage' ? record.providerStage : record[field], value));
+  }
   async page(object, filter, limit, offset = 0, identifiersOnly = false) {
     const [type, plural] = config[object];
-    const data = await this.request(`query CoachRead($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${identifiersOnly ? 'id' : selection(object)}}}pageInfo{hasNextPage endCursor}totalCount}}`, { filter, limit, offset });
+    const data = await this.request(`query CoachRead($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${identifiersOnly ? 'id' : this.recordSelection(object)}}}pageInfo{hasNextPage endCursor}totalCount}}`, { filter, limit, offset });
     const c = data[plural];
     if (!c || !Array.isArray(c.edges) || !c.pageInfo) fail('CRM_RESPONSE', 'CRM returned an invalid connection.');
-    const content = identifiersOnly ? { records: c.edges.map(e => e.node) } : communicationContent(object, c.edges.map(e => e.node));
+    const content = identifiersOnly ? { records: c.edges.map(e => e.node) } : communicationContent(object, c.edges.map(e => object === 'opportunity' && this.stageField !== 'stage' ? { ...e.node, providerStage: e.node.stage, stage: e.node[this.stageField] ?? null, coachStageField: this.stageField } : e.node));
     // This is only absence of explicit restrictions in the returned page;
     // null/omitted fields, provider synchronization and original bytes remain separate.
     return { records: content.records, coverage: { returned: c.edges.length, totalCount: c.totalCount, hasNextPage: c.pageInfo.hasNextPage, endCursor: c.pageInfo.endCursor, complete: offset === 0 && !c.pageInfo.hasNextPage, limit, offset, ...(content.contentAvailability ? { contentAccessUnrestricted: content.contentAvailability.restrictedRecordCount === 0, contentAvailability: content.contentAvailability } : {}) } };
@@ -119,18 +145,121 @@ export class TwentyAdapter {
     }
     return { records, complete };
   }
-  async scopeFilter(object, companyIds, selectors = {}) {
+  async assignedPortfolio() {
+    const cache = this.authorizationScope?.getStore()?.providers;
+    const key = 'twenty-assigned-portfolio';
+    if (cache?.has(key)) return cache.get(key);
+    const work = this.discoverAssignedPortfolio();
+    cache?.set(key, work);
+    return work;
+  }
+  invalidatePortfolio() {
+    this.authorizationScope?.getStore()?.providers?.delete('twenty-assigned-portfolio');
+  }
+  async discoverAssignedPortfolio() {
+    const { memberId, companyOwnerField, opportunityOwnerField } = this.assignment;
+    const [companies, opportunities] = await Promise.all([
+      this.collect('company', { [companyOwnerField]: { eq: memberId } }),
+      this.collect('opportunity', { [opportunityOwnerField]: { eq: memberId } }),
+    ]);
+    if (!companies.complete || !opportunities.complete) fail('SCOPE_INCOMPLETE', 'Assignment discovery is incomplete; no broader access is permitted.');
+    return { companyIds: companies.records.map(record => record.id), opportunityIds: opportunities.records.map(record => record.id),
+      visibleCompanyIds: [...new Set([...companies.records.map(record => record.id), ...opportunities.records.map(record => record.companyId).filter(Boolean)])],
+      contactIds: [...new Set(opportunities.records.map(record => record.pointOfContactId).filter(Boolean))] };
+  }
+  async authorizeAccount(companyId, { createCompany = false } = {}) {
+    uuid(companyId);
+    if (this.scopeMode !== 'assigned') { this.accountScope(companyId); return true; }
+    if (!(await this.assignedPortfolio()).visibleCompanyIds.includes(companyId)) {
+      // Creation may reserve a genuinely new UUID, never adopt an existing
+      // unassigned company. This option comes only from the guarded host flow.
+      if (!createCompany || (await this.page('company', { id: { eq: companyId } }, 1, 0, true)).records.length) fail('OUT_OF_SCOPE', 'Account is not assigned to this executive.');
+    }
+    return true;
+  }
+  async channelRecordIds(object, selectors = {}) {
+    const isMessage = object === 'message';
+    let channelIds = isMessage ? this.messageChannelIds : this.calendarChannelIds;
+    let sourceSync;
+    if (this.sourceOwnershipRequired || this.resolveSourceChannels) {
+      if (typeof this.resolveSourceChannels !== 'function') fail('SOURCE_CONNECTION_REQUIRED', 'Connect your own Twenty email and calendar sources through Business OS before checking communications.');
+      const cache = this.authorizationScope?.getStore()?.providers, key = 'twenty-source-authority';
+      let current;
+      if (cache?.has(key)) current = await cache.get(key);
+      else { const work = this.resolveSourceChannels(); cache?.set(key, work); current = await work; }
+      const live = isMessage ? current?.messageChannelIds : current?.calendarChannelIds;
+      if (!Array.isArray(live)) fail('SOURCE_OWNERSHIP_UNAVAILABLE', 'Current source ownership could not be verified.');
+      const registeredCount = channelIds.length;
+      if (!registeredCount) fail('SOURCE_CONNECTION_REQUIRED', `No ${isMessage ? 'email' : 'calendar'} source was registered for this executive. Connect it in Twenty and recheck Business OS source setup.`);
+      channelIds = channelIds.filter(id => live.includes(id));
+      if (!channelIds.length) fail('SOURCE_OWNERSHIP_REVOKED', `Previously registered ${isMessage ? 'email' : 'calendar'} sources are no longer owned by this executive. Reconnect through Business OS source setup before checking communications.`);
+      const channels = (isMessage ? current?.messageChannels : current?.calendarChannels) ?? [];
+      sourceSync = { checkedAt: current.checkedAt ?? null, channels: channels.filter(channel => channelIds.includes(channel.id)), registeredChannelCount: registeredCount, authorizedChannelCount: channelIds.length, revokedChannelCount: registeredCount - channelIds.length, authorizationComplete: registeredCount === channelIds.length, currentMailboxCompletenessVerified: false,
+        reason: 'These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.' };
+    }
+    if (!channelIds.length) return { ids: [], complete: true, sourceSync };
+    const type = isMessage ? 'MessageChannelMessageAssociation' : 'CalendarChannelEventAssociation';
+    const plural = isMessage ? 'messageChannelMessageAssociations' : 'calendarChannelEventAssociations';
+    const channelField = isMessage ? 'messageChannelId' : 'calendarChannelId';
+    const recordField = isMessage ? 'messageId' : 'calendarEventId';
+    const clauses = [{ [channelField]: { in: channelIds } }];
+    if (selectors.messageId && isMessage) clauses.push({ messageId: { eq: selectors.messageId } });
+    if (selectors.id) clauses.push({ [recordField]: { eq: selectors.id } });
+    if (isMessage && selectors.messageThreadId) clauses.push({ message: { messageThreadId: { eq: selectors.messageThreadId } } });
+    if (isMessage && selectors.subjectContains) clauses.push({ message: { subject: { ilike: `%${selectors.subjectContains.replace(/[\\%_]/g, character => `\\${character}`)}%` } } });
+    const ids = [];
+    for (let offset = 0; offset < 1000; offset += 100) {
+      const data = await this.request(`query CoachSourceScope($filter:${type}FilterInput!, $limit:Int!, $offset:Int!){${plural}(filter:$filter,first:$limit,offset:$offset){edges{node{${recordField}}}pageInfo{hasNextPage}}}`, { filter: { and: clauses }, limit: 100, offset });
+      const page = data[plural];
+      if (!page || !Array.isArray(page.edges) || !page.pageInfo) fail('CRM_RESPONSE', 'Source ownership discovery returned invalid data.');
+      ids.push(...page.edges.map(edge => edge.node[recordField]).filter(Boolean));
+      if (!page.pageInfo.hasNextPage) return { ids: [...new Set(ids)], complete: true, sourceSync };
+    }
+    return { ids: [...new Set(ids)], complete: false, sourceSync };
+  }
+  async scopeFilter(object, companyIds, selectors = {}, policy) {
+    if (this.scopeMode === 'assigned') {
+      policy ??= await this.assignedPortfolio();
+      if (companyIds?.some(companyId => !policy.visibleCompanyIds.includes(companyId))) fail('OUT_OF_SCOPE', 'Account is not assigned to this executive.');
+      const narrow = ids => companyIds ? ids.filter(value => companyIds.includes(value)) : ids;
+      const ownedCompanies = narrow(policy.companyIds);
+      if (object === 'company') {
+        const ids = narrow(policy.visibleCompanyIds);
+        return { filter: ids.length ? { id: { in: ids } } : null, complete: true };
+      }
+      if (object === 'opportunity') return { filter: policy.opportunityIds.length ? { and: [{ id: { in: policy.opportunityIds } }, ...(companyIds ? [{ companyId: { in: companyIds } }] : [])] } : null, complete: true };
+      if (object === 'person') {
+        const alternatives = [...(ownedCompanies.length ? [{ companyId: { in: ownedCompanies } }] : []), ...(policy.contactIds.length ? [{ id: { in: policy.contactIds } }] : [])];
+        return { filter: alternatives.length ? { and: [{ or: alternatives }, ...(companyIds ? [{ companyId: { in: companyIds } }] : [])] } : null, complete: true };
+      }
+      if (['message', 'calendarEvent'].includes(object)) {
+        const owned = await this.channelRecordIds(object, selectors);
+        if (!owned.ids.length) return { filter: null, complete: owned.complete, sourceSync: owned.sourceSync };
+        if (!companyIds) return { filter: { id: { in: owned.ids } }, complete: owned.complete, sourceSync: owned.sourceSync };
+        const parent = object === 'message' ? 'messageThreadTarget' : 'calendarEventTarget';
+        const field = object === 'message' ? 'messageThreadId' : 'calendarEventId';
+        const accountScope = await this.scopeFilter(parent, companyIds, selectors, policy);
+        const related = await this.collect(parent, accountScope.filter);
+        const relatedIds = related.records.map(record => record[field]).filter(Boolean);
+        return { filter: relatedIds.length ? { and: [{ id: { in: owned.ids } }, { [object === 'message' ? 'messageThreadId' : 'id']: { in: relatedIds } }] } : null, complete: owned.complete && accountScope.complete && related.complete, sourceSync: owned.sourceSync };
+      }
+      if (object.endsWith('Target')) {
+        const people = await this.collect('person', (await this.scopeFilter('person', companyIds, selectors, policy)).filter);
+        const opportunities = await this.collect('opportunity', (await this.scopeFilter('opportunity', companyIds, selectors, policy)).filter);
+        const alternatives = [...(ownedCompanies.length ? [{ targetCompanyId: { in: ownedCompanies } }] : []), ...(people.records.length ? [{ targetPersonId: { in: people.records.map(record => record.id) } }] : []), ...(opportunities.records.length ? [{ targetOpportunityId: { in: opportunities.records.map(record => record.id) } }] : [])];
+        return { filter: alternatives.length ? { or: alternatives } : null, complete: people.complete && opportunities.complete };
+      }
+    }
     if (companyIds===null) return {filter:{},complete:true};
-    if (object === 'company') return { filter: { id: { in: companyIds } }, complete: true };
-    if (['person','opportunity'].includes(object)) return { filter: { companyId: { in: companyIds } }, complete: true };
-    if (object.endsWith('Target')) {
-      // Include contact- and pursuit-linked records without reading other accounts.
+    if (this.scopeMode !== 'assigned' && object === 'company') return { filter: { id: { in: companyIds } }, complete: true };
+    if (this.scopeMode !== 'assigned' && ['person','opportunity'].includes(object)) return { filter: { companyId: { in: companyIds } }, complete: true };
+    if (this.scopeMode !== 'assigned' && object.endsWith('Target')) {
       const people = await this.collect('person', { companyId: { in: companyIds } });
       const opportunities = await this.collect('opportunity', { companyId: { in: companyIds } });
       return { filter: { or: [{ targetCompanyId: { in: companyIds } }, ...(people.records.length ? [{ targetPersonId: { in: people.records.map(r=>r.id) } }] : []), ...(opportunities.records.length ? [{ targetOpportunityId: { in: opportunities.records.map(r=>r.id) } }] : [])] }, complete: people.complete && opportunities.complete };
     }
     const mapping = { note: ['noteTarget','noteId'], task: ['taskTarget','taskId'], message: ['messageThreadTarget','messageThreadId'], calendarEvent: ['calendarEventTarget','calendarEventId'], messageParticipant: ['message','messageId'], calendarEventParticipant: ['calendarEvent','calendarEventId'] };
-    const [parent, field] = mapping[object]; const scope = await this.scopeFilter(parent, companyIds);
+    const [parent, field] = mapping[object]; const scope = await this.scopeFilter(parent, companyIds, selectors, policy);
     const lookupClauses = [];
     if (parent === 'message') {
       if (selectors.messageId !== undefined) lookupClauses.push({ id: { eq: selectors.messageId } });
@@ -138,7 +267,7 @@ export class TwentyAdapter {
     }
     const related = await this.collect(parent, scope.filter && (lookupClauses.length ? { and: [scope.filter, ...lookupClauses] } : scope.filter), parent === 'message');
     const ids = related.records.map(r => parent.endsWith('Target') ? r[field] : r.id).filter(Boolean);
-    return { filter: ids.length ? { [object === 'message' ? 'messageThreadId' : object.endsWith('Participant') ? field : 'id']: { in: [...new Set(ids)] } } : null, complete: scope.complete && related.complete };
+    return { filter: ids.length ? { [object === 'message' ? 'messageThreadId' : object.endsWith('Participant') ? field : 'id']: { in: [...new Set(ids)] } } : null, complete: scope.complete && related.complete, sourceSync: scope.sourceSync };
   }
   async read({ object, id, companyId, limit = 50, offset = 0, subjectContains, messageThreadId, messageId }) {
     object = kind(object); const companies = this.accountScope(companyId);
@@ -162,25 +291,30 @@ export class TwentyAdapter {
       clauses.push({ messageId: { eq: uuid(messageId) } });
     }
     if (id) clauses.push({ id: { eq: id } });
-    const scope = await this.scopeFilter(object, companies, { messageThreadId, messageId });
+    const scope = await this.scopeFilter(object, companies, { messageThreadId, messageId, ...(['message','calendarEvent'].includes(object) ? { id } : {}), subjectContains });
     const filter = scope.filter && (clauses.length ? { and: [scope.filter, ...clauses] } : scope.filter);
     const result = filter ? await this.page(object, filter, id ? 1 : limit, offset) : {records:[],coverage:{returned:0,totalCount:0,hasNextPage:false,endCursor:null,complete:offset===0,limit,offset}};
     if (subjectContains !== undefined || messageThreadId !== undefined || messageId !== undefined) result.coverage.requestedSubset = { ...(subjectContains !== undefined ? { subjectContains } : {}), ...(messageThreadId !== undefined ? { messageThreadId } : {}), ...(messageId !== undefined ? { messageId } : {}) };
     result.coverage.scopeComplete = scope.complete;
+    if (scope.sourceSync) {
+      result.coverage.sourceSync = scope.sourceSync;
+      result.coverage.currentSourceCoverageVerified = false;
+      result.coverage.warning = 'Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.';
+    }
     if (object === 'message') result.coverage.sourceCapabilities = {
       body: 'plain-text-when-authorized', participants: 'separate-messageParticipant-read', threadId: true,
       fieldAccess: 'per-record-contentAvailability; restricted values are not evidence',
       originalMime: false, attachmentBytes: false, mailboxSynchronization: 'unverified',
-      scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
+      scope: this.scopeMode === 'workspace' ? 'approved-workspace' : this.scopeMode === 'assigned' ? 'executive-owned-connected-sources' : 'approved-account-associations',
     };
     if (object === 'calendarEvent') result.coverage.sourceCapabilities = {
       representation: 'synchronized-event-fields', participants: 'separate-calendarEventParticipant-read',
       fieldAccess: 'per-record-contentAvailability; restricted values are not evidence',
       providerOriginal: false, calendarSynchronization: 'unverified',
-      scope: this.scopeMode === 'workspace' ? 'approved-isolated-workspace' : 'approved-account-associations',
+      scope: this.scopeMode === 'workspace' ? 'approved-workspace' : this.scopeMode === 'assigned' ? 'executive-owned-connected-sources' : 'approved-account-associations',
     };
     result.coverage.complete &&= scope.complete;
-    if (!scope.complete) result.coverage.warning = 'Account relationship discovery reached its 1000-record bound; context coverage is partial.';
+    if (!scope.complete) result.coverage.warning = [result.coverage.warning, 'Authorized relationship/source discovery reached its 1000-record bound; context coverage is partial.'].filter(Boolean).join(' ');
     if (result.coverage.contentAccessUnrestricted === false) result.coverage.warning = [result.coverage.warning, 'Twenty withheld one or more communication fields because additional permissions are required; record pagination does not establish full content access.'].filter(Boolean).join(' ');
     return result;
   }
@@ -200,14 +334,22 @@ export class TwentyAdapter {
     }
     if (object === 'opportunity' && (create || 'stage' in values)) {
       if (!stages.includes(values.stage)) fail('INVALID_STAGE', 'Use APPROACHING, ENGAGED, COMMERCIAL, WON or LOST with evidence-based judgment.');
-      if (!(await this.metadata()).pipelineCompatible) fail('PIPELINE_SETUP_REQUIRED', 'Native opportunity stage metadata must contain all five coach commercial states before stage writes.');
+      const metadata = await this.metadata();
+      if (!metadata.pipelineCompatible) fail('PIPELINE_SETUP_REQUIRED', 'Configured opportunity stage metadata must contain all five coach commercial states before stage writes.');
+      if (create && this.stageField !== 'stage' && !metadata.nativeStages.includes(this.nativeStageOnCreate)) fail('PIPELINE_SETUP_REQUIRED', 'Custom coach stage creation requires a verified native creation stage.');
     }
-    if (values.companyId) this.accountScope(values.companyId);
-    if (values.targetCompanyId) this.accountScope(values.targetCompanyId);
+    if (values.companyId) await this.authorizeAccount(values.companyId);
+    if (values.targetCompanyId) await this.authorizeAccount(values.targetCompanyId);
     for (const [field,related] of [['pointOfContactId','person'],['targetPersonId','person'],['targetOpportunityId','opportunity'],['noteId','note'],['taskId','task']]) {
       if (values[field] && !(await this.read({object:related,id:values[field]})).records.length) fail('OUT_OF_SCOPE', 'Related CRM record is outside approved account scope.');
     }
-    return { ...values };
+    const mapped = { ...values };
+    if (object === 'opportunity' && this.stageField !== 'stage' && 'stage' in mapped) {
+      mapped[this.stageField] = mapped.stage;
+      delete mapped.stage;
+      if (create) mapped.stage = this.nativeStageOnCreate;
+    }
+    return { ...mapped, ...(create && this.scopeMode === 'assigned' && object === 'company' ? { [this.assignment.companyOwnerField]: this.assignment.memberId } : {}), ...(create && this.scopeMode === 'assigned' && object === 'opportunity' ? { [this.assignment.opportunityOwnerField]: this.assignment.memberId } : {}) };
   }
   async create({ object, values }) {
     this.writeGuard(); object = kind(object); const data = await this.values(object,values,true);
@@ -225,13 +367,14 @@ export class TwentyAdapter {
       if (['note','task'].includes(object)) {
         const unlinked = await this.page(object,{id:{eq:data.id}},1);
         record = unlinked.records[0];
-        if (record && Object.entries(data).some(([k,v])=>JSON.stringify(record[k])!==JSON.stringify(v))) fail('ID_COLLISION','Stable ID already exists with different content; reconcile before retry.');
+        if (record && !this.matchesValues(object, record, data)) fail('ID_COLLISION','Stable ID already exists with different content; reconcile before retry.');
       }
       if (!record) {
         const [type] = config[object];
-        const result = await this.request(`mutation CoachCreate($data:${type}CreateInput!){create${type}(data:$data){${selection(object)}}}`,{data}); record = result[`create${type}`];
+        const result = await this.request(`mutation CoachCreate($data:${type}CreateInput!){create${type}(data:$data){${this.recordSelection(object)}}}`,{data}); record = result[`create${type}`];
+        this.invalidatePortfolio();
       }
-    } else if (Object.entries(data).some(([k,v])=>JSON.stringify(record[k])!==JSON.stringify(v))) fail('ID_COLLISION','Stable ID already exists with different content; reconcile before retry.');
+    } else if (!this.matchesValues(object, record, data)) fail('ID_COLLISION','Stable ID already exists with different content; reconcile before retry.');
     if (['note','task'].includes(object)) {
       const target = `${object}Target`; const targetId=stableTargetId(object,data.id,companyId);
       if (!(await this.read({object:target,id:targetId})).records.length) {
@@ -251,7 +394,8 @@ export class TwentyAdapter {
     if (!before) fail('OUT_OF_SCOPE','Record is missing or outside approved scope.');
     if (before.updatedAt!==expectedUpdatedAt) fail('CONFLICT','Human or concurrent CRM edit changed the record; refresh and review the proposal.');
     const [type,plural]=config[object];
-    const result=await this.request(`mutation CoachPatch($data:${type}UpdateInput!,$filter:${type}FilterInput!){update${plural[0].toUpperCase()+plural.slice(1)}(data:$data,filter:$filter){${selection(object)}}}`,{data,filter:{and:[{id:{eq:id}},{updatedAt:{eq:expectedUpdatedAt}}]}});
+    const result=await this.request(`mutation CoachPatch($data:${type}UpdateInput!,$filter:${type}FilterInput!){update${plural[0].toUpperCase()+plural.slice(1)}(data:$data,filter:$filter){${this.recordSelection(object)}}}`,{data,filter:{and:[{id:{eq:id}},{updatedAt:{eq:expectedUpdatedAt}}]}});
+    this.invalidatePortfolio();
     if(result[`update${plural[0].toUpperCase()+plural.slice(1)}`]?.length!==1) fail('CONFLICT','Concurrent CRM change prevented the patch; refresh before review.');
     const record=(await this.read({object,id})).records[0];
     if(!record) fail('READBACK_FAILED','Updated CRM record could not be read back.');

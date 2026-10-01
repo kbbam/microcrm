@@ -1,0 +1,183 @@
+{
+  "capturedAt": "2026-10-01T18:25:33.238788+00:00",
+  "scope": "Permanent authentication extension for source onboarding",
+  "revision": "Working tree; hashes below identify owned UI state",
+  "sources": {
+    "server/src/auth-page.ts": "64ea376a85368d0db5a2a024c6b445c249003d56211e25db16a37c7a1b869ccf",
+    "server/src/twenty-source-views.ts": "77ed01a3980ca205d09fd4515f10910c11d0ba45b69242756b2fc6587c2b6f5c",
+    "server/test/twenty-source-views.test.js": "420fa29392f1e1581da777b625468bd3d79c3672836bddebcd19591a2b0f2ff2"
+  },
+  "screenshots": [
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/disabled-desktop.png",
+      "sha256": "6883142bfdee238c60e123c6d895a1d6c6dc6883cf3a42f7e54c5b2592095ab5",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/disabled-mobile.png",
+      "sha256": "447d292a77be7ce210172eeccc5094b12b044481fa659074bf1b7a18e36b490e",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/failed-desktop.png",
+      "sha256": "45a27832f04fe8921b0b14b36c2d2c75632bac8e09988a253e14ef4917b266fb",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/failed-mobile.png",
+      "sha256": "1a60223257f4844c1ce12831cee97634f2ed52467a02827d6c6f9c0c9aa4155b",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/home-desktop.png",
+      "sha256": "ae3d5b9502ef5779aae091d747702eab5bf8caac3820309ef1d01bd7a5bf0549",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/home-mobile.png",
+      "sha256": "e5aad104c4b2bf3d670ac1653627394948a094cc6ae3a8fbbaca85b31bd96af1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/login-desktop.png",
+      "sha256": "e0223efc34c942c42f71b527e67cf541d3d88d32226580d73190524bf4bbcda5",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/login-error-desktop.png",
+      "sha256": "dc69e9e3fdb34e40672960d7732d8fc1e2e684765c41d419e0db643de78adfba",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/login-error-mobile.png",
+      "sha256": "3acab5423ef5cb05d3176bcf4374d15be0427e359673c1a2bbb8d45ed8380031",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/login-mobile.png",
+      "sha256": "14e47e5e541e04793d1be429dfaf65eb15b3730fbb41778a0f6895aef60eb0e7",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/missing-desktop.png",
+      "sha256": "3f21c92b48f5bc108419e2439fce0463f659d28451e551782240ecfee2fd254b",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/missing-mobile.png",
+      "sha256": "f1c959d108c8f8390e605814144264e733edf8642204dc15292db96eb77b1152",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/observed-desktop.png",
+      "sha256": "73f8d39277b0504bbe9e256750fa1098ea9fb1c3109057c68443a97fa12130ef",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/observed-mobile.png",
+      "sha256": "fae0f75a71c5bdabdb50d8dbc3670110b682134d4bdb35fb8d74e04edf3cdc04",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/problem-desktop.png",
+      "sha256": "89f6dde8d3f8468be396da14068e1718b08c14aa3f6a023d1be8b8e1b28ed60b",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/problem-mobile.png",
+      "sha256": "8ea278780c66e96588dc648f970262ddd5de74f9181fbc405dcff625968f263a",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/waiting-desktop.png",
+      "sha256": "4a2e0b6d73b6ec57b76a062a256e6f5b9b952f6b435f2c78158f0e2d1fdd78ba",
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      }
+    },
+    {
+      "path": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-source-onboarding/waiting-mobile.png",
+      "sha256": "cc9c30c770f2c4b0910d90496892b5c06080056b75dd50df7da5c20a88191951",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      }
+    }
+  ],
+  "detector": {
+    "target": [
+      "server/src/auth-page.ts",
+      "server/src/twenty-source-views.ts"
+    ],
+    "findings": [],
+    "passes": 1
+  },
+  "technical": {
+    "build": "PASS",
+    "focusedTests": "8/8 PASS: account-surface, oidc-refresh-policy, twenty-source-views",
+    "historicalFullServer": "43/43 PASS before ongoing backend authorized-source refresh changes; root must rerun current final gate"
+  },
+  "finishReview": {
+    "disposition": "ship",
+    "evidence": "source-onboarding-finish-review.md",
+    "scope": "18 final desktop/narrow source onboarding captures"
+  },
+  "limitations": [
+    "Synthetic renderer fixtures, not real Google/Twenty connection or mailbox ingest proof",
+    "Physical Android check explicitly deferred by owner to tomorrow",
+    "Production actual sources still require connection/sync; root owns setup/deployment"
+  ],
+  "documenter": {
+    "changes": "none",
+    "evidence": "auth-system-documentation-check.md"
+  }
+}

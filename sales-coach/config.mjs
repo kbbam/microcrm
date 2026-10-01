@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
-import { resolve, dirname } from 'node:path';
+import { resolve, dirname, basename, join } from 'node:path';
+import { createTwentySourceOwnershipReader } from './twenty-source-ownership.mjs';
 import { TwentyAdapter } from './twenty.mjs';
 import { CoachService } from './service.mjs';
 
@@ -17,9 +18,19 @@ export async function loadService(path = process.env.COACH_CONFIG, authenticated
       apiKey = match?.slice('TWENTY_API_KEY='.length).trim().replace(/^['"]|['"]$/g, '');
     }
     if (!apiKey) throw new Error('Twenty credential unavailable; do not place a token in model input');
-    adapter = new TwentyAdapter({ ...config.twenty, apiKey });
+    let resolveSourceChannels;
+    if (config.twenty.scopeMode === 'assigned' && config.sourceConnection?.receipt && process.env.TWENTY_SOURCE_CLIENT_ID && process.env.TWENTY_SOURCE_TOKEN_KEY) {
+      const receipt = config.sourceConnection.receipt;
+      resolveSourceChannels = createTwentySourceOwnershipReader({ file: join(root, `${basename(path, '.json')}.twenty-token.json`), baseUrl: new URL(config.twenty.baseUrl).origin,
+        clientId: process.env.TWENTY_SOURCE_CLIENT_ID, encryptionKey: process.env.TWENTY_SOURCE_TOKEN_KEY,
+        expected: { email: config.executiveId, workspaceId: config.sourceConnection.verifiedWorkspaceId, memberId: config.twenty.assignment.memberId }, userWorkspaceId: receipt.userWorkspaceId });
+    }
+    adapter = new TwentyAdapter({ ...config.twenty, apiKey, sourceOwnershipRequired: config.twenty.scopeMode === 'assigned', resolveSourceChannels });
   }
   const actor = authenticatedActor ?? config.actor;
   if (!actor?.id || !['executive', 'leader', 'admin'].includes(actor.role)) throw new Error('Authorized coach actor required');
-  return new CoachService({ contextDir: resolve(root, config.contextDir), actor, adapter }).init();
+  return new CoachService({ contextDir: resolve(root, config.contextDir), actor, adapter,
+    enforceRetainedScope: config.enforceRetainedScope === true,
+    authorizeAccount: adapter?.authorizeAccount ? (accountId, options) => adapter.authorizeAccount(accountId, options) : undefined,
+  }).init();
 }

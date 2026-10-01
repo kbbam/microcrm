@@ -4,6 +4,8 @@ import { oidc, registerInteractionRoutes, requireAccessToken, requireCoachAccess
 import { handleCoachRequest, handleCoachUpload, handleCoachDownload, handleCoachEvidence, coachSafeLogPath } from "./coach.js";
 import { createCoachReviewHandlers } from "./coach-review.js";
 import { setupGet, setupPost } from "./setup.js";
+import { accountHome, accountHelp } from "./auth-page.js";
+import { registerTwentySourceConnectionRoutes } from "./twenty-source-connection.js";
 import { requireAdmin, createInviteHandler } from "./admin.js";
 import { handleMcpRequest } from "./mcp.js";
 
@@ -89,6 +91,12 @@ async function main() {
   // more robust to just not put an upstream parser in front of it at all.
   const jsonBody = express.json();
   const urlencodedBody = express.urlencoded({ extended: false });
+
+  // Permanent account entry point; OAuth sign-in remains client initiated.
+  app.get("/", accountHome);
+  app.get("/account", accountHome);
+  app.get("/account/help", accountHelp);
+  await registerTwentySourceConnectionRoutes(app);
 
   // Invite acceptance (public, token-gated).
   app.get("/setup", setupGet);

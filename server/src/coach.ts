@@ -29,11 +29,9 @@ async function handlePrincipalRequest(req: Request, res: Response, exportName: "
   try {
     const principal = await resolveCoachPrincipal(res.locals.accountId);
     if (!principal) { res.status(403).json({ error: "Coach access has not been granted" }); return; }
-    if (exportName === "handleEvidence" && req.params.contextKey !== principal.contextKey) {
-      res.status(403).json({ error: "Evidence is outside the authorized context" }); return;
-    }
     const moduleUrl = new URL("../../sales-coach/hosted.mjs", import.meta.url).href;
     const runtime = await import(moduleUrl);
+    runtime.setPrincipalResolver(resolveCoachPrincipal);
     await runtime[exportName](req, res, principal);
   } catch (error) {
     console.error("Coach request failed", error instanceof Error ? error.name : "unknown");
@@ -50,6 +48,7 @@ export async function handleCoachUpload(req: Request, res: Response) {
   if (!coachEnabled()) { res.status(404).json({ error: "not found" }); return; }
   try {
     const runtime = await import(new URL("../../sales-coach/hosted.mjs", import.meta.url).href);
+    runtime.setPrincipalResolver(resolveCoachPrincipal);
     await runtime.handleUpload(req, res);
   } catch (error) {
     console.error("Coach upload failed", error instanceof Error ? error.name : "unknown");
@@ -61,6 +60,7 @@ export async function handleCoachDownload(req: Request, res: Response) {
   if (!coachEnabled()) { res.status(404).json({ error: "not found" }); return; }
   try {
     const runtime = await import(new URL("../../sales-coach/hosted.mjs", import.meta.url).href);
+    runtime.setPrincipalResolver(resolveCoachPrincipal);
     await runtime.handleDownload(req, res);
   } catch {
     if (!res.headersSent) res.status(503).json({ error: "Original download unavailable; retry later" });

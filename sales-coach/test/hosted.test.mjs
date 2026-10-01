@@ -1,22 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createServer } from 'node:http';
-import { mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { mkdtemp, writeFile, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname, resolve } from 'node:path';
 import { createHash } from 'node:crypto';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 import { createGateway } from '../hosted.mjs';
+import { CoachService } from '../service.mjs';
 
 const unpack = result => {
   assert(!result.isError, result.content?.[0]?.text);
   return JSON.parse(result.content[0].text);
 };
 
-async function fixture(t) {
+async function fixture(t, { configs, serviceFactory, principalOverrides } = {}) {
   const root = await mkdtemp(join(tmpdir(), 'coach-hosted-'));
-  await writeFile(join(root, 'pilot.json'), JSON.stringify({ contextDir: './context', executiveId: 'exec@example.test', actor: { id: 'config-admin', role: 'admin' } }));
+  configs ??= { pilot: { contextDir: './context', executiveId: 'exec@example.test', actor: { id: 'config-admin', role: 'admin' } } };
+  for (const [key, config] of Object.entries(configs)) await writeFile(join(root, `${key}.json`), JSON.stringify(config));
   const instructionsPath = join(root, 'instructions.md');
   await writeFile(instructionsPath, 'Help the executive. Preserve originals.');
   let gateway;
@@ -24,6 +26,7 @@ async function fixture(t) {
     exec: { id: 'exec@example.test', role: 'executive', contextKey: 'pilot' },
     other: { id: 'other@example.test', role: 'executive', contextKey: 'pilot' },
     leader: { id: 'leader@example.test', role: 'leader', contextKey: 'pilot' },
+    ...principalOverrides,
   };
   const http = createServer(async (req, res) => {
     if (req.url.startsWith('/coach/evidence/upload/')) return gateway.handleUpload(req, res);
@@ -39,7 +42,7 @@ async function fixture(t) {
   });
   await new Promise(resolve => http.listen(0, '127.0.0.1', resolve));
   const base = `http://127.0.0.1:${http.address().port}`;
-  gateway = createGateway({ configRoot: root, publicUrl: base, instructionsPath });
+  gateway = createGateway({ configRoot: root, publicUrl: base, instructionsPath, serviceFactory });
   t.after(async () => { http.closeAllConnections(); await new Promise(resolve => http.close(resolve)); await rm(root, { recursive: true, force: true }); });
   async function client(token) {
     const client = new Client({ name: 'synthetic-android-workflow', version: '1.0.0' });
@@ -160,4 +163,69 @@ test('one typed context call binds exact executive words to interpretations with
   assert.equal(invalid.isError, true);
   const denied = await exec.callTool({ name: 'update_account_context', arguments: { accountId: 'buyer', entries: [{ kind: 'note', text: 'No source', status: 'fact' }] } });
   assert.equal(denied.isError, true);
+});
+
+test('configuration reload keeps queued old and fresh actor writes on the same context queue', async t => {
+  const { gateway } = await fixture(t);
+  const principal = { id: 'exec@example.test', role: 'executive', contextKey: 'pilot' };
+  const old = await gateway.getActor(principal);
+  let releaseFirst, releaseSecond, firstStarted, secondStarted;
+  const firstGate = new Promise(done => { releaseFirst = done; });
+  const secondGate = new Promise(done => { releaseSecond = done; });
+  const firstReady = new Promise(done => { firstStarted = done; });
+  const secondReady = new Promise(done => { secondStarted = done; });
+  t.after(() => { releaseFirst(); releaseSecond(); });
+  const first = old.service.serial(async () => { firstStarted(); await firstGate; });
+  await firstReady;
+  const reload = gateway.reloadContext('pilot');
+  await new Promise(done => setImmediate(done));
+  let secondActive = false;
+  const second = old.service.serial(async () => { secondActive = true; secondStarted(); await secondGate; secondActive = false; });
+  releaseFirst();
+  await secondReady;
+  await reload;
+  const fresh = await gateway.getActor(principal);
+  assert.notEqual(fresh.service, old.service, 'Reload refreshes the configuration/service view');
+  let freshStarted = false;
+  const freshWrite = fresh.service.serial(async () => { freshStarted = true; assert.equal(secondActive, false); });
+  await new Promise(done => setImmediate(done));
+  assert.equal(freshStarted, false, 'A new actor view waits for writes queued while reload was waiting');
+  releaseSecond();
+  await Promise.all([first, second, freshWrite]);
+});
+
+test('mapped leader context refresh joins the executive write queue through the real HTTP tool', async t => {
+  let releaseRefresh, refreshStarted;
+  const refreshGate = new Promise(done => { releaseRefresh = done; });
+  const refreshReady = new Promise(done => { refreshStarted = done; });
+  t.after(() => releaseRefresh());
+  const serviceFactory = async (path, actor) => {
+    const config = JSON.parse(await readFile(path, 'utf8'));
+    const service = await new CoachService({ contextDir: resolve(dirname(path), config.contextDir), actor }).init();
+    if (actor.role === 'leader' && config.executiveId === 'exec@example.test') {
+      const context = service.context.bind(service);
+      service.context = async args => { refreshStarted(); await refreshGate; return context(args); };
+    }
+    return service;
+  };
+  const { gateway, client } = await fixture(t, {
+    configs: {
+      pilot: { contextDir: './exec-context', executiveId: 'exec@example.test' },
+      team: { contextDir: './team-context', executiveId: 'leader@example.test', leaderContextKeys: ['pilot'] },
+    },
+    serviceFactory,
+    principalOverrides: { leader: { id: 'leader@example.test', role: 'leader', contextKey: 'team' } },
+  });
+  const leader = await client('leader');
+  const refreshing = leader.callTool({ name: 'get_account_context', arguments: { contextKey: 'pilot', accountId: 'buyer', refresh: true } });
+  await refreshReady;
+  const executive = await gateway.getActor({ id: 'exec@example.test', role: 'executive', contextKey: 'pilot' });
+  let executiveWriteStarted = false;
+  const executiveWrite = executive.service.serial(async () => { executiveWriteStarted = true; });
+  await new Promise(done => setImmediate(done));
+  assert.equal(executiveWriteStarted, false, 'Leader refresh may write current CRM context, so concurrent executive writes must wait');
+  releaseRefresh();
+  unpack(await refreshing);
+  await executiveWrite;
+  assert.equal(executiveWriteStarted, true);
 });

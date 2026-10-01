@@ -10,11 +10,12 @@ const fault = (status, message) => Object.assign(new Error(message), { status })
 // Actors passed to retrieval must come from the host's authenticated identity,
 // never model-supplied arguments. Capability URLs authorize only one exact file.
 export class EvidenceUploadStore {
-  constructor(directory, { maxBytes = 25 * 1024 * 1024, ttlMs = 15 * 60 * 1000, now = Date.now, uploadPath = '/evidence/uploads', downloadPath = '/evidence/downloads', downloadTtlMs = 5 * 60 * 1000 } = {}) {
+  constructor(directory, { maxBytes = 25 * 1024 * 1024, ttlMs = 15 * 60 * 1000, now = Date.now, uploadPath = '/evidence/uploads', downloadPath = '/evidence/downloads', downloadTtlMs = 5 * 60 * 1000, authorizeCapability } = {}) {
     if (!Number.isSafeInteger(maxBytes) || maxBytes <= 0 || !Number.isSafeInteger(ttlMs) || ttlMs <= 0) throw new Error('Invalid upload limits');
     if (!/^\/[A-Za-z0-9/_-]+$/.test(uploadPath) || uploadPath.endsWith('/')) throw new Error('Invalid upload route');
     if (!/^\/[A-Za-z0-9/_-]+$/.test(downloadPath) || downloadPath.endsWith('/') || downloadPath === uploadPath) throw new Error('Invalid download route');
     if (!Number.isSafeInteger(downloadTtlMs) || downloadTtlMs <= 0 || downloadTtlMs > 5 * 60 * 1000) throw new Error('Download grants must expire within five minutes');
+    this.authorizeCapability = authorizeCapability;
     this.downloadPath = downloadPath;
     this.downloadTtlMs = downloadTtlMs;
     this.uploadPath = uploadPath;
@@ -42,12 +43,16 @@ export class EvidenceUploadStore {
     await writeFile(join(this.directory, 'grants', `${digest(token)}.json`), JSON.stringify(grant), { flag: 'wx', mode: 0o600 });
     return { evidenceId: grant.id, uploadUrl: `${base.origin}${this.uploadPath}/${token}`, method: 'PUT', contentType: mimeType, expectedSize, expiresAt: new Date(grant.expiresAt).toISOString() };
   }
-  async renewUpload(evidenceId, actor, baseUrl) {
+  async uploadRequest(evidenceId, actor) {
     if (!validId(evidenceId) || !validActorId(actor?.id) || !['executive', 'leader', 'admin'].includes(actor.role)) throw fault(403, 'Authorized evidence access required');
     let request;
     try { request = JSON.parse(await readFile(join(this.directory, 'requests', `${evidenceId}.json`), 'utf8')); }
     catch (error) { if (error.code === 'ENOENT') throw fault(404, 'Unknown evidence request'); throw error; }
     if (actor.id !== request.ownerId && !['leader', 'admin'].includes(actor.role)) throw fault(403, 'Evidence is outside the authorized scope');
+    return request;
+  }
+  async renewUpload(evidenceId, actor, baseUrl) {
+    const request = await this.uploadRequest(evidenceId, actor);
     try {
       const evidence = await this.getEvidence(evidenceId, actor);
       return { evidenceId, evidence, alreadyPreserved: true };
@@ -72,6 +77,7 @@ export class EvidenceUploadStore {
       try { grant = JSON.parse(await readFile(join(this.directory, 'grants', `${tokenHash}.json`), 'utf8')); }
       catch (error) { if (error.code === 'ENOENT') throw fault(404, 'Unknown upload'); throw error; }
       if (this.now() >= grant.expiresAt) throw fault(410, 'Upload expired; request a new upload address');
+      await this.authorizeCapability?.(grant, { id: grant.ownerId, role: 'executive' });
       const length = req.headers['content-length'];
       if (length != null && Number(length) !== grant.expectedSize) throw fault(422, 'Original file size does not match');
       const lockPath = join(this.directory, 'locks', tokenHash);
@@ -162,6 +168,8 @@ export class EvidenceUploadStore {
       try { grant = JSON.parse(await readFile(join(this.directory, 'downloads', `${digest(match[1])}.json`), 'utf8')); }
       catch (error) { if (error.code === 'ENOENT') throw fault(404, 'Unknown download'); throw error; }
       if (this.now() >= grant.expiresAt) throw fault(410, 'Download expired; request a new download address');
+      const current = await this.getEvidence(grant.evidenceId, grant.actor);
+      await this.authorizeCapability?.(current, grant.actor);
       const { metadata, bytes } = await this.readOriginal(grant.evidenceId, grant.actor);
       if (this.now() >= grant.expiresAt) throw fault(410, 'Download expired; request a new download address');
       const filename = encodeURIComponent(metadata.filename).replace(/[!'()*]/g, char => `%${char.charCodeAt(0).toString(16).toUpperCase()}`);

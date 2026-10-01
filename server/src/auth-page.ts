@@ -1,0 +1,29 @@
+import type { Response } from "express";
+
+export function escapeHtml(value: unknown): string {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
+}
+
+export function authHeaders(res: Response): void {
+  res.set({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" });
+}
+
+// Shared with invite acceptance and OAuth: one small, responsive operational surface.
+export function authPage(title: string, body: string): string {
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escapeHtml(title)} · Business OS</title>
+<style>
+:root{color-scheme:dark;--bg:#14170f;--surface:#1b1f18;--field:#20241c;--line:#41483b;--text:#e9ece5;--muted:#b4bcaa;--accent:#7fc99a;--error:#f0bb72}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;min-height:100vh;min-height:100svh;display:grid;place-items:center;padding:32px 20px}main{width:min(100%,440px)}.brand{display:inline-block;color:var(--text);text-decoration:none;font-weight:650;margin-bottom:28px;font-size:16px}.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px}h1{font-size:26px;line-height:1.22;letter-spacing:-.02em;margin:0 0 12px;text-wrap:balance}p{margin:0 0 20px}h2{font-size:20px;line-height:1.3;margin:0 0 10px;letter-spacing:-.01em}.source-status{margin:24px 0}.source-status div{padding:12px 0;border-top:1px solid var(--line)}.source-status div:last-child{border-bottom:1px solid var(--line)}.source-status dt{font-weight:650}.source-status dd{margin:3px 0 0;color:var(--muted);overflow-wrap:anywhere}.source-setup{margin-top:24px;padding-top:24px;border-top:1px solid var(--line)}.secondary-link{display:block;margin-top:16px;border:1px solid var(--line);border-radius:8px;min-height:48px;padding:11px 12px;text-align:center;text-decoration:none;font-weight:550}.secondary-link:hover{background:var(--field)}p:last-child{margin-bottom:0}.muted,.hint{color:var(--muted)}.hint{font-size:14px;margin:8px 0 0}label{display:block;font-weight:550;margin:20px 0 7px}input{display:block;width:100%;min-height:48px;border:1px solid var(--line);border-radius:8px;background:var(--field);color:var(--text);font:inherit;padding:10px 12px;caret-color:var(--accent)}button,.primary{display:block;width:100%;min-height:48px;margin-top:24px;padding:11px 16px;border:0;border-radius:8px;background:var(--accent);color:var(--bg);font:inherit;font-weight:650;text-align:center;text-decoration:none;cursor:pointer}button:hover,.primary:hover{background:#9cdbb1}button:active{background:#6fb58a}.secondary{margin-top:12px;background:transparent;border:1px solid var(--line);color:var(--text)}.secondary:hover{background:var(--field)}button:disabled{opacity:.55;cursor:wait}a{color:var(--accent);text-underline-offset:3px;overflow-wrap:anywhere}a:hover{color:#a6dfb8}:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.error{color:var(--error);margin:18px 0 0}.footer{color:var(--muted);font-size:14px;margin:22px 0 0}.endpoint{display:block;padding:12px;background:var(--field);border:1px solid var(--line);border-radius:8px;overflow-wrap:anywhere;user-select:all;font-size:14px}.client{overflow-wrap:anywhere;font-size:14px}::selection{background:#7fc99a;color:#14170f}@media(max-width:480px){body{padding:24px 16px}.panel{padding:24px}.brand{margin-bottom:22px}}
+</style></head><body><main><a class="brand" href="/">Business OS</a><section class="panel" aria-labelledby="page-title"><h1 id="page-title">${escapeHtml(title)}</h1>${body}</section><p class="footer">Your account permissions are managed by your team administrator.</p></main></body></html>`;
+}
+
+export function accountHome(_req: unknown, res: Response): void {
+  authHeaders(res);
+  const endpoint = `${(process.env.PUBLIC_URL ?? "http://localhost:8080").replace(/\/$/, "")}${process.env.COACH_ENABLED === "1" ? "/coach/mcp" : "/mcp"}`;
+  res.send(authPage("Connect your sales coach", `<p class="muted">Use your sales coach in any Claude conversation, with your Business OS account permissions.</p><p>In Claude, open <strong>Settings → Connectors → Add custom connector</strong> and enter this address:</p><code class="endpoint">${escapeHtml(endpoint)}</code><p class="hint">Choose Connect and sign in with your Business OS credentials.</p><p class="footer">New account? Use your administrator’s personal setup link. <a href="/account/help">Need help signing in?</a></p>${process.env.COACH_ENABLED === "1" ? `<div class="source-setup"><h2>Email and calendar</h2><p class="muted">To let the coach check messages and meetings, connect your sources from Twenty.</p><a class="secondary-link" href="/account/twenty/connect">Connect email and calendar sources</a></div>` : ""}`));
+}
+
+export function accountHelp(_req: unknown, res: Response): void {
+  authHeaders(res);
+  res.send(authPage("Help with your account", `<p>To reset a password or replace an expired setup link, ask your Business OS team administrator for a new personal setup link.</p><p class="muted">Keep the link private. It can be used once to set your password. Resetting a password ends earlier sign-in sessions and connector access. Reconnect with the new password; your team permissions stay the same.</p><p>To disconnect the coach, open Claude’s connector settings and disconnect Business OS. To remove account access, contact your administrator.</p><a class="primary" href="/">Back to connection setup</a>`));
+}

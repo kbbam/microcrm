@@ -1,0 +1,59 @@
+{
+  "kind": "isolated-auth-production-readiness",
+  "capturedAt": "2026-10-01T17:49:33.977414+00:00",
+  "productionHostReserved": "https://business-os-production-1193.up.railway.app",
+  "productionDeploymentByThisAgent": false,
+  "sources": {
+    "server/src/auth-page.ts": "1d8646c9f4ca984d5610d98be0f84213a920456b4451fa5ea7edf5263c109cd1",
+    "server/src/setup.ts": "7934f4589ebd60e2754215f5ff4d19c7565e4bfbd7876b5eaa1b83bf456635f1",
+    "server/src/oidc.ts": "bc48019e6ed5f403cc7bd8d0d8be9d61762dc3ff415b3c9085d4262bc99e72c3",
+    "server/src/users.ts": "7bc4df914037cd293cc387885c97834f9f2f5af8e0cbe9bd179ace20a12bdc38",
+    "server/src/index.ts": "80ce6427053b1b8a0f28c1653df9b946695e21c99639aea5ca68d05f117f491a"
+  },
+  "tests": {
+    "passed": 33,
+    "failed": 0,
+    "database": "new disposable PostgreSQL16 container",
+    "log": "/Users/user/.codex/tmp/bam-auth-surface/final-server-tests.log"
+  },
+  "oauthLifecycle": {
+    "realHTTPServer": true,
+    "consentedPublicClientCodePKCE": true,
+    "refreshWithoutOfflineScope": true,
+    "expiredAccess401": true,
+    "restartRefresh200": true,
+    "refreshRotated": true,
+    "wrongAudience403": true,
+    "revokedGrantRefresh400": true,
+    "revokedAccess401": true
+  },
+  "screenshots": {
+    "directory": "/Users/user/Documents/BAM-Business-OS-Development/outputs/sales-coach-v1/production-auth",
+    "desktop": "1280x900",
+    "mobile": "390x844",
+    "requiredStates": [
+      "home",
+      "setup",
+      "login",
+      "login-error",
+      "consent",
+      "help",
+      "invalid-link"
+    ]
+  },
+  "limits": [
+    "Screenshots use synthetic local account, not production credentials.",
+    "No automatic recovery email is implemented or claimed.",
+    "Production hosting and actual Claude handshake remain root-owned."
+  ],
+  "review": {
+    "package": "impeccable_finish_reviewer.toml",
+    "agent": "/root/prod_auth_surface/auth_finish_review",
+    "disposition": "ship",
+    "requiredCaptures": 14,
+    "allCaptureDimensionsVerified": true,
+    "firstPass": "recapture",
+    "fullReviewAfterRecapture": true
+  },
+  "reviewedAt": "2026-10-01T17:52:58.976921+00:00"
+}

@@ -20,7 +20,7 @@ COPY --from=build /app/server/node_modules ./node_modules
 COPY --from=build /app/server/dist ./dist
 COPY --from=build /app/sales-coach/package.json /app/sales-coach/package.json
 COPY --from=build /app/sales-coach/node_modules /app/sales-coach/node_modules
-COPY sales-coach/config.mjs sales-coach/store.mjs sales-coach/service.mjs sales-coach/mcp.mjs sales-coach/twenty.mjs sales-coach/evidence-upload.mjs sales-coach/hosted.mjs sales-coach/confirmation.mjs /app/sales-coach/
+COPY sales-coach/config.mjs sales-coach/store.mjs sales-coach/service.mjs sales-coach/mcp.mjs sales-coach/twenty.mjs sales-coach/twenty-source-ownership.mjs sales-coach/evidence-upload.mjs sales-coach/hosted.mjs sales-coach/confirmation.mjs /app/sales-coach/
 COPY sales-coach/skill/SKILL.md /app/sales-coach/skill/SKILL.md
 RUN mkdir -p /var/lib/bam-coach/config /var/lib/bam-coach/context && chown -R node:node /var/lib/bam-coach
 USER node

@@ -10,6 +10,14 @@ const key = value => {
 const canonical = value => JSON.stringify(value, (_, v) => v && typeof v === 'object' && !Array.isArray(v)
   ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v) ?? 'undefined';
 export const changeDigest = value => hash(canonical(value));
+// Compare only the explicitly supplied projection. Providers may add composite
+// defaults (for example rich-text blocknote beside supplied markdown). Arrays
+// remain exact, and missing or changed supplied values never count as a match.
+export const matchesSuppliedValue = (actual, expected) => {
+  if (Array.isArray(expected)) return Array.isArray(actual) && actual.length === expected.length && expected.every((value, index) => matchesSuppliedValue(actual[index], value));
+  if (expected && typeof expected === 'object') return !!actual && typeof actual === 'object' && !Array.isArray(actual) && Object.entries(expected).every(([field, value]) => Object.hasOwn(actual, field) && matchesSuppliedValue(actual[field], value));
+  return actual === expected;
+};
 export const accountDisplayTitle = account => {
   const company = account.crm?.[`company:${account.id}`];
   const currentName = company?.available !== false && company?.record?.name;
