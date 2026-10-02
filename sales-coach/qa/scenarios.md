@@ -12,7 +12,7 @@ These are executable checks, not the feature backlog. Run broad mutation tests i
 
 **Requested outcome:** authorized executive or teamlead transfers responsibility to a real, uniquely resolved colleague/teamlead through Coach, not merely records a handoff note. Verify each object separately, old/new owners, unrelated fields, human review where consequential, central access loss/gain and retained evidence after transfer. Unknown/ambiguous recipient and out-of-scope attempts must fail clearly. Retry must not duplicate work; no email is sent.
 
-**Current result:** pending protocol evidence below. Current adapter's write allowlist lacks task assignee, opportunity owner and account owner fields; MCP has no colleague/member lookup tool. Global Always allow cannot add that capability. Do not expand the field allowlist casually: ownership transfer affects authorization and post-write readback. Current iteration tests/report gap; it does not implement transfer policy. A future implementation requires defined eligible recipients, transfer authority, confirmation rules, portfolio update and access-safe receipt/readback.
+**Current result:** six real MCP protocol probes (executive and leader × task, opportunity, account) returned blocked / FORBIDDEN_FIELD. Provider mutation count was zero and before/after owners were identical; [evidence](../evidence/operational-bulk-qa/reassignment.json). Current adapter's write allowlist lacks task assignee, opportunity owner and account owner fields; MCP has no colleague/member lookup tool. Global Always allow cannot add that capability. Do not expand the field allowlist casually: ownership transfer affects authorization and post-write readback. Current iteration tests/report gap; it does not implement transfer policy. A future implementation requires defined eligible recipients, transfer authority, confirmation rules, portfolio update and access-safe receipt/readback.
 
 ## CQA-03 — End-of-day dictated operational dump
 
@@ -22,4 +22,4 @@ Use a long natural-language fixture with duplicates, explicit corrections, confl
 
 ## Result records
 
-See `../evidence/operational-bulk-qa/` for the current contract/client results. Keep failed cases and pending device/capability work explicit; do not infer user-language performance from protocol tests alone.
+See [current contract/client results](../evidence/operational-bulk-qa/README.md): 109 passing Coach tests, three ordinary Claude QA batches with 15 independently verified final criteria, and all initial failures/corrections retained. Production/QA central instructions now report runtime 75edf10. The natural-language result is completed with recovery, not a flawless first-run or phone acceptance claim. Keep failed cases and pending device/capability work explicit; do not infer user-language performance from protocol tests alone.

@@ -1,0 +1,335 @@
+Window: "Claude", App: Claude.
+0 standard window Claude, Secondary Actions: Raise
+	1 container Claude
+		2 container
+			3 HTML content file:///Applications/Claude.app/Contents/Resources/app.asar/.vite/renderer/main_window/index.html
+			4 HTML content Claude, URL: claude.ai/chat/aa3f5b68-946e-43ae-b4a5-0c3609168bbc
+				5 container
+					6 container
+						7 container Sidebar
+							8 button Hide sidebar
+							9 button Search
+							10 button Back
+							11 button (disabled) Forward
+							12 Mode
+								13 radio button Description: Chat and Cowork, Value: 1
+								14 radio button Description: Code, Value: 0
+							15 container
+								16 button New
+								17 button Quick task
+								18 container
+									19 button Projects
+								20 container
+									21 button Artifacts
+									22 pop-up button New from a template
+								23 button Scheduled
+								24 button Design
+								25 button Customize
+								26 pop-up button More navigation items
+								27 button Pinned
+								28 button Chats and tasks
+								29 button View all
+								30 pop-up button Filter and group recents
+								31 container
+									32 button Idle Northstar QA account update and follow-up tasks
+										33 image Idle
+										34 text Northstar QA account update and follow-up tasks
+									35 pop-up button More options for Northstar QA account update and follow-up tasks
+								36 container
+									37 button Idle Production tools configuration verification
+										38 image Idle
+										39 text Production tools configuration verification
+									40 pop-up button More options for Production tools configuration verification
+								41 container
+									42 button Idle Coach setup configuration
+										43 image Idle
+										44 text Coach setup configuration
+									45 pop-up button More options for Coach setup configuration
+								46 container
+									47 button Idle Coach setup configuration
+										48 image Idle
+										49 text Coach setup configuration
+									50 pop-up button More options for Coach setup configuration
+								51 container
+									52 button Idle Anna's Autumn-trial summary file requirements
+										53 image Idle
+										54 text Anna's Autumn-trial summary file requirements
+									55 pop-up button More options for Anna's Autumn-trial summary file requirements
+								56 container
+									57 button Idle Outstanding balance at QA Northstar Pharmacy
+										58 image Idle
+										59 text Outstanding balance at QA Northstar Pharmacy
+									60 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								61 container
+									62 button Idle Northstar trial and repeat order review
+										63 image Idle
+										64 text Northstar trial and repeat order review
+									65 pop-up button More options for Northstar trial and repeat order review
+								66 container
+									67 button Idle Outstanding balance at QA Northstar Pharmacy
+										68 image Idle
+										69 text Outstanding balance at QA Northstar Pharmacy
+									70 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								71 container
+									72 button Idle Outstanding balance with QA Northstar Pharmacy
+										73 image Idle
+										74 text Outstanding balance with QA Northstar Pharmacy
+									75 pop-up button More options for Outstanding balance with QA Northstar Pharmacy
+								76 container
+									77 button Idle Northstar trial and repeat order tracking update
+										78 image Idle
+										79 text Northstar trial and repeat order tracking update
+									80 pop-up button More options for Northstar trial and repeat order tracking update
+								81 container
+									82 button Idle BAM coach contact and trial dates
+										83 image Idle
+										84 text BAM coach contact and trial dates
+									85 pop-up button More options for BAM coach contact and trial dates
+								86 container
+									87 button Idle Anna at QA Northstar Pharmacy debt
+										88 image Idle
+										89 text Anna at QA Northstar Pharmacy debt
+									90 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								91 container
+									92 button Idle Anna at QA Northstar Pharmacy debt
+										93 image Idle
+										94 text Anna at QA Northstar Pharmacy debt
+									95 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								96 container
+									97 button Idle Anna at QA Northstar Pharmacy debt
+										98 image Idle
+										99 text Anna at QA Northstar Pharmacy debt
+									100 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								101 container
+									102 button Idle Northstar pharmacy coach verification
+										103 image Idle
+										104 text Northstar pharmacy coach verification
+									105 pop-up button More options for Northstar pharmacy coach verification
+								106 container
+									107 button Idle BAM coach screenshot for QA Northstar Pharmacy
+										108 image Idle
+										109 text BAM coach screenshot for QA Northstar Pharmacy
+									110 pop-up button More options for BAM coach screenshot for QA Northstar Pharmacy
+								111 container
+									112 button Idle Coach verification QA documentation
+										113 image Idle
+										114 text Coach verification QA documentation
+									115 pop-up button More options for Coach verification QA documentation
+								116 container
+									117 button Idle Anna's QA Northstar Pharmacy commitment
+										118 image Idle
+										119 text Anna's QA Northstar Pharmacy commitment
+									120 pop-up button More options for Anna's QA Northstar Pharmacy commitment
+								121 container
+									122 button Idle HTTPS file upload test with integrity verification
+										123 image Idle
+										124 text HTTPS file upload test with integrity verification
+									125 pop-up button More options for HTTPS file upload test with integrity verification
+								126 container
+									127 button Idle Preserving file integrity in Google Drive
+										128 image Idle
+										129 text Preserving file integrity in Google Drive
+									130 pop-up button More options for Preserving file integrity in Google Drive
+								131 button View all
+								132 container
+									133 pop-up button Kirill Kirill JPgrowery
+										134 image Kirill
+										135 text Kirill
+										136 text JPgrowery
+									137 link Description: Get apps and extensions, Value: claude.ai/downloads
+							138 splitter Description: Resize sidebar, Value: 368
+						139 container
+							140 container Primary pane
+								141 container
+									142 container
+										143 button Untitled, rename chat
+										144 pop-up button More options
+										145 pop-up button Share chat
+									146 container
+										147 text Claude finished the response
+										148 container Chat messages
+											149 text Use the up and down arrow keys to move between messages.
+											150 container
+												151 container Message 1 of 2
+													152 button Pasted text, pasted, 28 lines
+														153 text @Coach, use only BAM Business OS — Coach QA, not production. This is a synthetic end-of-day update about QA Northstar Pharmacy. Everything below is test information. Capture the operational details and carry out supported safe internal changes. Do not contact anybody or change calendars. If an opera
+														154 text PASTED
+													155 toolbar Message actions
+														156 text 6 minutes ago
+														157 button Retry
+														158 button Edit
+														159 button Copy
+												160 container Message 2 of 2
+													161 container
+														162 heading Value: 2, Claude responded: I'll load the Coach QA tools first and then look up the existing Northstar account.
+															163 text Claude responded: I'll load the Coach QA tools first and then look up the existing Northstar account.
+														164 container
+															165 text Used BAM Business OS — Coach QA integration, loaded tools
+															166 button Used BAM Business OS — Coach QA integration, loaded tools
+														167 text Used BAM Business OS — Coach QA integration, loaded tools
+														168 container
+															169 text I'll load the Coach QA tools first and then look up the existing Northstar account.
+															170 container BAM Business OS Coach QA account context CRM
+																171 container
+																	172 text Searched available tools BAM Business OS Coach QA account context CRM
+																173 button Searched available tools BAM Business OS Coach QA account context CRM
+															174 container Get coach instructions
+																175 text Get coach instructions
+																176 button Get coach instructions
+															177 container Northstar
+																178 container
+																	179 text Search accounts Northstar
+																180 button Search accounts Northstar
+															181 container Get account context
+																182 text Get account context
+																183 button Get account context
+															184 container Deciding how to format task titles and due dates.
+																185 text Deciding how to format task titles and due dates.
+																186 button Deciding how to format task titles and due dates.
+															187 container Crm read
+																188 text Crm read
+																189 button Crm read
+															190 container Cataloguing delivery, payment, and ownership details across the account.
+																191 text Cataloguing delivery, payment, and ownership details across the account.
+																192 button Cataloguing delivery, payment, and ownership details across the account.
+															193 container End-of-day bulk update: trial summary, delivery, payment, ownership
+																194 container
+																	195 text Update account context End-of-day bulk update: trial summary, delivery, payment, ownership
+																196 text Failed
+																197 button Update account context End-of-day bulk update: trial summary, delivery, payment, ownership Failed
+															198 container
+																199 text Request
+																200 text Error
+																201 container
+																	202 text MCP error  -32602 : Input validation error: Invalid arguments for tool update_account_context: Expected object, received string at submittedSource
+															203 container End-of-day bulk update: trial summary, delivery, payment, ownership
+																204 container
+																	205 text Update account context End-of-day bulk update: trial summary, delivery, payment, ownership
+																206 button Update account context End-of-day bulk update: trial summary, delivery, payment, ownership
+															207 container Crm propose change
+																208 text Crm propose change
+																209 button Crm propose change
+															210 container Crm propose change
+																211 text Crm propose change
+																212 button Crm propose change
+															213 container Crm propose change
+																214 text Crm propose change
+																215 button Crm propose change
+															216 container Crm propose change
+																217 text Crm propose change
+																218 button Crm propose change
+															219 container Crm read
+																220 text Crm read
+																221 button Crm read
+														222 container
+															223 text Northstar (QA) update, 2 Oct.
+															224 text  I used the Coach QA connector only and sent or called nobody. Your update is saved on the existing account, with the exact text retained as the source.
+															225 text Saved or applied
+															226 content list
+																227 container
+																	228 AXListMarker •
+																	229 text Autumn trial summary:  now due 8 Oct. It must be German, DOCX, with the purpose in one sentence first. It covers how the trial was used, the feedback collected, and what to change before another trial. No pricing proposal.
+																230 container
+																	231 AXListMarker •
+																	232 text Summary deadline:  6 Oct is recorded as a correction, with 5 and 6 Oct kept as history. I updated the existing "Prepare German shelf-life summary" task to 8 Oct.
+																233 container
+																	234 AXListMarker •
+																	235 text Translation check:  moved from 4 Oct to 6 Oct.
+																236 container
+																	237 AXListMarker •
+																	238 text Trial feedback:  Anna's positive response is saved. The trial is still Engaged, not Won.
+																239 container
+																	240 AXListMarker •
+																	241 text Twelve units:  saved as an uncertain hallway remark with an unknown speaker. It is not a quantity, and Anna's final quantity is open.
+																242 container
+																	243 AXListMarker •
+																	244 text Repeat order:
+																	245 content list
+																		246 container
+																			247 AXListMarker ◦
+																			248 text Delivery on 9 Oct is recorded as proposed, not confirmed.
+																		249 container
+																			250 AXListMarker ◦
+																			251 text The window is open, and Marta's receiving team takes nothing before 10:00 Berlin time (a constraint, not a booking).
+																		252 container
+																			253 AXListMarker ◦
+																			254 text Delivery questions go to Marta by phone, and you owe her a call before shipment.
+																255 container
+																	256 AXListMarker •
+																	257 text Labels and company name:  labels use the existing legal name, and the CRM company name is untouched.
+																258 container
+																	259 AXListMarker •
+																	260 text Older-order balance:  EUR 2,040, corrected from 2,400. It is your report, not a checked invoice figure, and it is not settled.
+																261 container
+																	262 AXListMarker •
+																	263 text David:  finance contact only.
+																264 container
+																	265 AXListMarker •
+																	266 text Finance follow-up:  you owe it, with the invoice reference included, after 12:00 Berlin time. This is a preferred time, not a payment promise. I tracked it as a commitment in the account context, not as a task, since you named two tasks. The invoice reference is recorded as unknown.
+																267 container
+																	268 AXListMarker •
+																	269 text Impressions:  your impressions of Anna, Marta and David are saved as your account, not their words.
+															270 text Tasks that exist now
+															271 content list
+																272 container
+																	273 AXListMarker •
+																	274 text QA bulk translation check , due 6 Oct (new). No earlier copy existed, and the first create attempt was blocked with nothing created.
+																275 container
+																	276 AXListMarker •
+																	277 text QA bulk confirm delivery window , due 7 Oct (new, separate).
+																278 container
+																	279 AXListMarker •
+																	280 text Summary task , due 8 Oct (existing, updated).
+																281 container
+																	282 AXListMarker •
+																	283 text All are attached to the Northstar company. The due dates are in the task text, with the CRM due-date field left empty because you gave no time of day. A re-read shows exactly one of each.
+															284 text Not completed
+															285 content list
+																286 container
+																	287 AXListMarker •
+																	288 text Reassigning the Autumn trial to Alex:  not applied. The Coach connector can't change ownership, so you still own both pursuits. I saved the request as a note only, and no account was moved.
+															289 text Needs your attention
+															290 content list
+																291 container
+																	292 AXListMarker •
+																	293 text Delivery date conflict:  Marta's 9 Oct delivery proposal doesn't match Anna's earlier provisional plan of 120 units for the week of 12 Apr 2027 on the repeat order. I kept both and chose neither. Before the 7 Oct call, check whether 9 Oct is the old Spring order or a different shipment.
+																294 container
+																	295 AXListMarker •
+																	296 text Marta's phone number:  not in CRM, so I left it as a gap. You'll need it for the call.
+													297 toolbar Message actions
+														298 button Copy
+														299 button Read aloud
+														300 toggle button Description: Good response, Value: 0
+														301 toggle button Description: Bad response, Value: 0
+														302 button Retry
+														303 text 1 minute ago
+										304 container
+											305 container
+											306 container
+												307 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
+
+													308 text Write a message…
+												309 pop-up button Add files, connectors, and more
+												310 pop-up button Model: Sonnet 5.5 Medium
+													311 text Sonnet 5.5
+													312 text Medium
+												313 pop-up button Settings
+												314 button Press and hold to record
+												315 button Use voice mode
+													316 image
+										317 link Description: Claude is AI and can make mistakes. Please double-check responses., Value: support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+					318 container
+						319 container Notifications
+	320 close button
+	321 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	322 minimise button
+323 menu bar
+	324 Claude
+	325 File
+	326 Edit
+	327 View
+	328 Go
+	329 Window
+	330 Help
+
+The focused UI element is 4 HTML content Claude, URL: claude.ai/chat/aa3f5b68-946e-43ae-b4a5-0c3609168bbc

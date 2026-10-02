@@ -1,0 +1,265 @@
+Window: "Claude", App: Claude.
+0 standard window Claude, Secondary Actions: Raise
+	1 container Claude
+		2 container
+			3 HTML content file:///Applications/Claude.app/Contents/Resources/app.asar/.vite/renderer/main_window/index.html
+			4 HTML content Verify connection and read assigned account - Claude, URL: claude.ai/chat/34ed62ff-6f37-4715-8790-2c9015d7e358
+				5 container
+					6 container
+						7 container Sidebar
+							8 button Hide sidebar
+							9 button Search
+							10 button Back
+							11 button (disabled) Forward
+							12 Mode
+								13 radio button Description: Chat and Cowork, Value: 1
+								14 radio button Description: Code, Value: 0
+							15 container
+								16 button New
+								17 button Quick task
+								18 container
+									19 button Projects
+								20 container
+									21 button Artifacts
+									22 pop-up button New from a template
+								23 button Scheduled
+								24 button Design
+								25 button Customize
+								26 pop-up button More navigation items
+								27 button Pinned
+								28 button Chats and tasks
+								29 button View all
+								30 pop-up button Filter and group recents
+								31 container
+									32 button Idle Verify connection and read assigned account
+										33 image Idle
+										34 text Verify connection and read assigned account
+									35 pop-up button More options for Verify connection and read assigned account
+								36 container
+									37 button Idle Northstar Pharmacy QA end-of-day update reconciliation
+										38 image Idle
+										39 text Northstar Pharmacy QA end-of-day update reconciliation
+									40 pop-up button More options for Northstar Pharmacy QA end-of-day update reconciliation
+								41 container
+									42 button Idle Northstar QA account update and follow-up tasks
+										43 image Idle
+										44 text Northstar QA account update and follow-up tasks
+									45 pop-up button More options for Northstar QA account update and follow-up tasks
+								46 container
+									47 button Idle Production tools configuration verification
+										48 image Idle
+										49 text Production tools configuration verification
+									50 pop-up button More options for Production tools configuration verification
+								51 container
+									52 button Idle Coach setup configuration
+										53 image Idle
+										54 text Coach setup configuration
+									55 pop-up button More options for Coach setup configuration
+								56 container
+									57 button Idle Coach setup configuration
+										58 image Idle
+										59 text Coach setup configuration
+									60 pop-up button More options for Coach setup configuration
+								61 container
+									62 button Idle Anna's Autumn-trial summary file requirements
+										63 image Idle
+										64 text Anna's Autumn-trial summary file requirements
+									65 pop-up button More options for Anna's Autumn-trial summary file requirements
+								66 container
+									67 button Idle Outstanding balance at QA Northstar Pharmacy
+										68 image Idle
+										69 text Outstanding balance at QA Northstar Pharmacy
+									70 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								71 container
+									72 button Idle Northstar trial and repeat order review
+										73 image Idle
+										74 text Northstar trial and repeat order review
+									75 pop-up button More options for Northstar trial and repeat order review
+								76 container
+									77 button Idle Outstanding balance at QA Northstar Pharmacy
+										78 image Idle
+										79 text Outstanding balance at QA Northstar Pharmacy
+									80 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								81 container
+									82 button Idle Outstanding balance with QA Northstar Pharmacy
+										83 image Idle
+										84 text Outstanding balance with QA Northstar Pharmacy
+									85 pop-up button More options for Outstanding balance with QA Northstar Pharmacy
+								86 container
+									87 button Idle Northstar trial and repeat order tracking update
+										88 image Idle
+										89 text Northstar trial and repeat order tracking update
+									90 pop-up button More options for Northstar trial and repeat order tracking update
+								91 container
+									92 button Idle BAM coach contact and trial dates
+										93 image Idle
+										94 text BAM coach contact and trial dates
+									95 pop-up button More options for BAM coach contact and trial dates
+								96 container
+									97 button Idle Anna at QA Northstar Pharmacy debt
+										98 image Idle
+										99 text Anna at QA Northstar Pharmacy debt
+									100 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								101 container
+									102 button Idle Anna at QA Northstar Pharmacy debt
+										103 image Idle
+										104 text Anna at QA Northstar Pharmacy debt
+									105 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								106 container
+									107 button Idle Anna at QA Northstar Pharmacy debt
+										108 image Idle
+										109 text Anna at QA Northstar Pharmacy debt
+									110 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								111 container
+									112 button Idle Northstar pharmacy coach verification
+										113 image Idle
+										114 text Northstar pharmacy coach verification
+									115 pop-up button More options for Northstar pharmacy coach verification
+								116 container
+									117 button Idle BAM coach screenshot for QA Northstar Pharmacy
+										118 image Idle
+										119 text BAM coach screenshot for QA Northstar Pharmacy
+									120 pop-up button More options for BAM coach screenshot for QA Northstar Pharmacy
+								121 container
+									122 button Idle Coach verification QA documentation
+										123 image Idle
+										124 text Coach verification QA documentation
+									125 pop-up button More options for Coach verification QA documentation
+								126 container
+									127 button Idle Anna's QA Northstar Pharmacy commitment
+										128 image Idle
+										129 text Anna's QA Northstar Pharmacy commitment
+									130 pop-up button More options for Anna's QA Northstar Pharmacy commitment
+								131 button View all
+								132 container
+									133 pop-up button Kirill Kirill JPgrowery
+										134 image Kirill
+										135 text Kirill
+										136 text JPgrowery
+									137 link Description: Get apps and extensions, Value: claude.ai/downloads
+							138 splitter Description: Resize sidebar, Value: 368
+						139 container
+							140 container Primary pane
+								141 container
+									142 container
+										143 button Verify connection and read assigned account, rename chat
+										144 pop-up button More options for Verify connection and read assigned account
+										145 pop-up button Share chat
+									146 container
+										147 text Claude finished the response
+										148 container Chat messages
+											149 text Use the up and down arrow keys to move between messages.
+											150 container
+												151 container Message 1 of 4
+													152 heading You said: @Coach, use production., Value: 2
+														153 text You said: @Coach, use production.
+													154 text @Coach, use production. Set up using my already-enabled tools: verify my own connection and read one assigned account. Do not create or change any records.
+													155 toolbar Message actions
+														156 text 6 minutes ago
+														157 button Retry
+														158 button Edit
+														159 button Copy
+												160 container Message 2 of 4
+													161 container
+														162 heading Value: 2, Claude responded: Your production Coach connection works, and I read one account without creating or changing anything.
+															163 text Claude responded: Your production Coach connection works, and I read one account without creating or changing anything.
+														164 container
+															165 text Used Coach integration, loaded tools
+															166 button Used Coach integration, loaded tools
+														167 text Used Coach integration, loaded tools
+														168 container
+															169 text Your production Coach connection works, and I read one account without creating or changing anything.
+															170 text Connection
+															171 content list
+																172 container
+																	173 AXListMarker •
+																	174 text You are authenticated as
+																	175 link Description: kb@jpgrowery.com, Value: mailto:kb@jpgrowery.com
+																	176 text  (executive role) on the production deployment.
+																177 container
+																	178 AXListMarker •
+																	179 text Your Twenty CRM is configured.
+																180 container
+																	181 AXListMarker •
+																	182 text Email and calendar are both connected with sync enabled. Their last syncs were 05:46 and 05:35 UTC today. That doesn't confirm the mailbox or calendar contents are complete.
+															183 text Account read
+															184 content list
+																185 container
+																	186 AXListMarker •
+																	187 text I read Curtius-Apotheke (Berlin).
+																188 container
+																	189 AXListMarker •
+																	190 text The CRM company record refreshed live. It has no contacts, opportunities, notes or tasks, and no saved Coach context entries yet.
+																191 container
+																	192 AXListMarker •
+																	193 text The company search returned 53 accounts, and the five I listed all belong to the same owner.
+																194 container
+																	195 AXListMarker •
+																	196 text The Coach account search ( search_accounts ) returned nothing, because no accounts have been built up in Business OS yet. I took the account from the CRM read instead.
+															197 text Still open:
+															198 content list
+																199 container
+																	200 AXListMarker •
+																	201 text Permission settings: Business OS can't see your Claude permission settings. Please confirm that Customize → Connectors → Coach → Tool permissions has the internal tools set to Always allow. Then open one fresh chat and run a read to check it no longer prompts.
+																202 container
+																	203 AXListMarker •
+																	204 text Write access: this is unverified. We'll check it with your first real update.
+													205 toolbar Message actions
+														206 button Copy
+														207 button Read aloud
+														208 toggle button Description: Good response, Value: 0
+														209 toggle button Description: Bad response, Value: 0
+														210 button Retry
+														211 text 6 minutes ago
+												212 container Message 3 of 4
+													213 heading You said: All Coach internal tool permissions are already set to Always allow., Value: 2
+														214 text You said: All Coach internal tool permissions are already set to Always allow.
+													215 text All Coach internal tool permissions are already set to Always allow. This is a fresh conversation, and the production account read just ran without an approval prompt. Continue from that verified read; do not change any records.
+													216 toolbar Message actions
+														217 text 2 minutes ago
+														218 button Retry
+														219 button Edit
+														220 button Copy
+												221 container Message 4 of 4
+													222 container
+														223 heading Claude responded: Read preflight has passed., Value: 2
+															224 text Claude responded: Read preflight has passed.
+														225 text Read preflight has passed. With Always allow set, the production Coach read of Curtius-Apotheke ran without an approval prompt, and nothing was changed.
+														226 text Write access is still unverified. We'll check it with your first genuine, harmless update, such as a real note or task on an account. I won't create a test record for it.
+													227 toolbar Message actions
+														228 button Copy
+														229 button Read aloud
+														230 toggle button Description: Good response, Value: 0
+														231 toggle button Description: Bad response, Value: 0
+														232 button Retry
+														233 text 2 minutes ago
+										234 container
+											235 container
+											236 container
+												237 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
+
+													238 text Write a message…
+												239 pop-up button Add files, connectors, and more
+												240 pop-up button Model: Sonnet 5.5 Medium
+													241 text Sonnet 5.5
+													242 text Medium
+												243 pop-up button Settings
+												244 button Press and hold to record
+												245 button Use voice mode
+													246 image
+										247 link Description: Claude is AI and can make mistakes. Please double-check responses., Value: support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+					248 container
+						249 container Notifications
+	250 close button
+	251 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	252 minimise button
+253 menu bar
+	254 Claude
+	255 File
+	256 Edit
+	257 View
+	258 Go
+	259 Window
+	260 Help
+
+The focused UI element is 237 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
