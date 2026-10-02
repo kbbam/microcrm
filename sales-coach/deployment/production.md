@@ -8,7 +8,7 @@ The owner authorized this pilot in the real Cureous Twenty workspace. The coach 
 - Claude connector: https://business-os-production-1193.up.railway.app/coach/mcp
 - Executive source connection: https://business-os-production-1193.up.railway.app/account/twenty/connect
 - Selected CRM interface: https://cureous.twenty.com/
-- Runtime source revision: `b80dec9696ca0b9bbce06f691f94b9baf8b11988`, root `Dockerfile.coach`, locked package manifests.
+- Runtime source revision: `201447d43c07c3a7c06b0d44d184a16b755fce9d`, root `Dockerfile.coach`, locked package manifests.
 - Dedicated Railway project `bam-business-os-production`, service `business-os`, environment `production`; separate Postgres and durable `/var/lib/bam-coach` volume. One replica; service sleep disabled.
 - Executive `kb@jpgrowery.com`: assigned companies/opportunities and independently verified own connected sources. Admin/teamlead `kb@cureous.me`: workspace scope and the executive's retained report. Roles derive from central database grants, never model arguments.
 - Fresh owner account invitations and contexts; no QA passwords, evidence or account memories copied. Setup links and all credentials are stored privately outside Git.
@@ -19,7 +19,7 @@ The final cloud functional proof and public health records are in `../evidence/p
 
 The owner sets the production Business OS password with the private one-time executive link, then connects Claude using the connector URL above and signs in as `kb@jpgrowery.com`. Use the published BAM coach organization skill in a regular conversation. Keep QA and production connectors visibly distinct; select production for this check.
 
-Connect the executive's Google email/calendar in the **real Cureous** Twenty workspace, and complete Business OS's Twenty connection as that same executive. The callback verifies exact email, workspace and member identity and encrypts the user-scoped refresh/access credential. Saved channel IDs alone never prove ownership or present coverage. A source synchronization state or authorization gap must remain visible in relevant answers.
+Connect the executive's Google email/calendar in the **real Cureous** Twenty workspace, and complete Business OS's Twenty connection as that same executive. The callback verifies exact email, workspace and member identity and encrypts the user-scoped refresh/access credential. Recheck on the status page uses the saved encrypted authorization and returns directly with fresh verified source status. It does not repeat Twenty consent. Missing or revoked authorization offers a separate Reconnect action; temporary failure offers retry. Saved channel IDs alone never prove ownership or present coverage. A source synchronization state or authorization gap must remain visible in relevant answers.
 
 Before routine use, complete the single-session tool permission setup in `../claude-skill/permission-preflight.md`, then start a fresh conversation to check persistence. New/changed tools can still prompt; do not claim client approval settings persist until the actual fresh-chat and Android check succeeds. Consequential changes retain Business OS's separate human review regardless of client Always allow preferences. Sending email/calendar writes are absent.
 

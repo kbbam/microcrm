@@ -1,0 +1,15 @@
+{
+  "revision": "201447d43c07c3a7c06b0d44d184a16b755fce9d",
+  "production": {
+    "id": "5235d1a1-b08e-46cd-b737-d94a7ff092f6",
+    "status": "SUCCESS"
+  },
+  "qa": {
+    "id": "07ae5d93-2cca-491c-9534-c1db3839d5fa",
+    "status": "SUCCESS"
+  },
+  "publicVersionMatched": true,
+  "readyz": {
+    "ok": true
+  }
+}

@@ -1,5 +1,7 @@
 # Source connection refinement — 2 October 2026
 
+**Later owner correction:** the repeated-consent recheck recorded below was rejected. Current direct saved-authorization workflow and production proof are in [connection-recheck](../connection-recheck/README.md); this file retains the older appearance/history only.
+
 Owner feedback: open Twenty settings in a focused new tab while retaining this page for recheck; make source status polished and informative.
 
 Runtime `b80dec9696ca0b9bbce06f691f94b9baf8b11988`, production deployment `072695aa-31e6-4ce9-8be0-910eaee508d9`; isolated QA deployment `a2e0b15d-29ed-41e6-af3e-019f571fde10`. Both public `/version` endpoints report this revision; production readiness returns `{"ok":true}`.
