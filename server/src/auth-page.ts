@@ -4,8 +4,13 @@ export function escapeHtml(value: unknown): string {
   return String(value ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
 
-export function authHeaders(res: Response): void {
-  res.set({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" });
+export function authHeaders(res: Response, { oauthFormRedirect = false }: { oauthFormRedirect?: boolean } = {}): void {
+  // Chrome applies the originating form document's policy across redirects.
+  // OAuth forms must return through a provider-validated client callback (and
+  // possibly its native-app handoff). Only these documents omit form-action;
+  // scripts, framing and base URLs remain blocked. Ordinary forms stay local.
+  const formAction = oauthFormRedirect ? "" : " form-action 'self';";
+  res.set({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff", "Content-Security-Policy": `default-src 'none'; style-src 'unsafe-inline';${formAction} base-uri 'none'; frame-ancestors 'none'` });
 }
 
 // Shared with invite acceptance and OAuth: one small, responsive operational surface.

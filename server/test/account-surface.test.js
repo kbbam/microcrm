@@ -27,6 +27,7 @@ test('permanent account page supplies configured endpoint and honest recovery', 
   assert.match(html, /name="viewport"/);
   assert.equal(home.headers.get('cache-control'), 'no-store');
   assert.match(home.headers.get('content-security-policy'), /frame-ancestors 'none'/);
+  assert.match(home.headers.get('content-security-policy'), /form-action 'self'/);
   const help = await (await f.get('/account/help')).text();
   assert.match(help, /ask your Business OS team administrator/);
   assert.doesNotMatch(help, /email has been sent/);

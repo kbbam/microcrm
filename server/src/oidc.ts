@@ -112,6 +112,7 @@ export function registerInteractionRoutes(
     }
 
     if (prompt.name === "login") {
+      authHeaders(res, { oauthFormRedirect: true });
       res.send(
         page("Sign in to Business OS", `
         <p class="muted">Continue connecting your sales coach to Claude.</p>
@@ -128,6 +129,7 @@ export function registerInteractionRoutes(
     }
 
     if (prompt.name === "consent") {
+      authHeaders(res, { oauthFormRedirect: true });
       res.send(
         page("Connect this app?", `
         <p>Allow this app to use Business OS within your team’s account permissions.</p><p class="muted">Keep the connection signed in across conversations. You can disconnect it in Claude’s connector settings.</p>

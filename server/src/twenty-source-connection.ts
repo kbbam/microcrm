@@ -4,6 +4,7 @@ import express from "express";
 import { readFile, open, rename, unlink } from "node:fs/promises";
 import { join, resolve, dirname } from "node:path";
 import type { CoachPrincipal } from "./coach.js";
+import { authHeaders } from "./auth-page.js";
 
 export type TwentyExpectedIdentity = { email: string; workspaceId: string; memberId: string };
 export type TwentySourceChannel = { id: string; handle: string; connectedAccountId: string; isSyncEnabled: boolean; syncedAt: string | null; syncStatus: string; syncStage: string };
@@ -86,7 +87,10 @@ export function createTwentySourceConnectionHandlers(options: Options) {
   const pending = new Map<string, { sessionId: string; principal: CoachPrincipal; expected: TwentyExpectedIdentity; verifier: string; expires: number; tokenUrl: string; revokeUrl: string }>();
   const attempts = new Map<string, { count: number; until: number }>();
   const prune = () => { for (const [k, p] of pending) if (p.expires < now()) pending.delete(k); for (const [k, a] of attempts) if (a.until < now()) attempts.delete(k); };
-  const headers = (res: Response) => res.set({ "Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Content-Type-Options": "nosniff", "X-Frame-Options": "DENY", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'" });
+  const headers = (res: Response, oauthFormRedirect = false) => {
+    authHeaders(res, { oauthFormRedirect });
+    res.set("X-Frame-Options", "DENY");
+  };
   const guards = (req: Request, res: Response, post = false) => {
     headers(res); prune();
     if (req.headers.authorization) throw fail(403, "Open this page in your browser and sign in to connect your own Twenty sources.");
@@ -114,6 +118,7 @@ export function createTwentySourceConnectionHandlers(options: Options) {
   };
   const endpoint = (url: unknown) => { const parsed = new URL(value(url)); if (parsed.origin !== origin || parsed.username || parsed.password || parsed.hash || parsed.search) throw fail(503, "Twenty authorization endpoints did not match the configured workspace."); return parsed.href; };
   const loginPage = (res: Response, loginEmail?: string, error?: string) => {
+    headers(res, true);
     const nonce = randomBytes(32).toString("base64url");
     res.cookie(nonceCookie, nonce, { ...cookieOptions, maxAge: 600_000 });
     page(res, { kind: "login", csrf: nonce, email: loginEmail, error });

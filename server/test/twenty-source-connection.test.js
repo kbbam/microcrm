@@ -41,6 +41,16 @@ async function fixture(t, { retainAuthorization = false } = {}) {
   return {base,req,start,finish,calls,receipt:()=>receipt,savedAuthorization:()=>savedAuthorization,setData:v=>payload=v,setGrant:v=>grant=v,setExpected:v=>expectedGrant=v,advance:()=>time+=600001};
 }
 
+test('source-login allows the provider redirect while ordinary source pages retain local-form restrictions',async t=>{
+  const f=await fixture(t);
+  const login=await f.req('/account/twenty/login');
+  assert.doesNotMatch(login.headers.get('content-security-policy'),/form-action/);
+  assert.match(login.headers.get('content-security-policy'),/default-src 'none'/);
+  assert.match(login.headers.get('content-security-policy'),/frame-ancestors 'none'/);
+  const status=await f.req('/account/twenty/status',{headers:{Cookie:'session=valid'}});
+  assert.match(status.headers.get('content-security-policy'),/form-action 'self'/);
+});
+
 test('receipt verifies exact caller identity and owned-channel foreign keys without copying credentials',()=>{
   const result=verifyTwentySourceReceipt(data(),expected,'2026-10-02T01:00:00Z');
   assert.deepEqual(result.messageChannelIds,[id(6)]);assert.deepEqual(result.calendarChannelIds,[]);
