@@ -103,7 +103,46 @@ export function createGateway({ configRoot, publicUrl, serviceFactory = loadServ
       scoped.enforceRetainedScope = false;
       return { ctx: target, service: scoped };
     };
+    const sourceReadiness = async () => {
+      const setupUrl = `${new URL(publicUrl).origin}/account/twenty/status`;
+      const adapter = service.adapter;
+      if (adapter?.scopeMode !== 'assigned') return { scope: adapter?.scopeMode ?? 'not-configured', status: 'not-verified', setupUrl, meaning: 'CRM configuration does not verify email/calendar availability.' };
+      const registered = { messageChannelCount: adapter.messageChannelIds.length, calendarChannelCount: adapter.calendarChannelIds.length };
+      if (typeof adapter.resolveSourceChannels !== 'function') return { ...registered, status: 'authorization-required', receiptStatus: 'not-authorized', checkedAt: null, setupUrl, meaning: 'Business OS source authorization is not available. This does not establish whether Google is connected or syncing in Twenty.' };
+      try {
+        const live = await adapter.resolveSourceChannels();
+        const summarize = (rows, ids) => {
+          const channels = rows.filter(channel => ids.includes(channel.id));
+          const reported = channels.filter(channel => channel.syncedAt && Number.isFinite(Date.parse(channel.syncedAt)));
+          const status = !channels.length ? 'not-connected' : channels.some(c => c.authFailed) ? 'reconnect-required' : channels.some(c => c.isSyncEnabled !== true) ? 'sync-disabled' : reported.length < channels.length ? 'awaiting-sync' : 'sync-reported';
+          return { status, registeredChannelCount: ids.length, authorizedChannelCount: channels.length,
+            lastSyncedAt: reported.length ? new Date(Math.max(...reported.map(c => Date.parse(c.syncedAt)))).toISOString() : null,
+            channels: channels.map(({ id, authFailed, isSyncEnabled, syncedAt, syncStatus, syncStage }) => ({ id, authFailed, isSyncEnabled, syncedAt, syncStatus, syncStage })) };
+        };
+        const email = summarize(live.messageChannels ?? [], adapter.messageChannelIds), calendar = summarize(live.calendarChannels ?? [], adapter.calendarChannelIds);
+        const connected = email.authorizedChannelCount > 0 && calendar.authorizedChannelCount > 0;
+        const observed = email.status === 'sync-reported' && calendar.status === 'sync-reported';
+        return { messageChannelCount: email.authorizedChannelCount, calendarChannelCount: calendar.authorizedChannelCount,
+          status: connected ? 'connected' : 'source-setup-required', receiptStatus: observed ? 'source-sync-observed' : 'awaiting-source-sync',
+          identityVerified: true, checkedAt: live.checkedAt ?? null, verifiedAt: ctx.sourceConnection?.receipt?.verifiedAt ?? null,
+          email, calendar, setupUrl, contentCoverageVerified: false,
+          meaning: 'Fresh own-source verification. lastSyncedAt is provider-reported sync history; checkedAt is the time of this check. Retained evidence inventory and pending proposals do not determine connection state. Reported sync does not prove current or complete mailbox/calendar contents.' };
+      } catch (error) {
+        const reconnect = ['SOURCE_CONNECTION_REQUIRED', 'SOURCE_OWNERSHIP_REVOKED', 'SOURCE_AUTH_RESPONSE'].includes(error.code);
+        return { ...registered, status: reconnect ? 'authorization-required' : 'verification-unavailable', receiptStatus: 'not-live-verified', checkedAt: null, setupUrl, contentCoverageVerified: false,
+          meaning: reconnect ? 'Saved source authorization is unavailable or no longer matches this executive. Reconnect Business OS sources; do not claim Google itself is disconnected.' : 'Current source verification failed temporarily. Connection/sync state is unknown; retry rather than claiming disconnected or not synced.' };
+      }
+    };
+    const permissionPreflight = {
+      phase: 'permissions-unverified', automaticNextStep: 'Run permission preflight when the executive requests setup, continue setup, or start with setup; do not switch to account work or declare setup complete.',
+      clientSettings: 'Claude Customize > Connectors > Coach (production) > Tool permissions',
+      action: 'Set the existing internal-tools category to Always allow in one pass after reviewing the current tool list. If organization policy blocks it, report that specific block.',
+      capabilities: 'These tools do not send email or write calendars. Consequential CRM changes still require separate Business OS human review.',
+      verification: 'After the user confirms the settings, use a permitted account read and a bounded CRM read without changing customer records. Request one fresh conversation check; retain prompt failures as pending. Use the first genuine harmless update for write verification, not a pretend customer change.',
+      limits: 'Business OS cannot inspect or grant Claude client approval settings. Tool success is not proof all client settings persist. Do not call every mutating tool or invent dry-run arguments to trigger approvals.'
+    };
     const mcp = buildServer(service, { reviewBaseUrl: publicUrl, contextKey: principal.contextKey,
+      sourceReadiness, permissionPreflight,
       actorAuthority: 'authenticated-business-os-access',
       readContext: async (key, operation) => {
         const target = await readContext(key);
@@ -140,17 +179,12 @@ export function createGateway({ configRoot, publicUrl, serviceFactory = loadServ
         try { return json(await run(args)); }
         catch (error) { return { ...json({ error: error.message }), isError: true }; }
       }));
-    tool('get_coach_instructions', 'Retrieve the current centrally maintained coach behavior at the start of work. The response version identifies exactly which instructions were read.', {}, async () => {
+    tool('get_coach_instructions', 'Retrieve the current centrally maintained coach behavior at the start of work. The response version identifies exactly which instructions were read. Includes fresh source readiness and the required next permission-preflight step for setup; never infer connectivity from retained evidence inventory.', {}, async () => {
       const instructions = await readFile(instructionsPath, 'utf8');
       return { version: createHash('sha256').update(instructions).digest('hex'), instructions,
         identity: service.actor, crmConfigured: !!service.adapter, authority: 'authenticated-business-os-access',
         deployment: { publicUrl: new URL(publicUrl).origin, crmOrigin: service.adapter?.baseUrl ?? null, contextKey: principal.contextKey },
-        sourceConfiguration: service.adapter?.scopeMode === 'assigned' ? {
-          messageChannelCount: service.adapter.messageChannelIds.length, calendarChannelCount: service.adapter.calendarChannelIds.length,
-          receiptStatus: ctx.sourceConnection?.status ?? 'not-authorized', verifiedAt: ctx.sourceConnection?.receipt?.verifiedAt ?? null,
-          setupUrl: `${new URL(publicUrl).origin}/account/twenty/status`,
-          meaning: 'Configuration and last receipt only. Live source ownership and content coverage must be checked before claiming email or calendar results.'
-        } : { scope: service.adapter?.scopeMode ?? 'not-configured', meaning: 'Approved CRM scope; a connector configuration does not prove source availability.' },
+        sourceConfiguration: await sourceReadiness(), permissionPreflight,
         runtime: 'Claude performs this conversation; these tools do not execute a hosted model or unattended worker' };
     });
     tool('prepare_evidence_upload', 'Request a short-lived address for one original file. Use code to PUT the unchanged sandbox file bytes to uploadUrl, with contentType. No base64 argument or second user upload. Check the receipt before claiming preservation.', {

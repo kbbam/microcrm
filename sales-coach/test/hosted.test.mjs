@@ -229,3 +229,55 @@ test('mapped leader context refresh joins the executive write queue through the 
   await executiveWrite;
   assert.equal(executiveWriteStarted, true);
 });
+
+async function sourceFixture(t) {
+  let calls = 0, failure, syncedAt = '2026-10-02T03:28:00Z';
+  const { client } = await fixture(t, {
+    configs: { pilot: { contextDir: './context', executiveId: 'exec@example.test', sourceConnection: { status: 'awaiting-source-sync', receipt: { verifiedAt: '2026-10-02T03:00:00Z' } } } },
+    serviceFactory: async (path, actor) => {
+      const config = JSON.parse(await readFile(path, 'utf8'));
+      const adapter = { scopeMode: 'assigned', baseUrl: 'https://crm.example.test', messageChannelIds: ['mail'], calendarChannelIds: ['calendar'],
+        resolveSourceChannels: async () => {
+          calls++; if (failure) throw Object.assign(new Error('private-provider-detail'), { code: failure });
+          const channel = id => ({ id, authFailed: false, isSyncEnabled: true, syncedAt, syncStatus: 'FETCH_PENDING', syncStage: 'MESSAGES' });
+          return { checkedAt: '2026-10-02T04:00:00Z', messageChannels: [channel('mail')], calendarChannels: [channel('calendar')] };
+        } };
+      return new CoachService({ actor, adapter, contextDir: resolve(dirname(path), config.contextDir) }).init();
+    }
+  });
+  return { exec: await client('exec'), calls: () => calls, fail: code => failure = code, setSync: value => syncedAt = value };
+}
+
+test('hosted status and instructions verify connected channels independently of empty retained evidence and stale receipt', async t => {
+  const f = await sourceFixture(t);
+  const instructions = unpack(await f.exec.callTool({ name: 'get_coach_instructions', arguments: {} }));
+  const status = unpack(await f.exec.callTool({ name: 'coach_status', arguments: {} }));
+  assert.deepEqual(status.sources, []);
+  assert.equal(status.sourceConfiguration.status, 'connected');
+  assert.equal(status.sourceConfiguration.receiptStatus, 'source-sync-observed');
+  assert.equal(status.sourceConfiguration.email.lastSyncedAt, '2026-10-02T03:28:00.000Z');
+  assert.equal(status.sourceConfiguration.verifiedAt, '2026-10-02T03:00:00Z');
+  assert.equal(status.sourceConfiguration.checkedAt, '2026-10-02T04:00:00Z');
+  assert.equal(status.sourceConfiguration.contentCoverageVerified, false);
+  assert.deepEqual(status.sourceConfiguration, instructions.sourceConfiguration);
+  assert.equal(f.calls(), 2, 'Each explicit setup/status check is live');
+  assert.equal(status.permissionPreflight.phase, 'permissions-unverified');
+  assert.deepEqual(status.permissionPreflight, instructions.permissionPreflight);
+});
+
+test('setup readiness reports unknown on provider failure, required authorization on revocation, and pending sync separately from connected', async t => {
+  const f = await sourceFixture(t);
+  f.fail('SOURCE_OWNERSHIP_UNAVAILABLE');
+  const unavailable = unpack(await f.exec.callTool({ name: 'coach_status', arguments: {} }));
+  assert.equal(unavailable.sourceConfiguration.status, 'verification-unavailable');
+  assert.equal(unavailable.sourceConfiguration.checkedAt, null);
+  assert.doesNotMatch(JSON.stringify(unavailable), /private-provider-detail/);
+  f.fail('SOURCE_OWNERSHIP_REVOKED');
+  const revoked = unpack(await f.exec.callTool({ name: 'get_coach_instructions', arguments: {} }));
+  assert.equal(revoked.sourceConfiguration.status, 'authorization-required');
+  f.fail(undefined); f.setSync(null);
+  const pending = unpack(await f.exec.callTool({ name: 'coach_status', arguments: {} }));
+  assert.equal(pending.sourceConfiguration.status, 'connected');
+  assert.equal(pending.sourceConfiguration.email.status, 'awaiting-sync');
+  assert.equal(pending.sourceConfiguration.email.lastSyncedAt, null);
+});

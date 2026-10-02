@@ -26,3 +26,7 @@ Sources checked 1 October 2026 UTC:
 ## Production setup observation — 2 October 2026
 
 The permanent production connector named Coach visibly shows Connected in Claude Desktop after the OAuth redirect correction. Its Other tools category contains fifteen internal tools and exposes a single blanket permission menu. Every tool initially showed Needs approval. The one-pass production change was presented to the owner for required action-time confirmation; it has not yet been applied or proved in a fresh conversation. This is distinct from the earlier isolated QA approvals.
+
+## Executable conversation continuation — owner correction 2 October 2026
+
+The central skill and get_coach_instructions response now require the coach to start this protocol immediately on setup/continue-setup requests, before offering account work. coach_status returns the same fresh source readiness separately from retained evidence. A pending client-permission state must not be labeled setup complete. The protocol uses the client's actual category-wide setting and safe reads; it cannot auto-grant client permissions. The user confirms settings, then the coach verifies reads and requests one fresh-chat check, retaining genuine-write and device verification as distinct evidence. Earlier documentation alone did not cause Claude to run this step.
