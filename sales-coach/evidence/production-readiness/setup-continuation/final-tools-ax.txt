@@ -1,0 +1,230 @@
+Window: "Claude", App: Claude.
+0 standard window Claude, Secondary Actions: Raise
+	1 container Claude
+		2 container
+			3 HTML content file:///Applications/Claude.app/Contents/Resources/app.asar/.vite/renderer/main_window/index.html
+			4 HTML content Production tools configuration verification - Claude, URL: claude.ai/chat/ac8ae671-2a9f-456d-9516-54f34d47f756
+				5 container
+					6 container
+						7 container Sidebar
+							8 button Hide sidebar
+							9 button Search
+							10 button Back
+							11 button (disabled) Forward
+							12 Mode
+								13 radio button Description: Chat and Cowork, Value: 1
+								14 radio button Description: Code, Value: 0
+							15 container
+								16 button New
+								17 button Quick task
+								18 container
+									19 button Projects
+								20 container
+									21 button Artifacts
+									22 pop-up button New from a template
+								23 button Scheduled
+								24 button Design
+								25 button Customize
+								26 pop-up button More navigation items
+								27 button Pinned
+								28 button Chats and tasks
+								29 button View all
+								30 pop-up button Filter and group recents
+								31 container
+									32 button Idle Production tools configuration verification
+										33 image Idle
+										34 text Production tools configuration verification
+									35 pop-up button More options for Production tools configuration verification
+								36 container
+									37 button Idle Coach setup configuration
+										38 image Idle
+										39 text Coach setup configuration
+									40 pop-up button More options for Coach setup configuration
+								41 container
+									42 button Idle Coach setup configuration
+										43 image Idle
+										44 text Coach setup configuration
+									45 pop-up button More options for Coach setup configuration
+								46 container
+									47 button Idle Anna's Autumn-trial summary file requirements
+										48 image Idle
+										49 text Anna's Autumn-trial summary file requirements
+									50 pop-up button More options for Anna's Autumn-trial summary file requirements
+								51 container
+									52 button Idle Outstanding balance at QA Northstar Pharmacy
+										53 image Idle
+										54 text Outstanding balance at QA Northstar Pharmacy
+									55 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								56 container
+									57 button Idle Northstar trial and repeat order review
+										58 image Idle
+										59 text Northstar trial and repeat order review
+									60 pop-up button More options for Northstar trial and repeat order review
+								61 container
+									62 button Idle Outstanding balance at QA Northstar Pharmacy
+										63 image Idle
+										64 text Outstanding balance at QA Northstar Pharmacy
+									65 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								66 container
+									67 button Idle Outstanding balance with QA Northstar Pharmacy
+										68 image Idle
+										69 text Outstanding balance with QA Northstar Pharmacy
+									70 pop-up button More options for Outstanding balance with QA Northstar Pharmacy
+								71 container
+									72 button Idle Northstar trial and repeat order tracking update
+										73 image Idle
+										74 text Northstar trial and repeat order tracking update
+									75 pop-up button More options for Northstar trial and repeat order tracking update
+								76 container
+									77 button Idle BAM coach contact and trial dates
+										78 image Idle
+										79 text BAM coach contact and trial dates
+									80 pop-up button More options for BAM coach contact and trial dates
+								81 container
+									82 button Idle Anna at QA Northstar Pharmacy debt
+										83 image Idle
+										84 text Anna at QA Northstar Pharmacy debt
+									85 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								86 container
+									87 button Idle Anna at QA Northstar Pharmacy debt
+										88 image Idle
+										89 text Anna at QA Northstar Pharmacy debt
+									90 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								91 container
+									92 button Idle Anna at QA Northstar Pharmacy debt
+										93 image Idle
+										94 text Anna at QA Northstar Pharmacy debt
+									95 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								96 container
+									97 button Idle Northstar pharmacy coach verification
+										98 image Idle
+										99 text Northstar pharmacy coach verification
+									100 pop-up button More options for Northstar pharmacy coach verification
+								101 container
+									102 button Idle BAM coach screenshot for QA Northstar Pharmacy
+										103 image Idle
+										104 text BAM coach screenshot for QA Northstar Pharmacy
+									105 pop-up button More options for BAM coach screenshot for QA Northstar Pharmacy
+								106 container
+									107 button Idle Coach verification QA documentation
+										108 image Idle
+										109 text Coach verification QA documentation
+									110 pop-up button More options for Coach verification QA documentation
+								111 container
+									112 button Idle Anna's QA Northstar Pharmacy commitment
+										113 image Idle
+										114 text Anna's QA Northstar Pharmacy commitment
+									115 pop-up button More options for Anna's QA Northstar Pharmacy commitment
+								116 container
+									117 button Idle HTTPS file upload test with integrity verification
+										118 image Idle
+										119 text HTTPS file upload test with integrity verification
+									120 pop-up button More options for HTTPS file upload test with integrity verification
+								121 container
+									122 button Idle Preserving file integrity in Google Drive
+										123 image Idle
+										124 text Preserving file integrity in Google Drive
+									125 pop-up button More options for Preserving file integrity in Google Drive
+								126 container
+									127 button Idle Mobile-friendly PDF conversion
+										128 image Idle
+										129 text Mobile-friendly PDF conversion
+									130 pop-up button More options for Mobile-friendly PDF conversion
+								131 button View all
+								132 container
+									133 pop-up button Kirill Kirill JPgrowery
+										134 image Kirill
+										135 text Kirill
+										136 text JPgrowery
+									137 link Description: Get apps and extensions, Value: claude.ai/downloads
+							138 splitter Description: Resize sidebar, Value: 368
+						139 container
+							140 container Primary pane
+								141 container
+									142 container
+										143 button Production tools configuration verification, rename chat
+										144 pop-up button More options for Production tools configuration verification
+										145 pop-up button Share chat
+									146 container
+										147 text Claude finished the response
+										148 container Chat messages
+											149 text Use the up and down arrow keys to move between messages.
+											150 container
+												151 container Message 1 of 2
+													152 heading You said: @Coach continue setup., Value: 2
+														153 text You said: @Coach continue setup.
+													154 text @Coach continue setup. All 15 production tools are already set to Always allow; this is the fresh-conversation check.
+													155 toolbar Message actions
+														156 text 1 minute ago
+														157 button Retry
+														158 button Edit
+														159 button Copy
+												160 container Message 2 of 2
+													161 container
+														162 heading Claude responded: Read preflight passed in this fresh conversation., Value: 2
+															163 text Claude responded: Read preflight passed in this fresh conversation.
+														164 container
+															165 text Used Coach integration, loaded tools
+															166 button Used Coach integration, loaded tools
+														167 text Used Coach integration, loaded tools
+														168 container
+															169 text Verifying setup permissions before proceeding with the tools.
+															170 container Coach coach_status get_coach_instructions
+																171 container
+																	172 text Searched available tools Coach coach_status get_coach_instructions
+																173 button Searched available tools Coach coach_status get_coach_instructions
+															174 container Get coach instructions
+																175 text Get coach instructions
+																176 button Get coach instructions
+															177 container
+																178 text Response
+																179 text {"version":"de8a208b4971412cde4f3d959d5ddecb6904b0afe0d653b16caf7a415ec9cbf6","instructions":"---\nname: sales-executive-coach\ndescription: Help the pilot sales executive reconstruct account context, prepare and capture sales work, maintain Twenty CRM, and provide source-linked coaching observations to the authorized team leader. External action stays with the executive.\n---\n\n# Sales executive coach\n\nHelp one existing executive do useful sales work. Account relationships are the unit of continuity; op
+															180 container Search accounts
+																181 text Search accounts
+																182 button Search accounts
+															183 container Coach crm_read
+																184 container
+																	185 text Searched available tools Coach crm_read
+																186 button Searched available tools Coach crm_read
+															187 container Crm read
+																188 text Crm read
+																189 button Crm read
+														190 container
+															191 text Read preflight passed in this fresh conversation. Account discovery and a bounded CRM read (5 of 53 companies) ran without any permission prompt. Email and calendar sync are connected and reporting, but I haven't verified their current contents. Write access and other devices are still unverified. Next setup action: when you have a genuine, harmless update (a real note or task), tell me and I'll use it to check the write path.
+													192 toolbar Message actions
+														193 button Copy
+														194 button Read aloud
+														195 toggle button Description: Good response, Value: 0
+														196 toggle button Description: Bad response, Value: 0
+														197 button Retry
+														198 text 1 minute ago
+										199 container
+											200 container
+											201 container
+												202 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
+
+													203 text Write a message…
+												204 pop-up button Add files, connectors, and more
+												205 pop-up button Model: Sonnet 5.5 Medium
+													206 text Sonnet 5.5
+													207 text Medium
+												208 pop-up button Settings
+												209 button Press and hold to record
+												210 button Use voice mode
+													211 image
+										212 link Description: Claude is AI and can make mistakes. Please double-check responses., Value: support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+					213 container
+						214 container Notifications
+	215 close button
+	216 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	217 minimise button
+218 menu bar
+	219 Claude
+	220 File
+	221 Edit
+	222 View
+	223 Go
+	224 Window
+	225 Help
+
+The focused UI element is 176 button Get coach instructions

@@ -1,5 +1,7 @@
 # Production proof — 2 October 2026, Asia/Bangkok
 
+Current runtime is `42b0d10f5ec4f780408040a7022dc1535ccbd254`. The historical sections below retain earlier gates and corrections; latest setup/status proof is in [setup continuation](setup-continuation/README.md).
+
 Runtime revision `d8a355bbf3ac8151a3eae196ff1186f1a5b1a9ce` is deployed at https://business-os-production-1193.up.railway.app/ against https://cureous.twenty.com/. Final restart deployment `5b17a946-1ac3-4b5b-962e-0ec161c3f593` succeeded with the same tested image. QA retains a separate deployment, database, contexts and CRM workspace.
 
 The owner authorized real production and asked for continued overnight work, then explicitly deferred physical Android acceptance until tomorrow. This proof distinguishes the delivered service from owner activation; it does not claim real inbox coverage or physical-phone acceptance.
@@ -39,3 +41,7 @@ The owner has now completed real Cureous source authorization. Actual production
 ## Recheck correction after owner rejection — 2 October 2026
 
 The prior repeat-consent path was incorrectly treated as acceptable. Runtime `201447d43c07c3a7c06b0d44d184a16b755fce9d` deployed production `5235d1a1-b08e-46cd-b737-d94a7ff092f6` and QA `07ae5d93-2cca-491c-9534-c1db3839d5fa` corrects it. Actual executive clicks at desktop and 390px return directly to source status with fresh Last checked, no authorization page; reload preserves the receipt. Saved encrypted user authorization, automatic rotation and live ownership verification serve this check. Reconnect is explicit only when saved source authorization is missing/revoked; transient provider failures offer retry. Expired central sign-in preserves recheck intent. 50 server/104 coach tests pass; fresh installed visual review ship. [Correction proof](../../../.impeccable/review/connection-recheck/README.md) supersedes the older repeated-consent acceptance. Other pilot gates remain open.
+
+## Claude setup/status correction — 2 October 2026
+
+Runtime `42b0d10f5ec4f780408040a7022dc1535ccbd254` deployed in production (`db280e26-abf8-4a9c-9d5c-ebf807c2023a`) and QA (`5d4bcf25-ed91-47c2-a39b-7f45ba8a2126`). Empty retained evidence inventory no longer stands in for channel connectivity: status and instructions freshly verify own provider channels and distinguish reported sync dates from receipt/check time. Central instructions now run setup's next permission pass and safe read verification, rather than switching to account work. Actual production client settings already show all 15 tools Always allow; nothing was changed. Fresh-chat instruction fingerprint matched the final skill, and account/CRM reads ran without prompts. This supersedes the prior pending production read-permission claims, while preserving unverified write-tool/device/content coverage. 106 coach tests pass. [Detailed actual-chat proof](setup-continuation/README.md).

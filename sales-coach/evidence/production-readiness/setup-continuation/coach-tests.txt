@@ -1,0 +1,646 @@
+TAP version 13
+# Subtest: rich provenance, correction history and terminal opportunity survive repeated input and restart
+ok 1 - rich provenance, correction history and terminal opportunity survive repeated input and restart
+  ---
+  duration_ms: 88.356916
+  type: 'test'
+  ...
+# Subtest: human CRM changes refresh operational values without flattening original social and objection context
+ok 2 - human CRM changes refresh operational values without flattening original social and objection context
+  ---
+  duration_ms: 46.323958
+  type: 'test'
+  ...
+# Subtest: ordinary writes auto apply, consequential proposals require trusted human confirmation and repeated proposal is idempotent
+ok 3 - ordinary writes auto apply, consequential proposals require trusted human confirmation and repeated proposal is idempotent
+  ---
+  duration_ms: 56.638459
+  type: 'test'
+  ...
+# Subtest: uncertain patch is reconciled after restart rather than repeated against a changed revision
+ok 4 - uncertain patch is reconciled after restart rather than repeated against a changed revision
+  ---
+  duration_ms: 14.928083
+  type: 'test'
+  ...
+# Subtest: successful retry clears resolved setup failure without creating a duplicate projection
+ok 5 - successful retry clears resolved setup failure without creating a duplicate projection
+  ---
+  duration_ms: 30.420625
+  type: 'test'
+  ...
+# Subtest: full leader report includes executive account, teachable moment and cross-functional signal, unrelated role denied
+ok 6 - full leader report includes executive account, teachable moment and cross-functional signal, unrelated role denied
+  ---
+  duration_ms: 8.340084
+  type: 'test'
+  ...
+# Subtest: transcription and original file metadata remain linked through deferred retrieval and corrections
+ok 7 - transcription and original file metadata remain linked through deferred retrieval and corrections
+  ---
+  duration_ms: 6.294292
+  type: 'test'
+  ...
+# Subtest: a shared thread supports passage-level many-to-many pursuits, account context and unresolved association history
+ok 8 - a shared thread supports passage-level many-to-many pursuits, account context and unresolved association history
+  ---
+  duration_ms: 10.63225
+  type: 'test'
+  ...
+# Subtest: routine working context returns current interpretations and fresh CRM while full source/history remain retrievable
+ok 9 - routine working context returns current interpretations and fresh CRM while full source/history remain retrievable
+  ---
+  duration_ms: 33.047959
+  type: 'test'
+  ...
+# Subtest: independent CRM refreshes run together, failures remain explicit and sequential persistence keeps every result
+ok 10 - independent CRM refreshes run together, failures remain explicit and sequential persistence keeps every result
+  ---
+  duration_ms: 10.359333
+  type: 'test'
+  ...
+# Subtest: an empty page with additional records cannot claim a fresh account or erase prior CRM context
+ok 11 - an empty page with additional records cannot claim a fresh account or erase prior CRM context
+  ---
+  duration_ms: 4.300375
+  type: 'test'
+  ...
+# Subtest: cold retained account ID resolves by current company name and follows human renames without replacing explicit titles
+ok 12 - cold retained account ID resolves by current company name and follows human renames without replacing explicit titles
+  ---
+  duration_ms: 7.564208
+  type: 'test'
+  ...
+# Subtest: typed capture derives stable provenance scoped to account and actor without inventing an event date
+ok 13 - typed capture derives stable provenance scoped to account and actor without inventing an event date
+  ---
+  duration_ms: 7.873417
+  type: 'test'
+  ...
+# Subtest: targeted thread retrieval joins paginated messages and participants without broadening discovery scope
+ok 14 - targeted thread retrieval joins paginated messages and participants without broadening discovery scope
+  ---
+  duration_ms: 1.2795
+  type: 'test'
+  ...
+# Subtest: ambiguous, partial or unauthorized discovery cannot expand into thread reads
+ok 15 - ambiguous, partial or unauthorized discovery cannot expand into thread reads
+  ---
+  duration_ms: 3.056875
+  type: 'test'
+  ...
+# Subtest: thread page cap and provider failure never claim a complete conversation
+ok 16 - thread page cap and provider failure never claim a complete conversation
+  ---
+  duration_ms: 1.757417
+  type: 'test'
+  ...
+# Subtest: one MCP thread call retains exact message and participant records with reusable evidence IDs
+ok 17 - one MCP thread call retains exact message and participant records with reusable evidence IDs
+  ---
+  duration_ms: 17.758458
+  type: 'test'
+  ...
+# Subtest: incremental typed corrections preserve prior provenance and replaying old input cannot revert the latest interpretation
+ok 18 - incremental typed corrections preserve prior provenance and replaying old input cannot revert the latest interpretation
+  ---
+  duration_ms: 18.011083
+  type: 'test'
+  ...
+# Subtest: retained account and source access revokes immediately across MCP reads, captures and pending proposals
+ok 19 - retained account and source access revokes immediately across MCP reads, captures and pending proposals
+  ---
+  duration_ms: 24.348042
+  type: 'test'
+  ...
+# Subtest: source authorization covers historical links, actor-only evidence and provider sources without context links
+ok 20 - source authorization covers historical links, actor-only evidence and provider sources without context links
+  ---
+  duration_ms: 12.90775
+  type: 'test'
+  ...
+# Subtest: retained scope defaults to a fresh adapter company check and never falls back to cached context
+ok 21 - retained scope defaults to a fresh adapter company check and never falls back to cached context
+  ---
+  duration_ms: 10.100542
+  type: 'test'
+  ...
+# Subtest: one tool operation checks shared account authority once, and the next tool sees revocation
+ok 22 - one tool operation checks shared account authority once, and the next tool sees revocation
+  ---
+  duration_ms: 23.225167
+  type: 'test'
+  ...
+# Subtest: source metadata reassociation retains earlier account authority even without account context entries
+ok 23 - source metadata reassociation retains earlier account authority even without account context entries
+  ---
+  duration_ms: 6.086917
+  type: 'test'
+  ...
+# Subtest: pending high-consequence genuinely new company stays visible in coach status while unassigned existing accounts remain denied
+ok 24 - pending high-consequence genuinely new company stays visible in coach status while unassigned existing accounts remain denied
+  ---
+  duration_ms: 5.673042
+  type: 'test'
+  ...
+# Subtest: expired address renews the same evidence after restart without another user upload
+ok 25 - expired address renews the same evidence after restart without another user upload
+  ---
+  duration_ms: 102.881208
+  type: 'test'
+  ...
+# Subtest: real HTTP streams original bytes; atomic original survives restart; identical receipt retries
+ok 26 - real HTTP streams original bytes; atomic original survives restart; identical receipt retries
+  ---
+  duration_ms: 85.440917
+  type: 'test'
+  ...
+# Subtest: checksum and short-size failures never publish evidence and capability can retry
+ok 27 - checksum and short-size failures never publish evidence and capability can retry
+  ---
+  duration_ms: 79.161
+  type: 'test'
+  ...
+# Subtest: expired capability denied after restart, unknown capability denied, methods restricted
+ok 28 - expired capability denied after restart, unknown capability denied, methods restricted
+  ---
+  duration_ms: 20.993916
+  type: 'test'
+  ...
+# Subtest: chunked over-limit bodies cannot create original
+ok 29 - chunked over-limit bodies cannot create original
+  ---
+  duration_ms: 19.228917
+  type: 'test'
+  ...
+# Subtest: identical bytes submitted twice preserve distinct evidence occurrences; retrieval detects corruption
+ok 30 - identical bytes submitted twice preserve distinct evidence occurrences; retrieval detects corruption
+  ---
+  duration_ms: 38.296292
+  type: 'test'
+  ...
+# Subtest: restart recovers interrupted lock and contextual route remains capability scoped
+ok 31 - restart recovers interrupted lock and contextual route remains capability scoped
+  ---
+  duration_ms: 49.301625
+  type: 'test'
+  ...
+# Subtest: authorized short-lived download preserves exact bytes, supports retry, rejects other actors and expires
+ok 32 - authorized short-lived download preserves exact bytes, supports retry, rejects other actors and expires
+  ---
+  duration_ms: 38.389875
+  type: 'test'
+  ...
+# Subtest: download integrity failure hides local paths and never returns damaged original
+ok 33 - download integrity failure hides local paths and never returns damaged original
+  ---
+  duration_ms: 27.775458
+  type: 'test'
+  ...
+# Subtest: current account revocation blocks hosted evidence metadata, renewal, downloads and authenticated original bytes
+ok 34 - current account revocation blocks hosted evidence metadata, renewal, downloads and authenticated original bytes
+  ---
+  duration_ms: 221.55175
+  type: 'test'
+  ...
+# Subtest: source-only evidence obeys source revocation even without an evidence accountId
+ok 35 - source-only evidence obeys source revocation even without an evidence accountId
+  ---
+  duration_ms: 122.270708
+  type: 'test'
+  ...
+# Subtest: separate stores expose configured executive report and originals to the leader without executive cross-context routing
+ok 36 - separate stores expose configured executive report and originals to the leader without executive cross-context routing
+  ---
+  duration_ms: 157.037125
+  type: 'test'
+  ...
+# Subtest: issued evidence capabilities recheck central account enablement, role and context grants
+ok 37 - issued evidence capabilities recheck central account enablement, role and context grants
+  ---
+  duration_ms: 50.588958
+  type: 'test'
+  ...
+# Subtest: queued HTTP tools recheck central disablement, role and context changes before retaining anything
+ok 38 - queued HTTP tools recheck central disablement, role and context changes before retaining anything
+  ---
+  duration_ms: 22.436459
+  type: 'test'
+  ...
+# Subtest: hosted HTTP workflow preserves one file, links transcription and overlapping pursuits, reloads context and enforces retrieval identity
+ok 39 - hosted HTTP workflow preserves one file, links transcription and overlapping pursuits, reloads context and enforces retrieval identity
+  ---
+  duration_ms: 319.775875
+  type: 'test'
+  ...
+# Subtest: existing conversation retrieves changed central instructions with a new version
+ok 40 - existing conversation retrieves changed central instructions with a new version
+  ---
+  duration_ms: 21.231458
+  type: 'test'
+  ...
+# Subtest: consequential change exposes a human review link and no agent approval tool
+ok 41 - consequential change exposes a human review link and no agent approval tool
+  ---
+  duration_ms: 38.976
+  type: 'test'
+  ...
+# Subtest: gateway refuses path traversal and unrecognized role instead of granting config actor
+ok 42 - gateway refuses path traversal and unrecognized role instead of granting config actor
+  ---
+  duration_ms: 2.16025
+  type: 'test'
+  ...
+# Subtest: one typed context call binds exact executive words to interpretations without granting file or CRM write authority
+ok 43 - one typed context call binds exact executive words to interpretations without granting file or CRM write authority
+  ---
+  duration_ms: 39.392542
+  type: 'test'
+  ...
+# Subtest: configuration reload keeps queued old and fresh actor writes on the same context queue
+ok 44 - configuration reload keeps queued old and fresh actor writes on the same context queue
+  ---
+  duration_ms: 5.222375
+  type: 'test'
+  ...
+# Subtest: mapped leader context refresh joins the executive write queue through the real HTTP tool
+ok 45 - mapped leader context refresh joins the executive write queue through the real HTTP tool
+  ---
+  duration_ms: 19.249583
+  type: 'test'
+  ...
+# Subtest: hosted status and instructions verify connected channels independently of empty retained evidence and stale receipt
+ok 46 - hosted status and instructions verify connected channels independently of empty retained evidence and stale receipt
+  ---
+  duration_ms: 24.162667
+  type: 'test'
+  ...
+# Subtest: setup readiness reports unknown on provider failure, required authorization on revocation, and pending sync separately from connected
+ok 47 - setup readiness reports unknown on provider failure, required authorization on revocation, and pending sync separately from connected
+  ---
+  duration_ms: 21.438584
+  type: 'test'
+  ...
+# Subtest: actual child completion persists log, summary and original source for later restart
+ok 48 - actual child completion persists log, summary and original source for later restart
+  ---
+  duration_ms: 82.535
+  type: 'test'
+  ...
+# Subtest: actual failing child retains failure detail and can run another durable attempt
+ok 49 - actual failing child retains failure detail and can run another durable attempt
+  ---
+  duration_ms: 132.15825
+  type: 'test'
+  ...
+# Subtest: lost worker is reported interrupted rather than silently completed
+ok 50 - lost worker is reported interrupted rather than silently completed
+  ---
+  duration_ms: 21.754708
+  type: 'test'
+  ...
+# Subtest: different trusted actor cannot inspect another actor job
+ok 51 - different trusted actor cannot inspect another actor job
+  ---
+  duration_ms: 23.979958
+  type: 'test'
+  ...
+# Subtest: cancel does not signal a live PID without the matching worker ownership witness
+ok 52 - cancel does not signal a live PID without the matching worker ownership witness
+  ---
+  duration_ms: 34.356333
+  type: 'test'
+  ...
+# Subtest: cancel signals only the live process group with its matching owned worker witness
+ok 53 - cancel signals only the live process group with its matching owned worker witness
+  ---
+  duration_ms: 18.456667
+  type: 'test'
+  ...
+# Subtest: runtime retains inference model identity while removing built-in coding tool exposure
+ok 54 - runtime retains inference model identity while removing built-in coding tool exposure
+  ---
+  duration_ms: 0.742375
+  type: 'test'
+  ...
+# Subtest: only one active native process owns a durable context; a dead owner is recoverable
+ok 55 - only one active native process owns a durable context; a dead owner is recoverable
+  ---
+  duration_ms: 39.155083
+  type: 'test'
+  ...
+# Subtest: a different live OS process excludes concurrent native and human CLI work
+ok 56 - a different live OS process excludes concurrent native and human CLI work
+  ---
+  duration_ms: 88.092709
+  type: 'test'
+  ...
+# Subtest: launch mode enforces the host-configured coach role independently of CRM credentials
+ok 57 - launch mode enforces the host-configured coach role independently of CRM credentials
+  ---
+  duration_ms: 0.379542
+  type: 'test'
+  ...
+# Subtest: unrelated connector/API credentials and runtime overrides are not inherited
+ok 58 - unrelated connector/API credentials and runtime overrides are not inherited
+  ---
+  duration_ms: 0.265792
+  type: 'test'
+  ...
+# Subtest: invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+ok 59 - invocation isolates config and tools, binds trusted config, and exposes no confirmation tool
+  ---
+  duration_ms: 0.841417
+  type: 'test'
+  ...
+# Subtest: add-missing preserves every existing option property and default, including a seeded pursuit stage
+ok 60 - add-missing preserves every existing option property and default, including a seeded pursuit stage
+  ---
+  duration_ms: 3.69825
+  type: 'test'
+  ...
+# Subtest: replacement plan is separate; additive plan idempotently leaves compatible metadata unchanged
+ok 61 - replacement plan is separate; additive plan idempotently leaves compatible metadata unchanged
+  ---
+  duration_ms: 1.094375
+  type: 'test'
+  ...
+# Subtest: assigned portfolio distinguishes account ownership, opportunity ownership and supporting contacts
+ok 62 - assigned portfolio distinguishes account ownership, opportunity ownership and supporting contacts
+  ---
+  duration_ms: 7.122375
+  type: 'test'
+  ...
+# Subtest: empty assignment and relation sets return authorized zero without invalid provider in filters
+ok 63 - empty assignment and relation sets return authorized zero without invalid provider in filters
+  ---
+  duration_ms: 2.339083
+  type: 'test'
+  ...
+# Subtest: own connected sources are separate from assigned accounts and never include another mailbox
+ok 64 - own connected sources are separate from assigned accounts and never include another mailbox
+  ---
+  duration_ms: 1.549458
+  type: 'test'
+  ...
+# Subtest: source channel discovery cannot turn incomplete ownership into complete coverage
+ok 65 - source channel discovery cannot turn incomplete ownership into complete coverage
+  ---
+  duration_ms: 123.493958
+  type: 'test'
+  ...
+# Subtest: creation injects trusted executive assignment and preserves retry identity
+ok 66 - creation injects trusted executive assignment and preserves retry identity
+  ---
+  duration_ms: 4.051958
+  type: 'test'
+  ...
+# Subtest: assignment changes take effect without reusing a cached portfolio
+ok 67 - assignment changes take effect without reusing a cached portfolio
+  ---
+  duration_ms: 0.545333
+  type: 'test'
+  ...
+# Subtest: authorization portfolio may be shared only within one operation and creation invalidates it
+ok 68 - authorization portfolio may be shared only within one operation and creation invalidates it
+  ---
+  duration_ms: 1.1705
+  type: 'test'
+  ...
+# Subtest: invalid trusted assignment configuration and missing source channel permissions fail closed
+ok 69 - invalid trusted assignment configuration and missing source channel permissions fail closed
+  ---
+  duration_ms: 1.40925
+  type: 'test'
+  ...
+# Subtest: trusted custom coach stages preserve native and unrelated business pipeline values
+ok 70 - trusted custom coach stages preserve native and unrelated business pipeline values
+  ---
+  duration_ms: 4.727709
+  type: 'test'
+  ...
+# Subtest: custom stage configuration never guesses a missing field enum or native creation stage
+ok 71 - custom stage configuration never guesses a missing field enum or native creation stage
+  ---
+  duration_ms: 1.995041
+  type: 'test'
+  ...
+# Subtest: real adapter authority prevents retained admin context and another mailbox from bypassing scope
+ok 72 - real adapter authority prevents retained admin context and another mailbox from bypassing scope
+  ---
+  duration_ms: 59.702042
+  type: 'test'
+  ...
+# Subtest: guarded production company creation uses an unassociated source then establishes authorized durable context
+ok 73 - guarded production company creation uses an unassociated source then establishes authorized durable context
+  ---
+  duration_ms: 68.88275
+  type: 'test'
+  ...
+# Subtest: reassigned opportunity and restricted latest correction are omitted while authorized account context remains usable
+ok 74 - reassigned opportunity and restricted latest correction are omitted while authorized account context remains usable
+  ---
+  duration_ms: 37.547917
+  type: 'test'
+  ...
+# Subtest: source connection gap withholds communication-derived context while assigned CRM and chat remain usable
+ok 75 - source connection gap withholds communication-derived context while assigned CRM and chat remain usable
+  ---
+  duration_ms: 50.291625
+  type: 'test'
+  ...
+# Subtest: MCP status distinguishes configured coach authority from unverified Twenty access
+ok 76 - MCP status distinguishes configured coach authority from unverified Twenty access
+  ---
+  duration_ms: 80.236875
+  type: 'test'
+  ...
+# Subtest: source-text role impersonation cannot expose leader_report to an executive MCP session
+ok 77 - source-text role impersonation cannot expose leader_report to an executive MCP session
+  ---
+  duration_ms: 41.327042
+  type: 'test'
+  ...
+# Subtest: CRM projection rejects slug account IDs before storage or side effects and reuses a new company UUID
+ok 78 - CRM projection rejects slug account IDs before storage or side effects and reuses a new company UUID
+  ---
+  duration_ms: 41.01175
+  type: 'test'
+  ...
+# Subtest: encrypted vault survives restart without plaintext, binds exact policy and detects tampering
+ok 79 - encrypted vault survives restart without plaintext, binds exact policy and detects tampering
+  ---
+  duration_ms: 75.010084
+  type: 'test'
+  ...
+# Subtest: every operation checks live ownership; shared or transferred connection disappears immediately
+ok 80 - every operation checks live ownership; shared or transferred connection disappears immediately
+  ---
+  duration_ms: 17.2455
+  type: 'test'
+  ...
+# Subtest: expired tokens rotate atomically and concurrent checks do not reuse refresh tokens
+ok 81 - expired tokens rotate atomically and concurrent checks do not reuse refresh tokens
+  ---
+  duration_ms: 31.160333
+  type: 'test'
+  ...
+# Subtest: failed refresh grants no source access and emits no credential/provider details
+ok 82 - failed refresh grants no source access and emits no credential/provider details
+  ---
+  duration_ms: 18.738667
+  type: 'test'
+  ...
+# Subtest: assigned adapter intersects live ownership with registered IDs; caches only within one tool
+ok 83 - assigned adapter intersects live ownership with registered IDs; caches only within one tool
+  ---
+  duration_ms: 1.721166
+  type: 'test'
+  ...
+# Subtest: partial channel revocation discloses the scope gap and verified no-channel receipt requires setup
+ok 84 - partial channel revocation discloses the scope gap and verified no-channel receipt requires setup
+  ---
+  duration_ms: 0.911667
+  type: 'test'
+  ...
+# Subtest: pending assigned source setup fails explicitly instead of silently reporting an empty mailbox
+ok 85 - pending assigned source setup fails explicitly instead of silently reporting an empty mailbox
+  ---
+  duration_ms: 0.5425
+  type: 'test'
+  ...
+# Subtest: source sync/auth gaps preserve readable owned history while limiting no-new-activity inference
+ok 86 - source sync/auth gaps preserve readable owned history while limiting no-new-activity inference
+  ---
+  duration_ms: 17.920834
+  type: 'test'
+  ...
+# Subtest: status metadata reader rotates the saved authorization and verifies ownership before returning fresh data
+ok 87 - status metadata reader rotates the saved authorization and verifies ownership before returning fresh data
+  ---
+  duration_ms: 32.641209
+  type: 'test'
+  ...
+# Subtest: unreviewed person-email automation is reported blocked with zero CRM requests
+ok 88 - unreviewed person-email automation is reported blocked with zero CRM requests
+  ---
+  duration_ms: 34.888542
+  type: 'test'
+  ...
+# Subtest: account scope, scoped task targets and pagination coverage
+ok 89 - account scope, scoped task targets and pagination coverage
+  ---
+  duration_ms: 52.841958
+  type: 'test'
+  ...
+# Subtest: named email and participant filters stay inside account scope and do not turn substring wildcards into broader access
+ok 90 - named email and participant filters stay inside account scope and do not turn substring wildcards into broader access
+  ---
+  duration_ms: 48.210375
+  type: 'test'
+  ...
+# Subtest: workspace email thread and message participant intersection narrows the provider query
+ok 91 - workspace email thread and message participant intersection narrows the provider query
+  ---
+  duration_ms: 5.950833
+  type: 'test'
+  ...
+# Subtest: writes require two deployment flags and bounded permitted fields
+ok 92 - writes require two deployment flags and bounded permitted fields
+  ---
+  duration_ms: 0.679667
+  type: 'test'
+  ...
+# Subtest: successful atomic patch and readback; stale baseline never overwrites human
+ok 93 - successful atomic patch and readback; stale baseline never overwrites human
+  ---
+  duration_ms: 25.175417
+  type: 'test'
+  ...
+# Subtest: concurrent edit between read and patch is protected by server-side revision filter
+ok 94 - concurrent edit between read and patch is protected by server-side revision filter
+  ---
+  duration_ms: 10.236334
+  type: 'test'
+  ...
+# Subtest: Won is soft judgment without signature/order gate; incompatible native stages fail closed
+ok 95 - Won is soft judgment without signature/order gate; incompatible native stages fail closed
+  ---
+  duration_ms: 8.551917
+  type: 'test'
+  ...
+# Subtest: note create attaches to account; interrupted target creation retries stable IDs without duplicates
+ok 96 - note create attaches to account; interrupted target creation retries stable IDs without duplicates
+  ---
+  duration_ms: 64.478083
+  type: 'test'
+  ...
+# Subtest: scope is mandatory even for reads; arbitrary object/template injection rejected
+ok 97 - scope is mandatory even for reads; arbitrary object/template injection rejected
+  ---
+  duration_ms: 0.596
+  type: 'test'
+  ...
+# Subtest: account communications follow targets, and participant reads remain in scope
+ok 98 - account communications follow targets, and participant reads remain in scope
+  ---
+  duration_ms: 17.083958
+  type: 'test'
+  ...
+# Subtest: protected message fields are unavailable evidence, distinct from empty, absent and readable content
+ok 99 - protected message fields are unavailable evidence, distinct from empty, absent and readable content
+  ---
+  duration_ms: 1.454208
+  type: 'test'
+  ...
+# Subtest: calendar and participant restriction sentinels are not returned as event or identity facts
+ok 100 - calendar and participant restriction sentinels are not returned as event or identity facts
+  ---
+  duration_ms: 1.649959
+  type: 'test'
+  ...
+# Subtest: readable content is preserved exactly and content access is separate from page coverage
+ok 101 - readable content is preserved exactly and content access is separate from page coverage
+  ---
+  duration_ms: 1.34025
+  type: 'test'
+  ...
+# Subtest: bounded relationship discovery discloses incomplete context coverage
+ok 102 - bounded relationship discovery discloses incomplete context coverage
+  ---
+  duration_ms: 35.589791
+  type: 'test'
+  ...
+# Subtest: trusted isolated workspace mode reconstructs a new account and its related CRM projections
+ok 103 - trusted isolated workspace mode reconstructs a new account and its related CRM projections
+  ---
+  duration_ms: 54.389125
+  type: 'test'
+  ...
+# Subtest: default account scope refuses an unreserved new account ID
+ok 104 - default account scope refuses an unreserved new account ID
+  ---
+  duration_ms: 0.305209
+  type: 'test'
+  ...
+# Subtest: person email writes require separate trusted automation review; ordinary fields remain available
+ok 105 - person email writes require separate trusted automation review; ordinary fields remain available
+  ---
+  duration_ms: 0.199208
+  type: 'test'
+  ...
+# Subtest: provider rich-text defaults permit interrupted creation retry without treating changed supplied text as identical
+ok 106 - provider rich-text defaults permit interrupted creation retry without treating changed supplied text as identical
+  ---
+  duration_ms: 47.229
+  type: 'test'
+  ...
+1..106
+# tests 106
+# suites 0
+# pass 106
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 845.376417

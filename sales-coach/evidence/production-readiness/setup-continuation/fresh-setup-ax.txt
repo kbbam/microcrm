@@ -1,0 +1,214 @@
+Window: "Claude", App: Claude.
+0 standard window Claude, Secondary Actions: Raise
+	1 container Claude
+		2 container
+			3 HTML content file:///Applications/Claude.app/Contents/Resources/app.asar/.vite/renderer/main_window/index.html
+			4 HTML content Coach setup configuration - Claude, URL: claude.ai/chat/267fc258-952b-4851-b42d-95468ef6034a
+				5 container
+					6 container
+						7 container Sidebar
+							8 button Hide sidebar
+							9 button Search
+							10 button Back
+							11 button (disabled) Forward
+							12 Mode
+								13 radio button Description: Chat and Cowork, Value: 1
+								14 radio button Description: Code, Value: 0
+							15 container
+								16 button New
+								17 button Quick task
+								18 container
+									19 button Projects
+								20 container
+									21 button Artifacts
+									22 pop-up button New from a template
+								23 button Scheduled
+								24 button Design
+								25 button Customize
+								26 pop-up button More navigation items
+								27 button Pinned
+								28 button Chats and tasks
+								29 button View all
+								30 pop-up button Filter and group recents
+								31 container
+									32 button Idle Coach setup configuration
+										33 image Idle
+										34 text Coach setup configuration
+									35 pop-up button More options for Coach setup configuration
+								36 container
+									37 button Idle Coach setup configuration
+										38 image Idle
+										39 text Coach setup configuration
+									40 pop-up button More options for Coach setup configuration
+								41 container
+									42 button Idle Anna's Autumn-trial summary file requirements
+										43 image Idle
+										44 text Anna's Autumn-trial summary file requirements
+									45 pop-up button More options for Anna's Autumn-trial summary file requirements
+								46 container
+									47 button Idle Outstanding balance at QA Northstar Pharmacy
+										48 image Idle
+										49 text Outstanding balance at QA Northstar Pharmacy
+									50 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								51 container
+									52 button Idle Northstar trial and repeat order review
+										53 image Idle
+										54 text Northstar trial and repeat order review
+									55 pop-up button More options for Northstar trial and repeat order review
+								56 container
+									57 button Idle Outstanding balance at QA Northstar Pharmacy
+										58 image Idle
+										59 text Outstanding balance at QA Northstar Pharmacy
+									60 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								61 container
+									62 button Idle Outstanding balance with QA Northstar Pharmacy
+										63 image Idle
+										64 text Outstanding balance with QA Northstar Pharmacy
+									65 pop-up button More options for Outstanding balance with QA Northstar Pharmacy
+								66 container
+									67 button Idle Northstar trial and repeat order tracking update
+										68 image Idle
+										69 text Northstar trial and repeat order tracking update
+									70 pop-up button More options for Northstar trial and repeat order tracking update
+								71 container
+									72 button Idle BAM coach contact and trial dates
+										73 image Idle
+										74 text BAM coach contact and trial dates
+									75 pop-up button More options for BAM coach contact and trial dates
+								76 container
+									77 button Idle Anna at QA Northstar Pharmacy debt
+										78 image Idle
+										79 text Anna at QA Northstar Pharmacy debt
+									80 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								81 container
+									82 button Idle Anna at QA Northstar Pharmacy debt
+										83 image Idle
+										84 text Anna at QA Northstar Pharmacy debt
+									85 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								86 container
+									87 button Idle Anna at QA Northstar Pharmacy debt
+										88 image Idle
+										89 text Anna at QA Northstar Pharmacy debt
+									90 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								91 container
+									92 button Idle Northstar pharmacy coach verification
+										93 image Idle
+										94 text Northstar pharmacy coach verification
+									95 pop-up button More options for Northstar pharmacy coach verification
+								96 container
+									97 button Idle BAM coach screenshot for QA Northstar Pharmacy
+										98 image Idle
+										99 text BAM coach screenshot for QA Northstar Pharmacy
+									100 pop-up button More options for BAM coach screenshot for QA Northstar Pharmacy
+								101 container
+									102 button Idle Coach verification QA documentation
+										103 image Idle
+										104 text Coach verification QA documentation
+									105 pop-up button More options for Coach verification QA documentation
+								106 container
+									107 button Idle Anna's QA Northstar Pharmacy commitment
+										108 image Idle
+										109 text Anna's QA Northstar Pharmacy commitment
+									110 pop-up button More options for Anna's QA Northstar Pharmacy commitment
+								111 container
+									112 button Idle HTTPS file upload test with integrity verification
+										113 image Idle
+										114 text HTTPS file upload test with integrity verification
+									115 pop-up button More options for HTTPS file upload test with integrity verification
+								116 container
+									117 button Idle Preserving file integrity in Google Drive
+										118 image Idle
+										119 text Preserving file integrity in Google Drive
+									120 pop-up button More options for Preserving file integrity in Google Drive
+								121 container
+									122 button Idle Mobile-friendly PDF conversion
+										123 image Idle
+										124 text Mobile-friendly PDF conversion
+									125 pop-up button More options for Mobile-friendly PDF conversion
+								126 container
+									127 button Idle Cash flow distribution plan with margin optimization
+										128 image Idle
+										129 text Cash flow distribution plan with margin optimization
+									130 pop-up button More options for Cash flow distribution plan with margin optimization
+								131 button View all
+								132 container
+									133 pop-up button Kirill Kirill JPgrowery
+										134 image Kirill
+										135 text Kirill
+										136 text JPgrowery
+									137 link Description: Get apps and extensions, Value: claude.ai/downloads
+							138 splitter Description: Resize sidebar, Value: 368
+						139 container
+							140 container Primary pane
+								141 container
+									142 container
+										143 button Coach setup configuration, rename chat
+										144 pop-up button More options for Coach setup configuration
+										145 pop-up button Share chat
+									146 container
+										147 text Claude finished the response
+										148 container Chat messages
+											149 text Use the up and down arrow keys to move between messages.
+											150 container
+												151 container Message 1 of 2
+													152 heading You said: @Coach set up, Value: 2
+														153 text You said: @Coach set up
+													154 text @Coach set up
+													155 toolbar Message actions
+														156 text just now
+														157 button Retry
+														158 button Edit
+														159 button Copy
+												160 container Message 2 of 2
+													161 container
+														162 heading Value: 2, Claude responded: Your sources are connected: email and calendar are both syncing, and the last syncs were about 04:22 for email and 04:30 for calendar.
+															163 text Claude responded: Your sources are connected: email and calendar are both syncing, and the last syncs were about 04:22 for email and 04:30 for calendar.
+														164 container
+															165 text Loaded tools, used Coach integration
+															166 button Loaded tools, used Coach integration
+														167 text Loaded tools, used Coach integration
+														168 container
+															169 text Your sources are connected: email and calendar are both syncing, and the last syncs were about 04:22 for email and 04:30 for calendar. I haven't checked mailbox contents, so coverage isn't verified yet.
+															170 text Next step:
+															171 text  go to Claude 
+															172 text Customize → Connectors → Coach → Tool permissions
+															173 text  and set the internal tools to 
+															174 text Always allow
+															175 text . If the client offers a category-wide option, use that instead of approving each tool. These tools don't send email or write to your calendar, and consequential CRM changes still need Business OS review before they apply. Tell me when that's set. I'll then run a safe read of accounts and CRM, without changing any customer data, and ask you for one fresh conversation check to confirm the prompts are gone.
+													176 toolbar Message actions
+														177 button Copy
+														178 button Read aloud
+														179 toggle button Description: Good response, Value: 0
+														180 toggle button Description: Bad response, Value: 0
+														181 button Retry
+														182 text just now
+										183 container
+											184 container
+											185 container
+												186 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
+
+													187 text Write a message…
+												188 pop-up button Add files, connectors, and more
+												189 pop-up button Model: Sonnet 5.5 Medium
+													190 text Sonnet 5.5
+													191 text Medium
+												192 pop-up button Settings
+												193 button Press and hold to record
+												194 button Use voice mode
+													195 image
+										196 link Description: Claude is AI and can make mistakes. Please double-check responses., Value: support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+					197 container
+						198 container Notifications
+	199 close button
+	200 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	201 minimise button
+202 menu bar
+	203 Claude
+	204 File
+	205 Edit
+	206 View
+	207 Go
+	208 Window
+	209 Help
+
+The focused UI element is 186 text entry area (settable) Description: Write your prompt to Claude, Value: Write a message…
