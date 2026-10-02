@@ -8,12 +8,12 @@ The owner authorized this pilot in the real Cureous Twenty workspace. The coach 
 - Claude connector: https://business-os-production-1193.up.railway.app/coach/mcp
 - Executive source connection: https://business-os-production-1193.up.railway.app/account/twenty/connect
 - Selected CRM interface: https://cureous.twenty.com/
-- Runtime source revision: `fb1824eb0b40550be29bf1204df646d7514f3160`, root `Dockerfile.coach`, locked package manifests.
+- Runtime source revision: `b80dec9696ca0b9bbce06f691f94b9baf8b11988`, root `Dockerfile.coach`, locked package manifests.
 - Dedicated Railway project `bam-business-os-production`, service `business-os`, environment `production`; separate Postgres and durable `/var/lib/bam-coach` volume. One replica; service sleep disabled.
 - Executive `kb@jpgrowery.com`: assigned companies/opportunities and independently verified own connected sources. Admin/teamlead `kb@cureous.me`: workspace scope and the executive's retained report. Roles derive from central database grants, never model arguments.
 - Fresh owner account invitations and contexts; no QA passwords, evidence or account memories copied. Setup links and all credentials are stored privately outside Git.
 
-The final cloud functional proof and public health records are in `../evidence/production-readiness/`. The executive password and actual Claude Desktop production connection are now active after correcting a browser OAuth redirect defect; see `../evidence/production-readiness/oauth-redirect-fix/`. Production tool prompt persistence, real source consent/synchronization and physical Android acceptance remain separate verification steps. Missing source authorization is explicitly surfaced; it is not reported as an empty inbox.
+The final cloud functional proof and public health records are in `../evidence/production-readiness/`. The executive password and actual Claude Desktop production connection are now active after correcting a browser OAuth redirect defect; see `../evidence/production-readiness/oauth-redirect-fix/`. Real Cureous source authorization is now active: the actual production status check reports email and calendar sync with separate timestamps. This is provider status, not complete content coverage. Production tool prompt persistence, actual source-content coverage and physical Android acceptance remain separate verification steps. Missing or revoked source authorization is explicitly surfaced; it is not reported as an empty inbox. See the source-status proof linked from the release record.
 
 ## First activation and Android check
 
