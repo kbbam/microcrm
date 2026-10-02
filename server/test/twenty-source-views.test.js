@@ -15,7 +15,7 @@ test('Twenty authorization does not claim email or calendar sync when absent or 
   assert.match(pending,/Waiting for sync/);
   assert.match(pending,/Email and calendar have not reported a complete sync yet/);
   assert.match(pending,/does not confirm that every message or attachment/);
-  assert.match(pending,/href="\/account\/twenty\/connect">Recheck connection/);
+  assert.match(pending,/href="\/account\/twenty\/recheck">Recheck connection/);
 });
 
 test('disabled, failed and observed-sync states prescribe the appropriate recovery',()=>{
@@ -52,4 +52,12 @@ test('mixed sources name only the pending calendar and retain the reported email
   assert.match(mixed,/Last checked:/);
   assert.match(mixed,/datetime="2026-10-02T00:00:00Z"/);
   assert.match(mixed,/href="https:\/\/workspace.twenty.com\/settings\/accounts" target="_blank" rel="noopener noreferrer"/);
+});
+
+
+test('recheck failures offer retry or explicit reconnect and expired sign-in keeps the intended action',()=>{
+  const outage=renderTwentySourcePage({kind:'problem',twentyUrl:'https://workspace.twenty.com',recovery:'recheck',error:'Try again shortly.'});
+  assert.match(outage,/href="\/account\/twenty\/recheck">Recheck connection/);assert.doesNotMatch(outage,/href="\/account\/twenty\/connect"/);
+  const revoked=renderTwentySourcePage({kind:'problem',twentyUrl:'https://workspace.twenty.com',recovery:'reconnect',error:'Reconnect.'});assert.match(revoked,/href="\/account\/twenty\/connect">Reconnect Twenty/);
+  const login=renderTwentySourcePage({kind:'login',twentyUrl:'https://workspace.twenty.com',returnTo:'recheck',csrf:'test'});assert.match(login,/name="returnTo" value="recheck"/);assert.match(login,/Sign in and recheck/);
 });

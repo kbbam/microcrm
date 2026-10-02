@@ -14,7 +14,7 @@ const data = () => ({ currentUser: { id:id(3), email:expected.email, disabled:fa
 async function fixture(t, { retainAuthorization = false } = {}) {
   let time = Date.parse('2026-10-02T01:00:00Z'), grant = {id:expected.email,role:'executive',contextKey:'production'}, expectedGrant=expected, payload=data(), receipt=null;
   const calls=[];
-  let savedAuthorization;
+  let savedAuthorization, refreshFailure, refreshHook;
   const app=express(), server=app.listen(0,'127.0.0.1');
   await new Promise(resolve=>server.once('listening',resolve));
   const base=`http://127.0.0.1:${server.address().port}`, origin='https://crm.example.test';
@@ -22,7 +22,8 @@ async function fixture(t, { retainAuthorization = false } = {}) {
     readBrowserSession:async req=>req.headers.cookie?.includes('session=valid') ? {id:'session-one',accountId:expected.email}:req.headers.cookie?.includes('session=other')?{id:'session-two',accountId:expected.email}:null,
     createBrowserSession:async (accountId,res)=>{res.cookie('session','valid');return{id:'session-one',accountId};},
     resolvePrincipal:async()=>grant,expectedIdentity:async()=>expectedGrant,verifyPassword:async (email,password)=>email===expected.email&&password==='fixture-password',
-    saveReceipt:async(_principal,value)=>{receipt=value;},readReceipt:async()=>receipt,render:view=>JSON.stringify(view),
+    saveReceipt:async(_principal,value)=>{receipt=value;},readReceipt:async()=>receipt,
+    refreshReceipt:async(_principal,identity)=>{if(refreshHook)refreshHook();if(refreshFailure)throw Object.assign(new Error('private-provider-message'),{code:refreshFailure});return verifyTwentySourceReceipt(payload,identity,new Date(time).toISOString());},render:view=>JSON.stringify(view),
     ...(retainAuthorization ? { saveAuthorization: async (principal, receipt, tokens) => { savedAuthorization = { principal, receipt, tokens }; } } : {}),
     fetch:async(url,options={})=>{
       calls.push({url,options});
@@ -33,12 +34,12 @@ async function fixture(t, { retainAuthorization = false } = {}) {
       throw new Error('unexpected provider route');
     },
   });
-  app.get('/account/twenty/connect',handlers.connect);app.get('/account/twenty/callback',handlers.callback);app.get('/account/twenty/status',handlers.status);app.get('/account/twenty/login',handlers.loginGet);app.post('/account/twenty/login',express.urlencoded({extended:false}),handlers.loginPost);
+  app.get('/account/twenty/recheck',handlers.recheck);app.get('/account/twenty/connect',handlers.connect);app.get('/account/twenty/callback',handlers.callback);app.get('/account/twenty/status',handlers.status);app.get('/account/twenty/login',handlers.loginGet);app.post('/account/twenty/login',express.urlencoded({extended:false}),handlers.loginPost);
   t.after(()=>new Promise(resolve=>server.close(resolve)));
   const req=(path,options={})=>fetch(base+path,{redirect:'manual',...options});
   const start=async()=>new URL((await req('/account/twenty/connect',{headers:{Cookie:'session=valid'}})).headers.get('location'));
   const finish=(url,query={},session='valid')=>req('/account/twenty/callback?'+new URLSearchParams({state:url.searchParams.get('state'),code:'fixture-code',iss:origin,...query}),{headers:{Cookie:'session='+session}});
-  return {base,req,start,finish,calls,receipt:()=>receipt,savedAuthorization:()=>savedAuthorization,setData:v=>payload=v,setGrant:v=>grant=v,setExpected:v=>expectedGrant=v,advance:()=>time+=600001};
+  return {base,req,start,finish,calls,receipt:()=>receipt,savedAuthorization:()=>savedAuthorization,setData:v=>payload=v,setGrant:v=>grant=v,setExpected:v=>expectedGrant=v,failRefresh:code=>refreshFailure=code,onRefresh:hook=>refreshHook=hook,advance:()=>time+=600001};
 }
 
 test('source-login allows the provider redirect while ordinary source pages retain local-form restrictions',async t=>{
@@ -128,4 +129,35 @@ test('verified source config persists atomically across restart, reloads actor c
   await assert.rejects(()=>store.expectedIdentity({...principal,role:'admin'}));await assert.rejects(()=>store.expectedIdentity({...principal,contextKey:'../escape'}));
   saved.twenty.assignment.memberId=id(99);await writeFile(file,JSON.stringify(saved));
   assert.equal(await restart.readReceipt(principal),null);await assert.rejects(()=>store.saveReceipt(principal,receipt));assert.equal(reloads.length,1);
+});
+
+
+test('recheck refreshes verified status and check time without a new authorization flow',async t=>{
+  const f=await fixture(t,{retainAuthorization:true});await f.finish(await f.start());
+  const previous=f.receipt(),initialCalls=f.calls.length;f.advance();const changed=data();changed.myMessageChannels[0].syncedAt='2026-10-02T01:09:00Z';f.setData(changed);
+  const response=await f.req('/account/twenty/recheck',{headers:{Cookie:'session=valid'}});
+  assert.equal(response.status,303);assert.equal(response.headers.get('location'),'/account/twenty/status');
+  assert.notEqual(f.receipt().verifiedAt,previous.verifiedAt);assert.equal(f.receipt().messageChannels[0].syncedAt,changed.myMessageChannels[0].syncedAt);
+  assert.equal(f.calls.length,initialCalls,'No authorization discovery/code exchange');
+});
+
+test('recheck distinguishes reconnect from provider outage and preserves the last successful receipt',async t=>{
+  const f=await fixture(t,{retainAuthorization:true});await f.finish(await f.start());const saved=f.receipt();
+  for(const code of ['SOURCE_CONNECTION_REQUIRED','SOURCE_OWNERSHIP_REVOKED','SOURCE_OWNERSHIP_UNAVAILABLE']){
+    f.failRefresh(code);const response=await f.req('/account/twenty/recheck',{headers:{Cookie:'session=valid'}});const view=await response.json();
+    assert.equal(view.recovery,code==='SOURCE_OWNERSHIP_UNAVAILABLE'?'recheck':'reconnect');assert.equal(response.headers.get('location'),null);assert.deepEqual(f.receipt(),saved);assert.doesNotMatch(JSON.stringify(view),/private-provider/);
+  }
+});
+
+test('recheck refuses changed ownership or central authority and signed-out login retains intent',async t=>{
+  const f=await fixture(t,{retainAuthorization:true});await f.finish(await f.start());const saved=f.receipt();
+  const bad=data();bad.currentUser.email='someone-else@example.test';f.setData(bad);
+  assert.equal((await f.req('/account/twenty/recheck',{headers:{Cookie:'session=valid'}})).status,403);assert.deepEqual(f.receipt(),saved);
+  f.setData(data());f.onRefresh(()=>f.setGrant(null));
+  assert.equal((await f.req('/account/twenty/recheck',{headers:{Cookie:'session=valid'}})).status,403);assert.deepEqual(f.receipt(),saved);
+  f.setGrant({id:expected.email,role:'executive',contextKey:'production'});
+  assert.equal((await f.req('/account/twenty/recheck')).headers.get('location'),'/account/twenty/login?next=recheck');
+  const login=await f.req('/account/twenty/login?next=recheck'),view=await login.json();assert.equal(view.returnTo,'recheck');
+  const response=await f.req('/account/twenty/login',{method:'POST',headers:{Cookie:login.headers.get('set-cookie').split(';')[0],Origin:f.base,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({csrf:view.csrf,email:expected.email,password:'fixture-password',returnTo:'recheck'})});
+  assert.equal(response.headers.get('location'),'/account/twenty/recheck');
 });

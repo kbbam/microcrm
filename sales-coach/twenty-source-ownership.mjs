@@ -70,7 +70,7 @@ export function ownSourceChannels(data, expected) {
   return { userWorkspaceId, messageChannelIds: [...new Set(messageChannels.map(c => c.id))], calendarChannelIds: [...new Set(calendarChannels.map(c => c.id))], messageChannels, calendarChannels };
 }
 
-export function createTwentySourceOwnershipReader(options) {
+function createTwentySourceReader(options, project) {
   const url = new URL(options.baseUrl);
   if (url.protocol !== 'https:' || url.username || url.password || url.origin !== options.baseUrl) throw new Error('Source ownership requires a pinned HTTPS origin');
   const fetcher = options.fetchImpl ?? fetch, now = options.now ?? Date.now;
@@ -78,9 +78,13 @@ export function createTwentySourceOwnershipReader(options) {
     try {
       const response = await fetcher(options.baseUrl + path, { method: 'POST', redirect: 'error', headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'User-Agent': 'BAM-Coach-Setup/1.0', ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}) }, body: JSON.stringify(body), signal: AbortSignal.timeout(15_000) });
       const result = await response.json();
+      if ([401, 403].includes(response.status) || (path === '/oauth/token' && result.error === 'invalid_grant')) fail('SOURCE_CONNECTION_REQUIRED', 'Your Twenty authorization is no longer available. Reconnect through Business OS source setup.');
       if (!response.ok || result.errors?.length || result.error) fail('SOURCE_OWNERSHIP_UNAVAILABLE', 'Twenty could not verify current source ownership. Reconnect through Business OS if this persists.');
       return result;
-    } catch { fail('SOURCE_OWNERSHIP_UNAVAILABLE', 'Twenty source verification is unavailable. No mailbox or calendar access is permitted.'); }
+    } catch (error) {
+      if (error.code === 'SOURCE_CONNECTION_REQUIRED') fail('SOURCE_CONNECTION_REQUIRED', 'Your Twenty authorization is no longer available. Reconnect through Business OS source setup.');
+      fail('SOURCE_OWNERSHIP_UNAVAILABLE', 'Twenty source verification is unavailable. No mailbox or calendar access is permitted.');
+    }
   };
   return () => serial(options.file, async () => {
     let tokens = await read(options.file, options);
@@ -96,6 +100,14 @@ export function createTwentySourceOwnershipReader(options) {
     const response = await request('/metadata', { query: SOURCE_OWNERSHIP_QUERY }, tokens.accessToken);
     const current = ownSourceChannels(response.data, options.expected);
     if (options.userWorkspaceId && current.userWorkspaceId !== options.userWorkspaceId) fail('SOURCE_OWNERSHIP_REVOKED', 'This source connection belongs to a changed Twenty membership. Reconnect through Business OS.');
-    return { ...current, checkedAt: new Date(now()).toISOString() };
+    return project(response.data, current, new Date(now()).toISOString());
   });
+}
+
+// Both consumers share encrypted-token rotation and the same live ownership gate.
+export function createTwentySourceOwnershipReader(options) {
+  return createTwentySourceReader(options, (_data, current, checkedAt) => ({ ...current, checkedAt }));
+}
+export function createTwentySourceMetadataReader(options) {
+  return createTwentySourceReader(options, (data, _current, checkedAt) => ({ data, checkedAt }));
 }

@@ -14,7 +14,7 @@ export type TwentySourceReceipt = TwentyExpectedIdentity & {
   messageChannels: TwentySourceChannel[]; calendarChannels: TwentySourceChannel[];
   messageChannelIds: string[]; calendarChannelIds: string[];
 };
-export type TwentySourceView = { kind: "login" | "status" | "problem"; email?: string; csrf?: string; error?: string; message?: string; receipt?: TwentySourceReceipt | null; twentyUrl: string };
+export type TwentySourceView = { kind: "login" | "status" | "problem"; email?: string; csrf?: string; error?: string; message?: string; receipt?: TwentySourceReceipt | null; twentyUrl: string; recovery?: "reconnect" | "recheck"; returnTo?: "recheck" };
 type Session = { id: string; accountId: string };
 type Options = {
   publicUrl: string; twentyBaseUrl: string; clientId: string;
@@ -26,6 +26,7 @@ type Options = {
   saveReceipt(principal: CoachPrincipal, receipt: TwentySourceReceipt): Promise<void>;
   saveAuthorization?(principal: CoachPrincipal, receipt: TwentySourceReceipt, tokens: { access_token: string; refresh_token: string; token_type: string; expires_in: number }): Promise<void>;
   readReceipt(principal: CoachPrincipal): Promise<TwentySourceReceipt | null>;
+  refreshReceipt?(principal: CoachPrincipal, expected: TwentyExpectedIdentity): Promise<TwentySourceReceipt>;
   render(view: TwentySourceView): string;
   fetch?: typeof fetch; now?: () => number;
 };
@@ -117,14 +118,14 @@ export function createTwentySourceConnectionHandlers(options: Options) {
     return response.json();
   };
   const endpoint = (url: unknown) => { const parsed = new URL(value(url)); if (parsed.origin !== origin || parsed.username || parsed.password || parsed.hash || parsed.search) throw fail(503, "Twenty authorization endpoints did not match the configured workspace."); return parsed.href; };
-  const loginPage = (res: Response, loginEmail?: string, error?: string) => {
+  const loginPage = (res: Response, loginEmail?: string, error?: string, returnTo?: "recheck") => {
     headers(res, true);
     const nonce = randomBytes(32).toString("base64url");
     res.cookie(nonceCookie, nonce, { ...cookieOptions, maxAge: 600_000 });
-    page(res, { kind: "login", csrf: nonce, email: loginEmail, error });
+    page(res, { kind: "login", csrf: nonce, email: loginEmail, error, returnTo });
   };
   const loginGet = async (req: Request, res: Response) => {
-    try { guards(req, res); loginPage(res); } catch (e) { problem(res, e); }
+    try { guards(req, res); loginPage(res, undefined, undefined, req.query.next === "recheck" ? "recheck" : undefined); } catch (e) { problem(res, e); }
   };
   const loginPost = async (req: Request, res: Response) => {
     try {
@@ -139,10 +140,10 @@ export function createTwentySourceConnectionHandlers(options: Options) {
       if (!principal || !expected || email(expected.email) !== id) throw fail(403, "Your account is not configured for this source connection.");
       await options.createBrowserSession(id, res);
       res.clearCookie(nonceCookie, cookieOptions); keys.forEach(k => attempts.delete(k));
-      res.redirect(303, "/account/twenty/connect");
+      res.redirect(303, req.body?.returnTo === "recheck" ? "/account/twenty/recheck" : "/account/twenty/connect");
     } catch (e) {
       const error = e as { status?: number; message?: string };
-      if (error.status === 401 || error.status === 429) { res.status(error.status); loginPage(res, email(req.body?.email), error.message); }
+      if (error.status === 401 || error.status === 429) { res.status(error.status); loginPage(res, email(req.body?.email), error.message, req.body?.returnTo === "recheck" ? "recheck" : undefined); }
       else problem(res, e);
     }
   };
@@ -199,7 +200,26 @@ export function createTwentySourceConnectionHandlers(options: Options) {
   const status = async (req: Request, res: Response) => {
     try { guards(req, res); const auth = await identity(req, res); if (!auth) { res.redirect(303, "/account/twenty/login"); return; } page(res, { kind: "status", email: auth.principal.id, receipt: await options.readReceipt(auth.principal) }); } catch (e) { problem(res, e); }
   };
-  return { connect, callback: callbackGet, loginGet, loginPost, status };
+  const recheck = async (req: Request, res: Response) => {
+    try {
+      guards(req, res);
+      const auth = await identity(req, res);
+      if (!auth) { res.redirect(303, "/account/twenty/login?next=recheck"); return; }
+      if (!options.refreshReceipt) throw Object.assign(new Error(), { code: "SOURCE_CONNECTION_REQUIRED" });
+      const receipt = await options.refreshReceipt(auth.principal, auth.expected);
+      const current = await identity(req, res);
+      if (!current || current.session.id !== auth.session.id || JSON.stringify(current.principal) !== JSON.stringify(auth.principal) || JSON.stringify(current.expected) !== JSON.stringify(auth.expected)) throw fail(403, "Your Business OS access changed during the check. Sign in again before retrying.");
+      await options.saveReceipt(current.principal, receipt);
+      res.redirect(303, "/account/twenty/status");
+    } catch (error) {
+      const e = error as { code?: string; status?: number };
+      if (e.status) { problem(res, error); return; }
+      const reconnect = ["SOURCE_CONNECTION_REQUIRED", "SOURCE_OWNERSHIP_REVOKED", "SOURCE_AUTH_RESPONSE"].includes(e.code ?? "");
+      headers(res); res.status(reconnect ? 409 : 503);
+      page(res, { kind: "problem", recovery: reconnect ? "reconnect" : "recheck", error: reconnect ? "Your saved Twenty authorization is unavailable or no longer matches your account. Reconnect Twenty to check your sources." : "Twenty could not complete this check. Your saved connection is unchanged. Try rechecking again shortly." });
+    }
+  };
+  return { connect, callback: callbackGet, loginGet, loginPost, status, recheck };
 }
 
 // Trusted configuration writer: no path, role, member or channel IDs come from
@@ -256,10 +276,16 @@ export async function registerTwentySourceConnectionRoutes(app: express.Express)
   const secure = new URL(publicUrl).protocol === "https:";
   const sessionCookie = secure ? "__Host-coach-review" : "coach-review";
   const store = createTwentySourceConfigStore(process.env.COACH_CONFIG_ROOT, process.env.TWENTY_SOURCE_BASE_URL, runtime.reloadContext);
-  const { saveTwentySourceAuthorization } = await import(new URL("../../sales-coach/twenty-source-ownership.mjs", import.meta.url).href);
+  const { saveTwentySourceAuthorization, createTwentySourceMetadataReader } = await import(new URL("../../sales-coach/twenty-source-ownership.mjs", import.meta.url).href);
   const handlers = createTwentySourceConnectionHandlers({
     publicUrl, twentyBaseUrl: process.env.TWENTY_SOURCE_BASE_URL, clientId: process.env.TWENTY_SOURCE_CLIENT_ID,
     ...store, resolvePrincipal: resolveCoachPrincipal, verifyPassword: verifyLogin, render: renderTwentySourcePage,
+    refreshReceipt: async (principal, expected) => {
+      const previous = await store.readReceipt(principal);
+      const read = createTwentySourceMetadataReader({ file: join(resolve(process.env.COACH_CONFIG_ROOT!), `${principal.contextKey}.twenty-token.json`), baseUrl: new URL(process.env.TWENTY_SOURCE_BASE_URL!).origin, clientId: process.env.TWENTY_SOURCE_CLIENT_ID, encryptionKey: process.env.TWENTY_SOURCE_TOKEN_KEY, expected, userWorkspaceId: previous?.userWorkspaceId });
+      const result = await read();
+      return verifyTwentySourceReceipt(result.data, expected, result.checkedAt);
+    },
     saveAuthorization: async (principal, receipt, tokens) => {
       const expected = await store.expectedIdentity(principal);
       await saveTwentySourceAuthorization({ file: join(resolve(process.env.COACH_CONFIG_ROOT!), `${principal.contextKey}.twenty-token.json`), baseUrl: new URL(process.env.TWENTY_SOURCE_BASE_URL!).origin, clientId: process.env.TWENTY_SOURCE_CLIENT_ID, encryptionKey: process.env.TWENTY_SOURCE_TOKEN_KEY, expected }, tokens);
@@ -281,4 +307,5 @@ export async function registerTwentySourceConnectionRoutes(app: express.Express)
   app.get("/account/twenty/login", handlers.loginGet);
   app.post("/account/twenty/login", express.urlencoded({ extended: false, limit: "16kb" }), handlers.loginPost);
   app.get("/account/twenty/status", handlers.status);
+  app.get("/account/twenty/recheck", handlers.recheck);
 }

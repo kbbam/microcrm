@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { AsyncLocalStorage } from 'node:async_hooks';
-import { saveTwentySourceAuthorization, createTwentySourceOwnershipReader } from '../twenty-source-ownership.mjs';
+import { saveTwentySourceAuthorization, createTwentySourceOwnershipReader, createTwentySourceMetadataReader } from '../twenty-source-ownership.mjs';
 import { TwentyAdapter } from '../twenty.mjs';
 
 const id = n => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
@@ -49,7 +49,7 @@ test('expired tokens rotate atomically and concurrent checks do not reuse refres
 
 test('failed refresh grants no source access and emits no credential/provider details',async t=>{
   const f=await fixture(t),before=await readFile(f.options.file,'utf8');f.advance();f.failRefresh();
-  await assert.rejects(f.reader,error=>{assert.doesNotMatch(error.message,/private-|sensitive-provider/);return error.code==='SOURCE_OWNERSHIP_UNAVAILABLE';});
+  await assert.rejects(f.reader,error=>{assert.doesNotMatch(error.message,/private-|sensitive-provider/);return error.code==='SOURCE_CONNECTION_REQUIRED';});
   assert.equal(f.calls.filter(c=>c.url.endsWith('/metadata')).length,0);assert.equal(await readFile(f.options.file,'utf8'),before);
 });
 
@@ -86,4 +86,12 @@ test('source sync/auth gaps preserve readable owned history while limiting no-ne
   adapter.page=async()=>({records:[{id:id(7),text:'Owned historical message'}],coverage:{complete:true,hasNextPage:false}});
   const read=await adapter.read({object:'message'});assert.equal(read.records[0].text,'Owned historical message');assert.equal(read.coverage.currentSourceCoverageVerified,false);
   assert.equal(read.coverage.sourceSync.channels[0].syncStatus,'NOT_SYNCED');assert.equal(read.coverage.sourceSync.channels[0].syncedAt,'2026-10-01T00:00:00Z');assert.match(read.coverage.warning,/do not prove current/);
+});
+
+
+test('status metadata reader rotates the saved authorization and verifies ownership before returning fresh data',async t=>{
+  const f=await fixture(t);f.advance();const read=createTwentySourceMetadataReader(f.options),fresh=await read();
+  assert.equal(fresh.checkedAt,'2026-10-02T00:01:00.001Z');assert.deepEqual(fresh.data,data());assert.doesNotMatch(JSON.stringify(fresh),/private-access|private-refresh/);
+  assert.equal(f.calls.filter(c=>c.url.endsWith('/oauth/token')).length,1);
+  const wrong=data();wrong.currentUser.currentWorkspace.id=id(99);f.setData(wrong);await assert.rejects(read,e=>e.code==='SOURCE_OWNERSHIP_REVOKED');
 });
