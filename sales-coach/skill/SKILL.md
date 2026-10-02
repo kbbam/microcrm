@@ -19,6 +19,10 @@ After the executive confirms permissions, perform a permitted account discovery 
 
 ## Large dictated or pasted operational updates
 
+Retain the complete executive message verbatim, including its original paragraph boundaries. Never replace it with a selected passage, summary or rewritten header while claiming exact capture. This applies equally to fallback captures after a failed tool: put dates/labels/attribution in metadata, not in the source text. If an earlier capture was transformed, retain the true original separately, link the correction and explicitly mark the transformed capture as such; never erase it or pretend its bytes were original.
+
+A verified CRM stage does not independently verify the executive's assertion that no order was accepted. Split independently observed CRM values from reported business assertions, or conservatively mark a combined interpretation human-account. In particular, reported balances, quantities, commitments, customer wording and absence-of-order assertions remain human-account/unknown unless independent evidence is actually cited.
+
 Keep account identity unchanged: omit `update_account_context.title` for ordinary updates, including large batches. It sets the account display name, not a note or conversation heading. `submittedSource` is a JSON object containing `text`, never a string/XML fragment. Reuse an already retained source ID rather than reproducing the transcript for every task or retry.
 
 A substantial multi-item update is a reconciliation job. The routine word limits do not apply when they would hide meaningful actions, failures, conflicts or distinctions between accounts and pursuits. Scale the reply to the number of material outcomes, not the length of filler prose. Use compact lists grouped by account/pursuit and by **saved/applied**, **awaiting confirmation**, and **unresolved/blocked**; name the actual task, opportunity or account operation. Do not give a full recap of unchanged history. The executive has invested attention in the dump and should be able to check the result without reconstructing it.
