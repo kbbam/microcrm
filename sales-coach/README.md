@@ -1,8 +1,13 @@
 # Sales executive coach
 
-The intended executive surface is an ordinary Claude conversation, particularly Android, using the small [BAM sales coach skill](claude-skill/SKILL.md) and an authenticated remote Business OS connector. Claude itself performs the conversation; the connector supplies current instructions, durable context, evidence storage and bounded CRM operations. There is no separate model API requirement or Projects dependency. Twenty remains a human operational interface, alongside Claude.
+The intended executive surface is an ordinary Claude conversation, particularly iOS and Android, using the small [BAM sales coach skill](claude-skill/SKILL.md) and an authenticated remote Business OS connector. Claude itself performs the conversation; the connector supplies current instructions, durable context, evidence storage and bounded CRM operations. There is no separate model API requirement or Projects dependency. Twenty remains a human operational interface, alongside Claude.
 
 The Codex CLI below is a developer verification/prototype runtime, not the executive installation path. This repository does not itself install the skill in a Claude organization, configure an executive's connection, or prove mobile operation.
+
+## Start here
+
+- Executives: [connect and try it on your phone](executive-quickstart.md).
+- Builders: [Coach backlog](backlog.md) (research first) and [QA scenarios](qa/scenarios.md).
 
 ## Claude organization installation
 

@@ -13,7 +13,7 @@ Use an isolated fixture and authenticated ordinary Claude chat. Test instruction
 
 For a new executive's setup, use a permitted account read and the first genuine harmless capture/ordinary update as the smoke check. Do not create pretend customer tasks/opportunities or fire every mutating tool to obtain prompts. Builder release QA carries broad functional coverage; per-user setup verifies authentication, saved prompt settings and one real workflow. If the client exposes an explicit dry-run/preapproval operation in a future version, evaluate that operation rather than inventing one.
 
-Start a fresh chat after saving the settings. Verify that normal account read, typed save and CRM read/update proceed without a prompt; repeat essential behavior on the executive's actual Android app. If prompts recur, report the precise tool and surface, handle them within the same setup session, and do not call setup complete until the fresh-chat test succeeds. Do not claim all settings persisted because only one tool did. Schema/metadata changes are a possible explanation for renewed prompts in the current development iteration, not a verified cause; include client-preflight rechecking in release qualification.
+Start a fresh chat after saving the settings. Verify that normal account read, typed save and CRM read/update proceed without a prompt; repeat essential behavior on the executive's actual iPhone or Android app. If prompts recur, report the precise tool and surface, handle them within the same setup session, and do not call setup complete until the fresh-chat test succeeds. Do not claim all settings persisted because only one tool did. Schema/metadata changes are a possible explanation for renewed prompts in the current development iteration, not a verified cause; include client-preflight rechecking in release qualification.
 
 ## Current observed proof
 
@@ -30,3 +30,7 @@ The permanent production connector named Coach visibly shows Connected in Claude
 ## Executable conversation continuation — owner correction 2 October 2026
 
 The central skill and get_coach_instructions response now require the coach to start this protocol immediately on setup/continue-setup requests, before offering account work. coach_status returns the same fresh source readiness separately from retained evidence. A pending client-permission state must not be labeled setup complete. The protocol uses the client's actual category-wide setting and safe reads; it cannot auto-grant client permissions. The user confirms settings, then the coach verifies reads and requests one fresh-chat check, retaining genuine-write and device verification as distinct evidence. Earlier documentation alone did not cause Claude to run this step.
+
+## Owner global settings clarification — 2 October 2026
+
+The owner reports setting the connector globally to Always allow. Actual owner production settings already show all fifteen tools Always allow, with fresh-chat reads proved. This supersedes the earlier pending owner-setting record. Do not make a member repeat a settings pass if inherited/current settings already allow the operations; verify their own connection and safe read, then first genuine save. Ilya's member-specific grants/phone behavior have not been proved by owner desktop QA. [Short executive guide](../executive-quickstart.md).

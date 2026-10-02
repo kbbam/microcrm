@@ -1,0 +1,9 @@
+{
+  "boundary": "real MCP SDK + production adapter + synthetic provider",
+  "applied": 1,
+  "conflicts": 1,
+  "awaitingHumanConfirmation": 1,
+  "providerMutations": 1,
+  "retryDuplicatedWrite": false,
+  "wholeBatchAtomic": false
+}
