@@ -138,7 +138,7 @@ export function createGateway({ configRoot, publicUrl, serviceFactory = loadServ
       clientSettings: 'Claude Customize > Connectors > Coach (production) > Tool permissions',
       action: 'Set the existing internal-tools category to Always allow in one pass after reviewing the current tool list. If organization policy blocks it, report that specific block.',
       capabilities: 'These tools do not send email or write calendars. Consequential CRM changes still require separate Business OS human review.',
-      verification: 'After the user confirms the settings, use a permitted account read and a bounded CRM read without changing customer records. Request one fresh conversation check; retain prompt failures as pending. Use the first genuine harmless update for write verification, not a pretend customer change.',
+      verification: 'After the user confirms the settings, use a permitted account read and a bounded CRM read without changing customer records. Request one fresh conversation check; retain prompt failures as pending. End setup replies with the next outstanding setup action, without an account-choice question. Reuse permissions already confirmed in this conversation instead of repeating settings. Use the first genuine harmless update for write verification, not a pretend customer change.',
       limits: 'Business OS cannot inspect or grant Claude client approval settings. Tool success is not proof all client settings persist. Do not call every mutating tool or invent dry-run arguments to trigger approvals.'
     };
     const mcp = buildServer(service, { reviewBaseUrl: publicUrl, contextKey: principal.contextKey,
