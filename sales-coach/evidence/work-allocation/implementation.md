@@ -40,3 +40,11 @@ Configure each authenticated user's existing protected JSON, retaining existing 
 Placeholders above are documentation, not valid configuration. Executive `scopeMode` must be `assigned` and its existing member/owner mapping must match; supervisor scope is `workspace`. An empty opportunity catalogue publishes no shared pursuits, even under participating accounts. This trusted catalogue must be updated deliberately when publishing shared pursuits; ordinary new creator-owned pursuits remain usable without publication. Initial production customer membership remains an input, not permission to populate Berlin or relabel non-sales work.
 
 Developer QA uses `scripts/provision-allocation-qa.mjs` then `scripts/verify-allocation-qa.mjs`, with `COACH_QA_CONTROL_ROOT` pointing to protected local credentials/fixture files. Provisioning has a fixed isolated origin and no production fallback. The verification script resets only its own named synthetic fixtures and keeps receipts locally.
+
+## QA deployment
+
+Runtime `e9d2ca3` is deployed at https://coach-api-qa.up.railway.app (Railway deployment `b48d5f7d-fa4b-4aa3-85f9-df84fdfefaba`). `/readyz` returned 200; `/version` returned `e9d2ca3`. Production independently returned 200 and unchanged `75edf10a15ce9e6a47241989b2c2083ab0c29de5`.
+
+QA configuration maps `kb@jpgrowery.com` to assigned executive scope with the synthetic pilot, and `kb@cureous.me` to a separate full-workspace supervisor context. The supervisor explicitly retains access to the former shared QA context. Existing context files and source receipts were retained; configuration was backed up with private file permissions. This changes only the isolated QA environment. No production portfolio was imported or assigned.
+
+The natural conversation checks remain: discover available work; claim the synthetic Autumn trial pursuit while preserving account/task owners; hand off that pursuit to the supervisor; verify the supervisor can assign it back; and review a consequential transfer with clear responsibility/recipient wording. The native check changes only the synthetic task's assignee in Twenty and verifies the next Coach operation reflects it. A mock or SDK test does not close these client/interface checks.
