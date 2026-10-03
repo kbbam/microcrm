@@ -427,6 +427,15 @@ test('retained account and source access revokes immediately across MCP reads, c
   await assert.rejects(service.context({ accountId: 'buyer', refresh: false }), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
   await assert.rejects(service.searchAccounts(), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
   await assert.rejects(service.sources([first.sourceId]), { code: 'RETAINED_SCOPE_UNAVAILABLE' });
+  const unavailableStatus = await call('coach_status');
+  assert.notEqual(unavailableStatus.isError, true);
+  const identityOnly = JSON.parse(unavailableStatus.content[0].text);
+  assert.deepEqual(identityOnly.actor, service.actor);
+  assert.deepEqual(identityOnly.sources, []);
+  assert.deepEqual(identityOnly.changes, []);
+  assert.equal(identityOnly.inventoryCoverage.sources.complete, false);
+  assert.equal(identityOnly.inventoryCoverage.changes.complete, false);
+  assert(!unavailableStatus.content[0].text.includes('Private commitment.'));
   assert(authorizations > 10, 'Current scope is checked again on later operations');
 });
 

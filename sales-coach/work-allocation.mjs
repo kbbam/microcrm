@@ -146,7 +146,7 @@ export class WorkAllocation {
       return { object, id: record.id, name: record.name ?? record.title, companyId: accountIds.length === 1 ? accountIds[0] : undefined, accountIds,
         initiativeId: record.initiativeId, ownerMemberId: record[field] ?? null, expectedUpdatedAt: record.updatedAt, responsibility: names[object] };
     }));
-    return { initiatives: pool.initiatives, work,
+    return { actor: { id: this.actor.id, role: this.actor.role, memberId: this.memberId, authority: 'authenticated-host-configuration' }, initiatives: pool.initiatives, work,
       coverage: { returned: Math.min(matching.length, limit), totalCount: matching.length, complete: matching.length <= limit },
       sourceAccess: 'Shared work discovery grants no other executive mailbox, calendar or private evidence.', nativeTwentyPolicy: 'Direct human edits follow team procedures; Coach enforces its own allocation boundary.' };
   }

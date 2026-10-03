@@ -74,6 +74,7 @@ async function actor(t, p, member = 90, role = 'executive') {
 test('shared discovery is programme-specific, preserves independent availability, and grants no other mailbox', async t => {
   const p = provider(), a = await actor(t,p);
   const list = await a.call('crm_work_list');
+  assert.deepEqual(list.actor, { id: 'qa90@example.test', role: 'executive', memberId: id(90), authority: 'authenticated-host-configuration' });
   assert.deepEqual(list.work.map(row => row.id).sort(), [id(1),id(3),id(10)].sort());
   assert.equal((await a.call('crm_read', { object: 'opportunity', id: id(4) })).records.length,0);
   assert.equal((await a.call('crm_work_list', { mode: 'team' })).code,'SUPERVISOR_REQUIRED');
