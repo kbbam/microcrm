@@ -1,0 +1,168 @@
+
+  - button "Unassigned QA Coach work allocation, rename chat":
+    - generic: Unassigned QA Coach work allocation
+  - button "More options for Unassigned QA Coach work allocation":
+    - generic: 
+  - button "Share":
+    - generic: Share
+  - status: Claude finished the response
+  - feed "Chat messages":
+    - paragraph: Use the up and down arrow keys to move between messages.
+    - article "Message 1 of 6":
+      - 'heading "You said: Use only BAM Business OS — Coach QA for this isolated test." [level=2]'
+      - paragraph: Use only BAM Business OS — Coach QA for this isolated test. What unassigned work can I pick up in the QA Coach work-allocation pilot?
+      - 'button "Show message actions for You said: Use only BAM Business OS — Coach QA for this isolated test."'
+      - status
+    - article "Message 2 of 6":
+      - 'heading "Claude responded: There is one item you can pick up in the QA Coach work-allocation pilot:" [level=2]'
+      - generic: Loaded tools, used BAM Business OS — Coach QA integration
+      - button "Loaded tools, used BAM Business OS — Coach QA integration":
+        - generic: 
+      - status: Loaded tools, used BAM Business OS — Coach QA integration
+      - paragraph: "There is one item you can pick up in the QA Coach work-allocation pilot:"
+      - list:
+        - strong: QA Allocation programme responsibility
+        - text: is the sales programme responsibility for the synthetic QA company account. It is currently unassigned.
+      - paragraph: The pilot is marked active, with the objective "Synthetic allocation only; no outreach." The list is complete, and this is the only available item.
+      - paragraph: I haven't claimed it. If you want it, say so and I'll assign it to you. I'll first record your instruction as the source for the change, then confirm the result.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: 8 minutes ago
+    - article "Message 3 of 6":
+      - 'heading "You said: I’ll take it." [level=2]'
+      - paragraph: I’ll take it. Assign that programme responsibility to me; keep the other responsibilities with their current owners.
+      - toolbar "Message actions":
+        - time: 6 minutes ago
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 4 of 6":
+      - 'heading "Claude responded: Done." [level=2]'
+      - generic: Used BAM Business OS — Coach QA integration, loaded tools
+      - button "Used BAM Business OS — Coach QA integration, loaded tools" [expanded]:
+        - generic: 
+      - status: Used BAM Business OS — Coach QA integration, loaded tools
+      - generic "Get coach instructions":
+        - generic: Get coach instructions
+        - button "Get coach instructions":
+          - generic: 
+      - generic "retain_source Coach QA":
+        - generic: Searched available tools
+        - generic "retain_source Coach QA"
+        - button "Searched available tools retain_source Coach QA":
+          - generic: 
+      - generic "Retain source":
+        - generic: Retain source
+        - button "Retain source":
+          - generic: 
+      - generic "Crm assign work":
+        - generic: Crm assign work
+        - button "Crm assign work" [expanded]:
+          - generic: 
+      - paragraph: Request
+      - code:
+        - generic: "{"
+        - generic: "\"accountId\": \"94b796b7-29cc-4766-b4d9-cfd3540a2490\","
+        - generic: "\"estimatedErrorCost\": \"low\","
+        - generic: "\"expectedUpdatedAt\": \"2026-10-03T06:04:28.561Z\","
+        - generic: "\"highlyConsequential\": false,"
+        - generic: "\"id\": \"38b953bf-8c05-49b5-b1a7-9c1de94cd84f\","
+        - generic: "\"object\": \"initiativeAccount\","
+        - generic: "\"reason\": \"Executive claimed the unassigned QA Allocation programme responsibility for themselves in the synthetic QA work-allocation pilot; other responsibilities unchanged.\","
+        - generic: "\"recipientMemberId\": \"29b0202f-8430-4bb6-ba29-c3e1603037be\","
+        - generic: "\"sourceIds\": ["
+        - generic: "\"5f2f0a0c46ccf28f58cfb556efb15ed87a7ffec7888a32706eac45a22047056b\""
+        - generic: "]"
+        - generic: "}"
+      - paragraph: Response
+      - code:
+        - generic: "{\"accountId\":\"94b796b7-29cc-4766-b4d9-cfd3540a2490\",\"object\":\"initiativeAccount\",\"recordId\":\"38b953bf-8c05-49b5-b1a7-9c1de94cd84f\",\"values\":{\"assigneeId\":\"29b0202f-8430-4bb6-ba29-c3e1603037be\"},\"expectedUpdatedAt\":\"2026-10-03T06:04:28.561Z\",\"assignment\":{\"object\":\"initiativeAccount\",\"recordId\":\"38b953bf-8c05-49b5-b1a7-9c1de94cd84f\",\"accountId\":\"94b796b7-29cc-4766-b4d9-cfd3540a2490\",\"accountIds\":[\"94b796b7-29cc-4766-b4d9-cfd3540a2490\"],\"ownerField\":\"assigneeId\",\"fromMemberId\":null,\"toMemberId\":\"29b0202f-8430-4bb6-ba29-c3e1603037be\",\"fromMemberLabel\":\"Unassigned\",\"toMemberLabel\":\"kb@jpgrowery.com\",\"expectedUpdatedAt\":\"2026-10-03T06:04:28.561Z\",\"responsibility\":\"sales programme responsibility\",\"recordName\":\"QA Allocation programme responsibility\",\"before\":{\"id\":\"38b953bf-8c05-49b5-b1a7-9c1de94cd84f\",\"name\":\"QA Allocation programme responsibility\",\"assigneeId\":null,\"updatedAt\":\"2026-10-03T06:04:28.561Z\"}},\"sourceIds\":[\"5f2f0a0c46ccf28f58cfb556efb15ed87a7ffec7888a32706eac45a22047056b\"],\"estimatedErrorCost\":\"low\",\"highlyConsequential\":false,\"reason\":\"sales programme responsibility “QA Allocation programme responsibility”: Unassigned → kb@jpgrowery.com. Other responsibilities remain unchanged. Executive claimed the unassigned QA Allocation programme responsibility for themselves in the synthetic QA work-allocation pilot; other responsibilities unchanged.\",\"id\":\"456bea00452ffcb4a4c16ea1d14ecc5ea919b4dffb5c1e9742b04df35cd681d3\",\"createId\":\"1ee17e6d-ecf4-49f6-ae24-28f701bd96d7\",\"state\":\"applied\",\"proposedBy\":{\"id\":\"kb@jpgrowery.com\",\"role\":\"executive\"},\"proposedAt\":\"2026-10-03T06:09:20.607Z\",\"appliedAt\":\"2026-10-03T06:09:21.047Z\",\"reconciled\":false,\"error\":null,\"errorCode\":null,\"assignmentReceipt\":{\"responsibility\":\"sales programme responsibility\",\"recordName\":\"QA Allocation programme responsibility\",\"fromMemberId\":null,\"toMemberId\":\"29b0202f-8430-4bb6-ba29-c3e1603037be\",\"fromMemberLabel\":\"Unassigned\",\"toMemberLabel\":\"kb@jpgrowery.com\",\"updatedAt\":\"2026-10-03T06:09:20.973Z\",\"unrelatedResponsibilitiesChanged\":false}}"
+      - paragraph: Done. The QA Allocation programme responsibility (sales programme) moved from Unassigned to you, and the change shows as applied. No other responsibilities were changed.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: 4 minutes ago
+    - article "Message 5 of 6":
+      - 'heading "You said: Who is assigned to “QA Allocation summary — synthetic” right now?" [level=2]'
+      - paragraph: Who is assigned to “QA Allocation summary — synthetic” right now? Read its current Twenty record and tell me the assignee. Don’t change it.
+      - toolbar "Message actions":
+        - time: 1 minute ago
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 6 of 6":
+      - 'heading "Claude responded: \"QA Allocation summary — synthetic\" is currently unassigned." [level=2]'
+      - generic "Crm read":
+        - generic: Crm read
+        - button "Crm read":
+          - generic: 
+      - status: Crm read
+      - paragraph: "\"QA Allocation summary — synthetic\" is currently unassigned. Its Twenty task record has no assignee, and its status is TODO. I only read it and changed nothing."
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: 1 minute ago
+  - button:
+    - generic: 
+  - status
+  - status
+  - status
+  - textbox "Write your prompt to Claude" [active]:
+    - paragraph: Write a message…
+  - status
+  - button "Add files, connectors, and more":
+    - generic: 
+  - 'button "Model: Sonnet 5.5 Medium"':
+    - text: Sonnet 5.5
+    - generic: Medium
+  - button "Settings":
+    - generic: 
+  - button "Press and hold to record":
+    - generic: 
+  - button "Use voice mode":
+  - note:
+    - link "Claude is AI and can make mistakes. Please double-check responses.":
+      - /url: https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+  - status
+- status
+- status
+- region "Notifications"
+- button

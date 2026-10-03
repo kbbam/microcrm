@@ -1,7 +1,7 @@
 {
   "item": "COACH-R001 / BOS-017",
   "researchedAt": "2026-10-03",
-  "status": "documented-analysis-complete; matched-live-pilot-pending",
+  "status": "documentation-and-live-same-thread-coverage-comparison-complete-timing-calendar-attachments-open",
   "attempt": {
     "surface": "Claude Desktop",
     "entrypoint": "cua.getApp(com.anthropic.claudefordesktop)",
@@ -12,16 +12,17 @@
     "permissionChanges": false,
     "externalSends": false,
     "calendarWrites": false,
-    "crmWrites": false
+    "crmWrites": false,
+    "historical": true
   },
   "existingSyntheticFixture": {
-    "subject": "[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01",
+    "subject": "[BAM QA synthetic] Northstar trial and repeat order \u2014 2026-10-01",
     "twentyThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
     "sourceProof": "../../evidence/hosted-qa/routine-thread-bundle-proof.json",
     "proofDate": "2026-10-01",
     "historicalMessageCount": 2,
     "historicalParticipantCount": 5,
-    "nativeGmailPresence": "not-verified-in-this-research",
+    "nativeGmailPresence": "verified-live-2026-10-03",
     "matchedCalendarFixture": null
   },
   "historicalMeasurements": {
@@ -33,7 +34,12 @@
     "limitations": "Descriptive historical samples, not a controlled route comparison; no physical-phone proof."
   },
   "currentBuildInspection": {
-    "sourceFiles": ["../../twenty.mjs", "../../service.mjs", "../../store.mjs", "../../twenty-source-ownership.mjs"],
+    "sourceFiles": [
+      "../../twenty.mjs",
+      "../../service.mjs",
+      "../../store.mjs",
+      "../../twenty-source-ownership.mjs"
+    ],
     "nativeGoogleProviderRetentionImplemented": false,
     "twentyOriginalMimeExposed": false,
     "twentyAttachmentBytesExposed": false,
@@ -43,11 +49,54 @@
   "recommendation": "Retain current route; evaluate bounded hybrid only after matched measurement and central-policy/provenance decision.",
   "implementationAuthorizedByResearch": false,
   "remaining": [
-    "Actual native returned-tool schema and source field fidelity",
-    "Matched same-fixture coverage and timing trials",
+    "Attachment-bearing fixture, HTML fidelity, Bcc and long-thread/truncation checks",
+    "Uninterrupted matched same-fixture cold/warm timing trials",
     "Verified synthetic Calendar fixture on both routes",
     "Physical iOS and Android continuation/fresh-chat tests",
     "Owner decision on native source-read breadth versus BOS central policy",
     "Explicit native-source durable intake and revocation contract before integration"
-  ]
+  ],
+  "liveNativeGmail": {
+    "date": "2026-10-03",
+    "clients": [
+      "Claude Desktop retrieval",
+      "Claude web inspection of same chat"
+    ],
+    "model": "Sonnet 5.5 Medium",
+    "threadId": "1a0f816dade777d3",
+    "messageCount": 2,
+    "messageIds": [
+      "1a0f816dade777d3",
+      "1a0f81ba70a09726"
+    ],
+    "groundTruth": "live-2026-10-03/gmail-ground-truth.txt",
+    "providerResult": "live-2026-10-03/native-gmail-thread.json",
+    "readOnly": true,
+    "permissionPromptsObserved": 0,
+    "matchedTimings": false,
+    "noAttachmentFixture": true,
+    "calendarTested": false,
+    "physicalPhoneTested": false
+  },
+  "comparisonBlocker": "Coverage comparison succeeded through authorized production own-source Twenty access. Controlled timing hit a Claude Get coach instructions approval prompt; permission change awaits owner response. Calendar and attachment-bearing fixtures remain unverified.",
+  "liveTwenty": {
+    "date": "2026-10-03",
+    "surface": "Claude web, production Coach",
+    "actor": "kb@jpgrowery.com",
+    "threadId": "2225ef06-db8d-4da7-9d68-b4b33afd5ec6",
+    "messageCount": 2,
+    "participantCount": 5,
+    "providerResult": "live-2026-10-03/twenty-production-thread.json",
+    "coverageComparison": "live-2026-10-03/coverage-comparison.json",
+    "currentMailboxCompletenessVerified": false,
+    "crmCustomerWrites": false,
+    "authorizedReadEvidenceRetainedInBOS": true
+  },
+  "timingAttempts": {
+    "record": "live-2026-10-03/timings.json",
+    "validMatchedPairs": 0,
+    "nativeAttempt": "observer-delay upper bound; excluded",
+    "twentyAttempt": "unfinished approval-paused run; excluded",
+    "performanceConclusion": "insufficient evidence"
+  }
 }

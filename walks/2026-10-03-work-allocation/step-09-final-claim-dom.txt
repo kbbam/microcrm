@@ -1,0 +1,107 @@
+
+  - button "Unassigned QA Coach work allocation, rename chat":
+    - generic: Unassigned QA Coach work allocation
+  - button "More options for Unassigned QA Coach work allocation":
+    - generic: 
+  - button "Share":
+    - generic: Share
+  - status: Claude finished the response
+  - feed "Chat messages":
+    - paragraph: Use the up and down arrow keys to move between messages.
+    - article "Message 1 of 4":
+      - 'heading "You said: Use only BAM Business OS — Coach QA for this isolated test." [level=2]'
+      - paragraph: Use only BAM Business OS — Coach QA for this isolated test. What unassigned work can I pick up in the QA Coach work-allocation pilot?
+      - toolbar "Message actions":
+        - time: 5 minutes ago
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 2 of 4":
+      - 'heading "Claude responded: There is one item you can pick up in the QA Coach work-allocation pilot:" [level=2]'
+      - generic: Loaded tools, used BAM Business OS — Coach QA integration
+      - button "Loaded tools, used BAM Business OS — Coach QA integration":
+        - generic: 
+      - status: Loaded tools, used BAM Business OS — Coach QA integration
+      - paragraph: "There is one item you can pick up in the QA Coach work-allocation pilot:"
+      - list:
+        - strong: QA Allocation programme responsibility
+        - text: is the sales programme responsibility for the synthetic QA company account. It is currently unassigned.
+      - paragraph: The pilot is marked active, with the objective "Synthetic allocation only; no outreach." The list is complete, and this is the only available item.
+      - paragraph: I haven't claimed it. If you want it, say so and I'll assign it to you. I'll first record your instruction as the source for the change, then confirm the result.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: 4 minutes ago
+    - article "Message 3 of 4":
+      - 'heading "You said: I’ll take it." [level=2]'
+      - paragraph: I’ll take it. Assign that programme responsibility to me; keep the other responsibilities with their current owners.
+      - toolbar "Message actions":
+        - time: 2 minutes ago
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 4 of 4":
+      - 'heading "Claude responded: Done." [level=2]'
+      - generic: Used BAM Business OS — Coach QA integration, loaded tools
+      - button "Used BAM Business OS — Coach QA integration, loaded tools":
+        - generic: 
+      - status: Used BAM Business OS — Coach QA integration, loaded tools
+      - paragraph: Done. The QA Allocation programme responsibility (sales programme) moved from Unassigned to you, and the change shows as applied. No other responsibilities were changed.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: just now
+  - button:
+    - generic: 
+  - status
+  - status
+  - status
+  - textbox "Write your prompt to Claude":
+    - paragraph: Write a message…
+  - status
+  - button "Add files, connectors, and more":
+    - generic: 
+  - 'button "Model: Sonnet 5.5 Medium"':
+    - text: Sonnet 5.5
+    - generic: Medium
+  - button "Settings":
+    - generic: 
+  - button "Press and hold to record":
+    - generic: 
+  - button "Use voice mode":
+  - note:
+    - link "Claude is AI and can make mistakes. Please double-check responses.":
+      - /url: https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+  - status
+- status
+- status
+- region "Notifications"
+- button

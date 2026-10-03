@@ -1,0 +1,78 @@
+{
+  "revision": "853b332ebf5beb8406499dc919c96c13437ac038",
+  "checkedAt": "2026-10-03T06:15:07.930Z",
+  "environment": "production",
+  "boundary": "Actual deployed gateway/Postgres roles/Twenty reads through MCP SDK in-memory transport. Public OAuth is separately evidenced by the existing Claude production email read. No production CRM writes in verification.",
+  "checks": [
+    {
+      "email": "kb@jpgrowery.com",
+      "role": "executive",
+      "toolCount": 18,
+      "programme": "12a12c2d-42cc-4c3d-8671-169f7c3e634c",
+      "availableWorkCount": 0,
+      "eligibleMemberCount": 4,
+      "sourceStatus": "connected",
+      "sourceMeaning": "Fresh own-source verification. lastSyncedAt is provider-reported sync history; checkedAt is the time of this check. Retained evidence inventory and pending proposals do not determine connection state. Reported sync does not prove current or complete mailbox/calendar contents.",
+      "identityAvailable": true,
+      "inventoryCoverage": {
+        "sources": {
+          "complete": true
+        },
+        "changes": {
+          "complete": true
+        }
+      }
+    },
+    {
+      "email": "kb@cureous.me",
+      "role": "admin",
+      "toolCount": 19,
+      "programme": "12a12c2d-42cc-4c3d-8671-169f7c3e634c",
+      "availableWorkCount": 0,
+      "eligibleMemberCount": 4,
+      "sourceStatus": "not-verified",
+      "sourceMeaning": "CRM configuration does not verify email/calendar availability.",
+      "identityAvailable": true,
+      "inventoryCoverage": {
+        "sources": {
+          "complete": true
+        },
+        "changes": {
+          "complete": true
+        }
+      }
+    },
+    {
+      "email": "bruman@jpgrowery.com",
+      "role": "executive",
+      "toolCount": 18,
+      "programme": "12a12c2d-42cc-4c3d-8671-169f7c3e634c",
+      "availableWorkCount": 0,
+      "eligibleMemberCount": 4,
+      "sourceStatus": "authorization-required",
+      "sourceMeaning": "Business OS source authorization is not available. This does not establish whether Google is connected or syncing in Twenty.",
+      "identityAvailable": true,
+      "inventoryCoverage": {
+        "sources": {
+          "complete": true
+        },
+        "changes": {
+          "complete": true
+        }
+      }
+    }
+  ],
+  "publicHealth": {
+    "readyz": {
+      "httpStatus": 200,
+      "body": {
+        "ok": true
+      }
+    },
+    "version": {
+      "httpStatus": 200,
+      "sha": "853b332ebf5beb8406499dc919c96c13437ac038"
+    },
+    "note": "Final public HTTP check after deployment; does not substitute for authenticated role/source proof."
+  }
+}

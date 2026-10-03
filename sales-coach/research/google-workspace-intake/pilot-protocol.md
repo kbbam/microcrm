@@ -1,6 +1,6 @@
 # Read-only comparison protocol
 
-Part of [COACH-R001](README.md). Prepared 3 October 2026; **not yet executed** because the research Mac was locked. Run in ordinary chats, no Projects, no connector replacement, no permission changes without owner authorization. Do not contact customers or write calendar events.
+Part of [COACH-R001](README.md). Prepared 3 October 2026; **partially executed**: live native/production Twenty thread coverage is recorded in [observations](live-2026-10-03/README.md); controlled timing, Calendar and attachments remain open. Run in ordinary chats, no Projects, no connector replacement, no permission changes without owner authorization. Do not contact customers or write calendar events.
 
 ## Existing fixture
 
@@ -13,7 +13,7 @@ First verify this subject exists in the actual executive Gmail and isolated Twen
 1. Verify connected Google identity and the intended native Gmail/Calendar tools. Record actual tool names/schema, approval settings, app version, model/effort and source permissions. Do not toggle permissions during a timed trial.
 2. Read the fixture from Gmail UI for ground truth, restricted to that exact synthetic thread. Record message IDs/order, exact text hashes, sender/recipient roles, dates, attachment metadata and actual attachment bytes if a test fixture has them. Save no real inbox content.
 3. Start a fresh ordinary Claude chat with the prompt below. Start a monotonic timer at submission; record first useful answer, final response, actual tools/calls, tool durations where visible, count and completeness claims. Keep raw synthetic result/trace in evidence; redact credentials/session tokens.
-4. In a separate fresh chat with the same model/effort, request the same exact thread via Coach QA/Twenty, using `includeThreadContext` where supported. Capture identical measures. No state-changing calls. Swap route order and repeat at least three times before describing a typical latency. Record failures rather than excluding them silently.
+4. In a separate fresh chat with the same model/effort, request the same exact thread via Coach QA/Twenty, using `includeThreadContext` where supported. Capture identical measures. No customer-record changes; Coach reads retain authorized evidence in BOS, unlike native-only reads. Swap route order and repeat at least three times before describing a typical latency. Record failures rather than excluding them silently.
 5. Repeat each exact query in its warm chat and then a new chat. Label those conditions. Do not infer a supported cache from fast repetition.
 
 Native prompt:
@@ -37,3 +37,7 @@ Coverage pass means all independently verified fixture messages/participants and
 After desktop retrieval, open that same chat in Claude iOS, then Android where a device is available: ask for a fresh read of the fixture and verify source tool use, actual permission prompts and return from authentication. Separately open a new phone chat to prove discovery works without desktop chat state. Record app/OS versions. Desktop narrow rendering is not a physical phone test.
 
 When integration is later approved, a separate capture/revocation test must prove source text/metadata reaches BOS, is available to permitted supervisor agents, survives chat deletion, and cannot be retrieved by an unauthorized actor. The current read-only experiment cannot prove that contract.
+
+## Recorded execution deviation — 3 October
+
+The isolated QA route required unavailable source authorization. The owner-authorized production own-source Coach route was used instead, restricted to the exact existing synthetic email thread, with no customer records changed. This produced a current content comparison; no QA UUID was treated as a Google or production Twenty ID. Both messages/participants/actionable details matched ground truth; quoted-reply representation differed. Two attempted timings are retained but excluded (observer delay; approval pause). The protocol's minimum three matched cold/warm pairs, Calendar and attachment-bearing fixtures remain unmet; do not advertise a measured speed winner.

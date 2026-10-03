@@ -4,7 +4,7 @@ Research date: 3 October 2026. Owning backlog: [COACH-R001](../../backlog.md#coa
 
 **Recommendation:** retain Twenty as the current authenticated source route. Investigate native Google as an optional freshness/coverage supplement, with a new explicitly attributed intake contract. There is no measured basis yet to replace Twenty or promise a speed improvement. Native Gmail does not resolve original attachment capture. A native Google connector also cannot, by itself, enforce Business OS access rules on what Claude reads.
 
-**Status:** documentation and existing-build analysis complete; same-fixture real-client comparison pending. The attempted desktop probe stopped before app inspection because computer control reported a locked Mac. No Google query, permission change, email, invitation or CRM mutation occurred. [Measured-pilot protocol](pilot-protocol.md) makes the remaining research repeatable. [Evidence record](evidence.json) separates current attempts from historical observations.
+**Status:** documentation/code analysis and live same-thread coverage comparison complete; controlled timing, attachment-bearing and Calendar comparisons remain open. On 3 October, native Gmail in Claude Desktop retrieved the exact two-message synthetic thread, checked against independent Gmail UI. The production Coach in Claude web retrieved that same thread through authorized own-source Twenty access. Both preserve the actionable details; native Gmail also preserves the reply's quoted original, which Twenty's reply text omits. The exact first-message text hashes match. This is one short-thread coverage comparison, not proof of complete inbox coverage or speed. [Live observations](live-2026-10-03/README.md), [measured-pilot protocol](pilot-protocol.md), and [evidence record](evidence.json) retain the limitations and excluded timing attempts.
 
 ## Documented facts
 
@@ -30,9 +30,9 @@ The Twenty column below is the **current Coach adapter**, not the maximum vendor
 
 | Job | Current Twenty → Business OS route | Native Google → Claude route |
 | --- | --- | --- |
-| Read email body | Authorized synchronized plain text. Restricted/not-provided fields are disclosed. | A1; exact HTML/plain-text fidelity and truncation need measurement. |
+| Read email body | Authorized synchronized plain text. Restricted/not-provided fields are disclosed. | Live synthetic check returned both plaintext bodies, including the quoted original. HTML fidelity and longer-message truncation remain untested. |
 | Recover a thread | Targeted unique thread plus separate participant collection; bounded pagination and explicit ambiguity. | A1/G1; test completeness, message order and pagination, not only a search snippet. |
-| Identify participants | Message-level handles, roles, names and person IDs where supplied. | Inspect actual From/To/Cc/Bcc availability; avoid inferring missing recipients. |
+| Identify participants | Message-level handles, roles, names and person IDs where supplied. | Live synthetic check returned sender, To, and Cc correctly. Bcc was absent, not verified. Body signature did not override sender identity. |
 | Retrieve originals/attachments | Adapter exposes neither original MIME nor attachment bytes. No attachment-object tool is registered. | A1 excludes attachment contents. G1 would require another authorized integration. |
 | Read meetings | Title, description, location, times, cancellation and iCalUID; participants separately. Synced subset only. | Test internal/private/shared calendars, recurrence, cancellations, all-day/time-zone details against ground truth. |
 | Associate an opportunity | Provider targets are signals. Several pursuits under one account still require evidence-based interpretation. | Source people/domains cannot establish a unique pursuit; the same ambiguity persists. |
@@ -74,4 +74,4 @@ Historical [ordinary-text QA](../../evidence/hosted-qa/routine-client-proof.md) 
 
 The evidence supports **retain current route; evaluate a bounded hybrid**, rather than replacement. Possible benefit: current own-source checks and information Twenty intentionally omits. Required cost: route provenance, central-rights choice, deduplication and reliable BOS capture. Neither route currently solves email binary evidence through the Coach adapter/native Gmail connector.
 
-To close COACH-R001: unlock a research client; execute [the same-fixture protocol](pilot-protocol.md); establish actual native returned fields, independent source ground truth and matched timings; then present the policy choice and measured coverage/result to the owner. Physical iOS/Android use and Ilya's individual connector grants remain distinct checks. No runtime or organization configuration was changed by this research.
+To close COACH-R001: execute the remaining [same-fixture protocol](pilot-protocol.md), now that the authorized production Twenty route is verified; establish uninterrupted matched timings, attachment-bearing fixture behavior and Calendar coverage; then present the policy choice and measured result to the owner. Actual returned fields from both routes and independent email ground truth are now recorded in [live observations](live-2026-10-03/README.md). Physical iOS/Android use and Ilya's individual connector grants remain distinct checks. No runtime or organization configuration was changed by this research.
