@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-10-03T02:49:55.627Z",
+  "boundary": "isolated Twenty only; synthetic task",
+  "recordId": "8759135f-5aa5-44f6-b00f-c3470e947d1e",
+  "membersAvailable": 2,
+  "expectedUpdatedAt": "2026-10-03T02:49:55.412Z",
+  "claims": [
+    {
+      "attempt": 1,
+      "updated": 1,
+      "records": [
+        {
+          "id": "8759135f-5aa5-44f6-b00f-c3470e947d1e",
+          "updatedAt": "2026-10-03T02:49:55.561Z",
+          "assigneeId": "29b0202f-8430-4bb6-ba29-c3e1603037be"
+        }
+      ]
+    },
+    {
+      "attempt": 2,
+      "updated": 0,
+      "records": []
+    }
+  ],
+  "final": {
+    "id": "8759135f-5aa5-44f6-b00f-c3470e947d1e",
+    "updatedAt": "2026-10-03T02:49:55.561Z",
+    "assigneeId": "29b0202f-8430-4bb6-ba29-c3e1603037be",
+    "title": "[BAM QA] Concurrent work claim dependency probe"
+  },
+  "oneWinner": true,
+  "claimGuarantee": "One live two-request race on one synthetic task. Supports filtered update design; does not establish all-object or stress-tested atomicity."
+}

@@ -1,0 +1,47 @@
+{
+  "observedAt": "2026-10-03T02:46:27.302Z",
+  "boundary": "read-only production metadata; no CRM record or permission mutation",
+  "workspaceUrl": "https://cureous.twenty.com",
+  "entitlements": [
+    {
+      "key": "SSO",
+      "value": false
+    },
+    {
+      "key": "CUSTOM_DOMAIN",
+      "value": true
+    },
+    {
+      "key": "RLS",
+      "value": false
+    },
+    {
+      "key": "RECORD_SHARING",
+      "value": false
+    },
+    {
+      "key": "AUDIT_LOGS",
+      "value": false
+    },
+    {
+      "key": "USAGE_LIMIT",
+      "value": false
+    }
+  ],
+  "executiveRole": {
+    "label": "Member",
+    "canReadAllObjectRecords": true,
+    "canUpdateAllObjectRecords": true,
+    "objectPermissions": [],
+    "fieldPermissions": [],
+    "rowLevelPermissionPredicates": [],
+    "includesIlya": true,
+    "includesExecutiveQA": true
+  },
+  "observedConsequence": "Native Member permission configuration does not enforce own-work handoff versus takeover. Coach checks do not constrain edits made directly in Twenty.",
+  "pendingDecision": "Required native technical enforcement, controlled ownership actions, or procedural native policy with technical Coach enforcement. No interpretation is approved by this finding.",
+  "primarySources": [
+    "https://docs.twenty.com/user-guide/permissions-access/capabilities/permissions",
+    "https://docs.twenty.com/user-guide/permissions-access/how-tos/permissions-faq"
+  ]
+}
