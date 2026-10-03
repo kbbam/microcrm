@@ -29,3 +29,7 @@ No native send, draft, relabel, Calendar change or Business OS write was request
 The isolated QA source route lacked authorization and its source-status URL was unconfigured. That blocked the initial QA comparison; the verified production own-source read above resolves content access, not the benchmark or every QA environment configuration. Never tell an executive to wait for Google sync based on this QA authorization failure.
 
 Next: uninterrupted matched cold/warm trials, a verified synthetic Calendar fixture, and an attachment-bearing fixture. Selective binary capture and durable BOS attribution require an authorized content route, not metadata alone. The current recommendation remains to retain Twenty and research a bounded hybrid; replacement/integration is not authorized.
+
+## Bounded Calendar fixture discovery
+
+A native Calendar `list_events` query for `BAM QA` over 1 September–31 October 2026 returned only primary-calendar metadata and no event items. Claude repeated the same query using the returned Europe/Moscow calendar time zone; again no items or pagination token were returned. [Actual tool requests/results](native-calendar-fixture-query-dom.txt). No fixture was identified; this is not a comparison of event contents, proof of all-calendar coverage, or an independent Google UI absence check. No other event subjects or calendars were searched, and nothing was created/changed. A known synthetic calendar fixture remains necessary for the matched Calendar test.

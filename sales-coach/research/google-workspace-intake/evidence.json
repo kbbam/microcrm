@@ -98,5 +98,22 @@
     "nativeAttempt": "observer-delay upper bound; excluded",
     "twentyAttempt": "unfinished approval-paused run; excluded",
     "performanceConclusion": "insufficient evidence"
+  },
+  "liveNativeCalendarDiscovery": {
+    "date": "2026-10-03",
+    "surface": "Claude web",
+    "tool": "list_events",
+    "fullText": "BAM QA",
+    "window": "2026-09-01 through 2026-10-31",
+    "calendar": "primary, kb@jpgrowery.com",
+    "returnedTimezone": "Europe/Moscow",
+    "calls": 2,
+    "eventItemsReturned": false,
+    "nextPageTokenReturned": false,
+    "fixtureIdentified": false,
+    "allCalendarsVerified": false,
+    "eventContentsCompared": false,
+    "externalWrites": false,
+    "trace": "live-2026-10-03/native-calendar-fixture-query-dom.txt"
   }
 }
