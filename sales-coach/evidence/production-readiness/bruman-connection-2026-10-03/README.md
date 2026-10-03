@@ -1,0 +1,11 @@
+# Ilya's production connector failure — 3 October 2026
+
+The owner reported Claude's “account was authorized, but Coach returned an error when connecting” notification. Password reset completed at 11:54:35 UTC; production sign-in, consent and token exchange succeeded at 11:57:15–18 UTC. MCP initialization then returned repeated HTTP 503 responses. This was a server-storage failure, independent of his password and pending Twenty source consent.
+
+Under the application's actual UID/GID 1000, gateway construction reproduced `EACCES` at `context/exec-ilya-prod/evidence-originals/requests`. The config and context parent belonged to UID 1000, but the evidence directory and six children belonged to root, with private mode 0700. The earlier allocation verifier executed `buildServer` through Railway SSH as root: it initialized the directories under an identity that concealed the runtime access failure. Its previously reported gateway proof did not prove Ilya's public connection worked.
+
+At 12:00:52 UTC, repaired ownership of those seven paths to UID/GID 1000. Changed no file contents, CRM records, account grants or permission modes. Gateway construction then passed as UID 1000. Failed initialization is evicted from the gateway cache, so no process restart or new grant was needed.
+
+At 12:02:04 UTC, the MCP SDK used Ilya's existing production access token in memory against the **public production endpoint**. Initialization, discovery of all 18 tools, and `get_coach_instructions` succeeded with the correct executive identity. Runtime revision remained `853b332ebf5beb8406499dc919c96c13437ac038`. The token was neither printed nor retained in this evidence. Twenty source authorization still reports `authorization-required`; this does not block connector initialization.
+
+The corrected local allocation verifier drops to the runtime identity before gateway initialization. The checked-in `scripts/verify-hosted-user.mjs` rejects root by default and supports an explicit runtime-user switch for this container. Syntax check and actual production execution passed. No application-image redeployment was necessary for this filesystem repair. The final Claude UI “Connected” state requires Ilya to press Connect again; the builder cannot operate his session.
