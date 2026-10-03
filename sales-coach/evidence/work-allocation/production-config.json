@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-10-03T06:11:32.727Z",
+  "environment": "production",
+  "pilot": {
+    "id": "12a12c2d-42cc-4c3d-8671-169f7c3e634c",
+    "name": "Sales Coach pilot \u2014 Ilya Bruman",
+    "status": "ACTIVE",
+    "managerId": "90005008-2564-4ba7-a8e3-190322702931"
+  },
+  "configs": [
+    {
+      "email": "kb@cureous.me",
+      "role": "admin",
+      "context": "teamlead-prod",
+      "memberId": "90005008-2564-4ba7-a8e3-190322702931",
+      "sourceReceiptPreserved": true,
+      "existingScopeMode": "workspace"
+    },
+    {
+      "email": "kb@jpgrowery.com",
+      "role": "executive",
+      "context": "exec-kb-prod",
+      "memberId": "b7c51e92-4ecc-416f-985e-e4aa92ea740d",
+      "sourceReceiptPreserved": true,
+      "existingScopeMode": "assigned"
+    },
+    {
+      "email": "bruman@jpgrowery.com",
+      "role": "executive",
+      "context": "exec-ilya-prod",
+      "memberId": "92318bf7-50e0-4a19-8e64-43136aa90ccc",
+      "sourceReceiptPreserved": true,
+      "existingScopeMode": "assigned"
+    }
+  ],
+  "eligibleMemberCount": 4,
+  "customerMembershipCount": 0,
+  "opportunityCatalogueCount": 0,
+  "existingInitiativesPreserved": true,
+  "noCustomerOwnershipChanges": true,
+  "noExternalMessages": true,
+  "backupLocation": "/var/lib/bam-coach/backups/work-allocation-production"
+}

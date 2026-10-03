@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto';
 import { matchesSuppliedValue } from './store.mjs';
+import { WorkAllocation } from './work-allocation.mjs';
 
 export class TwentyError extends Error {
   constructor(code, message) { super(message); this.name = 'TwentyError'; this.code = code; }
@@ -22,6 +23,9 @@ const config = {
   calendarEventTarget: ['CalendarEventTarget', 'calendarEventTargets', 'calendarEventId targetCompanyId targetPersonId targetOpportunityId', []],
   messageParticipant: ['MessageParticipant', 'messageParticipants', 'messageId personId role handle displayName', []],
   calendarEventParticipant: ['CalendarEventParticipant', 'calendarEventParticipants', 'calendarEventId personId handle displayName isOrganizer responseStatus', []],
+  initiative: ['Initiative', 'initiatives', 'name status objective managerId', []],
+  initiativeAccount: ['InitiativeAccount', 'initiativeAccounts', 'name status initiativeId companyId assigneeId', []],
+  workspaceMember: ['WorkspaceMember', 'workspaceMembers', 'name { firstName lastName } userEmail', []],
 };
 const aliases = Object.fromEntries(Object.entries(config).flatMap(([k,v]) => [[k,k],[v[1],k]]));
 const kind = object => aliases[object] ?? fail('UNSUPPORTED_OBJECT', 'This CRM object is outside the coach tool boundary.');
@@ -67,7 +71,7 @@ const communicationContent = (object, records) => {
 
 /** A fixed-template, account-scoped Twenty transport. The runner owns consequence review. */
 export class TwentyAdapter {
-  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false, allowPersonEmailWrites = false, assignment, messageChannelIds = [], calendarChannelIds = [], sourceOwnershipRequired = false, resolveSourceChannels, stageField = 'stage', stageEnumName, nativeStageOnCreate }) {
+  constructor({ baseUrl, apiKey, fetchImpl = fetch, writeEnabled = false, scopeCompanyIds = [], scopeMode = 'accounts', externalEffectsReviewed = false, allowPersonEmailWrites = false, assignment, messageChannelIds = [], calendarChannelIds = [], sourceOwnershipRequired = false, resolveSourceChannels, stageField = 'stage', stageEnumName, nativeStageOnCreate, workAllocation, actor }) {
     const url = new URL(baseUrl);
     if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password || url.search || url.hash) fail('INVALID_URL', 'Invalid CRM base URL.');
     this.baseUrl = url.href.replace(/\/$/, '').replace(/\/(graphql|metadata)$/, '');
@@ -93,6 +97,10 @@ export class TwentyAdapter {
       if (!assignment) fail('INVALID_ASSIGNMENT', 'Assigned scope requires trusted member and verified assignment fields.');
       this.assignment = { memberId: uuid(assignment.memberId), companyOwnerField: trustedField(assignment.companyOwnerField), opportunityOwnerField: trustedField(assignment.opportunityOwnerField) };
     }
+    if (workAllocation?.enabled === true) {
+      if (this.assignment && (this.assignment.memberId !== workAllocation.memberId || this.assignment.companyOwnerField !== 'accountOwnerId' || this.assignment.opportunityOwnerField !== 'ownerId')) fail('INVALID_ALLOCATION_CONFIG', 'Work allocation must match the verified executive assignment mapping.');
+      this.work = new WorkAllocation(this, workAllocation, actor);
+    }
   }
   async request(query, variables = {}) {
     let response;
@@ -106,7 +114,13 @@ export class TwentyAdapter {
     return body.data;
   }
   async metadata() {
-    const result = await this.request(`{ stage: __type(name: "${this.stageEnumName}") { enumValues { name } } nativeStage: __type(name: "OpportunityStageEnum") { enumValues { name } } query: __type(name: "Query") { fields { name } } mutation: __type(name: "Mutation") { fields { name } } }`);
+    // Twenty rejects duplicate __type root resolvers even with aliases.
+    const parts = await Promise.all([
+      this.request(`{ stage: __type(name: "${this.stageEnumName}") { enumValues { name } } }`),
+      this.request('{ nativeStage: __type(name: "OpportunityStageEnum") { enumValues { name } } }'),
+      this.request('{ query: __type(name: "Query") { fields { name } } }'),
+    ]);
+    const result = { stage: parts[0].stage, nativeStage: parts[1].nativeStage, query: parts[2].query };
     return { stageField: this.stageField, stages: result.stage?.enumValues?.map(v => v.name) ?? [], nativeStages: result.nativeStage?.enumValues?.map(v => v.name) ?? [], readableObjects: Object.keys(config).filter(o => result.query?.fields?.some(f => f.name === config[o][1])), pipelineCompatible: stages.every(s => result.stage?.enumValues?.some(v => v.name === s)) };
   }
   accountScope(companyId) {
@@ -121,7 +135,10 @@ export class TwentyAdapter {
     if (this.scopeMode === 'assigned' && object === 'company') extra.push(this.assignment.companyOwnerField);
     if (this.scopeMode === 'assigned' && object === 'opportunity') extra.push(this.assignment.opportunityOwnerField);
     if (object === 'opportunity' && this.stageField !== 'stage') extra.push(this.stageField);
-    return `${selection(object)} ${extra.join(' ')}`.trim();
+    if (this.work && object === 'company') extra.push('accountOwnerId');
+    if (this.work && object === 'opportunity') extra.push('ownerId');
+    if (this.work && object === 'task') extra.push('assigneeId');
+    return `${selection(object)} ${[...new Set(extra)].join(' ')}`.trim();
   }
   matchesValues(object, record, data) {
     return Object.entries(data).every(([field, value]) => matchesSuppliedValue(object === 'opportunity' && this.stageField !== 'stage' && field === 'stage' ? record.providerStage : record[field], value));
@@ -163,9 +180,10 @@ export class TwentyAdapter {
       this.collect('opportunity', { [opportunityOwnerField]: { eq: memberId } }),
     ]);
     if (!companies.complete || !opportunities.complete) fail('SCOPE_INCOMPLETE', 'Assignment discovery is incomplete; no broader access is permitted.');
-    return { companyIds: companies.records.map(record => record.id), opportunityIds: opportunities.records.map(record => record.id),
+    const base = { companyIds: companies.records.map(record => record.id), opportunityIds: opportunities.records.map(record => record.id),
       visibleCompanyIds: [...new Set([...companies.records.map(record => record.id), ...opportunities.records.map(record => record.companyId).filter(Boolean)])],
       contactIds: [...new Set(opportunities.records.map(record => record.pointOfContactId).filter(Boolean))] };
+    return this.work ? this.work.portfolio(base) : base;
   }
   async authorizeAccount(companyId, { createCompany = false } = {}) {
     uuid(companyId);
@@ -223,6 +241,8 @@ export class TwentyAdapter {
       if (companyIds?.some(companyId => !policy.visibleCompanyIds.includes(companyId))) fail('OUT_OF_SCOPE', 'Account is not assigned to this executive.');
       const narrow = ids => companyIds ? ids.filter(value => companyIds.includes(value)) : ids;
       const ownedCompanies = narrow(policy.companyIds);
+      if (object === 'initiativeAccount') return { filter: policy.initiativeAccountIds?.length ? { and: [{ id: { in: policy.initiativeAccountIds } }, ...(companyIds ? [{ companyId: { in: companyIds } }] : [])] } : null, complete: true };
+      if (object === 'initiative' || object === 'workspaceMember') fail('READ_ONLY_OBJECT', 'Use the scoped work-discovery/member tools for these objects.');
       if (object === 'company') {
         const ids = narrow(policy.visibleCompanyIds);
         return { filter: ids.length ? { id: { in: ids } } : null, complete: true };
@@ -246,7 +266,8 @@ export class TwentyAdapter {
       if (object.endsWith('Target')) {
         const people = await this.collect('person', (await this.scopeFilter('person', companyIds, selectors, policy)).filter);
         const opportunities = await this.collect('opportunity', (await this.scopeFilter('opportunity', companyIds, selectors, policy)).filter);
-        const alternatives = [...(ownedCompanies.length ? [{ targetCompanyId: { in: ownedCompanies } }] : []), ...(people.records.length ? [{ targetPersonId: { in: people.records.map(record => record.id) } }] : []), ...(opportunities.records.length ? [{ targetOpportunityId: { in: opportunities.records.map(record => record.id) } }] : [])];
+        const ownedTaskIds = (policy.taskIds ?? []).filter(taskId => !companyIds || policy.taskAccountIds[taskId]?.some(id => companyIds.includes(id)));
+        const alternatives = [...(ownedCompanies.length ? [{ targetCompanyId: { in: ownedCompanies } }] : []), ...(people.records.length ? [{ targetPersonId: { in: people.records.map(record => record.id) } }] : []), ...(opportunities.records.length ? [{ targetOpportunityId: { in: opportunities.records.map(record => record.id) } }] : []), ...(object === 'taskTarget' && ownedTaskIds.length ? [{ taskId: { in: ownedTaskIds } }] : [])];
         return { filter: alternatives.length ? { or: alternatives } : null, complete: people.complete && opportunities.complete };
       }
     }
@@ -267,6 +288,10 @@ export class TwentyAdapter {
     }
     const related = await this.collect(parent, scope.filter && (lookupClauses.length ? { and: [scope.filter, ...lookupClauses] } : scope.filter), parent === 'message');
     const ids = related.records.map(r => parent.endsWith('Target') ? r[field] : r.id).filter(Boolean);
+    if (object === 'task' && this.work && this.scopeMode === 'assigned') {
+      const portfolio = await this.assignedPortfolio();
+      ids.push(...portfolio.taskIds.filter(taskId => !companyIds || portfolio.taskAccountIds[taskId]?.some(id => companyIds.includes(id))));
+    }
     return { filter: ids.length ? { [object === 'message' ? 'messageThreadId' : object.endsWith('Participant') ? field : 'id']: { in: [...new Set(ids)] } } : null, complete: scope.complete && related.complete, sourceSync: scope.sourceSync };
   }
   async read({ object, id, companyId, limit = 50, offset = 0, subjectContains, messageThreadId, messageId }) {
@@ -353,6 +378,17 @@ export class TwentyAdapter {
   }
   async create({ object, values }) {
     this.writeGuard(); object = kind(object); const data = await this.values(object,values,true);
+    if (object === 'company' && this.work) {
+      const literal = value => value.replace(/[\\%_]/g, character => `\\${character}`);
+      const clauses = [];
+      if (typeof data.name === 'string' && data.name.trim()) clauses.push({ name: { ilike: literal(data.name.trim()) } });
+      if (data.domainName?.primaryLinkUrl) clauses.push({ domainName: { primaryLinkUrl: { eq: data.domainName.primaryLinkUrl } } });
+      if (clauses.length) {
+        const candidates = (await this.page('company', { or: clauses }, 2, 0, true)).records;
+        if (candidates.some(record => record.id !== data.id)) fail('ACCOUNT_MATCH_REQUIRED', 'An existing account may match this name or domain. Resolve its identity in Twenty or with the team lead before creating a duplicate.');
+      }
+    }
+    if (object === 'task' && this.work) data.assigneeId = this.work.memberId;
     // Caller persists the stable ID before submission; retry never blindly creates again.
     uuid(data.id);
     if (object === 'company') this.accountScope(data.id);
@@ -392,6 +428,9 @@ export class TwentyAdapter {
     const data=await this.values(object,values,false);
     const before=(await this.read({object,id})).records[0];
     if (!before) fail('OUT_OF_SCOPE','Record is missing or outside approved scope.');
+    if (this.work && !this.work.supervisor && object === 'company' && !(await this.assignedPortfolio()).operationalCompanyIds.includes(id)) fail('OUT_OF_SCOPE', 'Claim a specific responsibility before changing a shared pool account.');
+    if (this.work && !this.work.supervisor && object === 'opportunity' && before.ownerId !== this.work.memberId) fail('OUT_OF_SCOPE', 'Shared discovery permits reading this opportunity, not changing another executive’s pursuit.');
+    if (this.work && !this.work.supervisor && object === 'task' && before.assigneeId !== this.work.memberId) fail('OUT_OF_SCOPE', 'A task’s assignee is independent of its account. Changing another executive’s task requires the team lead.');
     if (before.updatedAt!==expectedUpdatedAt) fail('CONFLICT','Human or concurrent CRM edit changed the record; refresh and review the proposal.');
     const [type,plural]=config[object];
     const result=await this.request(`mutation CoachPatch($data:${type}UpdateInput!,$filter:${type}FilterInput!){update${plural[0].toUpperCase()+plural.slice(1)}(data:$data,filter:$filter){${this.recordSelection(object)}}}`,{data,filter:{and:[{id:{eq:id}},{updatedAt:{eq:expectedUpdatedAt}}]}});

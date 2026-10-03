@@ -1,0 +1,130 @@
+{
+  "item": "COACH-R001 / BOS-017",
+  "researchedAt": "2026-10-03",
+  "status": "documentation-live-thread-coverage-and-bounded-timing-comparison-complete-calendar-attachments-open",
+  "attempt": {
+    "surface": "Claude Desktop",
+    "entrypoint": "cua.getApp(com.anthropic.claudefordesktop)",
+    "outcome": "blocked-before-app-inspection",
+    "exactError": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "nativeQueriesAttempted": 0,
+    "nativeLatencyMs": null,
+    "permissionChanges": false,
+    "externalSends": false,
+    "calendarWrites": false,
+    "crmWrites": false,
+    "historical": true
+  },
+  "existingSyntheticFixture": {
+    "subject": "[BAM QA synthetic] Northstar trial and repeat order \u2014 2026-10-01",
+    "twentyThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
+    "sourceProof": "../../evidence/hosted-qa/routine-thread-bundle-proof.json",
+    "proofDate": "2026-10-01",
+    "historicalMessageCount": 2,
+    "historicalParticipantCount": 5,
+    "nativeGmailPresence": "verified-live-2026-10-03",
+    "matchedCalendarFixture": null
+  },
+  "historicalMeasurements": {
+    "source": "../../evidence/hosted-qa/routine-client-proof.md",
+    "twentyBackendBundleMs": 1616,
+    "claudeFreshMailCheckSeconds": 21.133,
+    "claudeWarmRepeatSeconds": 3.228,
+    "matchedNativeComparison": false,
+    "limitations": "Descriptive historical samples, not a controlled route comparison; no physical-phone proof."
+  },
+  "currentBuildInspection": {
+    "sourceFiles": [
+      "../../twenty.mjs",
+      "../../service.mjs",
+      "../../store.mjs",
+      "../../twenty-source-ownership.mjs"
+    ],
+    "nativeGoogleProviderRetentionImplemented": false,
+    "twentyOriginalMimeExposed": false,
+    "twentyAttachmentBytesExposed": false,
+    "nativeGmailAttachmentContentsDocumented": false,
+    "programmaticNativeConnectorCacheDocumented": false
+  },
+  "recommendation": "Retain current route; evaluate bounded hybrid only after matched measurement and central-policy/provenance decision.",
+  "implementationAuthorizedByResearch": false,
+  "remaining": [
+    "Attachment-bearing fixture, HTML fidelity, Bcc and long-thread/truncation checks",
+    "Verified synthetic Calendar fixture on both routes",
+    "Physical iOS and Android continuation/fresh-chat tests",
+    "Owner decision on native source-read breadth versus BOS central policy",
+    "Explicit native-source durable intake and revocation contract before integration",
+    "First-useful-answer/phase timing, new-arrival freshness and cache controls not measured by bounded UI series"
+  ],
+  "liveNativeGmail": {
+    "date": "2026-10-03",
+    "clients": [
+      "Claude Desktop retrieval",
+      "Claude web inspection of same chat"
+    ],
+    "model": "Sonnet 5.5 Medium",
+    "threadId": "1a0f816dade777d3",
+    "messageCount": 2,
+    "messageIds": [
+      "1a0f816dade777d3",
+      "1a0f81ba70a09726"
+    ],
+    "groundTruth": "live-2026-10-03/gmail-ground-truth.txt",
+    "providerResult": "live-2026-10-03/native-gmail-thread.json",
+    "readOnly": true,
+    "permissionPromptsObserved": 0,
+    "matchedTimings": false,
+    "noAttachmentFixture": true,
+    "calendarTested": false,
+    "physicalPhoneTested": false
+  },
+  "comparisonBlocker": "Instruction permission resolved; current thread coverage and three fresh/first-repeat timing pairs per route completed. Calendar fixture and attachment-bearing/content-fetch evidence remain open.",
+  "liveTwenty": {
+    "date": "2026-10-03",
+    "surface": "Claude web, production Coach",
+    "actor": "kb@jpgrowery.com",
+    "threadId": "2225ef06-db8d-4da7-9d68-b4b33afd5ec6",
+    "messageCount": 2,
+    "participantCount": 5,
+    "providerResult": "live-2026-10-03/twenty-production-thread.json",
+    "coverageComparison": "live-2026-10-03/coverage-comparison.json",
+    "currentMailboxCompletenessVerified": false,
+    "crmCustomerWrites": false,
+    "authorizedReadEvidenceRetainedInBOS": true
+  },
+  "timingAttempts": {
+    "earlierRecord": "live-2026-10-03/timings.json",
+    "currentRecord": "live-2026-10-03/timing-series.json",
+    "summary": "live-2026-10-03/timing-summary.json",
+    "validFreshPairs": 3,
+    "validFirstRepeatPairs": 3,
+    "performanceConclusion": "No convincing native speed advantage in this short unchanged thread; no physical-phone or cache conclusion."
+  },
+  "liveNativeCalendarDiscovery": {
+    "date": "2026-10-03",
+    "surface": "Claude web",
+    "tool": "list_events",
+    "fullText": "BAM QA",
+    "window": "2026-09-01 through 2026-10-31",
+    "calendar": "primary, kb@jpgrowery.com",
+    "returnedTimezone": "Europe/Moscow",
+    "calls": 2,
+    "eventItemsReturned": false,
+    "nextPageTokenReturned": false,
+    "fixtureIdentified": false,
+    "allCalendarsVerified": false,
+    "eventContentsCompared": false,
+    "externalWrites": false,
+    "trace": "live-2026-10-03/native-calendar-fixture-query-dom.txt"
+  },
+  "instructionPermissionVerification": {
+    "ownerCompleted": true,
+    "freshChatToolReadSucceeded": true,
+    "approvalPrompt": false,
+    "tool": "get_coach_instructions",
+    "actor": "kb@jpgrowery.com",
+    "trace": "live-2026-10-03/fresh-instructions-permission-dom.txt",
+    "allToolsVerified": false,
+    "IlyaVerified": false
+  }
+}

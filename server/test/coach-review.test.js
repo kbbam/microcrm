@@ -96,6 +96,24 @@ test('review shows exact values, evidence and consequences; approval applies onc
   assert.equal(f.writes(), 1);
 });
 
+test('assignment review identifies the responsibility and verified colleague without presenting IDs as people', async t => {
+  const f = await fixture(t);
+  await f.service.store.rememberCRM('acme', 'opportunity', { id: 'order-one', name: 'Autumn trial order', ownerId: null, updatedAt: '2026-10-01T09:00:00Z' });
+  const assignment = { ownerField: 'ownerId', responsibility: 'opportunity', fromMemberId: null, toMemberId: 'verified-member', fromMemberLabel: 'Unassigned', toMemberLabel: 'colleague@example.test' };
+  await f.service.store.putChange({ ...f.change, values: { ownerId: 'verified-member' }, assignment });
+  const html = await f.read();
+  assert.match(html, /Assign opportunity/);
+  assert.match(html, /Responsible colleague/);
+  assert.match(html, /Before this change/);
+  assert.match(html, /Unassigned/);
+  assert.match(html, /colleague@example.test/);
+  assert.doesNotMatch(html, /<pre[^>]*>verified-member<\/pre>/);
+  assignment.toMemberLabel = '<script>not a person</script>';
+  await f.service.store.putChange({ ...f.change, values: { ownerId: 'verified-member' }, assignment });
+  assert.match(await f.read(), /&lt;script&gt;not a person&lt;\/script&gt;/);
+  assert.equal(f.writes(), 0);
+});
+
 test('rejection is durable and resume does not apply it', async t => {
   const f = await fixture(t);
   assert.equal((await f.submit({ ...f.fields(await f.read()), decision: 'reject' })).status, 303);

@@ -1,0 +1,163 @@
+
+  - button "Email thread read via Business OS Coach connector, rename chat":
+    - generic: Email thread read via Business OS Coach connector
+  - button "More options for Email thread read via Business OS Coach connector":
+    - generic: 
+  - button "Share":
+    - generic: Share
+  - status: Claude finished the response
+  - feed "Chat messages":
+    - paragraph: Use the up and down arrow keys to move between messages.
+    - article "Message 1 of 2":
+      - 'heading "You said: Research check only." [level=2]'
+      - paragraph: Research check only. Use only the production Business OS Coach connector, not Coach QA or native Google. Through Twenty, read my own connected email thread with exact subject “[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01”. Do not send email, create tasks, or change CRM records. Read actual messages and participants, not only snippets, within my existing authorization. Report message count/order, sender/To/Cc, original identifiers if returned, Autumn trial deadline and separate repeat quantity/week. If unavailable, say whether authorization, sync coverage or subject ambiguity prevents the read; do not broaden the search or infer that Google is disconnected.
+      - toolbar "Message actions":
+        - time: 3 minutes ago
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 2 of 2":
+      - 'heading "Claude responded: The production Coach connector read the thread through Twenty." [level=2]'
+      - generic: Loaded tools, used Coach integration
+      - button "Loaded tools, used Coach integration" [expanded]:
+        - generic: 
+      - status: Loaded tools, used Coach integration
+      - generic "Coach crm_read email thread":
+        - generic: Searched available tools
+        - generic "Coach crm_read email thread"
+        - button "Searched available tools Coach crm_read email thread":
+          - generic: 
+      - generic "Crm read":
+        - generic: Crm read
+        - button "Crm read" [expanded] [active]:
+          - generic: 
+      - paragraph: Request
+      - code: "{ \"object\": \"message\", \"subjectContains\": \"[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01\", \"includeThreadContext\": true }"
+      - paragraph: Response
+      - code: "{\"records\":[{\"id\":\"72883980-6b0b-4880-a10b-a8336a5f4a77\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:19.691Z\",\"headerMessageId\":\"<CAPXpM3w4NgFGMgF1KAbEgPV0vOfEqXkJQ9qq7oN7Z5iy1teBzw@mail.gmail.com>\",\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\",\"subject\":\"[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01\",\"text\":\"This is a synthetic Business OS QA exchange. It creates no real commercial commitment.\\n\\nHi Anna,\\n\\nFor QA Northstar Pharmacy — Coach Verification, I am preparing the German shelf-life summary for the Autumn trial. I plan to have its translation checked by 4 October 2026 and send you the summary by 5 October 2026.\\n\\nSeparately, for the Spring repeat order, could you confirm your provisional quantity and target delivery week? These are separate opportunities.\\n\\nPlease reply in this thread for the test. A provisional quantity or scheduling change is not an accepted order.\\n\\nKirill — synthetic executive\",\"receivedAt\":\"2026-10-01T15:30:42.000Z\",\"isDraft\":false,\"contentAvailability\":{\"headerMessageId\":{\"status\":\"available\"},\"messageThreadId\":{\"status\":\"available\"},\"subject\":{\"status\":\"available\"},\"text\":{\"status\":\"available\"},\"receivedAt\":{\"status\":\"available\"},\"isDraft\":{\"status\":\"available\"}}},{\"id\":\"8b31eb7e-8110-49d6-a44b-bc39e219db9a\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:19.691Z\",\"headerMessageId\":\"<CAMY=jT+bTnN-rbKc7fw1tkP13DoZpZvVta=i2zZM2WPh87oSTg@mail.gmail.com>\",\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\",\"subject\":\"Re: [BAM QA synthetic] Northstar trial and repeat order — 2026-10-01\",\"text\":\"“Thanks. For the Autumn trial, please send the German shelf-life summary by\\n6 October 2026 instead of 5 October. For the separate Spring repeat order,\\nprovisionally plan 120 units for the week of 12 April 2027. Neither is an\\naccepted order. — Anna, synthetic customer”\\n\\nCheers!\\nKirill Bolgarov\",\"receivedAt\":\"2026-10-01T15:35:43.000Z\",\"isDraft\":false,\"contentAvailability\":{\"headerMessageId\":{\"status\":\"available\"},\"messageThreadId\":{\"status\":\"available\"},\"subject\":{\"status\":\"available\"},\"text\":{\"status\":\"available\"},\"receivedAt\":{\"status\":\"available\"},\"isDraft\":{\"status\":\"available\"}}}],\"coverage\":{\"returned\":2,\"totalCount\":2,\"hasNextPage\":false,\"endCursor\":\"eyJpZCI6IjhiMzFlYjdlLTgxMTAtNDlkNi1hNDRiLWJjMzllMjE5ZGI5YSJ9\",\"complete\":true,\"limit\":100,\"offset\":0,\"contentAccessUnrestricted\":true,\"contentAvailability\":{\"restrictedRecordCount\":0,\"fields\":{\"headerMessageId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"messageThreadId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"subject\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"text\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"receivedAt\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"isDraft\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0}}},\"requestedSubset\":{\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\"},\"scopeComplete\":true,\"sourceSync\":{\"checkedAt\":\"2026-10-03T06:12:04.354Z\",\"channels\":[{\"id\":\"24ec7110-8433-4338-ab53-9009284fa8b8\",\"connectedAccountId\":\"c91e6df9-9039-4a22-a75c-94de5bfe6ee8\",\"authFailed\":false,\"isSyncEnabled\":true,\"syncedAt\":\"2026-10-03T05:43:23.719Z\",\"syncStatus\":\"ACTIVE\",\"syncStage\":\"MESSAGE_LIST_FETCH_PENDING\"}],\"registeredChannelCount\":1,\"authorizedChannelCount\":1,\"revokedChannelCount\":0,\"authorizationComplete\":true,\"currentMailboxCompletenessVerified\":false,\"reason\":\"These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.\"},\"currentSourceCoverageVerified\":false,\"warning\":\"Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.\",\"sourceCapabilities\":{\"body\":\"plain-text-when-authorized\",\"participants\":\"separate-messageParticipant-read\",\"threadId\":true,\"fieldAccess\":\"per-record-contentAvailability; restricted values are not evidence\",\"originalMime\":false,\"attachmentBytes\":false,\"mailboxSynchronization\":\"unverified\",\"scope\":\"executive-owned-connected-sources\"},\"pages\":[{\"returned\":2,\"totalCount\":2,\"hasNextPage\":false,\"endCursor\":\"eyJpZCI6IjhiMzFlYjdlLTgxMTAtNDlkNi1hNDRiLWJjMzllMjE5ZGI5YSJ9\",\"complete\":true,\"limit\":100,\"offset\":0,\"contentAccessUnrestricted\":true,\"contentAvailability\":{\"restrictedRecordCount\":0,\"fields\":{\"headerMessageId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"messageThreadId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"subject\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"text\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"receivedAt\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"isDraft\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0}}},\"requestedSubset\":{\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\"},\"scopeComplete\":true,\"sourceSync\":{\"checkedAt\":\"2026-10-03T06:12:04.354Z\",\"channels\":[{\"id\":\"24ec7110-8433-4338-ab53-9009284fa8b8\",\"connectedAccountId\":\"c91e6df9-9039-4a22-a75c-94de5bfe6ee8\",\"authFailed\":false,\"isSyncEnabled\":true,\"syncedAt\":\"2026-10-03T05:43:23.719Z\",\"syncStatus\":\"ACTIVE\",\"syncStage\":\"MESSAGE_LIST_FETCH_PENDING\"}],\"registeredChannelCount\":1,\"authorizedChannelCount\":1,\"revokedChannelCount\":0,\"authorizationComplete\":true,\"currentMailboxCompletenessVerified\":false,\"reason\":\"These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.\"},\"currentSourceCoverageVerified\":false,\"warning\":\"Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.\",\"sourceCapabilities\":{\"body\":\"plain-text-when-authorized\",\"participants\":\"separate-messageParticipant-read\",\"threadId\":true,\"fieldAccess\":\"per-record-contentAvailability; restricted values are not evidence\",\"originalMime\":false,\"attachmentBytes\":false,\"mailboxSynchronization\":\"unverified\",\"scope\":\"executive-owned-connected-sources\"}}]},\"threadContext\":{\"status\":\"retrieved\",\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\",\"discoveryCoverage\":{\"returned\":2,\"totalCount\":2,\"hasNextPage\":false,\"endCursor\":\"eyJpZCI6IjhiMzFlYjdlLTgxMTAtNDlkNi1hNDRiLWJjMzllMjE5ZGI5YSJ9\",\"complete\":true,\"limit\":50,\"offset\":0,\"contentAccessUnrestricted\":true,\"contentAvailability\":{\"restrictedRecordCount\":0,\"fields\":{\"headerMessageId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"messageThreadId\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"subject\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"text\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"receivedAt\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"isDraft\":{\"available\":2,\"empty\":0,\"notProvided\":0,\"restricted\":0}}},\"requestedSubset\":{\"subjectContains\":\"[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01\"},\"scopeComplete\":true,\"sourceSync\":{\"checkedAt\":\"2026-10-03T06:12:04.354Z\",\"channels\":[{\"id\":\"24ec7110-8433-4338-ab53-9009284fa8b8\",\"connectedAccountId\":\"c91e6df9-9039-4a22-a75c-94de5bfe6ee8\",\"authFailed\":false,\"isSyncEnabled\":true,\"syncedAt\":\"2026-10-03T05:43:23.719Z\",\"syncStatus\":\"ACTIVE\",\"syncStage\":\"MESSAGE_LIST_FETCH_PENDING\"}],\"registeredChannelCount\":1,\"authorizedChannelCount\":1,\"revokedChannelCount\":0,\"authorizationComplete\":true,\"currentMailboxCompletenessVerified\":false,\"reason\":\"These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.\"},\"currentSourceCoverageVerified\":false,\"warning\":\"Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.\",\"sourceCapabilities\":{\"body\":\"plain-text-when-authorized\",\"participants\":\"separate-messageParticipant-read\",\"threadId\":true,\"fieldAccess\":\"per-record-contentAvailability; restricted values are not evidence\",\"originalMime\":false,\"attachmentBytes\":false,\"mailboxSynchronization\":\"unverified\",\"scope\":\"executive-owned-connected-sources\"}},\"participants\":{\"records\":[{\"id\":\"1df8a384-a593-4b00-a544-6268ef45c0bb\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:20.361Z\",\"messageId\":\"72883980-6b0b-4880-a10b-a8336a5f4a77\",\"personId\":\"a5c896fc-417e-43af-afc8-e27bf9e5acb5\",\"role\":\"TO\",\"handle\":\"kbolgarov+101@gmail.com\",\"displayName\":\"\",\"contentAvailability\":{\"messageId\":{\"status\":\"available\"},\"personId\":{\"status\":\"available\"},\"role\":{\"status\":\"available\"},\"handle\":{\"status\":\"available\"},\"displayName\":{\"status\":\"empty\"}}},{\"id\":\"1e72f1fd-8dea-42fe-ae1e-898b0ac09413\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:20.361Z\",\"messageId\":\"8b31eb7e-8110-49d6-a44b-bc39e219db9a\",\"personId\":\"21f14a29-4dfc-406f-9508-6d0b2a22df37\",\"role\":\"FROM\",\"handle\":\"kbolgarov@gmail.com\",\"displayName\":\"Kirill Bolgarov\",\"contentAvailability\":{\"messageId\":{\"status\":\"available\"},\"personId\":{\"status\":\"available\"},\"role\":{\"status\":\"available\"},\"handle\":{\"status\":\"available\"},\"displayName\":{\"status\":\"available\"}}},{\"id\":\"95a697eb-6c0a-42fc-b201-78a947efc94a\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:20.476Z\",\"messageId\":\"72883980-6b0b-4880-a10b-a8336a5f4a77\",\"personId\":null,\"role\":\"FROM\",\"handle\":\"kb@jpgrowery.com\",\"displayName\":\"Kirill Bolgarov\",\"contentAvailability\":{\"messageId\":{\"status\":\"available\"},\"personId\":{\"status\":\"notProvided\"},\"role\":{\"status\":\"available\"},\"handle\":{\"status\":\"available\"},\"displayName\":{\"status\":\"available\"}}},{\"id\":\"dc78aaec-9bef-4f99-a2d3-5737681ca94d\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:20.136Z\",\"messageId\":\"8b31eb7e-8110-49d6-a44b-bc39e219db9a\",\"personId\":null,\"role\":\"TO\",\"handle\":\"kb@jpgrowery.com\",\"displayName\":\"Kirill Bolgarov\",\"contentAvailability\":{\"messageId\":{\"status\":\"available\"},\"personId\":{\"status\":\"notProvided\"},\"role\":{\"status\":\"available\"},\"handle\":{\"status\":\"available\"},\"displayName\":{\"status\":\"available\"}}},{\"id\":\"dcb03f0a-1d7f-476b-b9e7-f5310e7053ff\",\"createdAt\":\"2026-10-02T03:19:19.691Z\",\"updatedAt\":\"2026-10-02T03:19:20.361Z\",\"messageId\":\"8b31eb7e-8110-49d6-a44b-bc39e219db9a\",\"personId\":\"a5c896fc-417e-43af-afc8-e27bf9e5acb5\",\"role\":\"CC\",\"handle\":\"kbolgarov+101@gmail.com\",\"displayName\":\"Kirill Bolgarov\",\"contentAvailability\":{\"messageId\":{\"status\":\"available\"},\"personId\":{\"status\":\"available\"},\"role\":{\"status\":\"available\"},\"handle\":{\"status\":\"available\"},\"displayName\":{\"status\":\"available\"}}}],\"coverage\":{\"returned\":5,\"totalCount\":5,\"hasNextPage\":false,\"endCursor\":\"eyJpZCI6ImRjYjAzZjBhLTFkN2YtNDc2Yi1iOWU3LWY1MzEwZTcwNTNmZiJ9\",\"complete\":true,\"limit\":100,\"offset\":0,\"contentAccessUnrestricted\":true,\"contentAvailability\":{\"restrictedRecordCount\":0,\"fields\":{\"messageId\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"personId\":{\"available\":3,\"empty\":0,\"notProvided\":2,\"restricted\":0},\"role\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"handle\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"displayName\":{\"available\":4,\"empty\":1,\"notProvided\":0,\"restricted\":0}}},\"requestedSubset\":{\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\"},\"scopeComplete\":true,\"sourceSync\":{\"checkedAt\":\"2026-10-03T06:12:04.354Z\",\"channels\":[{\"id\":\"24ec7110-8433-4338-ab53-9009284fa8b8\",\"connectedAccountId\":\"c91e6df9-9039-4a22-a75c-94de5bfe6ee8\",\"authFailed\":false,\"isSyncEnabled\":true,\"syncedAt\":\"2026-10-03T05:43:23.719Z\",\"syncStatus\":\"ACTIVE\",\"syncStage\":\"MESSAGE_LIST_FETCH_PENDING\"}],\"registeredChannelCount\":1,\"authorizedChannelCount\":1,\"revokedChannelCount\":0,\"authorizationComplete\":true,\"currentMailboxCompletenessVerified\":false,\"reason\":\"These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.\"},\"currentSourceCoverageVerified\":false,\"warning\":\"Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.\",\"pages\":[{\"returned\":5,\"totalCount\":5,\"hasNextPage\":false,\"endCursor\":\"eyJpZCI6ImRjYjAzZjBhLTFkN2YtNDc2Yi1iOWU3LWY1MzEwZTcwNTNmZiJ9\",\"complete\":true,\"limit\":100,\"offset\":0,\"contentAccessUnrestricted\":true,\"contentAvailability\":{\"restrictedRecordCount\":0,\"fields\":{\"messageId\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"personId\":{\"available\":3,\"empty\":0,\"notProvided\":2,\"restricted\":0},\"role\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"handle\":{\"available\":5,\"empty\":0,\"notProvided\":0,\"restricted\":0},\"displayName\":{\"available\":4,\"empty\":1,\"notProvided\":0,\"restricted\":0}}},\"requestedSubset\":{\"messageThreadId\":\"2225ef06-db8d-4da7-9d68-b4b33afd5ec6\"},\"scopeComplete\":true,\"sourceSync\":{\"checkedAt\":\"2026-10-03T06:12:04.354Z\",\"channels\":[{\"id\":\"24ec7110-8433-4338-ab53-9009284fa8b8\",\"connectedAccountId\":\"c91e6df9-9039-4a22-a75c-94de5bfe6ee8\",\"authFailed\":false,\"isSyncEnabled\":true,\"syncedAt\":\"2026-10-03T05:43:23.719Z\",\"syncStatus\":\"ACTIVE\",\"syncStage\":\"MESSAGE_LIST_FETCH_PENDING\"}],\"registeredChannelCount\":1,\"authorizedChannelCount\":1,\"revokedChannelCount\":0,\"authorizationComplete\":true,\"currentMailboxCompletenessVerified\":false,\"reason\":\"These are synchronized Twenty records. An empty result or no change does not establish that the live mailbox/calendar has no new activity. Check source sync status and timestamps.\"},\"currentSourceCoverageVerified\":false,\"warning\":\"Source ownership is verified, but synchronized records do not prove current mailbox/calendar completeness. Check sourceSync before inferring no new activity.\"}]},\"sources\":[{\"recordId\":\"1df8a384-a593-4b00-a544-6268ef45c0bb\",\"sourceId\":\"9efb1c828fc49e38c748fa3e0aa96e9f04245eea6b990525f15317010a119972\"},{\"recordId\":\"1e72f1fd-8dea-42fe-ae1e-898b0ac09413\",\"sourceId\":\"f92a3e0798c36df7b6e28c23956d4e06dba8ee0f8dfcd6d0205f728cda535338\"},{\"recordId\":\"95a697eb-6c0a-42fc-b201-78a947efc94a\",\"sourceId\":\"7964a23743bf7fa52f44cfa14ed6e8b39931100765dee3e729262bfdd330b6e2\"},{\"recordId\":\"dc78aaec-9bef-4f99-a2d3-5737681ca94d\",\"sourceId\":\"bcab51409e22ed28dd775efb3fd478b5472deb10a0aac8685816cc62030c5d76\"},{\"recordId\":\"dcb03f0a-1d7f-476b-b9e7-f5310e7053ff\",\"sourceId\":\"8716a9296679b55fd768cd7595707c166956070e28dbb886a7e43189fbee57bd\"}]}},\"sources\":[{\"recordId\":\"72883980-6b0b-4880-a10b-a8336a5f4a77\",\"sourceId\":\"35fe554187fdde3b13abc9220ea836b77d702d86098b272e26e995396e84a1d1\"},{\"recordId\":\"8b31eb7e-8110-49d6-a44b-bc39e219db9a\",\"sourceId\":\"bc44844a98b17c93c122ca3248cb29d1b41e9b8c3cc88e003a33d597d0d4f006\"}]}"
+      - paragraph: "The production Coach connector read the thread through Twenty. I made no writes: no email sent, no tasks created, no CRM changes."
+      - paragraph:
+        - strong: "Read status:"
+        - text: "The read succeeded. Subject match was unambiguous: one thread, ID"
+        - code: 2225ef06-db8d-4da7-9d68-b4b33afd5ec6
+        - text: . Both message bodies were fully available, with no restricted fields. One mailbox channel was authorized and the thread coverage was marked complete.
+      - paragraph:
+        - strong: Messages (2, oldest first)
+      - list:
+        - strong: Original message
+        - list:
+          - listitem: Received 2026-10-01 15:30:42 UTC
+          - text: Message ID
+          - code: 72883980-6b0b-4880-a10b-a8336a5f4a77
+          - text: Header ID
+          - code: <CAPXpM3w4NgFGMgF1KAbEgPV0vOfEqXkJQ9qq7oN7Z5iy1teBzw@mail.gmail.com>
+          - text: "From: Kirill Bolgarov,"
+          - link "kb@jpgrowery.com":
+            - /url: mailto:kb@jpgrowery.com
+          - text: "To:"
+          - link "kbolgarov+101@gmail.com":
+            - /url: mailto:kbolgarov+101@gmail.com
+          - text: ", no display name"
+          - listitem: "Cc: none"
+          - text: "Content: Kirill plans to have the German shelf-life translation checked by 4 Oct 2026 and to send the summary by"
+          - strong: 5 Oct 2026
+          - text: . He also asks Anna to confirm the provisional quantity and target delivery week for the Spring repeat order.
+        - strong: "Reply, \"Re: …\""
+        - list:
+          - listitem: Received 2026-10-01 15:35:43 UTC
+          - text: Message ID
+          - code: 8b31eb7e-8110-49d6-a44b-bc39e219db9a
+          - text: Header ID
+          - code: <CAMY=jT+bTnN-rbKc7fw1tkP13DoZpZvVta=i2zZM2WPh87oSTg@mail.gmail.com>
+          - text: "From: Kirill Bolgarov,"
+          - link "kbolgarov@gmail.com":
+            - /url: mailto:kbolgarov@gmail.com
+          - text: "To: Kirill Bolgarov,"
+          - link "kb@jpgrowery.com":
+            - /url: mailto:kb@jpgrowery.com
+          - text: "Cc: Kirill Bolgarov,"
+          - link "kbolgarov+101@gmail.com":
+            - /url: mailto:kbolgarov+101@gmail.com
+          - listitem: "Content: Signed \"Anna, synthetic customer\", with a \"Cheers! Kirill Bolgarov\" footer. It says neither item is an accepted order."
+      - paragraph:
+        - text: In the first message,
+        - link "kbolgarov+101@gmail.com":
+          - /url: mailto:kbolgarov+101@gmail.com
+        - text: is linked to person record
+        - code: a5c896fc-417e-43af-afc8-e27bf9e5acb5
+        - text: . In the reply,
+        - link "kbolgarov@gmail.com":
+          - /url: mailto:kbolgarov@gmail.com
+        - text: is linked to person
+        - code: 21f14a29-4dfc-406f-9508-6d0b2a22df37
+        - text: . The two
+        - link "kb@jpgrowery.com":
+          - /url: mailto:kb@jpgrowery.com
+        - text: participant rows have no linked person record.
+      - paragraph:
+        - strong: Extracted facts
+      - list:
+        - strong: "Autumn trial deadline:"
+        - text: The German shelf-life summary is now due
+        - strong: 6 October 2026
+        - text: . The reply moved it from 5 October. The 4 October translation check in message 1 was not changed by the reply.
+        - strong: "Spring repeat order (separate):"
+        - strong: 120 units
+        - text: provisionally, for the
+        - strong: week of 12 April 2027
+        - text: . It is explicitly not an accepted order.
+      - paragraph:
+        - strong: Caveats
+      - list:
+        - strong: "Participants:"
+        - text: The "customer" reply was sent by Kirill's own address, and the Anna role-play is in the message body only. The sender and recipient fields do not show a distinct customer mailbox.
+        - strong: "Sync coverage:"
+        - text: The mailbox channel is
+        - code: ACTIVE
+        - text: ", last synced 2026-10-03 05:43 UTC, with a message-list fetch pending. These are synchronized Twenty records, so current mailbox completeness is not verified. Messages arriving after the last sync, if any, would not appear here."
+        - strong: "Original MIME:"
+        - text: Original MIME and attachment bytes are not available through this path. The identifiers above are the ones the connector returned.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: 3 minutes ago
+  - button "Scroll to bottom":
+    - generic: 
+  - status
+  - status
+  - status
+  - textbox "Write your prompt to Claude":
+    - paragraph: Write a message…
+  - status
+  - button "Add files, connectors, and more":
+    - generic: 
+  - 'button "Model: Sonnet 5.5 Medium"':
+    - text: Sonnet 5.5
+    - generic: Medium
+  - button "Settings":
+    - generic: 
+  - button "Press and hold to record":
+    - generic: 
+  - button "Use voice mode":
+  - note:
+    - link "Claude is AI and can make mistakes. Please double-check responses.":
+      - /url: https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+  - status
+- status
+- status
+- region "Notifications"
+- button

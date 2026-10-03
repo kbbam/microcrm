@@ -1,0 +1,141 @@
+
+  - button "Query BAM QA test events in Google Calendar, rename chat":
+    - generic: Query BAM QA test events in Google Calendar
+  - button "More options for Query BAM QA test events in Google Calendar":
+    - generic: 
+  - button "Share":
+    - generic: Share
+  - status: Claude finished the response
+  - feed "Chat messages":
+    - paragraph: Use the up and down arrow keys to move between messages.
+    - article "Message 1 of 2":
+      - 'heading "You said: Research only, using my native Google Calendar connector, not Twenty or Business OS." [level=2]'
+      - paragraph: Research only, using my native Google Calendar connector, not Twenty or Business OS. Look only for existing synthetic test events whose title contains "BAM QA", during 1 September through 31 October 2026. Do not create, update or delete events, send messages, or write CRM/Business OS. If none exist, say none found within that query. If a synthetic event exists, return its exact title, calendar identity, event ID, date, time zone and available description/attendee details so I can compare that same fixture with Twenty. Do not return unrelated events.
+      - toolbar "Message actions":
+        - time: just now
+        - button "Retry":
+          - generic: 
+        - button "Edit":
+          - generic: 
+        - button "Copy":
+          - generic: 
+        - status
+      - status
+    - article "Message 2 of 2":
+      - 'heading "Claude responded: None found within that query." [level=2]'
+      - generic: Used Google Calendar integration, loaded tools
+      - button "Used Google Calendar integration, loaded tools" [expanded]:
+        - generic: 
+      - status: Used Google Calendar integration, loaded tools
+      - generic "Google Calendar search events":
+        - generic: Searched available tools
+        - generic "Google Calendar search events"
+        - button "Searched available tools Google Calendar search events":
+          - generic: 
+      - generic "Lists calendar events in a given calendar.":
+        - generic: Lists calendar events in a given calendar.
+        - button "Lists calendar events in a given calendar." [expanded]:
+          - generic: 
+      - paragraph: Request
+      - code:
+        - generic: "{"
+        - generic: "\"fullText\": \"BAM QA\","
+        - generic: "\"startTime\": \"2026-09-01T00:00:00+07:00\","
+        - generic: "\"endTime\": \"2026-10-31T23:59:59+07:00\","
+        - generic: "\"pageSize\": 50,"
+        - generic: "\"orderBy\": \"startTime\""
+        - generic: "}"
+      - paragraph: Response
+      - code:
+        - generic: "{"
+        - generic: "\"summary\": \"kb@jpgrowery.com\","
+        - generic: "\"updated\": \"2026-10-02T22:14:51Z\","
+        - generic: "\"timeZone\": \"Europe/Moscow\","
+        - generic: "\"accessRole\": \"owner\","
+        - generic: "\"defaultReminders\": ["
+        - generic: "{"
+        - generic: "\"method\": \"popup\","
+        - generic: "\"minutes\": 10"
+        - generic: "}"
+        - generic: "]"
+        - generic: "}"
+      - generic: Checking the calendar for scheduled events.
+      - generic "Lists calendar events in a given calendar.":
+        - generic: Lists calendar events in a given calendar.
+        - button "Lists calendar events in a given calendar." [expanded] [active]:
+          - generic: 
+      - paragraph: Request
+      - code:
+        - generic: "{"
+        - generic: "\"endTime\": \"2026-11-01T00:00:00+03:00\","
+        - generic: "\"fullText\": \"BAM QA\","
+        - generic: "\"orderBy\": \"startTime\","
+        - generic: "\"pageSize\": 50,"
+        - generic: "\"startTime\": \"2026-09-01T00:00:00+03:00\","
+        - generic: "\"timeZone\": \"Europe/Moscow\""
+        - generic: "}"
+      - paragraph: Response
+      - code:
+        - generic: "{"
+        - generic: "\"summary\": \"kb@jpgrowery.com\","
+        - generic: "\"updated\": \"2026-10-02T22:14:51Z\","
+        - generic: "\"timeZone\": \"Europe/Moscow\","
+        - generic: "\"accessRole\": \"owner\","
+        - generic: "\"defaultReminders\": ["
+        - generic: "{"
+        - generic: "\"method\": \"popup\","
+        - generic: "\"minutes\": 10"
+        - generic: "}"
+        - generic: "]"
+        - generic: "}"
+      - paragraph: None found within that query.
+      - paragraph:
+        - text: I searched the native Google Calendar connector for events matching "BAM QA" between 1 September and 31 October 2026. The calendar I searched is the primary one,
+        - link "kb@jpgrowery.com":
+          - /url: mailto:kb@jpgrowery.com
+        - text: ", which is owned by you and uses the Europe/Moscow time zone. Both runs came back with no events:"
+      - list:
+        - strong: "First run:"
+        - text: 1 Sep 00:00 to 31 Oct 23:59, in +07:00 (Bangkok) time.
+        - strong: "Second run:"
+        - text: 1 Sep 00:00 to 1 Nov 00:00, in Europe/Moscow time, so it covers the calendar's own time zone through the end of 31 October.
+      - paragraph: The text match covers titles, descriptions, locations and attendees, so a title containing "BAM QA" would have shown up. Only the primary calendar was searched, so a fixture on a secondary or shared calendar would not appear. I created, updated and deleted nothing, sent no messages, and did not touch Twenty or Business OS.
+      - toolbar "Message actions":
+        - button "Copy":
+          - generic: 
+        - status
+        - button "Read aloud":
+          - generic: 
+        - button "Good response":
+          - generic: 
+        - button "Bad response":
+          - generic: 
+        - button "Retry":
+          - generic: 
+        - time: just now
+  - button "Scroll to bottom":
+    - generic: 
+  - status
+  - status
+  - status
+  - textbox "Write your prompt to Claude":
+    - paragraph: Write a message…
+  - status
+  - button "Add files, connectors, and more":
+    - generic: 
+  - 'button "Model: Sonnet 5.5 Medium"':
+    - text: Sonnet 5.5
+    - generic: Medium
+  - button "Settings":
+    - generic: 
+  - button "Press and hold to record":
+    - generic: 
+  - button "Use voice mode":
+  - note:
+    - link "Claude is AI and can make mistakes. Please double-check responses.":
+      - /url: https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on
+  - status
+- status
+- status
+- region "Notifications"
+- button

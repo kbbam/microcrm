@@ -1,0 +1,36 @@
+{
+  "release": "e9d2ca3",
+  "boundary": "Deployed QA gateway, real Postgres identity mappings, actual MCP SDK via in-memory transport; not public OAuth/Claude/UI proof",
+  "checkedAt": "2026-10-03T04:54:49.204Z",
+  "checks": [
+    {
+      "email": "kb@jpgrowery.com",
+      "role": "executive",
+      "context": "owner-qa",
+      "toolCount": 18,
+      "allocationAvailable": true,
+      "instructionVersion": "cca0fcf7a5d4ba6a32c4c591229b6e8268349540e0bbc5a6c209e172d5d738ff",
+      "sourceStatus": "authorization-required"
+    },
+    {
+      "email": "kb@cureous.me",
+      "role": "admin",
+      "context": "allocation-leader-qa",
+      "toolCount": 19,
+      "allocationAvailable": true,
+      "instructionVersion": "cca0fcf7a5d4ba6a32c4c591229b6e8268349540e0bbc5a6c209e172d5d738ff",
+      "sourceStatus": "not-verified"
+    },
+    {
+      "discovery": true,
+      "executiveTeamListDenied": "SUPERVISOR_REQUIRED",
+      "availableCount": 1,
+      "mineCount": 7,
+      "eligibleMemberCount": 2
+    },
+    {
+      "freshWorkPoolCount": 3,
+      "supervisorRuntimeWritesVerified": true
+    }
+  ]
+}

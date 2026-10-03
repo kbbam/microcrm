@@ -1,0 +1,35 @@
+{
+  "fixtureMessageCount": 2,
+  "method": "Ordered by observed source dates; compare exact returned plaintext and separately whitespace-normalized text. Digests concern text, not original email bytes.",
+  "messages": [
+    {
+      "gmailMessageId": "1a0f816dade777d3",
+      "twentyMessageId": "72883980-6b0b-4880-a10b-a8336a5f4a77",
+      "gmailDate": "2026-10-01T15:30:42Z",
+      "twentyDate": "2026-10-01T15:30:42.000Z",
+      "nativeTextSha256": "2469a90c8069e152b91731ee12c5fe9cb55a36162adf46ac699b258c675c0665",
+      "twentyTextSha256": "2469a90c8069e152b91731ee12c5fe9cb55a36162adf46ac699b258c675c0665",
+      "exactTextEqual": true,
+      "whitespaceNormalizedEqual": true,
+      "nativeTextCharacters": 602,
+      "twentyTextCharacters": 602
+    },
+    {
+      "gmailMessageId": "1a0f81ba70a09726",
+      "twentyMessageId": "8b31eb7e-8110-49d6-a44b-bc39e219db9a",
+      "gmailDate": "2026-10-01T15:35:43Z",
+      "twentyDate": "2026-10-01T15:35:43.000Z",
+      "nativeTextSha256": "bd28b10fdbf1346446046112af72522b1f6cf7cf743d0eb1a995f2ee41e7418e",
+      "twentyTextSha256": "b0d9b920d40cc11de8294fcd7758cffadd057f6068ce304fc87bcb2c21182262",
+      "exactTextEqual": false,
+      "whitespaceNormalizedEqual": false,
+      "nativeTextCharacters": 998,
+      "twentyTextCharacters": 293,
+      "nativeStartsWithEntireTwentyText": true,
+      "representationDifference": "Native plaintext includes the quoted original after the complete reply; Twenty reply plaintext ends before that quotation. Original message also returned separately in both threads."
+    }
+  ],
+  "participantRolesAgree": true,
+  "attachmentBearingFixture": false,
+  "mailboxCompletenessVerified": false
+}
