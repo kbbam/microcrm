@@ -38,3 +38,7 @@ The owner reports setting the connector globally to Always allow. Actual owner p
 ## Allocation release observation — 3 October 2026
 
 Production runtime `853b332` exposes 18 executive / 19 supervisor tools, including three dedicated allocation tools. The earlier fifteen-tool observation is historical. QA client allocation calls succeeded using individual one-time approvals; no new persistent settings were silently changed. A fresh production chat subsequently prompted for `get_coach_instructions` despite the earlier global setting. This is an observed client setup interruption, not failed source sync or proven schema-change causation. The owner was asked for action-time Always allow confirmation; if granted, verify a fresh chat before closing that member's permission pass. Do not assume Ilya inherits the owner's saved approvals.
+
+## Follow-up permission verification — 3 October 2026
+
+The owner completed the pending Get coach instructions permission. An explicit instruction-only new conversation successfully read that tool without a prompt; three ordinary fresh Coach mail checks and first-repeat checks were also uninterrupted. [Actual instruction result](../research/google-workspace-intake/live-2026-10-03/fresh-instructions-permission-dom.txt). This supersedes the pending owner instruction-read state above. It does not establish all allocation/write tools, Ilya's inherited settings, or phone operation.

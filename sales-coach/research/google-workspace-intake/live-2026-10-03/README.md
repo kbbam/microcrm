@@ -24,12 +24,31 @@ Twenty supplies RFC822 header Message-ID values and participant person IDs where
 
 No native send, draft, relabel, Calendar change or Business OS write was requested or observed. Native Gmail required no approval prompt in this configured account. Physical Android/iOS operation is untested. Desktop/web continuation is observed; it is not evidence of a persistent local worker. Neither returned result contains attachment bytes or original MIME, and this fixture has no attachments.
 
-[Timing attempts](timings.json) do **not** establish route performance. The native completion observation (37.580 s) includes observer delay and is an upper bound, excluded from comparison. The Twenty attempt stopped at a Get coach instructions approval prompt after 24.985 s; it was unfinished and is excluded. A persistent Always allow change was requested from the owner, not silently applied. No three-pair cold/warm benchmark, cache behavior or freshness comparison is claimed.
+[Timing attempts](timings.json) do **not** establish route performance. The native completion observation (37.580 s) includes observer delay and is an upper bound, excluded from comparison. The Twenty attempt stopped at a Get coach instructions approval prompt after 24.985 s; it was unfinished and is excluded. A persistent Always allow change was requested from the owner, not silently applied. These earlier attempts remain excluded. The subsequent bounded fresh/first-repeat series below now supplies three pairs per condition; no cold-infrastructure, cache or new-arrival freshness guarantee is claimed.
 
 The isolated QA source route lacked authorization and its source-status URL was unconfigured. That blocked the initial QA comparison; the verified production own-source read above resolves content access, not the benchmark or every QA environment configuration. Never tell an executive to wait for Google sync based on this QA authorization failure.
 
-Next: uninterrupted matched cold/warm trials, a verified synthetic Calendar fixture, and an attachment-bearing fixture. Selective binary capture and durable BOS attribution require an authorized content route, not metadata alone. The current recommendation remains to retain Twenty and research a bounded hybrid; replacement/integration is not authorized.
+Next: a verified synthetic Calendar fixture and an attachment-bearing fixture with a working authorized content-fetch path. Selective binary capture and durable BOS attribution require an authorized content route, not metadata alone. The current recommendation remains to retain Twenty and research a bounded hybrid; replacement/integration is not authorized.
 
 ## Bounded Calendar fixture discovery
 
 A native Calendar `list_events` query for `BAM QA` over 1 September–31 October 2026 returned only primary-calendar metadata and no event items. Claude repeated the same query using the returned Europe/Moscow calendar time zone; again no items or pagination token were returned. [Actual tool requests/results](native-calendar-fixture-query-dom.txt). No fixture was identified; this is not a comparison of event contents, proof of all-calendar coverage, or an independent Google UI absence check. No other event subjects or calendars were searched, and nothing was created/changed. A known synthetic calendar fixture remains necessary for the matched Calendar test.
+
+## Permission resolved and matched timing series
+
+The owner completed the pending permission. A separate new instruction-only chat called get_coach_instructions successfully without an approval prompt: [actual trace](fresh-instructions-permission-dom.txt), [visible result](fresh-instructions-permission.jpg). This is this account's read-tool proof, not Ilya's configuration or all-tool permission persistence. Earlier pending prompt [screenshot](pending-instructions-permission.jpg) is historical.
+
+[Timing summary](timing-summary.json) and [all new attempts](timing-series.json) retain actual prompts, source route, model, UTC starts, monotonic submission-to-UI-completion observations and conversations. Accepted series:
+
+| Route | New chats (s) | First same-chat repeats (s) | Medians, new / repeat |
+| --- | --- | --- | --- |
+| Production Coach/Twenty | 11.736, 10.887, 13.892 | 8.233, 6.959, 6.443 | 11.736 / 6.959 |
+| Native Gmail | 12.400, 13.118, 14.221 | 6.480, 6.905, 7.134 | 13.118 / 6.905 |
+
+Same identity/fixture/prompt apart from route; Sonnet 5.5 Medium in Claude web/Chrome, sequential reads, new-chat route order alternated. Each accepted answer preserved message count 2, summary deadline 6 October, translation check 4 October, provisional 120 units/week of 12 April 2027, and neither accepted. Representative actual provider reads: [Coach](timing-coach-pair3-tool-dom.txt), [native new chat](timing-gmail-pair3-fresh-tool-dom.txt), [native repeat](timing-gmail-pair3-repeat-tool-dom.txt). These prove actual tool use; provider durations and first-useful-answer time were not instrumented. Coach reads also retain authorized evidence in BOS, while native-only reads do not.
+
+Observer failures are separate from connector failures. Two repeats initially saw the previous turn's completion; a further new-chat observer exited during thinking. Their incomplete elapsed values are excluded, though later reads succeeded. A native extra-repeat locator failed when older messages were virtualized; no valid elapsed result was retained. A correct third Coach read is excluded from the first-repeat comparison. Pair 2 was rerun with freshly seeded two-message chats for both routes, then one repeat each. Seed and extra reads remain recorded. One new-chat native result initially had a stale streaming article label, but its saved completion status and final controls already confirmed completion; its classification was corrected without inventing a later elapsed time.
+
+One attempted instruction-only helper override left its captured email prompt unchanged; the actual authorized extra email read is retained and excluded from the predefined series. The final instruction-only verification used an explicit prompt and real tool trace.
+
+Timing is observed UI completion, not exact final-token time; early samples have roughly 3-second polling resolution. Cache state and infrastructure warmth are uncontrolled. A one-second fresh difference and nearly identical repeat medians do not justify a speed-based source switch. No physical phone, screenshot, bulk, long-thread or new-arrival latency conclusion follows. Keep the current route while researching content/provenance gaps.

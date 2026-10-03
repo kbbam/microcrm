@@ -1,0 +1,64 @@
+{
+  "date": "2026-10-03",
+  "fixture": "[BAM QA synthetic] Northstar trial and repeat order \u2014 2026-10-01",
+  "client": "Claude web in Chrome",
+  "model": "Sonnet 5.5 Medium",
+  "actor": "kb@jpgrowery.com",
+  "comparison": "Same fixture and matched prompt apart from route selection; alternating fresh route order; sequential, no concurrent model requests; same-chat samples are first repeats after one initial read. Pair 2 repeat contexts were reseeded after measurement observer failures.",
+  "metric": "Monotonic submission-to-observed UI completion, not exact final-token or provider-only timing. Cache state uncontrolled; fresh means new conversation.",
+  "firstUsefulAnswerTimingMeasured": false,
+  "providerPhaseTimingMeasured": false,
+  "physicalPhoneMeasured": false,
+  "summaries": [
+    {
+      "route": "twenty-coach",
+      "condition": "fresh-chat",
+      "samplesMs": [
+        11736,
+        10887,
+        13892
+      ],
+      "medianMs": 11736,
+      "minMs": 10887,
+      "maxMs": 13892
+    },
+    {
+      "route": "native-gmail",
+      "condition": "fresh-chat",
+      "samplesMs": [
+        12400,
+        13118,
+        14221
+      ],
+      "medianMs": 13118,
+      "minMs": 12400,
+      "maxMs": 14221
+    },
+    {
+      "route": "twenty-coach",
+      "condition": "same-chat-repeat",
+      "samplesMs": [
+        8233,
+        6959,
+        6443
+      ],
+      "medianMs": 6959,
+      "minMs": 6443,
+      "maxMs": 8233
+    },
+    {
+      "route": "native-gmail",
+      "condition": "same-chat-repeat",
+      "samplesMs": [
+        6480,
+        6905,
+        7134
+      ],
+      "medianMs": 6905,
+      "minMs": 6480,
+      "maxMs": 7134
+    }
+  ],
+  "excludedAndSeedAttemptsRetained": "timing-series.json; earlier preapproval attempts remain in timings.json",
+  "verdict": "No convincing native speed advantage in this short thread. Keep current source route; quoted text, attachments, Calendar, policy/provenance and fresh-arrival coverage remain independent questions."
+}

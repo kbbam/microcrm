@@ -1,6 +1,6 @@
 # Read-only comparison protocol
 
-Part of [COACH-R001](README.md). Prepared 3 October 2026; **partially executed**: live native/production Twenty thread coverage is recorded in [observations](live-2026-10-03/README.md); controlled timing, Calendar and attachments remain open. Run in ordinary chats, no Projects, no connector replacement, no permission changes without owner authorization. Do not contact customers or write calendar events.
+Part of [COACH-R001](README.md). Prepared 3 October 2026; **partially executed**: live native/production Twenty thread coverage is recorded in [observations](live-2026-10-03/README.md); the subsequent three fresh/first-repeat pairs are complete, while Calendar and attachments remain open. Run in ordinary chats, no Projects, no connector replacement, no permission changes without owner authorization. Do not contact customers or write calendar events.
 
 ## Existing fixture
 
@@ -40,4 +40,4 @@ When integration is later approved, a separate capture/revocation test must prov
 
 ## Recorded execution deviation — 3 October
 
-The isolated QA route required unavailable source authorization. The owner-authorized production own-source Coach route was used instead, restricted to the exact existing synthetic email thread, with no customer records changed. This produced a current content comparison; no QA UUID was treated as a Google or production Twenty ID. Both messages/participants/actionable details matched ground truth; quoted-reply representation differed. Two attempted timings are retained but excluded (observer delay; approval pause). The protocol's minimum three matched cold/warm pairs, Calendar and attachment-bearing fixtures remain unmet; do not advertise a measured speed winner.
+The isolated QA route required unavailable source authorization. The owner-authorized production own-source Coach route was used instead, restricted to the exact existing synthetic email thread, with no customer records changed. This produced a current content comparison; no QA UUID was treated as a Google or production Twenty ID. Both messages/participants/actionable details matched ground truth; quoted-reply representation differed. Two attempted timings are retained but excluded (observer delay; approval pause). Subsequent instruction approval and three new-chat/first-repeat pairs per route are retained in timing-series.json. These do not establish cold infrastructure or controllable cache behavior. Calendar and attachment-bearing fixtures remain unmet; do not advertise a meaningful speed winner.

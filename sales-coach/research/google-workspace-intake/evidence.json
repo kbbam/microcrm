@@ -1,7 +1,7 @@
 {
   "item": "COACH-R001 / BOS-017",
   "researchedAt": "2026-10-03",
-  "status": "documentation-and-live-same-thread-coverage-comparison-complete-timing-calendar-attachments-open",
+  "status": "documentation-live-thread-coverage-and-bounded-timing-comparison-complete-calendar-attachments-open",
   "attempt": {
     "surface": "Claude Desktop",
     "entrypoint": "cua.getApp(com.anthropic.claudefordesktop)",
@@ -50,11 +50,11 @@
   "implementationAuthorizedByResearch": false,
   "remaining": [
     "Attachment-bearing fixture, HTML fidelity, Bcc and long-thread/truncation checks",
-    "Uninterrupted matched same-fixture cold/warm timing trials",
     "Verified synthetic Calendar fixture on both routes",
     "Physical iOS and Android continuation/fresh-chat tests",
     "Owner decision on native source-read breadth versus BOS central policy",
-    "Explicit native-source durable intake and revocation contract before integration"
+    "Explicit native-source durable intake and revocation contract before integration",
+    "First-useful-answer/phase timing, new-arrival freshness and cache controls not measured by bounded UI series"
   ],
   "liveNativeGmail": {
     "date": "2026-10-03",
@@ -78,7 +78,7 @@
     "calendarTested": false,
     "physicalPhoneTested": false
   },
-  "comparisonBlocker": "Coverage comparison succeeded through authorized production own-source Twenty access. Controlled timing hit a Claude Get coach instructions approval prompt; permission change awaits owner response. Calendar and attachment-bearing fixtures remain unverified.",
+  "comparisonBlocker": "Instruction permission resolved; current thread coverage and three fresh/first-repeat timing pairs per route completed. Calendar fixture and attachment-bearing/content-fetch evidence remain open.",
   "liveTwenty": {
     "date": "2026-10-03",
     "surface": "Claude web, production Coach",
@@ -93,11 +93,12 @@
     "authorizedReadEvidenceRetainedInBOS": true
   },
   "timingAttempts": {
-    "record": "live-2026-10-03/timings.json",
-    "validMatchedPairs": 0,
-    "nativeAttempt": "observer-delay upper bound; excluded",
-    "twentyAttempt": "unfinished approval-paused run; excluded",
-    "performanceConclusion": "insufficient evidence"
+    "earlierRecord": "live-2026-10-03/timings.json",
+    "currentRecord": "live-2026-10-03/timing-series.json",
+    "summary": "live-2026-10-03/timing-summary.json",
+    "validFreshPairs": 3,
+    "validFirstRepeatPairs": 3,
+    "performanceConclusion": "No convincing native speed advantage in this short unchanged thread; no physical-phone or cache conclusion."
   },
   "liveNativeCalendarDiscovery": {
     "date": "2026-10-03",
@@ -115,5 +116,15 @@
     "eventContentsCompared": false,
     "externalWrites": false,
     "trace": "live-2026-10-03/native-calendar-fixture-query-dom.txt"
+  },
+  "instructionPermissionVerification": {
+    "ownerCompleted": true,
+    "freshChatToolReadSucceeded": true,
+    "approvalPrompt": false,
+    "tool": "get_coach_instructions",
+    "actor": "kb@jpgrowery.com",
+    "trace": "live-2026-10-03/fresh-instructions-permission-dom.txt",
+    "allToolsVerified": false,
+    "IlyaVerified": false
   }
 }
