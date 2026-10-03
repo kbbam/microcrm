@@ -7,7 +7,7 @@ The Codex CLI below is a developer verification/prototype runtime, not the execu
 ## Start here
 
 - Executives: [connect and try it on your phone](executive-quickstart.md).
-- Builders: [Coach backlog](backlog.md) (research first) and [QA scenarios](qa/scenarios.md).
+- Builders: [Coach backlog](backlog.md) (research first; COACH-B001 is an owner-approved queued build) and [QA scenarios](qa/scenarios.md). Work allocation is queued, not deployed; broader work routing and a future shipment/project helper remain separate Business OS backlog items.
 
 ## Claude organization installation
 
