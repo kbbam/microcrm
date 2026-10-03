@@ -178,3 +178,15 @@ test('incomplete work discovery and withdrawn programme eligibility fail closed'
   const original=a.adapter.collect.bind(a.adapter);a.adapter.collect=async(object,...rest)=>object==='initiative'?{records:[],complete:false}:original(object,...rest);
   assert.equal((await a.call('crm_work_list')).code,'SCOPE_INCOMPLETE');assert.equal(p.mutations.length,0);
 });
+
+test('shared pool visibility never adds another member’s mailbox or private original source', async t => {
+  const p=provider(),a=await actor(t,p),b=await actor(t,p,91);
+  a.adapter.messageChannelIds=[id(80)];
+  p.records.messages=[{id:id(30),messageThreadId:id(32),subject:'QA own mailbox',text:'Own original',updatedAt:at},{id:id(31),messageThreadId:id(33),subject:'QA other mailbox',text:'Other private original',updatedAt:at}];
+  p.records.messageChannelMessageAssociations=[{id:id(34),messageChannelId:id(80),messageId:id(30)},{id:id(35),messageChannelId:id(81),messageId:id(31)}];
+  assert.deepEqual((await a.call('crm_read',{object:'message'})).records.map(row=>row.id),[id(30)]);
+  assert.equal((await a.call('crm_read',{object:'message',id:id(31)})).records.length,0);
+  const privateSource=await b.call('retain_source',{sourceKey:'qa:private-original',text:'Private source belonging to another executive'});
+  const inaccessible=await a.call('get_source',{sourceId:privateSource.id});
+  assert.equal(inaccessible.isError,true);assert(!JSON.stringify(inaccessible).includes('Private source belonging'));
+});
