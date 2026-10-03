@@ -17,6 +17,7 @@
 !sales-coach/service.mjs
 !sales-coach/mcp.mjs
 !sales-coach/twenty.mjs
+!sales-coach/work-allocation.mjs
 !sales-coach/twenty-source-ownership.mjs
 !sales-coach/evidence-upload.mjs
 !sales-coach/hosted.mjs
