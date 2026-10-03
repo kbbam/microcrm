@@ -8,7 +8,7 @@ COACH-B001 scoping began on `codex/coach-work-allocation`, from `446370a`. No ne
 
 [Twenty's current documentation](https://docs.twenty.com/user-guide/permissions-access/capabilities/permissions) places record-level restrictions on the Organization plan. Field permissions are supported independently, but making owner fields read-only would require a controlled allocation action; it is not a transparent substitute for ordinary direct owner edits. Manually invoked workflows also require workflow-management access according to the same documentation; do not grant that broad authority just to make transfers work.
 
-Owner clarification is pending on whether native enforcement is mandatory in this iteration or whether native Twenty ownership changes can be governed procedurally while Coach enforces the policy technically. A plan upgrade alone is not proof that all required discovery/create/handoff behaviors work: the chosen rules must be verified in isolation before production changes. No billing, role or permission change is authorized by this evidence.
+**Resolved by owner 3 October:** no rigid technical restrictions in Twenty; native ownership changes follow team procedures while Coach enforces its action/access boundaries technically. A plan upgrade or ownership-field lock is not required. Preserve the earlier metadata finding as observed state, not an unresolved blocker. A plan upgrade alone is not proof that all required discovery/create/handoff behaviors work: the chosen rules must be verified in isolation before production changes. No billing, role or permission change is authorized by this evidence.
 
 ## Finding that permits the claim design to proceed
 
@@ -16,4 +16,4 @@ Owner clarification is pending on whether native enforcement is mandatory in thi
 
 ## QA versus development dependency
 
-Physical iOS/Android onboarding and tool-approval persistence remain independent current-build QA. They do not block allocation implementation. Portfolio population and Ilya's personal source connection remain rollout inputs, not prerequisites for synthetic implementation. The native policy decision above affects the allocation implementation and release claim, so do not silently resolve it by weakening accepted access rules.
+Physical iOS/Android onboarding and tool-approval persistence remain independent current-build QA. They do not block allocation implementation. Portfolio population and Ilya's personal source connection remain rollout inputs, not prerequisites for synthetic implementation. The native policy decision is now resolved; implement that scope without weakening Coach access. The future supervisor-request queue is BOS-021 and does not block this allocation build.
