@@ -1,0 +1,267 @@
+Window: "Claude", App: Claude.
+0 standard window Claude, Secondary Actions: Raise
+	1 container Claude
+		2 container
+			3 HTML content file:///Applications/Claude.app/Contents/Resources/app.asar/.vite/renderer/main_window/index.html
+			4 HTML content Customize - Claude, URL: claude.ai/customize/connectors/yours/id/f61ebd74-a957-4d04-9a09-8f9ec0aaad7d
+				5 container
+					6 container
+						7 container Sidebar
+							8 button Hide sidebar
+							9 button Search
+							10 button Back
+							11 button (disabled) Forward
+							12 Mode
+								13 radio button Description: Chat and Cowork, Value: 1
+								14 radio button Description: Code, Value: 0
+							15 container
+								16 button New
+								17 button Quick task
+								18 container
+									19 button Projects
+								20 container
+									21 button Artifacts
+									22 pop-up button New from a template
+								23 button Scheduled
+								24 button Design
+								25 button Customize
+								26 pop-up button More navigation items
+								27 button Pinned
+								28 button Chats and tasks
+								29 button View all
+								30 pop-up button Filter and group recents
+								31 container
+									32 button Idle Coach setup configuration
+										33 image Idle
+										34 text Coach setup configuration
+									35 pop-up button More options for Coach setup configuration
+								36 container
+									37 button Idle Coach setup configuration
+										38 image Idle
+										39 text Coach setup configuration
+									40 pop-up button More options for Coach setup configuration
+								41 container
+									42 button Idle Anna's Autumn-trial summary file requirements
+										43 image Idle
+										44 text Anna's Autumn-trial summary file requirements
+									45 pop-up button More options for Anna's Autumn-trial summary file requirements
+								46 container
+									47 button Idle Outstanding balance at QA Northstar Pharmacy
+										48 image Idle
+										49 text Outstanding balance at QA Northstar Pharmacy
+									50 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								51 container
+									52 button Idle Northstar trial and repeat order review
+										53 image Idle
+										54 text Northstar trial and repeat order review
+									55 pop-up button More options for Northstar trial and repeat order review
+								56 container
+									57 button Idle Outstanding balance at QA Northstar Pharmacy
+										58 image Idle
+										59 text Outstanding balance at QA Northstar Pharmacy
+									60 pop-up button More options for Outstanding balance at QA Northstar Pharmacy
+								61 container
+									62 button Idle Outstanding balance with QA Northstar Pharmacy
+										63 image Idle
+										64 text Outstanding balance with QA Northstar Pharmacy
+									65 pop-up button More options for Outstanding balance with QA Northstar Pharmacy
+								66 container
+									67 button Idle Northstar trial and repeat order tracking update
+										68 image Idle
+										69 text Northstar trial and repeat order tracking update
+									70 pop-up button More options for Northstar trial and repeat order tracking update
+								71 container
+									72 button Idle BAM coach contact and trial dates
+										73 image Idle
+										74 text BAM coach contact and trial dates
+									75 pop-up button More options for BAM coach contact and trial dates
+								76 container
+									77 button Idle Anna at QA Northstar Pharmacy debt
+										78 image Idle
+										79 text Anna at QA Northstar Pharmacy debt
+									80 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								81 container
+									82 button Idle Anna at QA Northstar Pharmacy debt
+										83 image Idle
+										84 text Anna at QA Northstar Pharmacy debt
+									85 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								86 container
+									87 button Idle Anna at QA Northstar Pharmacy debt
+										88 image Idle
+										89 text Anna at QA Northstar Pharmacy debt
+									90 pop-up button More options for Anna at QA Northstar Pharmacy debt
+								91 container
+									92 button Idle Northstar pharmacy coach verification
+										93 image Idle
+										94 text Northstar pharmacy coach verification
+									95 pop-up button More options for Northstar pharmacy coach verification
+								96 container
+									97 button Idle BAM coach screenshot for QA Northstar Pharmacy
+										98 image Idle
+										99 text BAM coach screenshot for QA Northstar Pharmacy
+									100 pop-up button More options for BAM coach screenshot for QA Northstar Pharmacy
+								101 container
+									102 button Idle Coach verification QA documentation
+										103 image Idle
+										104 text Coach verification QA documentation
+									105 pop-up button More options for Coach verification QA documentation
+								106 container
+									107 button Idle Anna's QA Northstar Pharmacy commitment
+										108 image Idle
+										109 text Anna's QA Northstar Pharmacy commitment
+									110 pop-up button More options for Anna's QA Northstar Pharmacy commitment
+								111 container
+									112 button Idle HTTPS file upload test with integrity verification
+										113 image Idle
+										114 text HTTPS file upload test with integrity verification
+									115 pop-up button More options for HTTPS file upload test with integrity verification
+								116 container
+									117 button Idle Preserving file integrity in Google Drive
+										118 image Idle
+										119 text Preserving file integrity in Google Drive
+									120 pop-up button More options for Preserving file integrity in Google Drive
+								121 container
+									122 button Idle Mobile-friendly PDF conversion
+										123 image Idle
+										124 text Mobile-friendly PDF conversion
+									125 pop-up button More options for Mobile-friendly PDF conversion
+								126 container
+									127 button Idle Cash flow distribution plan with margin optimization
+										128 image Idle
+										129 text Cash flow distribution plan with margin optimization
+									130 pop-up button More options for Cash flow distribution plan with margin optimization
+								131 button View all
+								132 container
+									133 pop-up button Kirill Kirill JPgrowery
+										134 image Kirill
+										135 text Kirill
+										136 text JPgrowery
+									137 link Description: Get apps and extensions, Value: claude.ai/downloads
+							138 splitter Description: Resize sidebar, Value: 368
+						139 container
+							140 container Primary pane
+								141 container
+									142 heading Customize, Value: 1
+										143 text Customize
+									144 container
+										145 link Description: Your connectors, Value: claude.ai/customize/connectors/yours
+										146 image Coach icon
+										147 heading Coach, Value: 2
+											148 text Coach
+										149 button Disconnect
+										150 pop-up button More options for Coach
+										151 button Copy server URL
+											152 text https://business-os-production-1193.up.railway.app/coach/mcp
+										153 container Tool permissions Choose when Claude is allowed to use these tools. You’ll only see tools your organization has given you access to.
+											154 container
+												155 text Tool permissions Choose when Claude is allowed to use these tools. You’ll only see tools your organization has given you access to.
+											156 container Other tools
+												157 button Other tools 15
+													158 text Other tools
+													159 text 15
+												160 pop-up button Blanket permission for group
+												161 container Coach status
+													162 text Coach status
+													163 Coach status
+														164 radio button Description: Always allow, Value: 1
+														165 radio button Description: Needs approval, Value: 0
+														166 radio button Description: Blocked, Value: 0
+												167 container Crm propose change
+													168 text Crm propose change
+													169 Crm propose change
+														170 radio button Description: Always allow, Value: 1
+														171 radio button Description: Needs approval, Value: 0
+														172 radio button Description: Blocked, Value: 0
+												173 container Crm read
+													174 text Crm read
+													175 Crm read
+														176 radio button Description: Always allow, Value: 1
+														177 radio button Description: Needs approval, Value: 0
+														178 radio button Description: Blocked, Value: 0
+												179 container Get account context
+													180 text Get account context
+													181 Get account context
+														182 radio button Description: Always allow, Value: 1
+														183 radio button Description: Needs approval, Value: 0
+														184 radio button Description: Blocked, Value: 0
+												185 container Get coach instructions
+													186 text Get coach instructions
+													187 Get coach instructions
+														188 radio button Description: Always allow, Value: 1
+														189 radio button Description: Needs approval, Value: 0
+														190 radio button Description: Blocked, Value: 0
+												191 container Get evidence
+													192 text Get evidence
+													193 Get evidence
+														194 radio button Description: Always allow, Value: 1
+														195 radio button Description: Needs approval, Value: 0
+														196 radio button Description: Blocked, Value: 0
+												197 container Get source
+													198 text Get source
+													199 Get source
+														200 radio button Description: Always allow, Value: 1
+														201 radio button Description: Needs approval, Value: 0
+														202 radio button Description: Blocked, Value: 0
+												203 container Prepare evidence upload
+													204 text Prepare evidence upload
+													205 Prepare evidence upload
+														206 radio button Description: Always allow, Value: 1
+														207 radio button Description: Needs approval, Value: 0
+														208 radio button Description: Blocked, Value: 0
+												209 container Record observation
+													210 text Record observation
+													211 Record observation
+														212 radio button Description: Always allow, Value: 1
+														213 radio button Description: Needs approval, Value: 0
+														214 radio button Description: Blocked, Value: 0
+												215 container Renew evidence upload
+													216 text Renew evidence upload
+													217 Renew evidence upload
+														218 radio button Description: Always allow, Value: 1
+														219 radio button Description: Needs approval, Value: 0
+														220 radio button Description: Blocked, Value: 0
+												221 container Request original download
+													222 text Request original download
+													223 Request original download
+														224 radio button Description: Always allow, Value: 1
+														225 radio button Description: Needs approval, Value: 0
+														226 radio button Description: Blocked, Value: 0
+												227 container Retain evidence transcription
+													228 text Retain evidence transcription
+													229 Retain evidence transcription
+														230 radio button Description: Always allow, Value: 1
+														231 radio button Description: Needs approval, Value: 0
+														232 radio button Description: Blocked, Value: 0
+												233 container Retain source
+													234 text Retain source
+													235 Retain source
+														236 radio button Description: Always allow, Value: 1
+														237 radio button Description: Needs approval, Value: 0
+														238 radio button Description: Blocked, Value: 0
+												239 container Search accounts
+													240 text Search accounts
+													241 Search accounts
+														242 radio button Description: Always allow, Value: 1
+														243 radio button Description: Needs approval, Value: 0
+														244 radio button Description: Blocked, Value: 0
+												245 container Update account context
+													246 text Update account context
+													247 Update account context
+														248 radio button Description: Always allow, Value: 1
+														249 radio button Description: Needs approval, Value: 0
+														250 radio button Description: Blocked, Value: 0
+					251 container
+						252 container Notifications
+	253 close button
+	254 full screen button Help: this button also has an action to zoom the window, Secondary Actions: zoom the window
+	255 minimise button
+256 menu bar
+	257 Claude
+	258 File
+	259 Edit
+	260 View
+	261 Go
+	262 Window
+	263 Help
+
+The focused UI element is 4 HTML content Customize - Claude, URL: claude.ai/customize/connectors/yours/id/f61ebd74-a957-4d04-9a09-8f9ec0aaad7d

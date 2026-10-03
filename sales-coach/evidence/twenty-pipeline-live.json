@@ -1,0 +1,130 @@
+{
+  "verifiedAt": "2026-09-30T11:46:26.449Z",
+  "endpoint": "https://bam-sales-coach-test.twenty.com",
+  "workspaceId": "8c8fa5f0-86ac-410a-92c8-8ac7e872c92f",
+  "mode": "add-missing",
+  "before": {
+    "options": [
+      {
+        "id": "20202020-8e01-4afd-9c39-d2063097587a",
+        "color": "red",
+        "label": "New",
+        "value": "NEW",
+        "position": 0
+      },
+      {
+        "id": "20202020-e685-4671-ac32-26d304dacb6e",
+        "color": "purple",
+        "label": "Screening",
+        "value": "SCREENING",
+        "position": 1
+      },
+      {
+        "id": "20202020-dde9-4acc-b5ca-f6531a8ecb4a",
+        "color": "sky",
+        "label": "Meeting",
+        "value": "MEETING",
+        "position": 2
+      },
+      {
+        "id": "20202020-696e-4f6b-91bc-f413e9b2f654",
+        "color": "turquoise",
+        "label": "Proposal",
+        "value": "PROPOSAL",
+        "position": 3
+      },
+      {
+        "id": "20202020-0bb5-4a6f-a8b2-774bbad21104",
+        "color": "yellow",
+        "label": "Customer",
+        "value": "CUSTOMER",
+        "position": 4
+      }
+    ],
+    "defaultValue": "'NEW'",
+    "pursuits": {
+      "count": 6,
+      "idStageHash": "940d0f0b80d1b97d7335d0147e5deaee92a6267af533e4a6140a88e9d085d768"
+    }
+  },
+  "after": {
+    "options": [
+      {
+        "id": "20202020-8e01-4afd-9c39-d2063097587a",
+        "color": "red",
+        "label": "New",
+        "value": "NEW",
+        "position": 0
+      },
+      {
+        "id": "20202020-e685-4671-ac32-26d304dacb6e",
+        "color": "purple",
+        "label": "Screening",
+        "value": "SCREENING",
+        "position": 1
+      },
+      {
+        "id": "20202020-dde9-4acc-b5ca-f6531a8ecb4a",
+        "color": "sky",
+        "label": "Meeting",
+        "value": "MEETING",
+        "position": 2
+      },
+      {
+        "id": "20202020-696e-4f6b-91bc-f413e9b2f654",
+        "color": "turquoise",
+        "label": "Proposal",
+        "value": "PROPOSAL",
+        "position": 3
+      },
+      {
+        "id": "20202020-0bb5-4a6f-a8b2-774bbad21104",
+        "color": "yellow",
+        "label": "Customer",
+        "value": "CUSTOMER",
+        "position": 4
+      },
+      {
+        "id": "114aa32f-1ebf-452d-b3e4-aedeb5130ce9",
+        "color": "gray",
+        "label": "Approaching",
+        "value": "APPROACHING",
+        "position": 5
+      },
+      {
+        "id": "baa8ccc1-6bea-404c-abde-776706aa413b",
+        "color": "blue",
+        "label": "Engaged",
+        "value": "ENGAGED",
+        "position": 6
+      },
+      {
+        "id": "17b095fa-3a27-48d5-ba43-5a8631356ec6",
+        "color": "purple",
+        "label": "Commercial",
+        "value": "COMMERCIAL",
+        "position": 7
+      },
+      {
+        "id": "df492b7c-a4bf-4a93-9f2d-d15e73c5f1c7",
+        "color": "green",
+        "label": "Won",
+        "value": "WON",
+        "position": 8
+      },
+      {
+        "id": "c22c293c-ab62-4a3e-996c-38b64e490d2b",
+        "color": "red",
+        "label": "Lost",
+        "value": "LOST",
+        "position": 9
+      }
+    ],
+    "defaultValue": "'NEW'",
+    "pursuits": {
+      "count": 6,
+      "idStageHash": "940d0f0b80d1b97d7335d0147e5deaee92a6267af533e4a6140a88e9d085d768"
+    }
+  },
+  "preserved": true
+}

@@ -1,0 +1,41 @@
+{
+  "runtimeRevision": "42b0d10f5ec4f780408040a7022dc1535ccbd254",
+  "centralInstructionSha256": "de8a208b4971412cde4f3d959d5ddecb6904b0afe0d653b16caf7a415ec9cbf6",
+  "production": {
+    "url": "https://business-os-production-1193.up.railway.app",
+    "deployment": "db280e26-abf8-4a9c-9d5c-ebf807c2023a",
+    "status": "SUCCESS",
+    "versionMatched": true,
+    "readiness": true
+  },
+  "qa": {
+    "url": "https://coach-api-qa.up.railway.app",
+    "deployment": "5d4bcf25-ed91-47c2-a39b-7f45ba8a2126",
+    "status": "SUCCESS",
+    "versionMatched": true
+  },
+  "client": {
+    "app": "Claude Desktop",
+    "conversation": "https://claude.ai/chat/ac8ae671-2a9f-456d-9516-54f34d47f756",
+    "observedPermissions": {
+      "connector": "Coach",
+      "tools": 15,
+      "alwaysAllowSelected": 15,
+      "settingsChanged": false
+    },
+    "freshConversationReadPrompts": 0,
+    "calls": [
+      "get_coach_instructions",
+      "search_accounts",
+      "crm_read"
+    ],
+    "instructionVersionMatched": true,
+    "writesPerformed": false
+  },
+  "limitations": [
+    "physical Android acceptance",
+    "every tool prompt persistence",
+    "first genuine harmless user write",
+    "complete current mail/calendar/attachment content coverage"
+  ]
+}

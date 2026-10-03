@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-30T11:53:16.384Z",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "reservedAccountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "task": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:53:12.088Z",
+    "title": "QA Prepare reliability summary (synthetic)",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  }
+}

@@ -21,40 +21,51 @@ export async function createInvite(email: string): Promise<string> {
   return token;
 }
 
+export async function inspectInvite(token: string): Promise<{ ok: true; email: string } | { ok: false; error: string }> {
+  const { rows } = await pool.query(`SELECT email, expires_at, used_at FROM invites WHERE token = $1`, [token]);
+  return inviteState(rows[0]);
+}
+
+function inviteState(invite: any): { ok: true; email: string } | { ok: false; error: string } {
+  if (!invite) return { ok: false, error: "This setup link is invalid." };
+  if (invite.used_at) return { ok: false, error: "This setup link has already been used." };
+  if (new Date(invite.expires_at).getTime() <= Date.now()) return { ok: false, error: "This setup link has expired." };
+  return { ok: true, email: invite.email };
+}
+
 export async function consumeInvite(
   token: string,
   password: string,
 ): Promise<{ ok: true; email: string } | { ok: false; error: string }> {
-  const { rows } = await pool.query(
-    `SELECT email, expires_at, used_at FROM invites WHERE token = $1`,
-    [token],
-  );
-  const invite = rows[0];
-  if (!invite) return { ok: false, error: "Invite not found." };
-  if (invite.used_at) return { ok: false, error: "Invite already used." };
-  if (new Date(invite.expires_at).getTime() < Date.now()) {
-    return { ok: false, error: "Invite expired." };
+  if (typeof password !== "string" || password.length < 8 || Buffer.byteLength(password, "utf8") > 72) {
+    return { ok: false, error: "Use at least 8 characters and at most 72 UTF-8 bytes." };
   }
-  if (password.length < 8) {
-    return { ok: false, error: "Password must be at least 8 characters." };
-  }
-
+  // Reject unavailable public links before spending work on password hashing.
+  const preliminary = await inspectInvite(token);
+  if (!preliminary.ok) return preliminary;
   const passwordHash = await bcrypt.hash(password, 12);
-  await pool.query("BEGIN");
+  const client = await pool.connect();
   try {
-    await pool.query(
-      `UPDATE users SET password_hash = $1, status = 'active' WHERE email = $2`,
-      [passwordHash, invite.email],
-    );
-    await pool.query(`UPDATE invites SET used_at = now() WHERE token = $1`, [
-      token,
-    ]);
-    await pool.query("COMMIT");
+    await client.query("BEGIN");
+    const candidate = await client.query(`SELECT email FROM invites WHERE token = $1`, [token]);
+    if (!candidate.rows[0]) { await client.query("ROLLBACK"); return { ok: false, error: "This setup link is invalid." }; }
+    const email = candidate.rows[0].email;
+    const user = await client.query(`SELECT email FROM users WHERE email = $1 FOR UPDATE`, [email]);
+    if (!user.rows[0]) { await client.query("ROLLBACK"); return { ok: false, error: "This setup link is invalid." }; }
+    const { rows } = await client.query(`SELECT email, expires_at, used_at FROM invites WHERE token = $1 FOR UPDATE`, [token]);
+    const state = inviteState(rows[0]);
+    if (!state.ok) { await client.query("ROLLBACK"); return state; }
+    await client.query(`UPDATE users SET password_hash = $1, status = 'active' WHERE email = $2`, [passwordHash, email]);
+    // Resetting credentials revokes prior browser sessions and connector grants.
+    await client.query(`DELETE FROM oidc_models WHERE payload->>'accountId' = $1 OR payload->'session'->>'accountId' = $1`, [email]);
+    // Serialize resets per account; invalidate all older unused reset links.
+    await client.query(`UPDATE invites SET used_at = now() WHERE email = $1 AND used_at IS NULL`, [email]);
+    await client.query("COMMIT");
+    return { ok: true, email };
   } catch (err) {
-    await pool.query("ROLLBACK");
+    await client.query("ROLLBACK");
     throw err;
-  }
-  return { ok: true, email: invite.email };
+  } finally { client.release(); }
 }
 
 export async function verifyLogin(

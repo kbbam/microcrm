@@ -1,0 +1,13 @@
+{
+  "id": "992f3b06e78607c40543bc93773804d5ca56b6f0c1c93071812c2fd6e64c154f",
+  "sourceKey": "native-isolation-probe",
+  "text": "Synthetic pilot account Acme. Buyer Maya said on September 29 that legal review is pending; no order was accepted.",
+  "kind": "synthetic user-provided testimony",
+  "occurredAt": null,
+  "location": null,
+  "capturedAt": "2026-09-30T10:24:18.109Z",
+  "actor": {
+    "id": "synthetic-executive",
+    "role": "executive"
+  }
+}

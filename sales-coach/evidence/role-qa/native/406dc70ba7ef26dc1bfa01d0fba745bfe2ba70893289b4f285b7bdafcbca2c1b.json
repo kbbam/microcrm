@@ -1,0 +1,13 @@
+{
+  "id": "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b",
+  "sourceKey": "file:kb-qa-source.txt",
+  "text": "Synthetic QA fixture, not a real customer or communication. Account: QA Northstar Supplies; stable account ID bb1ba095-cc63-4ff8-97c1-7c446fe63de4. Executive kb@jpgrowery.com says the goal is to explore a repeat order while rebuilding trust. Prior trial pursuit was Lost after supply inconsistency. Buyer said price and reliability together were concerns. Executive reports buyer values an unhurried relationship; this is attributed testimony. A follow-up meeting is planned for next week, not observed as completed. A reliability summary was promised but its delivery and due date are unknown. No email, calendar or actual CRM records are supplied. Preserve these evidence gaps.",
+  "kind": "submitted",
+  "occurredAt": null,
+  "location": "/tmp/kb-qa-source.txt",
+  "capturedAt": "2026-09-30T11:12:09.351Z",
+  "actor": {
+    "id": "kb@jpgrowery.com",
+    "role": "executive"
+  }
+}

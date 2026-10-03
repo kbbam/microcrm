@@ -1,0 +1,891 @@
+{
+  "at": "2026-10-02T05:54:04.629Z",
+  "readOnly": true,
+  "runtimeRevision": "75edf10a15ce9e6a47241989b2c2083ab0c29de5",
+  "accountTitle": "QA Northstar Pharmacy \u2014 Coach Verification",
+  "submittedSources": [
+    {
+      "id": "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd",
+      "evidenceId": "4e6c324f9d731303ab31e76c1dfd2dd5407605829a0e19572cff7b180d54c0e5",
+      "sourceKey": "conversation:qa-northstar-bulk-eod-update:2026-10-02",
+      "text": "@Coach, use only BAM Business OS \u2014 Coach QA, not production. This is a synthetic end-of-day update about QA Northstar Pharmacy. Everything below is test information. Capture the operational details and carry out supported safe internal changes. Do not contact anybody or change calendars. If an operation is unavailable or a consequential decision needs review, say so and continue independent work. The people and business details here are synthetic.\n\nI have a fairly big update today because I did not log each small conversation while I was moving between appointments. I want the useful information saved together, but I do not want the trial and the repeat order mixed up. We have already talked about this account, so look up the existing account rather than making a second Northstar. The Autumn trial is still a separate pursuit from the repeat order. Anna is discussing the trial; Marta is handling delivery and operations. The fact that they work at the same pharmacy is not a reason to put all their requests into the same opportunity.\n\nFor the Autumn trial, Anna confirmed that she wants the summary in German. She wants the editable document as a DOCX, not a PDF. The purpose should be stated in one sentence at the beginning, before the technical details. I originally wrote six October in my notes. Correct that: the actual summary deadline she gave me today was eight October 2026. Please replace the working deadline with eight October and keep the earlier wording as history. This is an explicit correction, not two different deadlines. The translation check must happen by six October so that there is enough time to correct wording before Anna receives the summary.\n\nShe also asked that the summary include three things: how the trial was used, the feedback they collected, and what needs to change before another trial. She did not ask for a new pricing proposal in that document. Do not quietly add one. The trial quantity is still undecided. I heard somebody mention twelve units in the hallway, but that was not an agreed order and I cannot even say which person said it. Preserve that as an uncertain signal only. In particular, do not turn twelve into a confirmed quantity or change an order amount using it. Anna still needs to give the final quantity herself.\n\nThere is another qualification about the trial. Anna said she is pleased with the response so far, but she did not say that the trial is finished or that a follow-on purchase is agreed. Record positive feedback without marking the trial Won. There was no signed agreement or accepted purchase discussed in that call. If the stored pursuit is at an earlier conversational stage, do not make a terminal transition just because I used the word pleased. We should track the feedback and the next decision, which is whether they want to run a second trial once the German summary has been read.\n\nFor the repeat order, delivery is a completely different conversation. Marta said the proposed delivery day is nine October 2026, not the summary deadline. The delivery window is still unconfirmed. She wants us to ring her before the shipment leaves, rather than send delivery questions to Anna. Please remember that delivery questions should go to Marta by phone. I do not have Marta's phone number in this note. If the existing contact already has it, retain that; if not, do not invent a number and do not stop saving everything else just to ask me for it. A missing number is a gap, not a reason to lose the handoff.\n\nMarta also said their receiving team cannot take deliveries before ten in the morning Berlin time. That is a constraint for the repeat order, not evidence that a ten o'clock appointment has been booked. She has not confirmed the day or window formally, even though nine October is the proposal. Please keep proposed and confirmed separate. There is no calendar edit to make here. The packaging labels should use the pharmacy's existing legal name. I am not requesting that the company be renamed today. Any administrative spelling already in CRM stays as it is until somebody supplies a real correction.\n\nFor payment, there is still an outstanding balance from the older order. I mentioned EUR 2,400 at first because that was the figure I had on my paper. Correct my own working note to EUR 2,040. I have not checked an invoice today, so this is my report of the balance, not a verified invoice fact. Do not mark any task about payment complete and do not describe the balance as settled. Anna said the finance contact is David. That does not make David the buyer for the trial. Save his finance role separately from Anna's decision about trial quantity and Marta's delivery responsibilities.\n\nDavid would like the invoice reference included whenever we follow up on that balance. I did not give an invoice reference in this update, and nobody in the call read one to me. Leave it unknown rather than borrowing a number from an unrelated invoice. He asked us to contact finance after noon Berlin time because the person who checks payments is busy in the morning. This is a preferred contact time, not a promised payment date. I am not asking the coach to send a message or make a call. Track the obligation so that I can do it at the right time.\n\nThere are two practical actions for me. First, create a QA task on the existing Northstar account called QA bulk translation check, due six October 2026, to check the German wording of the Autumn-trial summary. Second, create a separate QA task called QA bulk confirm delivery window, due seven October 2026, to ask Marta to confirm the repeat-order delivery window. They should be two tasks, because one can be done while the other remains open. The dates are explicit dates in this note, so do not use tomorrow or guess a timezone from where my phone happens to be. Keep them attached to the correct account.\n\nI nearly repeated the translation action a minute ago, so I will say it again clearly: check the German wording by six October, summary due eight October. That is the same translation task, not an instruction to create a second copy. If a matching QA bulk translation check task already exists from a previous attempt at this test, reconcile and use it rather than duplicate it. The same applies to QA bulk confirm delivery window. If the save fails or the connection drops, I want you to check what actually reached CRM before trying again. I will not consider a second task a harmless consequence of retrying.\n\nOne responsibility change: please reassign the Autumn-trial opportunity to the colleague Alex, while leaving the repeat order with me. I am not giving a verified Alex user ID here. If the connector does not support opportunity ownership changes, tell me the reassignment was not applied. Do not just write a note and claim that Alex owns it now. Do not move the whole account when I asked about one pursuit. If you need a real choice between two people called Alex, that can be one clear question, but first finish the unrelated tasks and the factual capture. Nothing in this request allows broader access to another executive's mailbox.\n\nA few relationship details matter as well. Anna prefers a short document and dislikes receiving technical attachments before she knows why they matter. Marta is practical and wants a specific proposed receiving window. David is interested in the invoice reference and the balance, not the Autumn-trial feedback. These are my impressions from the conversations, not personality diagnoses. They can inform how I prepare my next contact. Please keep them as my reported context and do not forward them as if each person had explicitly written them. The customer has not given a single joint response covering all three subjects.\n\nThat is the end of the operational update. I do not need a motivational lesson or a recap of all our earlier chats. There is enough information here that a one-line all-done answer would be unhelpful. Give me a compact reconciliation so I can see which details were saved, which tasks actually exist now, and which requested action could not be completed. Any question should identify the actual action it blocks. Preserve the uncertain quantity and the distinction between proposed delivery and confirmation. The most important deadlines are the translation check on six October, the delivery-window follow-up on seven October, and the German trial summary on eight October. None of this means an email has been sent.",
+      "representation": "original-text",
+      "metadata": {
+        "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+        "submittedBy": "kb@jpgrowery.com",
+        "intake": "typed-conversation"
+      },
+      "metadataHistory": [
+        {
+          "metadata": {
+            "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+            "submittedBy": "kb@jpgrowery.com",
+            "intake": "typed-conversation"
+          },
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-10-02T05:23:07.165Z"
+        }
+      ],
+      "kind": "executive-statement",
+      "occurredAt": null,
+      "location": null,
+      "capturedAt": "2026-10-02T05:23:07.165Z",
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      }
+    },
+    {
+      "id": "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+      "evidenceId": "c54c92813e8f1f4da4190f20f1e13023bdc7a05d3c347e4a9c9949ca3e52866b",
+      "sourceKey": "qa-northstar-eod-2026-10-02-marta-david-anna-details",
+      "text": "Synthetic QA Northstar Pharmacy end-of-day update (executive, 2 Oct 2026): Marta says use the rear loading door for the proposed delivery. She wants a phone call ten minutes before arrival, in addition to the earlier call before shipment leaves. Her receiving window preference is after 10:00 and before 14:00 Berlin time; this is still a preference, not a booked appointment. October 9 is still only proposed. Her phone number remains unknown; do not invent it. David supplied the reference QA-OLD-2040 for the older invoice. That resolves the missing-reference gap, but does not verify the EUR 2,040 balance or mean payment was received. He prefers the invoice copy as PDF in the eventual email; do not send it. Anna wants one named person to consolidate the trial feedback instead of three separate attachments. She has not named that person, so retain this as an open action without inventing a contact. There is still no accepted order and no reason to mark either pursuit Won.",
+      "representation": "original-text",
+      "metadata": {
+        "labelledOn": "2026-10-02",
+        "transformation": "Coach-added heading 'Synthetic QA Northstar Pharmacy end-of-day update (executive, 2 Oct 2026):' prepended; body re-assembled from the executive's message and not the verbatim text",
+        "transformed": true,
+        "verbatimSourceId": "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547"
+      },
+      "metadataHistory": [
+        {
+          "metadata": {},
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-10-02T05:34:11.435Z"
+        },
+        {
+          "metadata": {
+            "labelledOn": "2026-10-02",
+            "transformation": "Coach-added heading 'Synthetic QA Northstar Pharmacy end-of-day update (executive, 2 Oct 2026):' prepended; body re-assembled from the executive's message and not the verbatim text",
+            "transformed": true,
+            "verbatimSourceId": "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547"
+          },
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-10-02T05:50:36.400Z"
+        }
+      ],
+      "kind": "executive-update",
+      "occurredAt": "2026-10-02",
+      "location": null,
+      "capturedAt": "2026-10-02T05:34:11.435Z",
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      }
+    },
+    {
+      "id": "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+      "evidenceId": "11825c1276a0e87c9637963fed59ca4e5756eef5b1ecc29fcf5934388c9a77b1",
+      "sourceKey": "qa-northstar-eod-2026-10-02-executive-message-verbatim",
+      "text": "@Coach, use only BAM Business OS \u2014 Coach QA, never production. Continue the synthetic QA Northstar Pharmacy end-of-day update from this fresh chat. Check that QA bulk translation check and QA bulk confirm delivery window each exist once; resume any incomplete safe work without duplicating them. Report their dates, Anna\u2019s corrected summary deadline, the balance, trial quantity and the unresolved delivery-date conflict.\n\nHere are further synthetic details to save together. Marta says use the rear loading door for the proposed delivery. She wants a phone call ten minutes before arrival, in addition to the earlier call before shipment leaves. Her receiving window preference is after 10:00 and before 14:00 Berlin time; this is still a preference, not a booked appointment. October 9 is still only proposed. Her phone number remains unknown; do not invent it. David supplied the reference QA-OLD-2040 for the older invoice. That resolves the missing-reference gap, but does not verify the EUR 2,040 balance or mean payment was received. He prefers the invoice copy as PDF in the eventual email; do not send it. Anna wants one named person to consolidate the trial feedback instead of three separate attachments. She has not named that person, so retain this as an open action without inventing a contact. There is still no accepted order and no reason to mark either pursuit Won. Capture all these details and give a compact reconciliation of saved changes, actual task state and decisions still open.",
+      "representation": "original-text",
+      "metadata": {},
+      "metadataHistory": [
+        {
+          "metadata": {},
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-10-02T05:50:30.584Z"
+        }
+      ],
+      "kind": "executive-update",
+      "occurredAt": "2026-10-02",
+      "location": null,
+      "capturedAt": "2026-10-02T05:50:30.584Z",
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      }
+    },
+    {
+      "id": "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa",
+      "evidenceId": "fb5328946545f5daf9bfb133f58b7d64bc16bd28a4508f657690cafef8dd2a97",
+      "sourceKey": "qa-northstar-2026-10-02-followup-30min-call-two-unloaders",
+      "text": "@Coach, use only the QA connector. For QA Northstar, correct the last no-accepted-order note: that is my report, not an independently verified fact. Both opportunities still show Engaged in CRM. The previous captured source had an added heading; preserve my preceding end-of-day message as I actually wrote it, label the older altered capture as transformed, and keep the correction history.\n\nHere is today\u2019s further update. Marta now wants a call thirty minutes before arrival, replacing ten minutes. The call before shipment leaves still stands. Use the rear loading door; two people must be available to unload. After 10:00 and before 14:00 Berlin remains a preferred receiving window, not a booking. October 9 is still proposed, not confirmed. Anna wants one consolidated feedback sheet from the still-unnamed coordinator, rather than three attachments. The German DOCX summary stays due October 8. David\u2019s older-invoice reference stays QA-OLD-2040. EUR 2,040 is my unverified report, not a settled balance. I still report no accepted order. Keep both opportunity stages unchanged and do not contact anyone. Save this whole update and tell me the actual corrections and remaining decisions.",
+      "representation": "original-text",
+      "metadata": {
+        "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+        "submittedBy": "kb@jpgrowery.com",
+        "intake": "typed-conversation"
+      },
+      "metadataHistory": [
+        {
+          "metadata": {
+            "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+            "submittedBy": "kb@jpgrowery.com",
+            "intake": "typed-conversation"
+          },
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-10-02T05:51:01.715Z"
+        }
+      ],
+      "kind": "executive-statement",
+      "occurredAt": "2026-10-02",
+      "location": "claude chat, 2 Oct 2026 follow-up",
+      "capturedAt": "2026-10-02T05:51:01.715Z",
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      }
+    }
+  ],
+  "source": {
+    "id": "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa",
+    "evidenceId": "fb5328946545f5daf9bfb133f58b7d64bc16bd28a4508f657690cafef8dd2a97",
+    "sourceKey": "qa-northstar-2026-10-02-followup-30min-call-two-unloaders",
+    "text": "@Coach, use only the QA connector. For QA Northstar, correct the last no-accepted-order note: that is my report, not an independently verified fact. Both opportunities still show Engaged in CRM. The previous captured source had an added heading; preserve my preceding end-of-day message as I actually wrote it, label the older altered capture as transformed, and keep the correction history.\n\nHere is today\u2019s further update. Marta now wants a call thirty minutes before arrival, replacing ten minutes. The call before shipment leaves still stands. Use the rear loading door; two people must be available to unload. After 10:00 and before 14:00 Berlin remains a preferred receiving window, not a booking. October 9 is still proposed, not confirmed. Anna wants one consolidated feedback sheet from the still-unnamed coordinator, rather than three attachments. The German DOCX summary stays due October 8. David\u2019s older-invoice reference stays QA-OLD-2040. EUR 2,040 is my unverified report, not a settled balance. I still report no accepted order. Keep both opportunity stages unchanged and do not contact anyone. Save this whole update and tell me the actual corrections and remaining decisions.",
+    "representation": "original-text",
+    "metadata": {
+      "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+      "submittedBy": "kb@jpgrowery.com",
+      "intake": "typed-conversation"
+    },
+    "metadataHistory": [
+      {
+        "metadata": {
+          "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+          "submittedBy": "kb@jpgrowery.com",
+          "intake": "typed-conversation"
+        },
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        },
+        "recordedAt": "2026-10-02T05:51:01.715Z"
+      }
+    ],
+    "kind": "executive-statement",
+    "occurredAt": "2026-10-02",
+    "location": "claude chat, 2 Oct 2026 follow-up",
+    "capturedAt": "2026-10-02T05:51:01.715Z",
+    "actor": {
+      "id": "kb@jpgrowery.com",
+      "role": "executive"
+    },
+    "sha256": "f1ff08462ea0615e485f8b88c883aaee13bae8018524ae1cc5ad2c3ce9407657"
+  },
+  "entries": [
+    {
+      "id": "4d48c3c5-83da-48ed-a3cd-052b62b24b56",
+      "kind": "commitment",
+      "text": "Marta (repeat order), corrected 2 Oct: she now wants a phone call THIRTY minutes before arrival, replacing the earlier ten-minute call. The call before the shipment leaves still stands (separate commitment). Use the rear loading door; two people must be available to unload. Receiving window after 10:00 and before 14:00 Berlin remains a preference, not a booking. 9 Oct is still proposed, not confirmed. Phone number still unknown; not invented. Executive's account; nothing called or sent.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "captureDigest": "1357feac08ea33e2f07e65276bf658a23f92ca9139de85ab80e5b89833bf3dda",
+      "digest": "25e3890ac86b365eebb405958dc6d3fd42e6d1acfdf314f1bac5e6375331e2b8",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "c23ccc0d-ce67-49d1-b737-0cf83fd07daa",
+      "kind": "gap",
+      "text": "Open action: Anna wants ONE consolidated feedback sheet from a single coordinator, rather than three separate attachments. The coordinator is still unnamed; contact unknown, not invented. CRM task bfbfe828-4b14-427b-8cc0-4caf69017eb6. Executive's account of Anna's wish.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "546d448794ee2a364d3b95a63adb505f30256e540e179b59603eabee2d5a31e4",
+      "digest": "5582a09fd21fc970a8b76215770a409724ffa87396e3aa457abd13e6917e55e9",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "3f6333c6-92b6-47b3-bbe7-0742f91618a0",
+      "kind": "note",
+      "text": "Corrected 2 Oct: 'no accepted order' is the executive's report, not an independently verified fact. CRM verifiably shows both opportunities (Autumn trial, Spring repeat order) at Engaged; neither is Won. Stages unchanged. Earlier version of this note labelled it fact; that label is withdrawn (history retained).",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "911a894c6de0f9674c39cd60cb7624eda46fbded64370964d46431687718f903",
+      "digest": "3a9c4ef4cea116bcebd65c5972a6534f71801d2d38b8d295bfbb358b8ee336ae",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "0fa46ce2-1117-4026-8f8b-1e7f4fc0d95d",
+      "kind": "signal",
+      "text": "David's reference for the older invoice stays QA-OLD-2040. It fills the missing-reference gap only. EUR 2,040 remains the executive's unverified report, not a settled balance; it does not show payment was received. David prefers the invoice copy as PDF in the eventual email; nothing sent.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "d5cac8d7346ff4332ab8646544fe79f71ba3a41b089feb6baf7260a77c7fc667",
+      "digest": "bd35c691af7d71dc2602d05fa690e407c4575640d16e8dc52598219f94133dc7",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "kind": "note",
+      "text": "Source provenance: the earlier retained capture (source 3b639c47..., key ...marta-david-anna-details) is TRANSFORMED: it carries a coach-added heading and is not the executive's verbatim text. The executive's message as actually written is source 7b3ebde8... (key ...executive-message-verbatim). Prefer the verbatim source; the transformed one is kept only for history.",
+      "sourceIds": [
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "fact",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "989585d850d3e809c6122c56a84b6cf0c33f70c548580a60e55e458125111ec4",
+      "id": "2b73f2f5-1b6f-44b4-bdb8-781147336386",
+      "digest": "1adb4cb8e60b2b8e09110182804a2238a6b5ce0d1713cd986984fdf03d0c261e",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.722Z"
+    }
+  ],
+  "current": [
+    {
+      "id": "08b50d06-8af6-4ca0-9736-23ff0fe0d77d",
+      "kind": "commitment",
+      "text": "Autumn trial: the executive owes Anna the German shelf-life summary, now due 8 Oct 2026 (date only, no time). Explicit correction by the executive on 2 Oct: 8 Oct is the deadline Anna actually gave; the earlier working date of 6 Oct was from the executive's notes and is replaced, not a second deadline (history: 5 Oct, then 6 Oct). Format per Anna: German, editable DOCX (not PDF), purpose stated in one sentence at the very start before technical details. Content Anna asked for: (1) how the trial was used, (2) the feedback collected, (3) what needs to change before another trial. No pricing proposal was requested and none should be added. Drafted-but-unsent was the executive's earlier report; current sending status remains unverified. Sending is the executive's step.",
+      "sourceIds": [
+        "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+        "5d304b5ff3142edeb4d3bedb09bbb70324ff429e767620da484c05c6877deb3c",
+        "2ca5f7fdec85c6e5a7853b4a6ae2b203e242b6e5b69b015616e146dc23de6d84",
+        "fb78ce4eea2a954ec274883068f28e8cc73a46112af9483e919172fc9104c9fd",
+        "773ca9c845a0228a43009c6b900d50ce7c780fa6758abfdf7b7c5e9b5b51c994",
+        "0bb6d055280388d5ffc12e10ff272f7399324072fa2aab54675833cc626b1450",
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "09b72d968738b184048ef4c27498d338153574355c83c730ec1c666e15fd88f7",
+      "digest": "798a49f992b7e8f7f3af606f07297875cc42054a6e8a4264e982aa696678cf5b",
+      "revision": 6,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.174Z"
+    },
+    {
+      "id": "3d3bf7e0-ef2e-4a6a-b996-64c929a02745",
+      "kind": "commitment",
+      "text": "Autumn trial: the German wording of the summary must be translation-checked by 6 Oct 2026 (date only), leaving time to correct wording before Anna receives it on 8 Oct. This replaces the earlier working date of 4 Oct (kept as history). Same single translation task; who checks it is not stated.",
+      "sourceIds": [
+        "88806f52fbe77d1346f5bf84b7be96471b083cb86c00d83deacaba7a1c454064",
+        "0bb6d055280388d5ffc12e10ff272f7399324072fa2aab54675833cc626b1450",
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "b1597aade143cf16947ddabf1480deab1f3289f5b5bdefa5d46f08adfac1f089",
+      "digest": "2e273f2a71cf8d2d80f5cb44a443a0b3e2e0b36af020d0ffb52764667aa0b3e0",
+      "revision": 3,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.174Z"
+    },
+    {
+      "kind": "signal",
+      "text": "Positive feedback on the Autumn trial (executive's account, 2 Oct): Anna said she is pleased with the response so far. She did not say the trial is finished, and no follow-on purchase, signed agreement or accepted order was discussed. Trial is not Won; stage unchanged. Next decision to track: whether they want a second trial once Anna has read the German summary.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "93356e70a02180a3afca76261d2ac5f961821c55920827ca83b439fccb23185e",
+      "id": "e4d3aa35-fb98-47e0-ad1b-e16f6fc8965c",
+      "digest": "0588844dc45819d38b633e3a74f711ab4da48b08690d57eccb2f4b592eab58b7",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.174Z"
+    },
+    {
+      "kind": "signal",
+      "text": "Uncertain hallway remark: someone was overheard mentioning twelve units, possibly for the Autumn trial. Not an agreed order; the speaker is unknown. Not a confirmed or working quantity, and no order amount is changed from it.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "provisional",
+        "candidateOpportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "6adc7eedc57648adeca98c9735c365cf1536d74207c9d9a69bf80ea45056f4ac",
+      "id": "8e0b16a1-d56d-48d6-bb60-7fcbd127acb2",
+      "digest": "cf47e658801d42262200b2c685d406aa2fd2979bb91e5ac32b294385bb1ab25f",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.175Z"
+    },
+    {
+      "kind": "gap",
+      "text": "Autumn trial final quantity is undecided; Anna must give it herself. The twelve-unit remark is an uncertain signal only. Whether a second trial is wanted is also open until Anna has read the German summary.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "01de7498e038737b9094ea3c03d87dfc7ca7b74483599dbc2d02189eabe81efc",
+      "id": "9925e7ef-062a-4312-acc9-2b6a88c8b2dc",
+      "digest": "6dcb244d66bad02d9898ee56995d0d0ed20b2522cd794863a4b6423b20f27055",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "note",
+      "text": "Repeat order delivery: Marta proposed delivery on 9 Oct 2026 (executive's account). PROPOSED, NOT CONFIRMED; the delivery window is still unconfirmed. This is unrelated to the 8 Oct summary deadline. Open discrepancy, not resolved: Anna's earlier email gave a provisional plan of 120 units for the week of 12 Apr 2027 for the Spring repeat order; the 9 Oct 2026 proposal is not reconciled with that and neither overrides the other.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "captureDigest": "c5b1c7b768b2505a042eb2f656581d710e41eb64260766e2b1b5449ffb23b5ac",
+      "id": "32a4de49-3330-445a-bc1b-944e70e71673",
+      "digest": "0744617ae7ce2b50a7346ec04178161dee143957376305d03ae9f0e7a827634c",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "note",
+      "text": "Repeat order constraint from Marta: the receiving team cannot take deliveries before 10:00 Berlin time. This is a constraint only; no 10:00 appointment is booked, and no calendar was changed.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "captureDigest": "56e8f412b73cb1b0b9f2af55279cbf9e35e7234b476dbbe7abd7a6f8f9057f98",
+      "id": "0887e63c-91ad-4e07-8677-d357c4e8d31d",
+      "digest": "532dee56b992909c667acc8de779f6279a9be95d3068d6b59f7bde3d9d6ca450",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "commitment",
+      "text": "Executive owes Marta a phone call before the repeat-order shipment leaves. Delivery questions go to Marta by phone, not to Anna. No call made or message sent by the coach.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "captureDigest": "01f7b2430b55d1970972a7d4487ed7c478870379fb8f9e6dd16ca1b66fc926c8",
+      "id": "c2a6fc74-fdca-40fb-b61f-421c787295d7",
+      "digest": "ea855d39ca0182f3e3031623a3034752ba8774fb5c3e4c7449e0b9126e6a5f3f",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "gap",
+      "text": "Marta's phone number is not known: none was given in the update and CRM holds no contact record for her. Not invented. Needed before the executive can make the call to Marta.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "f7e8b21c40c285ec63879fbc56193e43abc41b517c6f8fea0fd068423ccfbed0",
+      "id": "0385a737-b049-452b-8048-72ddb125a8ca",
+      "digest": "ce2d1e04b2c0deb14109a72cff1eab4638c40c3108537a34b8f17f452eb10c3b",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "note",
+      "text": "Packaging labels should use the pharmacy's existing legal name. No company rename was requested; CRM name and any administrative spelling stay as they are until someone supplies a real correction.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "69387869afd36430c570b216358dbbb1d48f1e401bd10d0bdc00878f2eb5d862",
+      "id": "5686ac08-c076-4949-bd6c-22fd246a92d3",
+      "digest": "4706fe471088d621e3720568ff1d2e47d708ce1474cbbea4e8aaf5164da074d3",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "note",
+      "text": "Outstanding balance on the older order: EUR 2,040 (executive's report, 2 Oct). Corrects the executive's earlier working note of EUR 2,400. No invoice was checked, so this is not a verified invoice figure. The balance is not settled; no payment task is complete. Belongs to the older order, not to the Autumn trial or the repeat order.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "7b8291aef1b1a3facc7b0342786139e120fcc5c39c3ef967df9426c810c77782",
+      "id": "2d46f665-8b21-476c-938c-1788a90db6e0",
+      "digest": "322cb7255c5670d961058581273774215b7d048501ccb59cfe7644e22531b03f",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "social",
+      "text": "David is the finance contact (per Anna, via the executive). His role is finance only: not the buyer for the Autumn trial, separate from Anna's say over trial quantity and Marta's delivery responsibilities.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "2c6898436d082b583beab2ba2eba7052a60c28085996aeffeb946131d3d65b32",
+      "id": "58f0f631-75f8-4a31-b862-dc4412ef4323",
+      "digest": "c90ea8d8dcb3e8f75de76ccf96a4fce9a397f7a9a0767a3179e8c95fcc55e700",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.176Z"
+    },
+    {
+      "kind": "commitment",
+      "text": "Executive owes finance a follow-up on the outstanding balance. David wants the invoice reference included each time. Finance should be contacted after 12:00 Berlin time because the person checking payments is busy in the morning; this is a preferred contact time, not a promised payment date. The executive will do this; the coach sends and calls nothing. No date was set for it.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "97691fb6530c151963c720778f89c4d6e332e10448533cbdfb48416d23e81af4",
+      "id": "1a0f11c0-b587-4040-89b6-522d1f5e6335",
+      "digest": "eb31923b9332063cb87a904e6d955d356afa33bbe8a2b86edc7b5b39c54143c3",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.177Z"
+    },
+    {
+      "id": "c2be99f7-5bd1-4686-84d8-92c159e3ed89",
+      "kind": "gap",
+      "text": "RESOLVED (2 Oct, executive): David supplied invoice reference QA-OLD-2040 for the older-order balance, so the missing-reference gap is closed. This does not verify the EUR 2,040 balance (still the executive's report; no invoice checked) and does not mean payment was received. David prefers the invoice copy as PDF in the eventual email; nothing sent.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd",
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account"
+      },
+      "digest": "69a060d6506dd41a7b0387896289dd51aae6bdb94e8d771b366f15d00a0db7de",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:38:39.793Z"
+    },
+    {
+      "kind": "note",
+      "text": "Requested handoff (not applied): the executive asked to reassign the Autumn trial opportunity to a colleague named Alex, leaving the repeat order with the executive. No verified Alex user ID was given. The current Coach adapter does not support ownership changes, so ownership is unchanged and Alex does not own it in CRM. The account was not moved.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "a9dd349c84f1e309970d058e77f769a6a5a438569c1a2639aa730454675504cc",
+      "id": "4484d901-ed47-4873-a3d5-eba787a1ef98",
+      "digest": "cc61bb998b60fd042922b98f17f73632cd5054bd045d50bcd9829f9e90ab8542",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.177Z"
+    },
+    {
+      "kind": "social",
+      "text": "Executive's impression of Anna (not her own words, not a diagnosis): prefers a short document and dislikes receiving technical attachments before she knows why they matter, so lead with the purpose.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "16e29fa92152374570307e6f54f55534a85dcb98044a88b823d23baa9bf711b8",
+      "id": "99bf9ad0-0d73-4b5a-b6d7-d717667d86d7",
+      "digest": "6ff9b4a2036bdde3add999ae709867c129dd55519fa94ada0d0fed154461778e",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.177Z"
+    },
+    {
+      "kind": "social",
+      "text": "Executive's impression of Marta (not her own words, not a diagnosis): practical, wants a specific proposed receiving window rather than an open question.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "8bc368e5b244be8b689dbc087d7ebfdf9b8421fbbd4ce98a1dc981504fe1978e",
+      "id": "0cb60540-83ff-4e5f-9c2d-e16139e5157c",
+      "digest": "44283d046480aa9edb9ae49a1aa8ab9882156cc674f10d79b8f5c66c83fb59f8",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.177Z"
+    },
+    {
+      "kind": "social",
+      "text": "Executive's impression of David (not his own words, not a diagnosis): interested in the invoice reference and the balance, not in Autumn-trial feedback. The customer has not given one joint response covering trial, delivery and payment.",
+      "sourceIds": [
+        "bb2a2eb8519b8b7b9e9cfe0de237bd392a271bca29a26430dcc049fecfe0cbbd"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account",
+        "opportunityIds": []
+      },
+      "captureDigest": "40203d036a9b7fa10e6c7f6461dc74e99935b9543b00fcd1dba9506f6519edb8",
+      "id": "9094db74-10ab-4ef0-a088-1c0b0318790b",
+      "digest": "450ab132e987d26167f43ede451e0ac8dd5e95b73af8118e67696a4620455905",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:23:07.178Z"
+    },
+    {
+      "id": "4d48c3c5-83da-48ed-a3cd-052b62b24b56",
+      "kind": "commitment",
+      "text": "Marta (repeat order), corrected 2 Oct: she now wants a phone call THIRTY minutes before arrival, replacing the earlier ten-minute call. The call before the shipment leaves still stands (separate commitment). Use the rear loading door; two people must be available to unload. Receiving window after 10:00 and before 14:00 Berlin remains a preference, not a booking. 9 Oct is still proposed, not confirmed. Phone number still unknown; not invented. Executive's account; nothing called or sent.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "31375bb8-c4ac-41f2-b2e9-76b55c605cf7"
+        ]
+      },
+      "captureDigest": "1357feac08ea33e2f07e65276bf658a23f92ca9139de85ab80e5b89833bf3dda",
+      "digest": "25e3890ac86b365eebb405958dc6d3fd42e6d1acfdf314f1bac5e6375331e2b8",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "0fa46ce2-1117-4026-8f8b-1e7f4fc0d95d",
+      "kind": "signal",
+      "text": "David's reference for the older invoice stays QA-OLD-2040. It fills the missing-reference gap only. EUR 2,040 remains the executive's unverified report, not a settled balance; it does not show payment was received. David prefers the invoice copy as PDF in the eventual email; nothing sent.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "d5cac8d7346ff4332ab8646544fe79f71ba3a41b089feb6baf7260a77c7fc667",
+      "digest": "bd35c691af7d71dc2602d05fa690e407c4575640d16e8dc52598219f94133dc7",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "c23ccc0d-ce67-49d1-b737-0cf83fd07daa",
+      "kind": "gap",
+      "text": "Open action: Anna wants ONE consolidated feedback sheet from a single coordinator, rather than three separate attachments. The coordinator is still unnamed; contact unknown, not invented. CRM task bfbfe828-4b14-427b-8cc0-4caf69017eb6. Executive's account of Anna's wish.",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "unknown",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "546d448794ee2a364d3b95a63adb505f30256e540e179b59603eabee2d5a31e4",
+      "digest": "5582a09fd21fc970a8b76215770a409724ffa87396e3aa457abd13e6917e55e9",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "id": "3f6333c6-92b6-47b3-bbe7-0742f91618a0",
+      "kind": "note",
+      "text": "Corrected 2 Oct: 'no accepted order' is the executive's report, not an independently verified fact. CRM verifiably shows both opportunities (Autumn trial, Spring repeat order) at Engaged; neither is Won. Stages unchanged. Earlier version of this note labelled it fact; that label is withdrawn (history retained).",
+      "sourceIds": [
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "911a894c6de0f9674c39cd60cb7624eda46fbded64370964d46431687718f903",
+      "digest": "3a9c4ef4cea116bcebd65c5972a6534f71801d2d38b8d295bfbb358b8ee336ae",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.720Z"
+    },
+    {
+      "kind": "note",
+      "text": "Source provenance: the earlier retained capture (source 3b639c47..., key ...marta-david-anna-details) is TRANSFORMED: it carries a coach-added heading and is not the executive's verbatim text. The executive's message as actually written is source 7b3ebde8... (key ...executive-message-verbatim). Prefer the verbatim source; the transformed one is kept only for history.",
+      "sourceIds": [
+        "7b3ebde844a52d09cc2251c19f9c565bf786df0ab5bc6f575d3a8f696ca02547",
+        "3b639c4760d4accf741414641dc906ee9aa79b7cd6af04552230b3f351869154",
+        "5dbd4054791575f5d742c96e4338407de00b2a4497c5af42b8e5773340b683fa"
+      ],
+      "status": "fact",
+      "association": {
+        "scope": "account"
+      },
+      "captureDigest": "989585d850d3e809c6122c56a84b6cf0c33f70c548580a60e55e458125111ec4",
+      "id": "2b73f2f5-1b6f-44b4-bdb8-781147336386",
+      "digest": "1adb4cb8e60b2b8e09110182804a2238a6b5ce0d1713cd986984fdf03d0c261e",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-02T05:51:01.722Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "548a505f-9ed1-45c6-a43e-fd0f7339d44b",
+      "createdAt": "2026-10-02T05:24:47.675Z",
+      "updatedAt": "2026-10-02T05:51:44.256Z",
+      "title": "QA bulk confirm delivery window",
+      "bodyV2": {
+        "markdown": "Synthetic QA task. Ask Marta to confirm the repeat-order delivery window. Due 7 October 2026 (date only; no time given). Marta proposed delivery on 9 October 2026; this is proposed, not confirmed, and the window is still open. Her receiving team cannot take deliveries before 10:00 Berlin time (a constraint, not a booked appointment). Delivery questions go to Marta by phone; her number is not in CRM. Repeat order only; separate from the Autumn trial. Nothing has been sent or called, and no calendar was changed.\n\nUPDATE (2 Oct, executive; corrected later the same day): Marta wants a phone call THIRTY minutes before arrival (this replaces the earlier ten-minute call). The call before the shipment leaves still stands. Use the rear loading door; two people must be available to unload. Receiving window after 10:00 and before 14:00 Berlin is a preference, not a booking. 9 October remains proposed, not confirmed. Her phone number is still unknown (not invented). Executive's report: no accepted order; stages unchanged (both Engaged). Nobody has been contacted.",
+        "blocknote": "[{\"id\":\"ca364a71-73bb-4a59-9e2f-2d52dd1f638f\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA task. Ask Marta to confirm the repeat-order delivery window. Due 7 October 2026 (date only; no time given). Marta proposed delivery on 9 October 2026; this is proposed, not confirmed, and the window is still open. Her receiving team cannot take deliveries before 10:00 Berlin time (a constraint, not a booked appointment). Delivery questions go to Marta by phone; her number is not in CRM. Repeat order only; separate from the Autumn trial. Nothing has been sent or called, and no calendar was changed.\",\"styles\":{}}],\"children\":[]},{\"id\":\"01fd6d77-733e-4a51-9301-decb734ca86f\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"UPDATE (2 Oct, executive; corrected later the same day): Marta wants a phone call THIRTY minutes before arrival (this replaces the earlier ten-minute call). The call before the shipment leaves still stands. Use the rear loading door; two people must be available to unload. Receiving window after 10:00 and before 14:00 Berlin is a preference, not a booking. 9 October remains proposed, not confirmed. Her phone number is still unknown (not invented). Executive's report: no accepted order; stages unchanged (both Engaged). Nobody has been contacted.\",\"styles\":{}}],\"children\":[]}]"
+      },
+      "status": "TODO",
+      "dueAt": null
+    },
+    {
+      "id": "892c9be7-5ca4-45cb-9f38-a76f8cd6c720",
+      "createdAt": "2026-10-01T13:36:41.084Z",
+      "updatedAt": "2026-10-02T05:25:39.581Z",
+      "title": "Prepare German shelf-life summary for Anna by 8 Oct 2026 \u2014 QA Northstar Autumn trial",
+      "bodyV2": {
+        "markdown": "Synthetic QA task. Executive owes Anna a written shelf-life summary, now due 8 October 2026 (date only; no time given). CORRECTION (2 Oct, executive): 8 Oct is the deadline Anna actually gave; the earlier working date of 6 Oct came from the executive's notes and is replaced, not a second deadline. History: first promised 5 Oct, then 6 Oct. The summary is to be in German, as an editable DOCX (not PDF), with the purpose stated in one sentence at the very start before technical details. It should cover: how the trial was used, the feedback collected, and what needs to change before another trial. No pricing proposal. The German translation check is due 6 October 2026 (see task QA bulk translation check); the earlier 4 Oct date is replaced. Anna prefers a short document. It supports the Autumn trial order only; Anna asked that the Spring repeat order be kept separate. Historical evidence: in the 1 Oct 2026 conversation screenshot, the executive's own message said the summary was drafted but not yet sent. Current sending status is UNVERIFIED. Remaining step: executive confirms whether it has been sent and, if not, reviews and sends it to Anna (the coach does not send). Neither opportunity is won; no order is accepted.",
+        "blocknote": "[{\"id\":\"c53a6fbc-f2ac-42c9-8b54-a27d3035a97b\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA task. Executive owes Anna a written shelf-life summary, now due 8 October 2026 (date only; no time given). CORRECTION (2 Oct, executive): 8 Oct is the deadline Anna actually gave; the earlier working date of 6 Oct came from the executive's notes and is replaced, not a second deadline. History: first promised 5 Oct, then 6 Oct. The summary is to be in German, as an editable DOCX (not PDF), with the purpose stated in one sentence at the very start before technical details. It should cover: how the trial was used, the feedback collected, and what needs to change before another trial. No pricing proposal. The German translation check is due 6 October 2026 (see task QA bulk translation check); the earlier 4 Oct date is replaced. Anna prefers a short document. It supports the Autumn trial order only; Anna asked that the Spring repeat order be kept separate. Historical evidence: in the 1 Oct 2026 conversation screenshot, the executive's own message said the summary was drafted but not yet sent. Current sending status is UNVERIFIED. Remaining step: executive confirms whether it has been sent and, if not, reviews and sends it to Anna (the coach does not send). Neither opportunity is won; no order is accepted.\",\"styles\":{}}],\"children\":[]}]"
+      },
+      "status": "IN_PROGRESS",
+      "dueAt": null
+    },
+    {
+      "id": "bfbfe828-4b14-427b-8cc0-4caf69017eb6",
+      "createdAt": "2026-10-02T05:38:10.843Z",
+      "updatedAt": "2026-10-02T05:52:38.831Z",
+      "title": "Confirm who consolidates trial feedback for Anna \u2014 QA Northstar Autumn trial",
+      "bodyV2": {
+        "markdown": "Synthetic QA task. Anna wants one named person to consolidate the trial feedback instead of three separate attachments. She has not named that person; the contact is unknown and must not be invented. Open action: obtain the name from Anna (executive-led; the coach does not send). No due date given. Autumn trial only; separate from the Spring repeat order. No accepted order; neither pursuit Won.\n\nUPDATE (2 Oct, executive): Anna wants ONE consolidated feedback sheet from that still-unnamed coordinator, rather than three attachments. Coordinator still unnamed. Executive's report: no accepted order; stages unchanged (both Engaged). Nobody has been contacted.",
+        "blocknote": "[{\"id\":\"d81f337d-25f0-4760-96bf-96bd74d0bfe9\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA task. Anna wants one named person to consolidate the trial feedback instead of three separate attachments. She has not named that person; the contact is unknown and must not be invented. Open action: obtain the name from Anna (executive-led; the coach does not send). No due date given. Autumn trial only; separate from the Spring repeat order. No accepted order; neither pursuit Won.\",\"styles\":{}}],\"children\":[]},{\"id\":\"e75befd2-9a8b-49c3-bead-212a71e5e849\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"UPDATE (2 Oct, executive): Anna wants ONE consolidated feedback sheet from that still-unnamed coordinator, rather than three attachments. Coordinator still unnamed. Executive's report: no accepted order; stages unchanged (both Engaged). Nobody has been contacted.\",\"styles\":{}}],\"children\":[]}]"
+      },
+      "status": "TODO",
+      "dueAt": null
+    },
+    {
+      "id": "c2eb1fc5-8246-462d-b7f8-dd91733a4504",
+      "createdAt": "2026-10-02T05:24:21.128Z",
+      "updatedAt": "2026-10-02T05:24:21.128Z",
+      "title": "QA bulk translation check",
+      "bodyV2": {
+        "markdown": "Synthetic QA task. Check the German wording of the Autumn-trial summary for Anna. Due 6 October 2026 (date only; no time given), so wording can be corrected before the summary is due to Anna on 8 October 2026. Autumn trial only; the repeat order is separate. The summary is a German DOCX with a one-sentence purpose at the start and no pricing proposal. Nothing has been sent.",
+        "blocknote": "[{\"id\":\"7ef12d0e-099a-47ea-b0c2-9d23e090166d\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA task. Check the German wording of the Autumn-trial summary for Anna. Due 6 October 2026 (date only; no time given), so wording can be corrected before the summary is due to Anna on 8 October 2026. Autumn trial only; the repeat order is separate. The summary is a German DOCX with a one-sentence purpose at the start and no pricing proposal. Nothing has been sent.\",\"styles\":{}}],\"children\":[]}]"
+      },
+      "status": "TODO",
+      "dueAt": null
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "31375bb8-c4ac-41f2-b2e9-76b55c605cf7",
+      "name": "QA Spring repeat order (synthetic)",
+      "stage": "ENGAGED",
+      "amount": {
+        "amountMicros": null,
+        "currencyCode": null
+      }
+    },
+    {
+      "id": "6fd8eed5-3b66-402e-9f69-349febe96c69",
+      "name": "QA Autumn trial order (synthetic)",
+      "stage": "ENGAGED",
+      "amount": {
+        "amountMicros": null,
+        "currencyCode": null
+      }
+    }
+  ],
+  "proofScope": "Only tested batch sources and their linked current entries; unrelated pre-existing context omitted"
+}

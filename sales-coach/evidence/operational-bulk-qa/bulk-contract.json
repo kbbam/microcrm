@@ -1,0 +1,14 @@
+{
+  "boundary": "real MCP SDK + durable context store; interpretations supplied by test, not model extraction",
+  "submittedCharacters": 14168,
+  "items": 105,
+  "batches": [
+    100,
+    5
+  ],
+  "oversizedRejectedBeforeWrite": true,
+  "retriesDuplicatedEntries": false,
+  "exactTranscriptPreserved": true,
+  "correctionHistoryRetained": true,
+  "freshConnectionRecall": true
+}

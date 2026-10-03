@@ -1,0 +1,30 @@
+{
+  "runtimeRevision": "75edf10a15ce9e6a47241989b2c2083ab0c29de5",
+  "checks": {
+    "first_complete_message_verbatim": true,
+    "first_18_context_entries": true,
+    "latest_complete_message_verbatim": true,
+    "previous_message_restored_verbatim": true,
+    "transformed_capture_marked_and_linked": true,
+    "first_original_still_unchanged": true,
+    "no_order_claim_corrected_with_history": true,
+    "account_name_preserved": true,
+    "four_tasks_no_duplicates": true,
+    "two_requested_tasks_once_each": true,
+    "summary_deadline_corrected_in_CRM": true,
+    "delivery_notice_corrected_in_CRM": true,
+    "stages_unchanged": true,
+    "balance_reported_not_invoice_verified": true,
+    "uncertain_quantity_not_promoted": true
+  },
+  "sourceComparison": "Exact UI input; terminal newline in local fixture excluded",
+  "outcome": "completed with recovery",
+  "limits": [
+    "Desktop QA synthetic data only",
+    "Physical iOS/Android and audio recognition not tested",
+    "No uninterrupted latency benchmark; QA prompts approved once",
+    "Ownership reassignment unsupported",
+    "One safe correction blocked by Claude safeguard; same-model plain wording proceeded",
+    "Earlier source transformation and epistemic error retained and corrected"
+  ]
+}

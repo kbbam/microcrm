@@ -1,0 +1,48 @@
+{
+  "url": "https://claude.ai/chat/ae6facf0-a4ad-45be-b576-882d110e78a8",
+  "snapshot": "- main:\n  - button \"Outstanding balance at QA Northstar Pharmacy, rename chat\":\n    - generic: Outstanding balance at QA Northstar Pharmacy\n  - button \"More options for Outstanding balance at QA Northstar Pharmacy\":\n    - generic: \ue027\n  - button \"Share\":\n    - generic: Share\n  - status: Claude finished the response\n  - feed \"Chat messages\":\n    - paragraph: Use the up and down arrow keys to move between messages.\n    - article \"Message 1 of 6\":\n      - 'heading \"You said: BAM coach, this is a QA test using the Coach QA connector.\" [level=2]'\n      - paragraph: BAM coach, this is a QA test using the Coach QA connector. What do I currently owe Anna at QA Northstar Pharmacy for the Autumn trial, and what is my next step?\n      - toolbar \"Message actions\":\n        - time: 16 minutes ago\n        - button \"Retry\":\n          - generic: \ue11d\n        - button \"Edit\":\n          - generic: \ue064\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n      - status\n    - article \"Message 2 of 6\":\n      - 'heading \"Claude responded: You owe Anna the German Autumn-trial shelf-life summary by 6 Oct, as a DOCX with a one-sentence intro that states its purpose.\" [level=2]'\n      - generic: Used BAM Business OS \u2014 Coach QA integration, read a file, loaded tools\n      - button \"Used BAM Business OS \u2014 Coach QA integration, read a file, loaded tools\":\n        - generic: \ue02a\n      - status: Used BAM Business OS \u2014 Coach QA integration, read a file, loaded tools\n      - paragraph: \"You owe Anna the German Autumn-trial shelf-life summary by 6 Oct, as a DOCX with a one-sentence intro that states its purpose. Next: get the translation checked by 4 Oct; sending is still unverified.\"\n      - toolbar \"Message actions\":\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n        - button \"Read aloud\":\n          - generic: \ue0e4\n        - button \"Good response\":\n          - generic: \ue0fb\n        - button \"Bad response\":\n          - generic: \ue0f9\n        - button \"Retry\":\n          - generic: \ue11d\n        - time: 14 minutes ago\n    - article \"Message 3 of 6\":\n      - 'heading \"You said: Remember for this QA account: Anna prefers the Autumn-trial summary with the date in the document filename.\" [level=2]'\n      - paragraph: \"Remember for this QA account: Anna prefers the Autumn-trial summary with the date in the document filename.\"\n      - toolbar \"Message actions\":\n        - time: 10 minutes ago\n        - button \"Retry\":\n          - generic: \ue11d\n        - button \"Edit\":\n          - generic: \ue064\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n      - status\n    - article \"Message 4 of 6\":\n      - 'heading \"Claude responded: Saved: Anna prefers the Autumn-trial summary with the date in the document filename.\" [level=2]'\n      - generic: Loaded tools, used BAM Business OS \u2014 Coach QA integration\n      - button \"Loaded tools, used BAM Business OS \u2014 Coach QA integration\":\n        - generic: \ue02a\n      - status: Loaded tools, used BAM Business OS \u2014 Coach QA integration\n      - paragraph: \"Saved: Anna prefers the Autumn-trial summary with the date in the document filename.\"\n      - toolbar \"Message actions\":\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n        - button \"Read aloud\":\n          - generic: \ue0e4\n        - button \"Good response\":\n          - generic: \ue0fb\n        - button \"Bad response\":\n          - generic: \ue0f9\n        - button \"Retry\":\n          - generic: \ue11d\n        - time: 10 minutes ago\n    - article \"Message 5 of 6\":\n      - 'heading \"You said: Correction: use the account name rather than the date in that filename.\" [level=2]'\n      - paragraph: \"Correction: use the account name rather than the date in that filename. Keep the DOCX format.\"\n      - toolbar \"Message actions\":\n        - time: 9 minutes ago\n        - button \"Retry\":\n          - generic: \ue11d\n        - button \"Edit\":\n          - generic: \ue064\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n      - status\n    - article \"Message 6 of 6\":\n      - 'heading \"Claude responded: Corrected: Anna''s Autumn-trial summary filename uses the account name, not the date; format stays DOCX.\" [level=2]'\n      - generic \"Update account context\":\n        - generic: Update account context\n        - button \"Update account context\":\n          - generic: \ue02a\n      - status: Update account context\n      - paragraph: \"Corrected: Anna's Autumn-trial summary filename uses the account name, not the date; format stays DOCX.\"\n      - toolbar \"Message actions\":\n        - button \"Copy\":\n          - generic: \ue056\n        - status\n        - button \"Read aloud\":\n          - generic: \ue0e4\n        - button \"Good response\":\n          - generic: \ue0fb\n        - button \"Bad response\":\n          - generic: \ue0f9\n        - button \"Retry\":\n          - generic: \ue11d\n        - time: 9 minutes ago\n  - button:\n    - generic: \ue009\n  - status\n  - status\n  - status\n  - textbox \"Write your prompt to Claude\" [active]:\n    - paragraph: Write a message\u2026\n  - status\n  - button \"Add files, connectors, and more\":\n    - generic: \ue001\n  - 'button \"Model: Sonnet 5.5 Medium\"':\n    - text: Sonnet 5.5\n    - generic: Medium\n  - button \"Settings\":\n    - generic: \ue027\n  - button \"Press and hold to record\":\n    - generic: \ue0ab\n  - button \"Use voice mode\":\n  - note:\n    - link \"Claude is AI and can make mistakes. Please double-check responses.\":\n      - /url: https://support.anthropic.com/en/articles/8525154-claude-is-providing-incorrect-or-misleading-responses-what-s-going-on\n  - status\n- status\n- status\n- region \"Notifications\"\n- button",
+  "times": [
+    {
+      "datetime": "2026-10-01T18:37:54.955Z",
+      "text": "16 minutes ago"
+    },
+    {
+      "datetime": "2026-10-01T18:40:34.620Z",
+      "text": "14 minutes ago"
+    },
+    {
+      "datetime": "2026-10-01T18:44:17.904Z",
+      "text": "10 minutes ago"
+    },
+    {
+      "datetime": "2026-10-01T18:44:23.257Z",
+      "text": "10 minutes ago"
+    },
+    {
+      "datetime": "2026-10-01T18:45:31.424Z",
+      "text": "9 minutes ago"
+    },
+    {
+      "datetime": "2026-10-01T18:45:34.908Z",
+      "text": "9 minutes ago"
+    }
+  ],
+  "revision": "d8a355bbf3ac8151a3eae196ff1186f1a5b1a9ce",
+  "timing": {
+    "clock": "visible Claude message DOM datetime, user submit to assistant message",
+    "cold": {
+      "seconds": 159.665,
+      "validLatencySample": false,
+      "reason": "Search accounts and Get account context approvals paused execution; Allow once used, persistent permissions unchanged"
+    },
+    "warmSave": {
+      "seconds": 5.353,
+      "words": 14
+    },
+    "warmCorrection": {
+      "seconds": 3.484,
+      "words": 18
+    },
+    "limitation": "two ordinary-text warm samples on desktop; not a general latency guarantee or Android measurement"
+  }
+}

@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: public MCP consent survives restart and access expiry; refresh rotates with exact audience and revocation
+ok 1 - public MCP consent survives restart and access expiry; refresh rotates with exact audience and revocation
+  ---
+  duration_ms: 878.862792
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 946.094375

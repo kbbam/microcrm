@@ -1,0 +1,4 @@
+PASS: original + reason/risk downgrade + changed-baseline downgrade all await confirmation; zero writes.
+PASS: failed refresh and complete absent record are unavailable historical snapshots; unchanged record return restores availability; original/social history survives.
+PASS: trusted setup retry applies one stable-ID create; pending confirmation and CONFLICT cannot be retried.
+Synthetic evidence store: /tmp/bam-coach-final-review-wXZ4sf

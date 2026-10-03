@@ -1,0 +1,25 @@
+# Coach QA scenarios
+
+These are executable checks, not the feature backlog. Run broad mutation tests in an isolated fixture/QA workspace. The executive guide is [five steps](../executive-quickstart.md); Google-route research stays [COACH-R001](../backlog.md#coach-r001--compare-direct-claude-google-workspace-intake-with-twenty-intake).
+
+## CQA-01 — Each executive on their actual phone
+
+**Pending:** Ilya on iPhone, owner on Android. Owner desktop settings/read proof is not Ilya's identity or phone proof. Owner says org-wide Always allow is configured: skip reconfiguration unless a prompt/locked setting appears. Verify personal auth/assigned scope, normal read, dictated real note, new-chat recall without new prompts, same chat on desktop, and one attachment with meaningful content + original-file retrieval. Record device/client/date, exact failed tool, waiting time and results. No extra screenshot required for routine text acceptance. Admin must provision Ilya's Business OS identity/member/source mapping, assign records and make skill/connector available before sending the guide; his activation link is private, not a generic login or another user's link.
+
+“Write approval persistence” = a genuine ordinary note/task save and next-chat read do not unexpectedly ask approval again. It is separate from Business OS review of consequential changes. “Source coverage” = known recent thread/event contents can actually be retrieved, with expected messages/participants and disclosed missing attachments/time ranges. A sync timestamp alone is not that test. Physical dictation, browser-to-app return and original-byte upload still need real iOS/Android observations.
+
+## CQA-02 — Reassign task / opportunity / account
+
+**Requested outcome:** authorized executive or teamlead transfers responsibility to a real, uniquely resolved colleague/teamlead through Coach, not merely records a handoff note. Verify each object separately, old/new owners, unrelated fields, human review where consequential, central access loss/gain and retained evidence after transfer. Unknown/ambiguous recipient and out-of-scope attempts must fail clearly. Retry must not duplicate work; no email is sent.
+
+**Current result:** six real MCP protocol probes (executive and leader × task, opportunity, account) returned blocked / FORBIDDEN_FIELD. Provider mutation count was zero and before/after owners were identical; [evidence](../evidence/operational-bulk-qa/reassignment.json). Current adapter's write allowlist lacks task assignee, opportunity owner and account owner fields; MCP has no colleague/member lookup tool. Global Always allow cannot add that capability. Do not expand the field allowlist casually: ownership transfer affects authorization and post-write readback. Current iteration tests/report gap; it does not implement transfer policy. A future implementation requires defined eligible recipients, transfer authority, confirmation rules, portfolio update and access-safe receipt/readback.
+
+## CQA-03 — End-of-day dictated operational dump
+
+**Expected:** preserve exact supplied transcript, distinguish accounts/pursuits, capture all actionable details, apply only safe supported changes, hold consequential decisions, consolidate necessary clarification, and surface the batch result. No fixed 20/35/50-word limit where it hides meaningful outcomes. Use compact grouped applied/saved, held, and unresolved results; do not expand merely to repeat filler. This is a series of independently checked operations, not a promised atomic bulk transaction.
+
+Use a long natural-language fixture with duplicates, explicit corrections, conflicting dates, two pursuits for one account, multiple accounts, unsupported transfer, unrelated filler, source uncertainty, ordinary task edits and a consequential stage/amount change. Trace every meaningful item to saved/applied/held/blocked/clarify, verify CRM/context independently, retry after interruption without duplicates, correct one item and retrieve it in a fresh chat. Include >100 entries split across supported bounded calls in contract QA. Test one failure amid successful independent changes; no silent omissions or all-success claim. Actual ten-minute audio/dictation recognition remains a physical-phone check; pasted text is only transcript-processing evidence.
+
+## Result records
+
+See [current contract/client results](../evidence/operational-bulk-qa/README.md): 109 passing Coach tests, three ordinary Claude QA batches with 15 independently verified final criteria, and all initial failures/corrections retained. Production/QA central instructions now report runtime 75edf10. The natural-language result is completed with recovery, not a flawless first-run or phone acceptance claim. Keep failed cases and pending device/capability work explicit; do not infer user-language performance from protocol tests alone.

@@ -1,7 +1,11 @@
 import express from "express";
 import { checkDatabase, initSchema } from "./db.js";
-import { oidc, registerInteractionRoutes, requireAccessToken } from "./oidc.js";
+import { oidc, registerInteractionRoutes, requireAccessToken, requireCoachAccessToken, coachEnabled, COACH_RESOURCE } from "./oidc.js";
+import { handleCoachRequest, handleCoachUpload, handleCoachDownload, handleCoachEvidence, coachSafeLogPath } from "./coach.js";
+import { createCoachReviewHandlers } from "./coach-review.js";
 import { setupGet, setupPost } from "./setup.js";
+import { accountHome, accountHelp } from "./auth-page.js";
+import { registerTwentySourceConnectionRoutes } from "./twenty-source-connection.js";
 import { requireAdmin, createInviteHandler } from "./admin.js";
 import { handleMcpRequest } from "./mcp.js";
 
@@ -27,7 +31,8 @@ async function main() {
   app.use((req, res, next) => {
     const start = Date.now();
     res.on("finish", () => {
-      console.log(`${req.method} ${req.path} -> ${res.statusCode} (${Date.now() - start}ms)`);
+      const loggedPath = coachSafeLogPath(req.path);
+      console.log(`${req.method} ${loggedPath} -> ${res.statusCode} (${Date.now() - start}ms)`);
     });
     next();
   });
@@ -67,6 +72,10 @@ async function main() {
   app.get("/.well-known/oauth-protected-resource/mcp", (_req, res) =>
     res.json(protectedResourceMetadata),
   );
+  app.get("/.well-known/oauth-protected-resource/coach/mcp", (_req, res) => {
+    if (!coachEnabled()) { res.status(404).json({ error: "not found" }); return; }
+    res.json({ resource: COACH_RESOURCE, authorization_servers: [issuer], scopes_supported: ["coach"] });
+  });
   // Reuse oidc-provider's own discovery document rather than duplicating it:
   // rewrite the URL and fall through to oidc.callback() below.
   app.get("/.well-known/oauth-authorization-server", (req, _res, next) => {
@@ -82,6 +91,12 @@ async function main() {
   // more robust to just not put an upstream parser in front of it at all.
   const jsonBody = express.json();
   const urlencodedBody = express.urlencoded({ extended: false });
+
+  // Permanent account entry point; OAuth sign-in remains client initiated.
+  app.get("/", accountHome);
+  app.get("/account", accountHome);
+  app.get("/account/help", accountHelp);
+  await registerTwentySourceConnectionRoutes(app);
 
   // Invite acceptance (public, token-gated).
   app.get("/setup", setupGet);
@@ -102,6 +117,29 @@ async function main() {
   app.post("/mcp", jsonBody, requireAccessToken, handleMcpRequest);
   app.get("/mcp", requireAccessToken, mcpMethodNotAllowed);
   app.delete("/mcp", requireAccessToken, mcpMethodNotAllowed);
+  const requireCoachEnabled = (_req: express.Request, res: express.Response, next: () => void) => {
+    if (!coachEnabled()) { res.status(404).json({ error: "not found" }); return; }
+    next();
+  };
+  // The coach accepts retained document text and batched rich-context entries;
+  // Express's default 100KiB parser would reject valid tool inputs.
+  const coachJsonBody = express.json({ limit: "10mb" });
+  app.post("/coach/mcp", requireCoachEnabled, requireCoachAccessToken, coachJsonBody, handleCoachRequest);
+  app.get("/coach/mcp", requireCoachEnabled, requireCoachAccessToken, mcpMethodNotAllowed);
+  app.delete("/coach/mcp", requireCoachEnabled, requireCoachAccessToken, mcpMethodNotAllowed);
+  app.put("/coach/evidence/upload/:contextKey/:token", requireCoachEnabled, handleCoachUpload);
+  app.post("/coach/evidence/upload/:contextKey/:token", requireCoachEnabled, handleCoachUpload);
+  app.get("/coach/evidence/download/:contextKey/:token", requireCoachEnabled, handleCoachDownload);
+  app.get("/coach/evidence/:contextKey/:id", requireCoachEnabled, requireCoachAccessToken, handleCoachEvidence);
+  const coachReview = createCoachReviewHandlers({ getActor: async principal => {
+    const runtime = await import(new URL("../../sales-coach/hosted.mjs", import.meta.url).href);
+    return runtime.getActor(principal);
+  } });
+  const reviewBody = express.urlencoded({ extended: false, limit: "16kb" });
+  app.get("/coach/review/:contextKey/:id", requireCoachEnabled, coachReview.get);
+  app.post("/coach/review/:contextKey/:id", requireCoachEnabled, reviewBody, coachReview.post);
+  app.post("/coach/review/:contextKey/:id/login", requireCoachEnabled, reviewBody, coachReview.login);
+  app.post("/coach/review/:contextKey/:id/logout", requireCoachEnabled, reviewBody, coachReview.logout);
 
   // oidc-provider's own login/consent screens. Must be registered before
   // oidc.callback() below, since that middleware handles (and ends) every

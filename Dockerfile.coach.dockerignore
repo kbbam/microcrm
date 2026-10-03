@@ -1,0 +1,25 @@
+# Docker automatically uses this file for -f Dockerfile.coach.
+# Deny all by default: no ignored credentials, local evidence or foreign trees.
+**
+!Dockerfile.coach
+!Dockerfile.coach.dockerignore
+!server/
+!server/package.json
+!server/package-lock.json
+!server/tsconfig.json
+!server/src/
+!server/src/**
+!sales-coach/
+!sales-coach/package.json
+!sales-coach/package-lock.json
+!sales-coach/config.mjs
+!sales-coach/store.mjs
+!sales-coach/service.mjs
+!sales-coach/mcp.mjs
+!sales-coach/twenty.mjs
+!sales-coach/twenty-source-ownership.mjs
+!sales-coach/evidence-upload.mjs
+!sales-coach/hosted.mjs
+!sales-coach/confirmation.mjs
+!sales-coach/skill/
+!sales-coach/skill/SKILL.md

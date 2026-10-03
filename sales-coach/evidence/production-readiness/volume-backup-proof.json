@@ -1,0 +1,24 @@
+{
+  "sha256": "c674f9f55b0a099c852479e03f2f0e6e0e00a2b800ff95ef57c1629619524c4b",
+  "compressedBytes": 1231,
+  "files": [
+    {
+      "path": "config/exec-kb-prod.json",
+      "bytes": 877,
+      "sha256": "78084c7c37ab538da8993fa258c0c3dcc194bd89c5026053058d6c5434029468"
+    },
+    {
+      "path": "config/teamlead-prod.json",
+      "bytes": 513,
+      "sha256": "bd0f3b0831cd97a1474b804460088cc702682dc6b2c075e536d82b201231fb2b"
+    },
+    {
+      "path": "production-onboarding.json",
+      "bytes": 365,
+      "sha256": "7d8b6f21e86aea68c310ede2115a882ac0dfcd4d1e5e65d393cfe11a95d27a6c"
+    }
+  ],
+  "restoredBytesMatch": true,
+  "contextCount": 2,
+  "syntheticQAMigrated": false
+}

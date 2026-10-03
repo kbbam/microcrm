@@ -1,0 +1,34 @@
+{
+  "id": "e673549c-006a-43ed-a089-70dd21924ef3",
+  "kind": "reconstruction",
+  "actor": {
+    "id": "kb@jpgrowery.com",
+    "role": "executive"
+  },
+  "sourceIds": [
+    "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+  ],
+  "state": "completed",
+  "createdAt": "2026-09-30T11:13:22.532Z",
+  "queuedAt": "2026-09-30T11:13:22.534Z",
+  "attempts": [
+    {
+      "number": 1,
+      "startedAt": "2026-09-30T11:13:22.800Z",
+      "logPath": "/Users/user/microcrm/sales-coach/.runtime/kb-qa/jobs/e673549c-006a-43ed-a089-70dd21924ef3.attempt-1.jsonl",
+      "errorPath": "/Users/user/microcrm/sales-coach/.runtime/kb-qa/jobs/e673549c-006a-43ed-a089-70dd21924ef3.attempt-1.stderr.log",
+      "state": "completed",
+      "finishedAt": "2026-09-30T11:15:06.944Z",
+      "code": 0,
+      "signal": null,
+      "toolFailures": 0
+    }
+  ],
+  "workerPid": 87007,
+  "startedAt": "2026-09-30T11:13:22.800Z",
+  "finishedAt": "2026-09-30T11:15:06.944Z",
+  "error": null,
+  "summary": "Reconstruction completed for the available original.\n\n- **Processed source:** `406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b`\n- **Durable account saved:** QA Northstar Supplies — `bb1ba095-cc63-4ff8-97c1-7c446fe63de4`. Explicitly marked as a synthetic QA fixture.\n- **Retained:** executive goal, prior Lost trial, provisional repeat-order exploration, combined price/reliability objection, attributed relationship context, planned meeting, promised summary and evidence gaps. Stable entry IDs support resumed processing without duplicates.\n- **CRM outcomes:** none applied or verified; CRM is unconfigured. No pending proposals. No external actions performed.\n- **Incomplete coverage:** no email, calendar or actual CRM records supplied.\n\nTo resolve the retained gaps, supply buyer identity, meeting/reference dates, summary ownership and delivery/due-date evidence, objection response/result, and whether repeat-order exploration is an active distinct pursuit. CRM configuration and authorized source access are needed before operational integration can be verified.",
+  "toolFailures": 0,
+  "completionMeaning": "Native reconstruction attempt finished; inspect summary for unresolved coverage and human input."
+}

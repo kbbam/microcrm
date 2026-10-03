@@ -79,4 +79,13 @@ export async function initSchema(): Promise<void> {
     CREATE INDEX IF NOT EXISTS activities_person_id_idx ON activities (person_id, occurred_at DESC);
 
   `);
+  // Opt-in pilot schema only: no grants are inferred from existing CRM users.
+  if (process.env.COACH_ENABLED === "1") {
+    await pool.query(`CREATE TABLE IF NOT EXISTS coach_access (
+      email TEXT PRIMARY KEY REFERENCES users(email),
+      role TEXT NOT NULL CHECK (role IN ('executive', 'leader', 'admin')),
+      context_key TEXT NOT NULL CHECK (context_key ~ '^[a-zA-Z0-9_-]{1,128}$'),
+      enabled BOOLEAN NOT NULL DEFAULT FALSE
+    )`);
+  }
 }

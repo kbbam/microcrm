@@ -1,10 +1,30 @@
 import Provider, { errors as oidcErrors } from "oidc-provider";
 import type { Request, Response } from "express";
 import { verifyLogin } from "./users.js";
+import { authPage as page, authHeaders, escapeHtml } from "./auth-page.js";
 import { PgAdapter } from "./pg-adapter.js";
 
 const ISSUER = process.env.PUBLIC_URL ?? "http://localhost:8080";
 const MCP_RESOURCE = `${ISSUER}/mcp`;
+export const COACH_RESOURCE = `${ISSUER}/coach/mcp`;
+export const coachEnabled = () => process.env.COACH_ENABLED === "1";
+
+// oidc-provider's documented public-web-client refresh policy, narrowed to a
+// resource and scope that the human has already consented to. MCP clients may
+// omit prompt=consent, which causes offline_access to be stripped by OIDC.
+export async function shouldIssueRefreshToken(ctx: any, client: any, code: any): Promise<boolean> {
+  if (!client.grantTypeAllowed("refresh_token")) return false;
+  if (code.scopes.has("offline_access")) return true;
+  if (client.clientAuthMethod !== "none" || client.applicationType !== "web") return false;
+  const grant = ctx.oidc.entities.Grant;
+  if (!grant) return false;
+  const resources = Array.isArray(code.resource) ? code.resource : [code.resource];
+  return resources.some((resource: string) => {
+    const scope = resource === MCP_RESOURCE ? "mcp" : coachEnabled() && resource === COACH_RESOURCE ? "coach" : null;
+    return scope !== null && code.scopes.has(scope) && grant.getResourceScopeFiltered(resource, code.scopes).split(" ").includes(scope);
+  });
+}
+
 
 export const oidc = new Provider(ISSUER, {
   // Persist sessions/grants/tokens/dynamically-registered clients in
@@ -33,20 +53,21 @@ export const oidc = new Provider(ISSUER, {
       enabled: true,
       defaultResource: () => MCP_RESOURCE,
       getResourceServerInfo: (_ctx: unknown, resourceIndicator: string) => {
-        if (resourceIndicator !== MCP_RESOURCE) {
+        if (resourceIndicator !== MCP_RESOURCE && !(coachEnabled() && resourceIndicator === COACH_RESOURCE)) {
           throw new (oidcErrors as any).InvalidTarget(
             `unknown resource indicator: ${resourceIndicator}`,
           );
         }
         return {
-          scope: "openid offline_access mcp",
+          scope: resourceIndicator === COACH_RESOURCE ? "coach" : "openid offline_access mcp",
           accessTokenFormat: "opaque",
         };
       },
     },
   },
   pkce: { required: () => true },
-  scopes: ["openid", "offline_access", "mcp"],
+  issueRefreshToken: shouldIssueRefreshToken,
+  scopes: ["openid", "offline_access", "mcp", "coach"],
   claims: { openid: ["sub"] },
   ttl: {
     AccessToken: 60 * 60 * 8, // 8h
@@ -76,83 +97,61 @@ export const oidc = new Provider(ISSUER, {
 // Railway terminates TLS in front of the service and forwards these.
 oidc.proxy = true;
 
-function escapeHtml(s: string): string {
-  return s.replace(/[&<>"']/g, (c) => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-  })[c]!);
-}
-
-function page(body: string): string {
-  return `<!DOCTYPE html>
-<html><head><meta charset="utf-8"><title>microcrm login</title>
-<style>
-  body{font-family:-apple-system,Helvetica,Arial,sans-serif;background:#14170f;color:#e9ece5;
-       display:flex;align-items:center;justify-content:center;height:100vh;margin:0}
-  form{background:#1b1f18;border:1px solid #31362b;border-radius:10px;padding:28px;width:320px}
-  h1{font-size:1.1rem;margin:0 0 16px}
-  label{display:block;font-size:.8rem;color:#8b9184;margin:12px 0 4px}
-  input{width:100%;box-sizing:border-box;padding:8px 10px;border-radius:7px;border:1px solid #31362b;
-        background:#20241c;color:#e9ece5;font-size:.9rem}
-  button{margin-top:18px;width:100%;padding:10px;border-radius:7px;border:none;background:#7fc99a;
-         color:#14170f;font-weight:600;cursor:pointer}
-  .err{color:#e0ab5f;font-size:.82rem;margin-top:10px}
-</style></head><body>${body}</body></html>`;
-}
-
 export function registerInteractionRoutes(
   get: (path: string, handler: (req: Request, res: Response) => void) => void,
   post: (path: string, handler: (req: Request, res: Response) => void) => void,
 ) {
   get("/interaction/:uid", async (req, res) => {
+    authHeaders(res);
     let uid: string, prompt: { name: string }, params: Record<string, unknown>;
     try {
       ({ uid, prompt, params } = await oidc.interactionDetails(req, res));
     } catch (err) {
-      res.status(400).send(page(`<p>Sign-in session expired or invalid. Please restart the login.</p>`));
+      res.status(400).send(page("Sign-in session expired", `<p>Return to Claude’s connector settings and connect again.</p><p><a href="/">Connection setup</a></p>`));
       return;
     }
 
     if (prompt.name === "login") {
+      authHeaders(res, { oauthFormRedirect: true });
       res.send(
-        page(`
-        <form method="post" action="/interaction/${uid}/login">
-          <h1>Sign in to microcrm</h1>
-          <label>Email</label>
-          <input type="email" name="email" required autofocus>
-          <label>Password</label>
-          <input type="password" name="password" required>
+        page("Sign in to Business OS", `
+        <p class="muted">Continue connecting your sales coach to Claude.</p>
+        <form method="post" action="/interaction/${escapeHtml(uid)}/login">
+          <label for="email">Email</label>
+          <input id="email" type="email" name="email" autocomplete="username" autocapitalize="none" maxlength="254" value="${escapeHtml(typeof req.query.email === "string" ? req.query.email : "")}" required autofocus>
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" autocomplete="current-password" required>
           <button type="submit">Sign in</button>
-          ${req.query.error ? `<div class="err">${escapeHtml(String(req.query.error))}</div>` : ""}
-        </form>`),
+          ${req.query.error ? `<p class="error" role="alert">${escapeHtml(String(req.query.error))}</p>` : ""}
+        </form><p class="footer"><a href="/account/help">Forgot your password?</a></p>`),
       );
       return;
     }
 
     if (prompt.name === "consent") {
+      authHeaders(res, { oauthFormRedirect: true });
       res.send(
-        page(`
-        <form method="post" action="/interaction/${uid}/consent">
-          <h1>Allow this app to access microcrm?</h1>
-          <p style="color:#8b9184;font-size:.85rem">Client: ${escapeHtml(String(params.client_id))}</p>
-          <button type="submit">Allow</button>
-        </form>`),
+        page("Connect this app?", `
+        <p>Allow this app to use Business OS within your team’s account permissions.</p><p class="muted">Keep the connection signed in across conversations. You can disconnect it in Claude’s connector settings.</p>
+        <form method="post" action="/interaction/${escapeHtml(uid)}/consent">
+          <p class="muted client">App ID: ${escapeHtml(String(params.client_id))}</p>
+          <button type="submit">Allow connection</button>
+        </form><form method="post" action="/interaction/${escapeHtml(uid)}/cancel"><button class="secondary" type="submit">Cancel</button></form>`),
       );
       return;
     }
 
-    res.status(400).send(page(`<p>Unsupported interaction: ${escapeHtml(prompt.name)}</p>`));
+    res.status(400).send(page("Connection could not continue", `<p>Return to Claude’s connector settings and connect again.</p><p><a href="/">Connection setup</a></p>`));
   });
 
   post("/interaction/:uid/login", async (req, res) => {
+    authHeaders(res);
     try {
+      await oidc.interactionDetails(req, res);
       const { email, password } = req.body as { email?: string; password?: string };
-      if (!email || !password || !(await verifyLogin(email, password))) {
+      if (typeof email !== "string" || typeof password !== "string" || !email || !password || !(await verifyLogin(email, password))) {
         res.redirect(
-          `/interaction/${req.params.uid}?error=${encodeURIComponent("Invalid email or password.")}`,
+          `/interaction/${req.params.uid}?error=${encodeURIComponent("Invalid email or password.")}&email=${encodeURIComponent(typeof email === "string" ? email.slice(0, 254) : "")}`,
         );
         return;
       }
@@ -162,11 +161,22 @@ export function registerInteractionRoutes(
         mergeWithLastSubmission: false,
       });
     } catch (err) {
-      res.status(400).send(page(`<p>Sign-in session expired or invalid. Please restart the login.</p>`));
+      res.status(400).send(page("Sign-in session expired", `<p>Return to Claude’s connector settings and connect again.</p><p><a href="/">Connection setup</a></p>`));
+    }
+  });
+
+  post("/interaction/:uid/cancel", async (req, res) => {
+    authHeaders(res);
+    try {
+      await oidc.interactionDetails(req, res);
+      await oidc.interactionFinished(req, res, { error: "access_denied", error_description: "Connection cancelled by the user." }, { mergeWithLastSubmission: false });
+    } catch {
+      res.status(400).send(page("Sign-in session expired", `<p>Return to Claude’s connector settings and connect again.</p>`));
     }
   });
 
   post("/interaction/:uid/consent", async (req, res) => {
+    authHeaders(res);
     try {
       const interaction = await oidc.interactionDetails(req, res);
       const { session, params, grantId, prompt } = interaction;
@@ -203,7 +213,7 @@ export function registerInteractionRoutes(
         { mergeWithLastSubmission: true },
       );
     } catch (err) {
-      res.status(400).send(page(`<p>Sign-in session expired or invalid. Please restart the login.</p>`));
+      res.status(400).send(page("Sign-in session expired", `<p>Return to Claude’s connector settings and connect again.</p><p><a href="/">Connection setup</a></p>`));
     }
   });
 }
@@ -213,30 +223,31 @@ export function registerInteractionRoutes(
 // so it can (re-)discover the authorization server -- this is the header a
 // well-behaved MCP client actually relies on, the .well-known paths are the
 // fallback a client may check instead of or in addition to this.
-function setWwwAuthenticate(res: Response) {
+function setWwwAuthenticate(res: Response, metadataPath = "/mcp") {
   const base = process.env.PUBLIC_URL ?? "http://localhost:8080";
   res.set(
     "WWW-Authenticate",
-    `Bearer resource_metadata="${base}/.well-known/oauth-protected-resource/mcp"`,
+    `Bearer resource_metadata="${base}/.well-known/oauth-protected-resource${metadataPath}"`,
   );
 }
 
-export async function requireAccessToken(
+export function accessTokenGuard(resource: string, scope: string, metadataPath: string, findToken = (token: string) => oidc.AccessToken.find(token)) {
+return async function (
   req: Request,
   res: Response,
   next: () => void,
 ) {
   const auth = req.headers.authorization;
   if (!auth?.startsWith("Bearer ")) {
-    setWwwAuthenticate(res);
+    setWwwAuthenticate(res, metadataPath);
     res.status(401).json({ error: "missing bearer token" });
     return;
   }
   const token = auth.slice(7);
   try {
-    const accessToken = await oidc.AccessToken.find(token);
+    const accessToken = await findToken(token);
     if (!accessToken) {
-      setWwwAuthenticate(res);
+      setWwwAuthenticate(res, metadataPath);
       res.status(401).json({ error: "invalid or expired token" });
       return;
     }
@@ -244,11 +255,11 @@ export async function requireAccessToken(
     // every protected resource. Require both the MCP audience/resource and
     // the scope granted for it before allowing CRM reads or writes.
     if (
-      !accessToken.resourceIndicators.has(MCP_RESOURCE) ||
-      !accessToken.scopes.has("mcp")
+      !(Array.isArray(accessToken.aud) ? accessToken.aud.includes(resource) : accessToken.aud === resource) ||
+      !accessToken.scopes.has(scope)
     ) {
-      setWwwAuthenticate(res);
-      res.status(403).json({ error: "token is not authorized for microcrm" });
+      setWwwAuthenticate(res, metadataPath);
+      res.status(403).json({ error: "token is not authorized for this resource" });
       return;
     }
     // Pass the authenticated account into the MCP handlers so every CRM
@@ -256,7 +267,11 @@ export async function requireAccessToken(
     res.locals.accountId = accessToken.accountId;
     next();
   } catch {
-    setWwwAuthenticate(res);
+    setWwwAuthenticate(res, metadataPath);
     res.status(401).json({ error: "invalid token" });
   }
+};
 }
+
+export const requireAccessToken = accessTokenGuard(MCP_RESOURCE, "mcp", "/mcp");
+export const requireCoachAccessToken = accessTokenGuard(COACH_RESOURCE, "coach", "/coach/mcp");

@@ -1,0 +1,30 @@
+{
+  "production": {
+    "/version": {
+      "status": 200,
+      "body": {
+        "sha": "75edf10a15ce9e6a47241989b2c2083ab0c29de5"
+      }
+    },
+    "/readyz": {
+      "status": 200,
+      "body": {
+        "ok": true
+      }
+    }
+  },
+  "qa": {
+    "/version": {
+      "status": 200,
+      "body": {
+        "sha": "75edf10a15ce9e6a47241989b2c2083ab0c29de5"
+      }
+    },
+    "/readyz": {
+      "status": 200,
+      "body": {
+        "ok": true
+      }
+    }
+  }
+}

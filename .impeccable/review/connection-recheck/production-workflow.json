@@ -1,0 +1,11 @@
+{
+  "revision": "201447d43c07c3a7c06b0d44d184a16b755fce9d",
+  "before": "Business OS\nYour sources are connected\n\nTwenty account verified\nkb@jpgrowery.com\n\nEmail\nSync reported\nLast sync reported: 2 Oct 2026, 03:19 UTC.\nCalendar\nSync reported\nLast sync reported: 2 Oct 2026, 03:28 UTC.\nYou can start using the coach\n\nReturn to Claude and ask the coach to check your latest messages and meetings.\n\nBack to coach setup\nRecheck connection\nOpen Twenty account settings\n\nOpens in a new tab. Return here to recheck.\n\nLast checked: 2 Oct 2026, 03:37 UTC\n\nTwenty reports the sync status shown here. This does not confirm that every message or attachment has been imported.\n\nYour account permissions are managed by your team administrator.",
+  "after": "Business OS\nYour sources are connected\n\nTwenty account verified\nkb@jpgrowery.com\n\nEmail\nSync reported\nLast sync reported: 2 Oct 2026, 03:19 UTC.\nCalendar\nSync reported\nLast sync reported: 2 Oct 2026, 03:28 UTC.\nYou can start using the coach\n\nReturn to Claude and ask the coach to check your latest messages and meetings.\n\nBack to coach setup\nRecheck connection\nOpen Twenty account settings\n\nOpens in a new tab. Return here to recheck.\n\nLast checked: 2 Oct 2026, 04:07 UTC\n\nTwenty reports the sync status shown here. This does not confirm that every message or attachment has been imported.\n\nYour account permissions are managed by your team administrator.",
+  "narrowBefore": "2026-10-02T04:07:42.371Z",
+  "narrowAfter": "2026-10-02T04:08:15.425Z",
+  "returnedURL": "https://business-os-production-1193.up.railway.app/account/twenty/status",
+  "newAuthorization": false,
+  "consoleErrors": [],
+  "mode": "actual desktop and 390px partial emulation; not a physical Android test"
+}

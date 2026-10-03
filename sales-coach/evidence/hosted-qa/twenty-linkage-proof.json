@@ -1,0 +1,109 @@
+{
+  "at": "2026-10-01T13:25:26.995Z",
+  "status": "passed",
+  "url": "https://coach-api-qa.up.railway.app",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "principal": {
+    "id": "crm-proof@example.test",
+    "role": "executive",
+    "context": "crm-proof"
+  },
+  "ownerContextConfigured": "owner-qa",
+  "ownerPasswordsChanged": false,
+  "scopeMode": "approved-isolated-workspace",
+  "sourceId": "94d268948c45f3ba8f7b0eea22e8a551b07512272e4e302d5f160a93a576019c",
+  "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "taskId": "43f4face-c022-4e79-a3d6-32f14d6ff5b7",
+  "proposalId": "9d0c13b35eb458579a4b966c2895b76d38a7e41087954bd57e6972cfb0a95f08",
+  "pipelineCompatible": true,
+  "personEmailWritesEnabled": false,
+  "communications": {
+    "message": {
+      "returned": 0,
+      "coverage": {
+        "returned": 0,
+        "totalCount": 0,
+        "hasNextPage": false,
+        "endCursor": null,
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true,
+        "sourceCapabilities": {
+          "body": "plain-text",
+          "participants": "separate-messageParticipant-read",
+          "threadId": true,
+          "originalMime": false,
+          "attachmentBytes": false,
+          "mailboxSynchronization": "unverified",
+          "scope": "approved-isolated-workspace"
+        }
+      }
+    },
+    "calendarEvent": {
+      "returned": 0,
+      "coverage": {
+        "returned": 0,
+        "totalCount": 0,
+        "hasNextPage": false,
+        "endCursor": null,
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true,
+        "sourceCapabilities": {
+          "representation": "synchronized-event-fields",
+          "participants": "separate-calendarEventParticipant-read",
+          "providerOriginal": false,
+          "calendarSynchronization": "unverified",
+          "scope": "approved-isolated-workspace"
+        }
+      }
+    }
+  },
+  "checks": [
+    "real OAuth synthetic executive sees configured isolated adapter",
+    "scoped real isolated Twenty account read retained with source ID",
+    "native opportunity pipeline remains compatible",
+    "ordinary internal task applied and independently read back in real Twenty",
+    "replayed proposal retained same record identity without duplication",
+    "bounded update persisted and independently read back",
+    "account-scoped communication coverage returned explicit capabilities"
+  ],
+  "checkCount": 7,
+  "deployment": "40ae10a2-32ed-4e02-a0ea-93b6787e2c64",
+  "deploymentStatus": "SUCCESS",
+  "finalSourceHashes": {
+    "Dockerfile.coach": "e30f4f008c6bea381453a2faa97a23e066c423af2b4d2efd0260e58993c3184a",
+    "railway.json": "9b6e0d1ff5e578f18f89393b760dab3c9d41d52b5d7ee6a6d04fa8a1ddf22b7e",
+    "sales-coach/config.mjs": "112bf10f7b67c31a6177c162af2990fbcfe9ecb3ddea409d784419adbeb8a73c",
+    "sales-coach/confirmation.mjs": "97f453663e875593076b7e9f7808dc031668e63405012d6e7d629e5d124f286c",
+    "sales-coach/evidence-upload.mjs": "e87c1c3ed6af7dc16b8dddf4405676d0def7791c5e3ff0ab7c88da959c825234",
+    "sales-coach/hosted.mjs": "399a6c2d5326bbb0d50cdc6e236942a17d79f9f1d9673d27258a4bb24a96e539",
+    "sales-coach/mcp.mjs": "af59d766f202d53fbe6cd1478fdeb6cc7f39dce2d217d4aab4c874cc4fa5a051",
+    "sales-coach/package-lock.json": "f48303375f434bd0fc68c80c548e1171f65d1c3d285eddcebd720491ea819ff1",
+    "sales-coach/package.json": "462b5f040ff384bda4a92fafa250942b1d335a3aaeaf1687fae740b302436b59",
+    "sales-coach/service.mjs": "004f1ebbaa475a4155beeaf5932bf0ff9d2ac9037a93a4195f49ca9d18081f6c",
+    "sales-coach/skill/SKILL.md": "c193a0aa50dbaeab2a6a38774d88f79a6cb3855bc82825e7f7b1f17cf2902045",
+    "sales-coach/store.mjs": "3e6effd32a883cf053c0a68976bf401d834c20538e7cd9318ccfe4f3fedcdc01",
+    "sales-coach/twenty.mjs": "48d30f293961c9489317571dc5725b3cbd231ef47c9bbeba3ce2ece0c4ccbfab",
+    "server/package-lock.json": "56d064d6e54757e366b59ce21eb67852f659f7859b88027a536810641b65fddf",
+    "server/package.json": "cd6e7b4500621c95133c2b16a9ed6a262f446bc9b0aed6029cc04c746e7764e3",
+    "server/src/admin.ts": "66276adcf82edd6ea3d76b8a379c666f7330eb99972eb05f7d56fc54516fd038",
+    "server/src/coach-review.ts": "162a3c0d83c11db21826c358d02f44b90d259046e21cd6ff4a044ab65deec1e4",
+    "server/src/coach.ts": "4a896eb31eb8ab129c5e293d325bb8c746d3b1405a98bdb8f6ea705b38287a02",
+    "server/src/crm.ts": "d39e2cf69c7e4c13b8c870818116e2a8c6643e82d04f64a88331a0c60d944f26",
+    "server/src/db.ts": "972f93106af435230a78b7f1bfba837729150f7d10b4585c05cbdcd9109701e4",
+    "server/src/index.ts": "27088998e1edbe9bb15f9c58f3606a5539f82699d090982932fd19dddea07ffc",
+    "server/src/mcp.ts": "a76dcef736cd3aedcbd6e5404324adf350e3d2e0d955e45698988efea326c6cc",
+    "server/src/migrate.ts": "dc3ddd8d2ff45ac1e5f98ded4a52a059b6be26d0e9d3764425322a01a567acde",
+    "server/src/oidc-provider.d.ts": "a9432d86f5f3643938fc74bd19a4b5d9eb1524ac7a6b85e1ee7fcef3c20b6357",
+    "server/src/oidc.ts": "6719a0b14456ed32c599a5cfe9e4c3c1333ad76ea7695e9c5b9b9552d63267c2",
+    "server/src/pg-adapter.ts": "e4f24b027f40f054abf6cc477a38b51775f618f717034db68afad0ee6383e2a5",
+    "server/src/setup.ts": "45e8e480c2e4c5f55def335da0b634bdec952e5bfd8599ee642f29758187fc05",
+    "server/src/users.ts": "2cb527e6b958bf8bea961595ce67337b9b17eb6c3cb4b39d48c9cf32ca524470",
+    "server/tsconfig.json": "427c5133144736e4a46039d513f11ac829208b4d69476dc9789838bf2b59e9db"
+  },
+  "proofScriptSha256": "0bad15dd2a57038c003d9b7ffdccaa6479dc6738b06c2d5ed9adf925b5e91e5d",
+  "writePolicy": "Person emails disabled unless separately reviewed by trusted host; ordinary fields retain reviewed deployment behavior"
+}

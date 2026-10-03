@@ -1,0 +1,321 @@
+
+> microcrm-api@0.1.0 test
+> npm run build && node --test test/*.test.js
+
+
+> microcrm-api@0.1.0 build
+> tsc -p .
+
+TAP version 13
+# Subtest: permanent account page supplies configured endpoint and honest recovery
+ok 1 - permanent account page supplies configured endpoint and honest recovery
+  ---
+  duration_ms: 67.364833
+  type: 'test'
+  ...
+# Subtest: setup validates link, escapes token and account, and never trusts reflected query errors
+ok 2 - setup validates link, escapes token and account, and never trusts reflected query errors
+  ---
+  duration_ms: 78.263458
+  type: 'test'
+  ...
+# Subtest: password confirmation and bcrypt byte limit reject before credential mutation
+ok 3 - password confirmation and bcrypt byte limit reject before credential mutation
+  ---
+  duration_ms: 24.891417
+  type: 'test'
+  ...
+# Subtest: database unavailability offers retry without disclosing internals
+ok 4 - database unavailability offers retry without disclosing internals
+  ---
+  duration_ms: 4.959042
+  type: 'test'
+  ...
+# Subtest: simultaneous use of one setup link changes credentials once
+ok 5 - simultaneous use of one setup link changes credentials once
+  ---
+  duration_ms: 1057.562166
+  type: 'test'
+  ...
+# Subtest: successful reset invalidates all other personal setup links without changing roles
+ok 6 - successful reset invalidates all other personal setup links without changing roles
+  ---
+  duration_ms: 660.258542
+  type: 'test'
+  ...
+# Subtest: expired and used links cannot change an active password
+ok 7 - expired and used links cannot change an active password
+  ---
+  duration_ms: 431.612
+  type: 'test'
+  ...
+# oidc-provider WARNING: a quick start development-only signing keys are used, you are expected to provide your own in configuration "jwks" property
+# Subtest: upload logs redact both context and secret capability
+ok 8 - upload logs redact both context and secret capability
+  ---
+  duration_ms: 0.323125
+  type: 'test'
+  ...
+# Subtest: a valid existing CRM token cannot authorize the coach resource
+ok 9 - a valid existing CRM token cannot authorize the coach resource
+  ---
+  duration_ms: 0.170583
+  type: 'test'
+  ...
+# Subtest: coach scope and resource are independently required
+ok 10 - coach scope and resource are independently required
+  ---
+  duration_ms: 0.091709
+  type: 'test'
+  ...
+# Subtest: authorized token supplies authenticated principal without caller role
+ok 11 - authorized token supplies authenticated principal without caller role
+  ---
+  duration_ms: 0.388333
+  type: 'test'
+  ...
+# Subtest: audience array supports exact matches without accepting a similar prefix
+ok 12 - audience array supports exact matches without accepting a similar prefix
+  ---
+  duration_ms: 0.900542
+  type: 'test'
+  ...
+# Subtest: existing users without explicit active coach mapping receive no principal
+ok 13 - existing users without explicit active coach mapping receive no principal
+  ---
+  duration_ms: 0.089625
+  type: 'test'
+  ...
+# Subtest: database-owned mapping supplies role/context and rejects invalid contexts
+ok 14 - database-owned mapping supplies role/context and rejects invalid contexts
+  ---
+  duration_ms: 0.436416
+  type: 'test'
+  ...
+# oidc-provider WARNING: a quick start development-only signing keys are used, you are expected to provide your own in configuration "jwks" property
+# Subtest: review links and bearer tokens convey no browser confirmation authority
+ok 15 - review links and bearer tokens convey no browser confirmation authority
+  ---
+  duration_ms: 48.851667
+  type: 'test'
+  ...
+# Subtest: human signs in with existing credentials and receives review session without approving
+ok 16 - human signs in with existing credentials and receives review session without approving
+  ---
+  duration_ms: 21.623875
+  type: 'test'
+  ...
+# Subtest: review shows exact values, evidence and consequences; approval applies once and persists
+ok 17 - review shows exact values, evidence and consequences; approval applies once and persists
+  ---
+  duration_ms: 30.47575
+  type: 'test'
+  ...
+# Subtest: rejection is durable and resume does not apply it
+ok 18 - rejection is durable and resume does not apply it
+  ---
+  duration_ms: 21.894667
+  type: 'test'
+  ...
+# Subtest: a created record remains described as creation after the CRM assigns its ID
+ok 19 - a created record remains described as creation after the CRM assigns its ID
+  ---
+  duration_ms: 11.318958
+  type: 'test'
+  ...
+# Subtest: CSRF, wrong origin, role changes and context mismatch reject before effects
+ok 20 - CSRF, wrong origin, role changes and context mismatch reject before effects
+  ---
+  duration_ms: 19.697958
+  type: 'test'
+  ...
+# Subtest: changed proposal or evidence invalidates the exact review digest
+ok 21 - changed proposal or evidence invalidates the exact review digest
+  ---
+  duration_ms: 13.538333
+  type: 'test'
+  ...
+# Subtest: current grant is checked again after queued operations
+ok 22 - current grant is checked again after queued operations
+  ---
+  duration_ms: 5.982667
+  type: 'test'
+  ...
+# Subtest: retained evidence and proposal values cannot inject HTML or form controls
+ok 23 - retained evidence and proposal values cannot inject HTML or form controls
+  ---
+  duration_ms: 7.977083
+  type: 'test'
+  ...
+# Subtest: createEntity assigns an id and returns an exact duplicate instead of inserting twice
+ok 24 - createEntity assigns an id and returns an exact duplicate instead of inserting twice
+  ---
+  duration_ms: 57.647583
+  type: 'test'
+  ...
+# Subtest: captureLeadInteraction creates and links a person and persists an attributed activity
+ok 25 - captureLeadInteraction creates and links a person and persists an attributed activity
+  ---
+  duration_ms: 23.576042
+  type: 'test'
+  ...
+# Subtest: a second capture matches the same person, merges contacts, and preserves both activities
+ok 26 - a second capture matches the same person, merges contacts, and preserves both activities
+  ---
+  duration_ms: 27.579583
+  type: 'test'
+  ...
+# Subtest: concurrent note appends do not overwrite one another
+ok 27 - concurrent note appends do not overwrite one another
+  ---
+  duration_ms: 58.437083
+  type: 'test'
+  ...
+# Subtest: concurrent captures create one person and preserve every activity
+ok 28 - concurrent captures create one person and preserve every activity
+  ---
+  duration_ms: 117.303583
+  type: 'test'
+  ...
+# Subtest: concurrent entity creation allocates unique IDs
+ok 29 - concurrent entity creation allocates unique IDs
+  ---
+  duration_ms: 35.076333
+  type: 'test'
+  ...
+# Subtest: capture rolls back when the requested organization does not exist
+ok 30 - capture rolls back when the requested organization does not exist
+  ---
+  duration_ms: 8.391667
+  type: 'test'
+  ...
+# Subtest: common correction fields update while unknown fields remain blocked
+ok 31 - common correction fields update while unknown fields remain blocked
+  ---
+  duration_ms: 18.4495
+  type: 'test'
+  ...
+# Subtest: public MCP consent survives restart and access expiry; refresh rotates with exact audience and revocation
+ok 32 - public MCP consent survives restart and access expiry; refresh rotates with exact audience and revocation
+  ---
+  duration_ms: 803.999834
+  type: 'test'
+  ...
+# oidc-provider WARNING: a quick start development-only signing keys are used, you are expected to provide your own in configuration "jwks" property
+# Subtest: public web refresh requires exact human-consented resource and client refresh support
+ok 33 - public web refresh requires exact human-consented resource and client refresh support
+  ---
+  duration_ms: 0.932958
+  type: 'test'
+  ...
+# Subtest: source-login allows the provider redirect while ordinary source pages retain local-form restrictions
+ok 34 - source-login allows the provider redirect while ordinary source pages retain local-form restrictions
+  ---
+  duration_ms: 27.984583
+  type: 'test'
+  ...
+# Subtest: receipt verifies exact caller identity and owned-channel foreign keys without copying credentials
+ok 35 - receipt verifies exact caller identity and owned-channel foreign keys without copying credentials
+  ---
+  duration_ms: 0.6755
+  type: 'test'
+  ...
+# Subtest: one browser-authorized PKCE exchange saves a credential-free receipt, revokes tokens and refuses replay
+ok 36 - one browser-authorized PKCE exchange saves a credential-free receipt, revokes tokens and refuses replay
+  ---
+  duration_ms: 64.453708
+  type: 'test'
+  ...
+# Subtest: successful persistent source setup keeps authorization only in the server callback and exposes no tokens
+ok 37 - successful persistent source setup keeps authorization only in the server callback and exposes no tokens
+  ---
+  duration_ms: 16.492375
+  type: 'test'
+  ...
+# Subtest: wrong session, wrong issuer, changed authority and expired state grant no source access
+ok 38 - wrong session, wrong issuer, changed authority and expired state grant no source access
+  ---
+  duration_ms: 16.528166
+  type: 'test'
+  ...
+# Subtest: metadata ownership failure revokes exchanged tokens and preserves previous authority
+ok 39 - metadata ownership failure revokes exchanged tokens and preserves previous authority
+  ---
+  duration_ms: 21.291709
+  type: 'test'
+  ...
+# Subtest: branded central sign-in requires same-origin nonce and browser session; bearer cannot bootstrap
+ok 40 - branded central sign-in requires same-origin nonce and browser session; bearer cannot bootstrap
+  ---
+  duration_ms: 20.394292
+  type: 'test'
+  ...
+# Subtest: wrong-password retry stays in the login form with a new nonce and no credential exposure
+ok 41 - wrong-password retry stays in the login form with a new nonce and no credential exposure
+  ---
+  duration_ms: 4.711292
+  type: 'test'
+  ...
+# Subtest: verified source config persists atomically across restart, reloads actor context, and rejects changed trusted identity
+ok 42 - verified source config persists atomically across restart, reloads actor context, and rejects changed trusted identity
+  ---
+  duration_ms: 17.90725
+  type: 'test'
+  ...
+# Subtest: recheck refreshes verified status and check time without a new authorization flow
+ok 43 - recheck refreshes verified status and check time without a new authorization flow
+  ---
+  duration_ms: 7.291958
+  type: 'test'
+  ...
+# Subtest: recheck distinguishes reconnect from provider outage and preserves the last successful receipt
+ok 44 - recheck distinguishes reconnect from provider outage and preserves the last successful receipt
+  ---
+  duration_ms: 12.068084
+  type: 'test'
+  ...
+# Subtest: recheck refuses changed ownership or central authority and signed-out login retains intent
+ok 45 - recheck refuses changed ownership or central authority and signed-out login retains intent
+  ---
+  duration_ms: 21.536208
+  type: 'test'
+  ...
+# Subtest: Twenty authorization does not claim email or calendar sync when absent or pending
+ok 46 - Twenty authorization does not claim email or calendar sync when absent or pending
+  ---
+  duration_ms: 30.764875
+  type: 'test'
+  ...
+# Subtest: disabled, failed and observed-sync states prescribe the appropriate recovery
+ok 47 - disabled, failed and observed-sync states prescribe the appropriate recovery
+  ---
+  duration_ms: 4.692541
+  type: 'test'
+  ...
+# Subtest: source sign-in and failure presentation escape provider text and nonce
+ok 48 - source sign-in and failure presentation escape provider text and nonce
+  ---
+  duration_ms: 0.505959
+  type: 'test'
+  ...
+# Subtest: mixed sources name only the pending calendar and retain the reported email timestamp
+ok 49 - mixed sources name only the pending calendar and retain the reported email timestamp
+  ---
+  duration_ms: 0.744375
+  type: 'test'
+  ...
+# Subtest: recheck failures offer retry or explicit reconnect and expired sign-in keeps the intended action
+ok 50 - recheck failures offer retry or explicit reconnect and expired sign-in keeps the intended action
+  ---
+  duration_ms: 2.455
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2230.729791

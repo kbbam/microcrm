@@ -1,0 +1,68 @@
+{
+  "at": "2026-09-30T11:59:12.358Z",
+  "beforeCounts": {
+    "company": 1,
+    "person": 1,
+    "note": 1,
+    "task": 1,
+    "opportunity": 1
+  },
+  "afterCounts": {
+    "company": 1,
+    "person": 1,
+    "note": 1,
+    "task": 1,
+    "opportunity": 1
+  },
+  "recovered": [
+    {
+      "object": "note",
+      "id": "31842f7f540c71491f4a278a48d04b1ce8a2259518eec5de6773de6938c77404",
+      "recordId": "81fa9867-572a-493e-9c1d-228ad7b6ae0b",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    },
+    {
+      "object": "task",
+      "id": "483c414bc6cd7285ae0d144f43d6aca7cca247f81662afa171c0ba513f45ca29",
+      "recordId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    },
+    {
+      "object": "task",
+      "id": "7a1273d8131266a15b14588f947bd24e649ebd0ce78607961d4dca8a8adc38d7",
+      "recordId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    },
+    {
+      "object": "person",
+      "id": "9f117ef52943daa225dda2d5696e09a13fc8e7db1c92d43546e8a5c41f01992a",
+      "recordId": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    },
+    {
+      "object": "opportunity",
+      "id": "be79212ecba6bf42767ef1aae27d10b09980e6a16d337f3f17013a895503894e",
+      "recordId": "533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    },
+    {
+      "object": "company",
+      "id": "daa48f48054d0aaf937f300f998ba25839700bc2c06df7ced229e439b2d0d585",
+      "recordId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "state": "applied",
+      "error": null,
+      "errorCode": null
+    }
+  ],
+  "repeatedApplyPerformsNoRemoteWrite": true
+}

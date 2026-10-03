@@ -1,0 +1,1 @@
+{"observedAt":"2026-10-02T02:33:50.167Z","models":[{"model":"AccessToken","count":1},{"model":"AuthorizationCode","count":1},{"model":"Grant","count":1},{"model":"RefreshToken","count":1}],"codes":[{"total":1,"consumed":1}],"actor":[{"email":"kb@jpgrowery.com","status":"active","role":"executive","enabled":true}]}

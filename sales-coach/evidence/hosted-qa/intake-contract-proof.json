@@ -1,0 +1,41 @@
+{
+  "at": "2026-10-01T13:45:46.173Z",
+  "status": "passed",
+  "url": "https://coach-api-qa.up.railway.app",
+  "context": "crm-proof",
+  "instructionSHA256": "2ce8307347fb0ba182b37c64a1738c8d50252782bd900ee1a1cef33d58a26810",
+  "accountId": "46a863fa-a730-4566-9f26-0ed02096bb33",
+  "proposalId": "89b0c139fd875bbe9b9550eeb5cbfbdd492409975f07a63be0e07f6f68e8a544",
+  "sourceId": "fa6d1241940a0f96408e16910f1aeb9177509a4fa917cabf19655d2ccd7873a3",
+  "checks": [
+    "deployed centrally fetched instructions equal latest source hash",
+    "invalid slug rejected by real HTTPS tool schema before proposal persistence",
+    "new UUID company created and read back through real isolated Twenty",
+    "new-company replay preserves same proposal and record identity"
+  ],
+  "deploymentId": "a8bbd7d6-35c8-43fa-88c6-99b2f269ae9f",
+  "deploymentStatus": "SUCCESS",
+  "localCoachTests": {
+    "passed": 51,
+    "failed": 0
+  },
+  "sourceHashes": {
+    "sales-coach/skill/SKILL.md": "2ce8307347fb0ba182b37c64a1738c8d50252782bd900ee1a1cef33d58a26810",
+    "sales-coach/mcp.mjs": "8fbee6ee30e3cd719dbcec2e0eec543ad7d6ea79993e149c8533f2dbdb6fa855",
+    "sales-coach/test/role-session.test.mjs": "92ca95056d8f05493c9c4b6d564d8857ebb6f74c5e26426f379df8126ccbfffd",
+    "server/scripts/prove-coach-intake-contract.mjs": "8541b310882d9f1a792b5ffabb5c59c1c1ad2174932780591657f2ebe40ee674"
+  },
+  "ownerQaObservedBeforeFix": {
+    "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+    "entryCount": 11,
+    "sourceCount": 27,
+    "crmSourceCount": 26,
+    "fileSourceId": "2034a6a49054bfe7364b26932207aa54ef9f8a3115463484b84cb43358747c10",
+    "fileTextChars": 743,
+    "fileTextSHA256": "f811feb54f6ffdffa741bc404c1b722c38f8193023ce79c2bab1596e5aeeca01",
+    "fileRepresentation": "original-text",
+    "originalFiles": 0,
+    "uploadGrants": 0,
+    "unsupportedHistoricalClaim": "Not yet prepared or sent as of 1 Oct 2026."
+  }
+}

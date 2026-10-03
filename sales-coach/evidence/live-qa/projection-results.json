@@ -1,0 +1,154 @@
+{
+  "at": "2026-09-30T11:53:15.413Z",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "reservedAccountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "results": [
+    {
+      "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "object": "company",
+      "recordId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "values": {
+        "name": "QA Northstar Supplies"
+      },
+      "expectedUpdatedAt": null,
+      "sourceIds": [
+        "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+      ],
+      "estimatedErrorCost": "low",
+      "highlyConsequential": false,
+      "reason": "Owner-authorized synthetic adapter proof in the isolated workspace and reserved account; no real commitments, recipients or due dates.",
+      "id": "daa48f48054d0aaf937f300f998ba25839700bc2c06df7ced229e439b2d0d585",
+      "createId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "state": "applied",
+      "proposedBy": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "proposedAt": "2026-09-30T11:53:05.708Z",
+      "error": "CRM writes require an explicitly enabled isolated pilot and completed external-effect review.",
+      "errorCode": "WRITES_DISABLED",
+      "appliedAt": "2026-09-30T11:53:06.825Z"
+    },
+    {
+      "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "object": "person",
+      "recordId": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+      "values": {
+        "name": {
+          "firstName": "Casey",
+          "lastName": "Fixture"
+        },
+        "jobTitle": "Synthetic QA buyer",
+        "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4"
+      },
+      "expectedUpdatedAt": null,
+      "sourceIds": [
+        "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+      ],
+      "estimatedErrorCost": "low",
+      "highlyConsequential": false,
+      "reason": "Owner-authorized synthetic adapter proof in the isolated workspace and reserved account; no real commitments, recipients or due dates.",
+      "id": "9f117ef52943daa225dda2d5696e09a13fc8e7db1c92d43546e8a5c41f01992a",
+      "createId": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+      "state": "applied",
+      "proposedBy": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "proposedAt": "2026-09-30T11:53:05.710Z",
+      "error": "CRM writes require an explicitly enabled isolated pilot and completed external-effect review.",
+      "errorCode": "WRITES_DISABLED",
+      "appliedAt": "2026-09-30T11:53:07.585Z"
+    },
+    {
+      "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "object": "note",
+      "recordId": "81fa9867-572a-493e-9c1d-228ad7b6ae0b",
+      "values": {
+        "title": "QA Relationship context (synthetic)",
+        "bodyV2": {
+          "markdown": "Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history."
+        },
+        "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4"
+      },
+      "expectedUpdatedAt": null,
+      "sourceIds": [
+        "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+      ],
+      "estimatedErrorCost": "low",
+      "highlyConsequential": false,
+      "reason": "Owner-authorized synthetic adapter proof in the isolated workspace and reserved account; no real commitments, recipients or due dates.",
+      "id": "31842f7f540c71491f4a278a48d04b1ce8a2259518eec5de6773de6938c77404",
+      "createId": "81fa9867-572a-493e-9c1d-228ad7b6ae0b",
+      "state": "applied",
+      "proposedBy": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "proposedAt": "2026-09-30T11:53:05.711Z",
+      "error": "CRM writes require an explicitly enabled isolated pilot and completed external-effect review.",
+      "errorCode": "WRITES_DISABLED",
+      "appliedAt": "2026-09-30T11:53:10.781Z"
+    },
+    {
+      "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "object": "task",
+      "recordId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+      "values": {
+        "title": "QA Prepare reliability summary (synthetic)",
+        "bodyV2": {
+          "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned."
+        },
+        "status": "TODO",
+        "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4"
+      },
+      "expectedUpdatedAt": null,
+      "sourceIds": [
+        "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+      ],
+      "estimatedErrorCost": "low",
+      "highlyConsequential": false,
+      "reason": "Owner-authorized synthetic adapter proof in the isolated workspace and reserved account; no real commitments, recipients or due dates.",
+      "id": "7a1273d8131266a15b14588f947bd24e649ebd0ce78607961d4dca8a8adc38d7",
+      "createId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+      "state": "applied",
+      "proposedBy": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "proposedAt": "2026-09-30T11:53:05.712Z",
+      "error": "CRM writes require an explicitly enabled isolated pilot and completed external-effect review.",
+      "errorCode": "WRITES_DISABLED",
+      "appliedAt": "2026-09-30T11:53:13.949Z"
+    },
+    {
+      "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "object": "opportunity",
+      "recordId": "533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5",
+      "values": {
+        "name": "QA Repeat-order exploration (synthetic)",
+        "stage": "ENGAGED",
+        "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+        "pointOfContactId": "a13b1faa-6b7a-4386-9910-c9358c1ea400"
+      },
+      "expectedUpdatedAt": null,
+      "sourceIds": [
+        "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+      ],
+      "estimatedErrorCost": "low",
+      "highlyConsequential": false,
+      "reason": "Owner-authorized synthetic adapter proof in the isolated workspace and reserved account; no real commitments, recipients or due dates.",
+      "id": "be79212ecba6bf42767ef1aae27d10b09980e6a16d337f3f17013a895503894e",
+      "createId": "533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5",
+      "state": "applied",
+      "proposedBy": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "proposedAt": "2026-09-30T11:53:05.712Z",
+      "error": "CRM writes require an explicitly enabled isolated pilot and completed external-effect review.",
+      "errorCode": "WRITES_DISABLED",
+      "appliedAt": "2026-09-30T11:53:15.412Z"
+    }
+  ]
+}

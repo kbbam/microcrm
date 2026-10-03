@@ -1,0 +1,64 @@
+{
+  "accountId": "cd7b4023-fe60-4ede-9595-94537bc94d27",
+  "entries": [
+    {
+      "kind": "social",
+      "text": "Anna prefers the Autumn-trial summary with the date in the document filename (executive's account; Anna's own wording not seen). Applies to the Autumn trial summary.",
+      "sourceIds": [
+        "b61643cc4e4a08b28b00e59543c08f793798218c038be8fd6c1f9b0d2142f01a"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "a0b47f34677af2ce7732e14e2b08a2631d95039605d3a4c7656842f8c45829c2",
+      "id": "de6e3e22-51b5-4129-8b15-748a69cc9118",
+      "digest": "bb06440bd5d07a0215a91e0d2991438075c7fcec60ba67eb97eeb1d3ae8013f9",
+      "revision": 1,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T18:44:21.620Z"
+    },
+    {
+      "id": "de6e3e22-51b5-4129-8b15-748a69cc9118",
+      "kind": "social",
+      "text": "Anna prefers the Autumn-trial summary with the account name in the document filename (corrected from the date; executive's account, Anna's own wording not seen). Format stays DOCX. Applies to the Autumn trial summary.",
+      "sourceIds": [
+        "b61643cc4e4a08b28b00e59543c08f793798218c038be8fd6c1f9b0d2142f01a",
+        "030e589ceceb4ec6f7cbc8f158fcd1c960968400ed13a34b1392a26565ee541f"
+      ],
+      "status": "human-account",
+      "association": {
+        "scope": "opportunities",
+        "opportunityIds": [
+          "6fd8eed5-3b66-402e-9f69-349febe96c69"
+        ]
+      },
+      "captureDigest": "87e4a0f28b571f117494b5bd334d7a78d81cbc0d7434e9c489a4e2636b4f88f3",
+      "digest": "d13a8ebb6bd127445618ea53fb389e22d643cdb6e7e7a57becb24070c6f74120",
+      "revision": 2,
+      "actor": {
+        "id": "kb@jpgrowery.com",
+        "role": "executive"
+      },
+      "recordedAt": "2026-10-01T18:45:34.037Z"
+    }
+  ],
+  "sources": [
+    {
+      "id": "b61643cc4e4a08b28b00e59543c08f793798218c038be8fd6c1f9b0d2142f01a",
+      "text": "Remember for this QA account: Anna prefers the Autumn-trial summary with the date in the document filename.",
+      "representation": "original-text"
+    },
+    {
+      "id": "030e589ceceb4ec6f7cbc8f158fcd1c960968400ed13a34b1392a26565ee541f",
+      "text": "Correction: use the account name rather than the date in that filename. Keep the DOCX format.",
+      "representation": "original-text"
+    }
+  ]
+}

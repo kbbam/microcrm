@@ -1,0 +1,66 @@
+{
+  "at": "2026-09-30T11:55:46.651Z",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "reservedAccountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "baseline": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:53:12.088Z",
+    "title": "QA Prepare reliability summary (synthetic)",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  },
+  "humanCurrentReadback": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:54:18.128Z",
+    "title": "QA Human correction — summary already drafted",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  },
+  "outcome": {
+    "accountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+    "object": "task",
+    "recordId": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "values": {
+      "title": "QA Coach stale title attempt (must not overwrite human)"
+    },
+    "expectedUpdatedAt": "2026-09-30T11:53:12.088Z",
+    "sourceIds": [
+      "e390e7b1152570ac3bfef0a4a49366cfa5943dcc20de98b80b1a8a5caa6c441c"
+    ],
+    "estimatedErrorCost": "low",
+    "highlyConsequential": false,
+    "reason": "Synthetic concurrency proof against the original timestamp after a genuine human UI edit; expected to block.",
+    "id": "af388c0fd0f8d98ddab44fea9eae9c8efdfcdf3cd147cfb02ef5bdeb8a519685",
+    "createId": "6e87b25d-d67c-4d64-8a83-b8d58c6ec180",
+    "state": "blocked",
+    "proposedBy": {
+      "id": "kb@jpgrowery.com",
+      "role": "executive"
+    },
+    "proposedAt": "2026-09-30T11:55:42.283Z",
+    "error": "Human or concurrent CRM edit changed the record; refresh and review the proposal.",
+    "errorCode": "CONFLICT"
+  },
+  "after": {
+    "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+    "createdAt": "2026-09-30T11:53:12.088Z",
+    "updatedAt": "2026-09-30T11:54:18.128Z",
+    "title": "QA Human correction — summary already drafted",
+    "bodyV2": {
+      "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+      "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+    },
+    "status": "TODO",
+    "dueAt": null
+  }
+}

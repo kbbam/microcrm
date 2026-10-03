@@ -1,0 +1,726 @@
+{
+  "at": "2026-09-30T11:57:24.796Z",
+  "workspace": "https://bam-sales-coach-test.twenty.com",
+  "reservedAccountId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+  "records": {
+    "company": {
+      "records": [
+        {
+          "id": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+          "createdAt": "2026-09-30T11:53:06.685Z",
+          "updatedAt": "2026-09-30T11:53:06.685Z",
+          "name": "QA Northstar Supplies",
+          "domainName": {
+            "primaryLinkLabel": "",
+            "primaryLinkUrl": ""
+          },
+          "address": {
+            "addressCity": "",
+            "addressCountry": ""
+          }
+        }
+      ],
+      "coverage": {
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImJiMWJhMDk1LWNjNjMtNGZmOC05N2MxLTdjNDQ2ZmU2M2RlNCJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    },
+    "person": {
+      "records": [
+        {
+          "id": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+          "createdAt": "2026-09-30T11:53:07.437Z",
+          "updatedAt": "2026-09-30T11:53:07.437Z",
+          "name": {
+            "firstName": "Casey",
+            "lastName": "Fixture"
+          },
+          "emails": {
+            "primaryEmail": "",
+            "additionalEmails": []
+          },
+          "jobTitle": "Synthetic QA buyer",
+          "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4"
+        }
+      ],
+      "coverage": {
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImExM2IxZmFhLTZiN2EtNDM4Ni05OTEwLWM5MzU4YzFlYTQwMCJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    },
+    "note": {
+      "records": [
+        {
+          "id": "81fa9867-572a-493e-9c1d-228ad7b6ae0b",
+          "createdAt": "2026-09-30T11:53:08.940Z",
+          "updatedAt": "2026-09-30T11:53:08.940Z",
+          "title": "QA Relationship context (synthetic)",
+          "bodyV2": {
+            "markdown": "Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.",
+            "blocknote": "[{\"id\":\"ed1e4aff-7cf8-4f17-ab55-0db2137278a6\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\",\"styles\":{}}],\"children\":[]}]"
+          }
+        }
+      ],
+      "coverage": {
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6IjgxZmE5ODY3LTU3MmEtNDkzZS05YzFkLTIyOGFkN2I2YWUwYiJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    },
+    "task": {
+      "records": [
+        {
+          "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+          "createdAt": "2026-09-30T11:53:12.088Z",
+          "updatedAt": "2026-09-30T11:57:08.206Z",
+          "title": "QA Coach reconciled — summary already drafted",
+          "bodyV2": {
+            "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+            "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+          },
+          "status": "TODO",
+          "dueAt": null
+        }
+      ],
+      "coverage": {
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImM4MGMzZDY2LTA0MTctNDhjNC05Y2MxLWNjYWU4NjExMGUwMyJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    },
+    "opportunity": {
+      "records": [
+        {
+          "id": "533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5",
+          "createdAt": "2026-09-30T11:53:15.254Z",
+          "updatedAt": "2026-09-30T11:53:15.254Z",
+          "name": "QA Repeat-order exploration (synthetic)",
+          "stage": "ENGAGED",
+          "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+          "pointOfContactId": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+          "amount": {
+            "amountMicros": null,
+            "currencyCode": null
+          },
+          "closeDate": null
+        }
+      ],
+      "coverage": {
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6IjUzM2EyZWU3LTljNDUtNGI0OC1iMmE0LWI2MWY1YWFjMmRkNSJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    }
+  },
+  "context": {
+    "account": {
+      "id": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+      "title": "QA Northstar Supplies",
+      "entries": [
+        {
+          "id": "qa-northstar-identity",
+          "kind": "note",
+          "text": "Source explicitly identifies this as a synthetic QA fixture, not a real customer or communication. Fixture account: QA Northstar Supplies; supplied stable account ID bb1ba095-cc63-4ff8-97c1-7c446fe63de4. All commercial statements below are fixture testimony, not independently verified customer events. Reconstruction job e673549c-006a-43ed-a089-70dd21924ef3, attempt 1. Original occurrence date is unknown; capture time is not event time.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "fact",
+          "digest": "b527c06ffee6dd7c3e9abceb26cc96b42bef0802ec9e489f48aa343f691d9137",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.543Z"
+        },
+        {
+          "id": "qa-northstar-goal",
+          "kind": "goal",
+          "text": "Explicit attributed executive goal (kb@jpgrowery.com): explore a repeat order while rebuilding trust.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "7453fea07918792a554bd305c6bbed523cf67ab8a995d84c3eedd14b08d28c21",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.545Z"
+        },
+        {
+          "id": "qa-northstar-prior-trial",
+          "kind": "opportunity",
+          "text": "Prior trial pursuit was reported Lost after supply inconsistency. Preserve this terminal pursuit and its history. No opportunity record ID, dates, commercial terms or independent outcome evidence supplied.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "82bcda757349bd882f61c3bab761ee4cf60c48288d56e9c28a527cc2b698a3e1",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.545Z"
+        },
+        {
+          "id": "qa-northstar-repeat-exploration",
+          "kind": "opportunity",
+          "text": "Repeat-order exploration is a possible separate new pursuit, supported by the executive's goal; its existence as an active qualified opportunity and stage remain unverified. It does not inherit the prior trial's Lost state. No operational opportunity created.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "inference",
+          "digest": "6a7d6bb091c87d20e64d463233db0a6ccf9598f1d80a05252fd795bb47337e66",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.546Z"
+        },
+        {
+          "id": "qa-northstar-objection",
+          "kind": "objection",
+          "text": "Buyer reportedly raised price and reliability together as concerns following supply inconsistency. This is a paraphrase, not a verbatim quotation. Attempted response and observed result are unknown; the promised reliability summary is not evidence of a delivered response or resolved objection.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "c52c82092ebce438af99b36a7edde25fa1ac8b8d045223b613b0f1dd38138feb",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.547Z"
+        },
+        {
+          "id": "qa-northstar-social",
+          "kind": "social",
+          "text": "Executive reports that the buyer values an unhurried relationship. Attributed social interpretation; buyer identity, role and contact details are absent. Executive email identifies the reported executive, not a verified CRM person.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "bc9fa772e2d7369a6d43c96597817c78079d2d1a3d85c466dfa3cfaf48279c0d",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.548Z"
+        },
+        {
+          "id": "qa-northstar-followup",
+          "kind": "activity",
+          "text": "Follow-up meeting is reported planned for 'next week', not observed completed. Source occurrence date and reference week are unknown, so no calendar date can be reliably assigned. Participants and agenda are unspecified. No independently evidenced completed interaction is supplied.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "b556400a604ff4a3a672abf8815b93c7e235622cf27c73da3face16bb1061fc5",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.550Z"
+        },
+        {
+          "id": "qa-northstar-summary-commitment",
+          "kind": "commitment",
+          "text": "A reliability summary was reportedly promised. Delivery status and due date are unknown; promisor, recipient and exact scope are not explicit. Do not mark fulfilled or overdue.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "human-account",
+          "digest": "d92b88cdcab3c03275f537b57fa22018a322624554bfd639e05503557ed7fb34",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.550Z"
+        },
+        {
+          "id": "qa-northstar-coverage",
+          "kind": "gap",
+          "text": "No email, calendar, actual CRM records or attachments supplied; CRM is unconfigured and context refresh was not attempted or completed. Buyer/person identity, event dates, commitment ownership/delivery/due date, objection response/result and new-pursuit qualification/stage remain unknown. Resolve fixture details only if needed for QA: reference date and meeting date; who owes the summary to whom, its due date and delivery evidence; buyer identity and whether repeat-order exploration is a distinct active pursuit. Real integration requires configured CRM and authorized source access. No CRM projection or proposal made.",
+          "sourceIds": [
+            "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b"
+          ],
+          "status": "unknown",
+          "digest": "4dfcaf4b17a5336c6476cf7b48191042f890075b20ec44c5de6252298763671b",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:14:49.551Z"
+        },
+        {
+          "id": "qa-live-fixture-projection",
+          "kind": "note",
+          "text": "Synthetic test projection, not real customer evidence. In reserved QA Northstar Supplies, create Casey Fixture as a synthetic buyer with no email address; retain relationship context note, a TODO preparation task named QA Prepare reliability summary (synthetic), and a separate repeat-order exploration opportunity in ENGAGED for adapter proof. Preserve the source-rich original, price/reliability objection, unhurried relationship interpretation and closed trial history. This QA instruction establishes fixture values, not the business facts or acceptance of any order.",
+          "sourceIds": [
+            "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400"
+          ],
+          "status": "fact",
+          "digest": "e683fff2168cd9fff6cfb18934cd438ae4c87edccaf01d234cc9a88e2631d416",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:05.707Z"
+        },
+        {
+          "id": "crm-af0c6e3e8e06ebd124c5177280acf1bf0ebf9f986e09f0e3463b75aeceed15c7",
+          "kind": "note",
+          "text": "Current CRM company:bb1ba095-cc63-4ff8-97c1-7c446fe63de4: {\"id\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\",\"createdAt\":\"2026-09-30T11:53:06.685Z\",\"updatedAt\":\"2026-09-30T11:53:06.685Z\",\"name\":\"QA Northstar Supplies\",\"domainName\":{\"primaryLinkLabel\":\"\",\"primaryLinkUrl\":\"\"},\"address\":{\"addressCity\":\"\",\"addressCountry\":\"\"}}",
+          "status": "fact",
+          "sourceIds": [
+            "a3be73e946446c8adf2eae9f6fca76a3e647374367363063cc1cb5b2d4c5dbd2"
+          ],
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:06.824Z"
+        },
+        {
+          "id": "crm-9c9a51c3a2d2c9f4fd59c66be2352454fc1623b68d387201d34a2360c89cd061",
+          "kind": "note",
+          "text": "Current CRM person:a13b1faa-6b7a-4386-9910-c9358c1ea400: {\"id\":\"a13b1faa-6b7a-4386-9910-c9358c1ea400\",\"createdAt\":\"2026-09-30T11:53:07.437Z\",\"updatedAt\":\"2026-09-30T11:53:07.437Z\",\"name\":{\"firstName\":\"Casey\",\"lastName\":\"Fixture\"},\"emails\":{\"primaryEmail\":\"\",\"additionalEmails\":[]},\"jobTitle\":\"Synthetic QA buyer\",\"companyId\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\"}",
+          "status": "fact",
+          "sourceIds": [
+            "8d7828f0c4cfb09b5f8eb2b454857c35d3b68f5e390c1326ac6f30f10224e949"
+          ],
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:07.581Z"
+        },
+        {
+          "id": "crm-31f081978e935fb78dc31a9b2fc93f77f612aca8714708e638ede4b72ecea57c",
+          "kind": "note",
+          "text": "Current CRM note:81fa9867-572a-493e-9c1d-228ad7b6ae0b: {\"id\":\"81fa9867-572a-493e-9c1d-228ad7b6ae0b\",\"createdAt\":\"2026-09-30T11:53:08.940Z\",\"updatedAt\":\"2026-09-30T11:53:08.940Z\",\"title\":\"QA Relationship context (synthetic)\",\"bodyV2\":{\"markdown\":\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\",\"blocknote\":\"[{\\\"id\\\":\\\"ed1e4aff-7cf8-4f17-ab55-0db2137278a6\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"}}",
+          "status": "fact",
+          "sourceIds": [
+            "54738db1588d285648958725e5bb40d5da836d579c14bb4d2734310882119e16"
+          ],
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:10.780Z"
+        },
+        {
+          "id": "crm-c20c4e9be4942ffe8d6d67d146916d96e85567b95336b90e3fbd3769e03a628a",
+          "kind": "note",
+          "text": "Current CRM task:c80c3d66-0417-48c4-9cc1-ccae86110e03: {\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:53:12.088Z\",\"title\":\"QA Prepare reliability summary (synthetic)\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+          "status": "fact",
+          "sourceIds": [
+            "c2f00433f28e141d9025be2de266f6f186dabf17a84862f7220c7ef2b52f5063"
+          ],
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:13.939Z"
+        },
+        {
+          "id": "crm-06de95cee198d74b65c33adaff55d961bdc9c9d78d22fa60fe9e01c1ebecb143",
+          "kind": "note",
+          "text": "Current CRM opportunity:533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5: {\"id\":\"533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5\",\"createdAt\":\"2026-09-30T11:53:15.254Z\",\"updatedAt\":\"2026-09-30T11:53:15.254Z\",\"name\":\"QA Repeat-order exploration (synthetic)\",\"stage\":\"ENGAGED\",\"companyId\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\",\"pointOfContactId\":\"a13b1faa-6b7a-4386-9910-c9358c1ea400\",\"amount\":{\"amountMicros\":null,\"currencyCode\":null},\"closeDate\":null}",
+          "status": "fact",
+          "sourceIds": [
+            "63ae602cbcef0facf48c7d4aff62efc71547e7b361581ef9c8aef5f82662317b"
+          ],
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:53:15.412Z"
+        },
+        {
+          "id": "crm-c20c4e9be4942ffe8d6d67d146916d96e85567b95336b90e3fbd3769e03a628a",
+          "kind": "note",
+          "text": "Current CRM task:c80c3d66-0417-48c4-9cc1-ccae86110e03: {\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:54:18.128Z\",\"title\":\"QA Human correction — summary already drafted\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+          "status": "fact",
+          "sourceIds": [
+            "2707692df2bf72a9ede76b74b582c3bb852999da3d82ec59dceccc68420e4a56"
+          ],
+          "revision": 2,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:55:52.959Z"
+        },
+        {
+          "id": "qa-human-task-title-correction",
+          "kind": "activity",
+          "text": "Observed task title before coach reconciliation: QA Human correction — summary already drafted. The parent verified this correction through the genuine regular-user UI. Preserve its meaning that the summary is already drafted; it is not evidence that anything was sent or delivered.",
+          "sourceIds": [
+            "99f2204abdd8b14a347df210ac1a2cdac11f382be8dc418f8dd6dd33487a9119"
+          ],
+          "status": "fact",
+          "digest": "91819af2c30e84285b68de761729dc4b10f365dd7871c57375e1ef3383c38cc4",
+          "revision": 1,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:57:05.043Z"
+        },
+        {
+          "id": "crm-c20c4e9be4942ffe8d6d67d146916d96e85567b95336b90e3fbd3769e03a628a",
+          "kind": "note",
+          "text": "Current CRM task:c80c3d66-0417-48c4-9cc1-ccae86110e03: {\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:57:08.206Z\",\"title\":\"QA Coach reconciled — summary already drafted\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+          "status": "fact",
+          "sourceIds": [
+            "c57595dd3ce8bf1d5297937e51f04f10597a22fe6e4c6c119074d330ca5b9443"
+          ],
+          "revision": 3,
+          "actor": {
+            "id": "kb@jpgrowery.com",
+            "role": "executive"
+          },
+          "recordedAt": "2026-09-30T11:57:11.008Z"
+        }
+      ],
+      "crm": {
+        "company:bb1ba095-cc63-4ff8-97c1-7c446fe63de4": {
+          "record": {
+            "id": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+            "createdAt": "2026-09-30T11:53:06.685Z",
+            "updatedAt": "2026-09-30T11:53:06.685Z",
+            "name": "QA Northstar Supplies",
+            "domainName": {
+              "primaryLinkLabel": "",
+              "primaryLinkUrl": ""
+            },
+            "address": {
+              "addressCity": "",
+              "addressCountry": ""
+            }
+          },
+          "observedAt": "2026-09-30T11:53:06.824Z",
+          "lastVerifiedAt": "2026-09-30T11:57:13.652Z",
+          "available": true,
+          "sourceId": "a3be73e946446c8adf2eae9f6fca76a3e647374367363063cc1cb5b2d4c5dbd2",
+          "unavailableReason": null
+        },
+        "person:a13b1faa-6b7a-4386-9910-c9358c1ea400": {
+          "record": {
+            "id": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+            "createdAt": "2026-09-30T11:53:07.437Z",
+            "updatedAt": "2026-09-30T11:53:07.437Z",
+            "name": {
+              "firstName": "Casey",
+              "lastName": "Fixture"
+            },
+            "emails": {
+              "primaryEmail": "",
+              "additionalEmails": []
+            },
+            "jobTitle": "Synthetic QA buyer",
+            "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4"
+          },
+          "observedAt": "2026-09-30T11:53:07.581Z",
+          "lastVerifiedAt": "2026-09-30T11:57:14.095Z",
+          "available": true,
+          "sourceId": "8d7828f0c4cfb09b5f8eb2b454857c35d3b68f5e390c1326ac6f30f10224e949",
+          "unavailableReason": null
+        },
+        "note:81fa9867-572a-493e-9c1d-228ad7b6ae0b": {
+          "record": {
+            "id": "81fa9867-572a-493e-9c1d-228ad7b6ae0b",
+            "createdAt": "2026-09-30T11:53:08.940Z",
+            "updatedAt": "2026-09-30T11:53:08.940Z",
+            "title": "QA Relationship context (synthetic)",
+            "bodyV2": {
+              "markdown": "Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.",
+              "blocknote": "[{\"id\":\"ed1e4aff-7cf8-4f17-ab55-0db2137278a6\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\",\"styles\":{}}],\"children\":[]}]"
+            }
+          },
+          "observedAt": "2026-09-30T11:53:10.780Z",
+          "lastVerifiedAt": "2026-09-30T11:57:16.553Z",
+          "available": true,
+          "sourceId": "54738db1588d285648958725e5bb40d5da836d579c14bb4d2734310882119e16",
+          "unavailableReason": null
+        },
+        "task:c80c3d66-0417-48c4-9cc1-ccae86110e03": {
+          "record": {
+            "id": "c80c3d66-0417-48c4-9cc1-ccae86110e03",
+            "createdAt": "2026-09-30T11:53:12.088Z",
+            "updatedAt": "2026-09-30T11:57:08.206Z",
+            "title": "QA Coach reconciled — summary already drafted",
+            "bodyV2": {
+              "markdown": "Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.",
+              "blocknote": "[{\"id\":\"ef0a12a9-862e-4594-be36-2ffbf3d34009\",\"type\":\"paragraph\",\"props\":{\"backgroundColor\":\"default\",\"textColor\":\"default\",\"textAlignment\":\"left\"},\"content\":[{\"type\":\"text\",\"text\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"styles\":{}}],\"children\":[]}]"
+            },
+            "status": "TODO",
+            "dueAt": null
+          },
+          "observedAt": "2026-09-30T11:57:11.007Z",
+          "lastVerifiedAt": "2026-09-30T11:57:18.738Z",
+          "available": true,
+          "sourceId": "c57595dd3ce8bf1d5297937e51f04f10597a22fe6e4c6c119074d330ca5b9443",
+          "unavailableReason": null
+        },
+        "opportunity:533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5": {
+          "record": {
+            "id": "533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5",
+            "createdAt": "2026-09-30T11:53:15.254Z",
+            "updatedAt": "2026-09-30T11:53:15.254Z",
+            "name": "QA Repeat-order exploration (synthetic)",
+            "stage": "ENGAGED",
+            "companyId": "bb1ba095-cc63-4ff8-97c1-7c446fe63de4",
+            "pointOfContactId": "a13b1faa-6b7a-4386-9910-c9358c1ea400",
+            "amount": {
+              "amountMicros": null,
+              "currencyCode": null
+            },
+            "closeDate": null
+          },
+          "observedAt": "2026-09-30T11:53:15.412Z",
+          "lastVerifiedAt": "2026-09-30T11:57:14.583Z",
+          "available": true,
+          "sourceId": "63ae602cbcef0facf48c7d4aff62efc71547e7b361581ef9c8aef5f82662317b",
+          "unavailableReason": null
+        }
+      },
+      "createdAt": "2026-09-30T11:14:49.527Z",
+      "updatedAt": "2026-09-30T11:57:05.043Z"
+    },
+    "sources": [
+      {
+        "id": "406dc70ba7ef26dc1bfa01d0fba745bfe2ba70893289b4f285b7bdafcbca2c1b",
+        "sourceKey": "file:kb-qa-source.txt",
+        "text": "Synthetic QA fixture, not a real customer or communication. Account: QA Northstar Supplies; stable account ID bb1ba095-cc63-4ff8-97c1-7c446fe63de4. Executive kb@jpgrowery.com says the goal is to explore a repeat order while rebuilding trust. Prior trial pursuit was Lost after supply inconsistency. Buyer said price and reliability together were concerns. Executive reports buyer values an unhurried relationship; this is attributed testimony. A follow-up meeting is planned for next week, not observed as completed. A reliability summary was promised but its delivery and due date are unknown. No email, calendar or actual CRM records are supplied. Preserve these evidence gaps.",
+        "kind": "submitted",
+        "occurredAt": null,
+        "location": "/tmp/kb-qa-source.txt",
+        "capturedAt": "2026-09-30T11:12:09.351Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "7397fa3bb7d04d7c43871f05e38509e227a1ebb895c43a987a28c4ac24e38400",
+        "sourceKey": "owner-authorized-isolated-qa-projection-2026-09-30",
+        "text": "Synthetic test projection, not real customer evidence. In reserved QA Northstar Supplies, create Casey Fixture as a synthetic buyer with no email address; retain relationship context note, a TODO preparation task named QA Prepare reliability summary (synthetic), and a separate repeat-order exploration opportunity in ENGAGED for adapter proof. Preserve the source-rich original, price/reliability objection, unhurried relationship interpretation and closed trial history. This QA instruction establishes fixture values, not the business facts or acceptance of any order.",
+        "kind": "synthetic-qa-instruction",
+        "occurredAt": null,
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:05.685Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "a3be73e946446c8adf2eae9f6fca76a3e647374367363063cc1cb5b2d4c5dbd2",
+        "sourceKey": "twenty:company:bb1ba095-cc63-4ff8-97c1-7c446fe63de4:2026-09-30T11:53:06.685Z",
+        "text": "{\"id\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\",\"createdAt\":\"2026-09-30T11:53:06.685Z\",\"updatedAt\":\"2026-09-30T11:53:06.685Z\",\"name\":\"QA Northstar Supplies\",\"domainName\":{\"primaryLinkLabel\":\"\",\"primaryLinkUrl\":\"\"},\"address\":{\"addressCity\":\"\",\"addressCountry\":\"\"}}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:53:06.685Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:06.823Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "8d7828f0c4cfb09b5f8eb2b454857c35d3b68f5e390c1326ac6f30f10224e949",
+        "sourceKey": "twenty:person:a13b1faa-6b7a-4386-9910-c9358c1ea400:2026-09-30T11:53:07.437Z",
+        "text": "{\"id\":\"a13b1faa-6b7a-4386-9910-c9358c1ea400\",\"createdAt\":\"2026-09-30T11:53:07.437Z\",\"updatedAt\":\"2026-09-30T11:53:07.437Z\",\"name\":{\"firstName\":\"Casey\",\"lastName\":\"Fixture\"},\"emails\":{\"primaryEmail\":\"\",\"additionalEmails\":[]},\"jobTitle\":\"Synthetic QA buyer\",\"companyId\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\"}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:53:07.437Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:07.579Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "54738db1588d285648958725e5bb40d5da836d579c14bb4d2734310882119e16",
+        "sourceKey": "twenty:note:81fa9867-572a-493e-9c1d-228ad7b6ae0b:2026-09-30T11:53:08.940Z",
+        "text": "{\"id\":\"81fa9867-572a-493e-9c1d-228ad7b6ae0b\",\"createdAt\":\"2026-09-30T11:53:08.940Z\",\"updatedAt\":\"2026-09-30T11:53:08.940Z\",\"title\":\"QA Relationship context (synthetic)\",\"bodyV2\":{\"markdown\":\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\",\"blocknote\":\"[{\\\"id\\\":\\\"ed1e4aff-7cf8-4f17-ab55-0db2137278a6\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA testimony: reliability and price are combined concerns. Rich account context retains originals, uncertainty and the closed trial history.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"}}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:53:08.940Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:10.779Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "c2f00433f28e141d9025be2de266f6f186dabf17a84862f7220c7ef2b52f5063",
+        "sourceKey": "twenty:task:c80c3d66-0417-48c4-9cc1-ccae86110e03:2026-09-30T11:53:12.088Z",
+        "text": "{\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:53:12.088Z\",\"title\":\"QA Prepare reliability summary (synthetic)\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:53:12.088Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:13.935Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "63ae602cbcef0facf48c7d4aff62efc71547e7b361581ef9c8aef5f82662317b",
+        "sourceKey": "twenty:opportunity:533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5:2026-09-30T11:53:15.254Z",
+        "text": "{\"id\":\"533a2ee7-9c45-4b48-b2a4-b61f5aac2dd5\",\"createdAt\":\"2026-09-30T11:53:15.254Z\",\"updatedAt\":\"2026-09-30T11:53:15.254Z\",\"name\":\"QA Repeat-order exploration (synthetic)\",\"stage\":\"ENGAGED\",\"companyId\":\"bb1ba095-cc63-4ff8-97c1-7c446fe63de4\",\"pointOfContactId\":\"a13b1faa-6b7a-4386-9910-c9358c1ea400\",\"amount\":{\"amountMicros\":null,\"currencyCode\":null},\"closeDate\":null}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:53:15.254Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:53:15.412Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "2707692df2bf72a9ede76b74b582c3bb852999da3d82ec59dceccc68420e4a56",
+        "sourceKey": "twenty:task:c80c3d66-0417-48c4-9cc1-ccae86110e03:2026-09-30T11:54:18.128Z",
+        "text": "{\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:54:18.128Z\",\"title\":\"QA Human correction — summary already drafted\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:54:18.128Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:55:52.957Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "99f2204abdd8b14a347df210ac1a2cdac11f382be8dc418f8dd6dd33487a9119",
+        "sourceKey": "qa-task-human-current:2026-09-30T11:54:18.128Z",
+        "text": "{\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:54:18.128Z\",\"title\":\"QA Human correction — summary already drafted\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+        "kind": "crm-readback",
+        "occurredAt": "2026-09-30T11:54:18.128Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:57:05.033Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      },
+      {
+        "id": "c57595dd3ce8bf1d5297937e51f04f10597a22fe6e4c6c119074d330ca5b9443",
+        "sourceKey": "twenty:task:c80c3d66-0417-48c4-9cc1-ccae86110e03:2026-09-30T11:57:08.206Z",
+        "text": "{\"id\":\"c80c3d66-0417-48c4-9cc1-ccae86110e03\",\"createdAt\":\"2026-09-30T11:53:12.088Z\",\"updatedAt\":\"2026-09-30T11:57:08.206Z\",\"title\":\"QA Coach reconciled — summary already drafted\",\"bodyV2\":{\"markdown\":\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\",\"blocknote\":\"[{\\\"id\\\":\\\"ef0a12a9-862e-4594-be36-2ffbf3d34009\\\",\\\"type\\\":\\\"paragraph\\\",\\\"props\\\":{\\\"backgroundColor\\\":\\\"default\\\",\\\"textColor\\\":\\\"default\\\",\\\"textAlignment\\\":\\\"left\\\"},\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Synthetic QA preparation task. No email is sent, no real promise is asserted, and no invented due date is assigned.\\\",\\\"styles\\\":{}}],\\\"children\\\":[]}]\"},\"status\":\"TODO\",\"dueAt\":null}",
+        "kind": "crm",
+        "occurredAt": "2026-09-30T11:57:08.206Z",
+        "location": null,
+        "capturedAt": "2026-09-30T11:57:11.006Z",
+        "actor": {
+          "id": "kb@jpgrowery.com",
+          "role": "executive"
+        }
+      }
+    ],
+    "coverage": [
+      {
+        "object": "company",
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImJiMWJhMDk1LWNjNjMtNGZmOC05N2MxLTdjNDQ2ZmU2M2RlNCJ9",
+        "complete": true,
+        "limit": 1,
+        "offset": 0,
+        "scopeComplete": true
+      },
+      {
+        "object": "person",
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImExM2IxZmFhLTZiN2EtNDM4Ni05OTEwLWM5MzU4YzFlYTQwMCJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "scopeComplete": true
+      },
+      {
+        "object": "opportunity",
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6IjUzM2EyZWU3LTljNDUtNGI0OC1iMmE0LWI2MWY1YWFjMmRkNSJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "scopeComplete": true
+      },
+      {
+        "object": "note",
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6IjgxZmE5ODY3LTU3MmEtNDkzZS05YzFkLTIyOGFkN2I2YWUwYiJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "scopeComplete": true
+      },
+      {
+        "object": "task",
+        "returned": 1,
+        "totalCount": 1,
+        "hasNextPage": false,
+        "endCursor": "eyJpZCI6ImM4MGMzZDY2LTA0MTctNDhjNC05Y2MxLWNjYWU4NjExMGUwMyJ9",
+        "complete": true,
+        "limit": 100,
+        "offset": 0,
+        "scopeComplete": true
+      }
+    ],
+    "refreshAttempted": true,
+    "refreshed": true
+  }
+}

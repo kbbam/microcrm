@@ -1,0 +1,11 @@
+# Recheck correction — 2 October 2026
+
+Owner rejects the earlier repeated-consent path. Runtime 201447d43c07c3a7c06b0d44d184a16b755fce9d is deployed to production (5235d1a1-b08e-46cd-b737-d94a7ff092f6) and isolated QA (07ae5d93-2cca-491c-9534-c1db3839d5fa).
+
+Recheck now uses /account/twenty/recheck, the encrypted saved user authorization and shared live ownership/rotation gate. It verifies the current expected executive/workspace/member before and after reading, saves a fresh receipt and returns directly to source status. No new authorization discovery/code flow occurs. Missing/revoked saved authorization offers explicit Reconnect; temporary failure offers retry, and neither falsely advances the last successful receipt. Expired central sign-in resumes the recheck. A whitelist prevents arbitrary return destinations. Existing scopes and provider credentials remain unchanged.
+
+`production-workflow.json`, `production-desktop.png` and `production-mobile.png` show actual kb@jpgrowery.com rechecks returning directly to status and advancing the check timestamp. Desktop observed click/result was 769ms including browser tool snapshot overhead; this is one observation, not a latency guarantee. Reload persisted the updated receipt. [Walkthrough](../../../walks/2026-10-02-direct-recheck/review.md) retains before/after screenshots for desktop and 390px partial emulation. No authorization page, console error or new grant.
+
+Nine local final captures cover success, outage, reconnect and central sign-in at desktop/narrow plus intermediate width. The unchanged polished status hierarchy remains compact and readable; recovery headings identify the problem and primary controls name retry, reconnect or sign-in precisely. No CSS/system change. All 50 server and 104 coach tests pass. The installed fresh finish reviewer inspected owner failure and all nine states with disposition ship; documentation review preserves the incumbent system and discloses pre-existing PRODUCT.md/DESIGN.md gaps. Detector empty.
+
+Older source-status proof's repeated-consent acceptance is superseded. Actual source-content coverage, client tool-prompt persistence and physical Android are separate pilot gates. No real customer communications, source-scope expansion, credential changes or database migration.

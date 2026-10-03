@@ -1,0 +1,29 @@
+# syntax=docker/dockerfile:1
+# Pin the multi-platform base; both dependency trees are locked by npm ci.
+FROM node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c AS build
+WORKDIR /app/server
+COPY server/package.json server/package-lock.json ./
+RUN npm ci --no-audit --no-fund
+COPY server/tsconfig.json ./
+COPY server/src ./src
+RUN npm run build && npm prune --omit=dev --no-audit --no-fund
+
+WORKDIR /app/sales-coach
+COPY sales-coach/package.json sales-coach/package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund
+
+FROM node:22-bookworm-slim@sha256:43ac6c60b8f89723f746e8a92ce91abd5017e627ce1ddfe4238355d3a30b772c AS runtime
+ENV NODE_ENV=production PORT=8080 COACH_ENABLED=1 COACH_CONFIG_ROOT=/var/lib/bam-coach/config
+WORKDIR /app/server
+COPY --from=build /app/server/package.json ./
+COPY --from=build /app/server/node_modules ./node_modules
+COPY --from=build /app/server/dist ./dist
+COPY --from=build /app/sales-coach/package.json /app/sales-coach/package.json
+COPY --from=build /app/sales-coach/node_modules /app/sales-coach/node_modules
+COPY sales-coach/config.mjs sales-coach/store.mjs sales-coach/service.mjs sales-coach/mcp.mjs sales-coach/twenty.mjs sales-coach/twenty-source-ownership.mjs sales-coach/evidence-upload.mjs sales-coach/hosted.mjs sales-coach/confirmation.mjs /app/sales-coach/
+COPY sales-coach/skill/SKILL.md /app/sales-coach/skill/SKILL.md
+RUN mkdir -p /var/lib/bam-coach/config /var/lib/bam-coach/context && chown -R node:node /var/lib/bam-coach
+USER node
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 CMD node -e "fetch('http://127.0.0.1:'+process.env.PORT+'/readyz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+CMD ["node", "dist/index.js"]

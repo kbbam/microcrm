@@ -1,0 +1,43 @@
+{
+  "boundary": "real MCP SDK + production Twenty adapter + synthetic provider only",
+  "outcomes": [
+    {
+      "role": "executive",
+      "object": "task",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    },
+    {
+      "role": "executive",
+      "object": "opportunity",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    },
+    {
+      "role": "executive",
+      "object": "company",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    },
+    {
+      "role": "leader",
+      "object": "task",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    },
+    {
+      "role": "leader",
+      "object": "opportunity",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    },
+    {
+      "role": "leader",
+      "object": "company",
+      "state": "blocked",
+      "errorCode": "FORBIDDEN_FIELD"
+    }
+  ],
+  "providerMutations": 0,
+  "featureSupported": false
+}
