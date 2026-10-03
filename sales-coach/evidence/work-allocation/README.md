@@ -1,6 +1,6 @@
 # Work-allocation dependency checks — 3 October 2026
 
-COACH-B001 scoping began on `codex/coach-work-allocation`, from `446370a`. No new allocation capability is implemented or deployed by these checks. Production was read only; a single synthetic task was created and assigned in the isolated QA Twenty workspace, with no messages sent.
+COACH-B001 scoping began on `codex/coach-work-allocation`, from `446370a`. These earlier checks did not implement allocation. The subsequent [runtime implementation and acceptance record](implementation.md) preserves the separate current status and proof. Production was read only; a single synthetic task was created and assigned in the isolated QA Twenty workspace, with no messages sent.
 
 ## Finding that affects the implementation
 

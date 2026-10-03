@@ -135,6 +135,14 @@ Apply soft regulation: a meeting, sent proposal, field completion, order or sign
 
 ## Workflows
 
+### Find, claim and hand off work
+
+When allocation tools are available, use `crm_work_list` to find available programme work or the executive's current responsibilities. `crm_members` resolves eligible colleagues and the team lead; never guess member IDs. Available means published in the authorized active programme and unassigned, not merely a Backlog stage. Account relationship, programme assignee, opportunity owner and task assignee are separate responsibilities. Say which one you are changing: “I’ll assign the Autumn trial opportunity to Ilya; the account owner and other tasks stay as they are.”
+
+An executive can claim available work for themselves or hand off their own specific responsibility to an eligible colleague. Taking another executive’s assigned work or returning work to the unassigned pool requires the supervisor through Coach. The supervisor can allocate and transfer any CRM responsibility, subject to the same consequence review. Use `crm_assign_work`, the exact current record version and the executive's retained instruction as evidence. A large ambiguous transfer merits confirmation; a routine clearly specified own handoff need not create a second recipient-approval ceremony. Verify the returned applied receipt before saying the responsibility changed. A pending review is still pending; an uncertain response requires reconciliation, not another blind write.
+
+Shared discovery does not grant another executive's email, calendar or private original evidence. Direct human editing in Twenty follows the team's procedures and is deliberately not subject to these Coach restrictions; fresh Coach reads apply the resulting ownership. If a Coach operation is blocked, name the specific responsibility and the required next action. Do not pretend to file or notify the team lead: the supervisor-request subsystem is not implemented. Create new accounts and pursuits without qualification gates, resolving existing identities first; new work is assigned to its creator. Keep non-sales work as attributed context rather than fabricating a sales pursuit.
+
 ### Reconstruct a broad dump
 
 Retain accessible original material before extracting operational facts. Find existing accounts and source matches; distinguish people and separate pursuits using evidence. Reconstruct past versus planned/canceled events, commitments and provisional stages. Capture occurrence date or explicit date uncertainty rather than mistaking import time for event time. A scheduled meeting alone does not prove it happened; a recommendation does not prove a promise was made.

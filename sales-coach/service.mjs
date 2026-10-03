@@ -311,7 +311,7 @@ export class CoachService {
     if (!args.sourceIds?.length) throw new Error('CRM projection requires source provenance');
     await this.sources(args.sourceIds);
     if (!args.reason?.trim() || !['low', 'high'].includes(args.estimatedErrorCost) || typeof args.highlyConsequential !== 'boolean') throw new Error('Write consequence assessment and reason required');
-    const operation = { accountId: args.accountId, object: args.object, recordId: args.id ?? null, values: args.values, expectedUpdatedAt: args.expectedUpdatedAt ?? null };
+    const operation = { accountId: args.accountId, object: args.object, recordId: args.id ?? null, values: args.values, expectedUpdatedAt: args.expectedUpdatedAt ?? null, ...(args.assignment ? { assignment: args.assignment } : {}) };
     const identity = { ...operation, sourceIds: args.sourceIds, estimatedErrorCost: args.estimatedErrorCost, highlyConsequential: args.highlyConsequential, reason: args.reason };
     // A new reason/source/risk label cannot bypass an existing confirmation hold.
     const id = changeDigest(operation);
@@ -333,6 +333,7 @@ export class CoachService {
     return change;
   }
   async apply(change) {
+    if (change.assignment) return this.applyAssignment(change);
     await this.authorizeAccount(change.accountId, { createCompany: change.object === 'company' && !change.recordId });
     await this.sources(change.sourceIds ?? []);
     if (change.state === 'applied') return change.error || change.errorCode ? this.store.putChange({ ...change, error: null, errorCode: null }) : change;
@@ -356,7 +357,42 @@ export class CoachService {
       await this.store.rememberCRM(change.accountId, change.object, result.record);
       return this.store.putChange({ ...change, state: 'applied', recordId: result.record.id, appliedAt: new Date().toISOString(), error: null, errorCode: null });
     } catch (error) {
-      const noEffect = ['WRITES_DISABLED', 'SCOPE_REQUIRED', 'OUT_OF_SCOPE', 'CONFLICT', 'BASELINE_REQUIRED', 'FORBIDDEN_FIELD', 'READ_ONLY_OBJECT', 'INVALID_STAGE', 'PIPELINE_SETUP_REQUIRED', 'INVALID_VALUES', 'INVALID_ID', 'UNSUPPORTED_OBJECT', 'UNREVIEWED_EXTERNAL_EFFECT'];
+      const noEffect = ['WRITES_DISABLED', 'SCOPE_REQUIRED', 'OUT_OF_SCOPE', 'CONFLICT', 'BASELINE_REQUIRED', 'FORBIDDEN_FIELD', 'READ_ONLY_OBJECT', 'INVALID_STAGE', 'PIPELINE_SETUP_REQUIRED', 'INVALID_VALUES', 'INVALID_ID', 'UNSUPPORTED_OBJECT', 'UNREVIEWED_EXTERNAL_EFFECT', 'ACCOUNT_MATCH_REQUIRED'];
+      return this.store.putChange({ ...change, state: noEffect.includes(error.code) ? 'blocked' : 'uncertain', error: error.message, errorCode: error.code ?? null });
+    }
+  }
+  async proposeAssignment(args) {
+    if (!this.adapter?.work) throw Object.assign(new Error('Work allocation is not configured. No responsibility was changed or supervisor request filed.'), { code: 'NOT_CONFIGURED' });
+    // An exact retry returns the durable original decision, including a human
+    // confirmation hold. It never reads fresh private context after handoff.
+    const prior = (await this.store.changes()).find(change => change.assignment && change.proposedBy.id === this.actor.id && change.accountId === args.accountId && change.object === args.object && change.recordId === args.id && change.assignment.toMemberId === args.recipientMemberId && change.expectedUpdatedAt === args.expectedUpdatedAt);
+    if (prior) return prior;
+    const assignment = await this.adapter.work.preview(args);
+    await this.authorizeAccount(args.accountId);
+    await this.sources(args.sourceIds ?? []);
+    await this.store.rememberCRM(args.accountId, args.object, assignment.before);
+    return this.propose({ ...args, values: { [assignment.ownerField]: assignment.toMemberId }, assignment,
+      highlyConsequential: args.highlyConsequential || assignment.accountIds.length > 1,
+      reason: `${assignment.responsibility} “${assignment.recordName}”: ${assignment.fromMemberLabel} → ${assignment.toMemberLabel}. Other responsibilities remain unchanged. ${assignment.accountIds.length > 1 ? `This task links ${assignment.accountIds.length} accounts (${assignment.accountIds.join(', ')}); the transfer affects all its links. ` : ''}${args.reason}` });
+  }
+  async applyAssignment(change) {
+    if (change.proposedBy.id !== this.actor.id && !['leader', 'admin'].includes(this.actor.role)) throw Object.assign(new Error('This proposal belongs to another executive.'), { code: 'OUT_OF_SCOPE' });
+    if (change.state === 'applied') return change;
+    if (!['ready', 'confirmed', 'applying', 'uncertain'].includes(change.state)) throw new Error('Matching trusted human confirmation required');
+    if (!this.adapter?.work) return this.store.putChange({ ...change, state: 'blocked', error: 'Work allocation is not configured', errorCode: 'NOT_CONFIGURED' });
+    try {
+      let result = ['applying', 'uncertain'].includes(change.state) ? await this.adapter.work.reconcile(change.assignment) : null;
+      if (!result) {
+        await this.authorizeAccount(change.accountId);
+        await this.sources(change.sourceIds);
+        await this.store.putChange({ ...change, state: 'applying' });
+        result = await this.adapter.work.assign(change.assignment);
+      }
+      await this.store.rememberCRM(change.accountId, change.object, result.record);
+      return this.store.putChange({ ...change, state: 'applied', appliedAt: new Date().toISOString(), reconciled: !!result.reconciled, error: null, errorCode: null,
+        assignmentReceipt: { responsibility: change.assignment.responsibility, recordName: change.assignment.recordName, fromMemberId: change.assignment.fromMemberId, toMemberId: change.assignment.toMemberId, fromMemberLabel: change.assignment.fromMemberLabel, toMemberLabel: change.assignment.toMemberLabel, updatedAt: result.record.updatedAt, unrelatedResponsibilitiesChanged: false } });
+    } catch (error) {
+      const noEffect = ['OUT_OF_SCOPE', 'CONFLICT', 'WRITES_DISABLED', 'UNREVIEWED_EXTERNAL_EFFECT', 'INELIGIBLE_RECIPIENT', 'SELF_CLAIM_ONLY', 'SUPERVISOR_REQUIRED', 'SCOPE_INCOMPLETE', 'SOURCE_CONNECTION_REQUIRED', 'RETAINED_SCOPE_UNAVAILABLE'];
       return this.store.putChange({ ...change, state: noEffect.includes(error.code) ? 'blocked' : 'uncertain', error: error.message, errorCode: error.code ?? null });
     }
   }

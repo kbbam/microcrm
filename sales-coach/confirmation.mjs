@@ -8,8 +8,11 @@ export async function reviewProposal(service, id) {
   let change;
   try { change = await service.store.change(id); }
   catch (error) { if (error.code === 'ENOENT') throw fail(404, 'This proposal was not found in your coach context.'); throw error; }
-  await service.authorizeAccount(change.accountId, { createCompany: change.object === 'company' && !change.recordId });
-  await service.sources(change.sourceIds ?? []);
+  const historicalOwnAssignment = change.assignment && change.state === 'applied' && change.proposedBy.id === service.actor.id;
+  if (!historicalOwnAssignment) {
+    await service.authorizeAccount(change.accountId, { createCompany: change.object === 'company' && !change.recordId });
+    await service.sources(change.sourceIds ?? []);
+  }
   if (change.state !== 'awaiting-confirmation' && change.reviewedSnapshot) {
     const { accountTitle, previous, sources } = change.reviewedSnapshot;
     const review = { change, accountTitle, previous, sources };

@@ -1,0 +1,53 @@
+{
+  "item": "COACH-R001 / BOS-017",
+  "researchedAt": "2026-10-03",
+  "status": "documented-analysis-complete; matched-live-pilot-pending",
+  "attempt": {
+    "surface": "Claude Desktop",
+    "entrypoint": "cua.getApp(com.anthropic.claudefordesktop)",
+    "outcome": "blocked-before-app-inspection",
+    "exactError": "The Mac is locked and automatic unlock could not unlock it. Ask the user to unlock the Mac manually before continuing.",
+    "nativeQueriesAttempted": 0,
+    "nativeLatencyMs": null,
+    "permissionChanges": false,
+    "externalSends": false,
+    "calendarWrites": false,
+    "crmWrites": false
+  },
+  "existingSyntheticFixture": {
+    "subject": "[BAM QA synthetic] Northstar trial and repeat order — 2026-10-01",
+    "twentyThreadId": "a11acea4-6d92-405d-9be9-dc2e5ede1f92",
+    "sourceProof": "../../evidence/hosted-qa/routine-thread-bundle-proof.json",
+    "proofDate": "2026-10-01",
+    "historicalMessageCount": 2,
+    "historicalParticipantCount": 5,
+    "nativeGmailPresence": "not-verified-in-this-research",
+    "matchedCalendarFixture": null
+  },
+  "historicalMeasurements": {
+    "source": "../../evidence/hosted-qa/routine-client-proof.md",
+    "twentyBackendBundleMs": 1616,
+    "claudeFreshMailCheckSeconds": 21.133,
+    "claudeWarmRepeatSeconds": 3.228,
+    "matchedNativeComparison": false,
+    "limitations": "Descriptive historical samples, not a controlled route comparison; no physical-phone proof."
+  },
+  "currentBuildInspection": {
+    "sourceFiles": ["../../twenty.mjs", "../../service.mjs", "../../store.mjs", "../../twenty-source-ownership.mjs"],
+    "nativeGoogleProviderRetentionImplemented": false,
+    "twentyOriginalMimeExposed": false,
+    "twentyAttachmentBytesExposed": false,
+    "nativeGmailAttachmentContentsDocumented": false,
+    "programmaticNativeConnectorCacheDocumented": false
+  },
+  "recommendation": "Retain current route; evaluate bounded hybrid only after matched measurement and central-policy/provenance decision.",
+  "implementationAuthorizedByResearch": false,
+  "remaining": [
+    "Actual native returned-tool schema and source field fidelity",
+    "Matched same-fixture coverage and timing trials",
+    "Verified synthetic Calendar fixture on both routes",
+    "Physical iOS and Android continuation/fresh-chat tests",
+    "Owner decision on native source-read breadth versus BOS central policy",
+    "Explicit native-source durable intake and revocation contract before integration"
+  ]
+}

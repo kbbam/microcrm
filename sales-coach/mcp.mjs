@@ -15,12 +15,13 @@ export function buildServer(service, options = {}) {
   const result = value => ({ content: [{ type: 'text', text: JSON.stringify(value) }] });
   const register = (name, description, schema, run) => server.tool(name, description, schema, args => service.serial(async () => {
     try { return result(await run(args)); }
-    catch (error) { return { ...result({ error: error.message }), isError: true }; }
+    catch (error) { return { ...result({ error: error.message, code: error.code ?? null }), isError: true }; }
   }));
   register('coach_status', 'Read authenticated actor, fresh provider-source readiness when hosted, retained evidence inventory and pending proposals. sources is retained evidence, never connected mailbox/calendar channels. Use sourceConfiguration for connection state. Client permissions remain separate.', {}, async () => ({
     actor: service.actor,
     actorAuthority: options.actorAuthority ?? 'trusted-host-configuration',
     crmConfigured: !!service.adapter,
+    workAllocation: { available: !!service.adapter?.work, programmeIds: service.adapter?.work?.initiativeIds ?? [], memberId: service.adapter?.work?.memberId ?? null, authority: 'authenticated-host-configuration' },
     crmAccessVerification: {
       credentialPrincipal: service.adapter ? 'unverified' : 'not-configured',
       workspaceMembership: service.adapter ? 'unverified' : 'not-configured',
@@ -60,6 +61,14 @@ export function buildServer(service, options = {}) {
     return { ...data, sources: refs };
   });
   register('crm_propose_change', 'Autonomously apply ordinary authorized internal CRM updates. High error cost/high consequences persist a proposal for trusted human confirmation outside this agent. Give the human the returned reviewUrl to review and apply the exact change. No send/calendar edits/external effects. Terminal stage is soft procedural judgment, no order/signature gate. accountId must be the actual Twenty company UUID; for a new company silently generate a UUID with sandbox code and reuse it consistently. Retain the source without an account link, create the assigned company first, then save account-linked context after creation succeeds. Never use a name or slug.', { accountId: z.string().uuid(), object: z.enum(['company', 'person', 'opportunity', 'note', 'task']), id: z.string().optional(), values: z.record(z.unknown()), expectedUpdatedAt: z.string().optional(), sourceIds: sources, estimatedErrorCost: z.enum(['low', 'high']), highlyConsequential: z.boolean(), reason: z.string().min(1).max(5000) }, async args => review(await service.propose(args)));
+  if (service.adapter?.work) {
+    register('crm_members', 'Find current eligible colleagues and the team lead for a responsibility transfer. IDs are verified workspace members; never guess a recipient.', { query: z.string().max(500).optional() }, args => service.adapter.work.members(args.query));
+    register('crm_work_list', 'Find available work in your authorized sales programme, your responsibilities, or (supervisor only) team work. Backlog stage alone never means available. Account relationship, programme assignee, opportunity owner and task assignee are independent. Discovery grants no other mailbox/calendar/private originals.', { mode: z.enum(['available', 'mine', 'team']).optional(), query: z.string().max(500).optional(), limit: z.number().int().min(1).max(100).optional() }, args => service.adapter.work.discover(args));
+    register('crm_assign_work', 'Claim available unassigned work for yourself, hand off your own specific responsibility to an eligible colleague, or allocate/transfer work as supervisor. Taking another executive’s assigned work requires the supervisor. Changes only the selected responsibility; retains history. High error cost/consequences require the returned human reviewUrl. Use the exact latest expectedUpdatedAt and actual account/company ID from discovery. No external notifications or supervisor requests are filed.', {
+      accountId: z.string().uuid(), object: z.enum(['company', 'initiativeAccount', 'opportunity', 'task']), id: z.string().uuid(), recipientMemberId: z.string().uuid().nullable(), expectedUpdatedAt: z.string().min(1), sourceIds: sources,
+      estimatedErrorCost: z.enum(['low', 'high']), highlyConsequential: z.boolean(), reason: z.string().min(1).max(5000)
+    }, async args => review(await service.proposeAssignment(args)));
+  }
   return server;
 }
 

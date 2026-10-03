@@ -1,0 +1,122 @@
+{
+  "testedAt": "2026-10-03T04:40:02.339Z",
+  "boundary": "Real MCP SDK in-memory clients; current local Coach adapter; real isolated Twenty provider. Not Claude or native Twenty UI proof.",
+  "origin": "https://bam-sales-coach-test.twenty.com",
+  "checks": [
+    {
+      "name": "live metadata supports commercial creation without duplicate __type roots",
+      "pass": true,
+      "outcome": {
+        "pipelineCompatible": true
+      }
+    },
+    {
+      "name": "programme discovery includes only configured synthetic available work",
+      "pass": true,
+      "outcome": {
+        "objects": [
+          "initiativeAccount",
+          "opportunity",
+          "company"
+        ],
+        "initiativeCount": 1
+      }
+    },
+    {
+      "name": "live concurrent pursuit claims yield one winner, preserving account and programme owners",
+      "pass": true,
+      "outcome": {
+        "outcomes": [
+          {
+            "state": "blocked",
+            "errorCode": "CONFLICT",
+            "to": "29b0202f-8430-4bb6-ba29-c3e1603037be"
+          },
+          {
+            "state": "applied",
+            "errorCode": null,
+            "to": "66281c02-364c-4c25-8968-8498ab6022be"
+          }
+        ]
+      }
+    },
+    {
+      "name": "own handoff applies; colleague sees pursuit; another takeover is refused",
+      "pass": true,
+      "outcome": {
+        "receipt": {
+          "responsibility": "opportunity",
+          "recordName": "QA Allocation autumn trial \u2014 synthetic",
+          "fromMemberId": "29b0202f-8430-4bb6-ba29-c3e1603037be",
+          "toMemberId": "66281c02-364c-4c25-8968-8498ab6022be",
+          "fromMemberLabel": "kb@jpgrowery.com",
+          "toMemberLabel": "kb@cureous.me",
+          "updatedAt": "2026-10-03T04:41:12.288Z",
+          "unrelatedResponsibilitiesChanged": false
+        },
+        "takeover": "SUPERVISOR_REQUIRED"
+      }
+    },
+    {
+      "name": "task handoff preserves pursuit and account ownership",
+      "pass": true,
+      "outcome": {
+        "receipt": {
+          "responsibility": "task",
+          "recordName": "QA Allocation summary \u2014 synthetic",
+          "fromMemberId": "29b0202f-8430-4bb6-ba29-c3e1603037be",
+          "toMemberId": "66281c02-364c-4c25-8968-8498ab6022be",
+          "fromMemberLabel": "kb@jpgrowery.com",
+          "toMemberLabel": "kb@cureous.me",
+          "updatedAt": "2026-10-03T04:41:31.889Z",
+          "unrelatedResponsibilitiesChanged": false
+        }
+      }
+    },
+    {
+      "name": "supervisor assigns programme responsibility independently",
+      "pass": true,
+      "outcome": {
+        "receipt": {
+          "responsibility": "sales programme responsibility",
+          "recordName": "QA Allocation programme responsibility",
+          "fromMemberId": null,
+          "toMemberId": "29b0202f-8430-4bb6-ba29-c3e1603037be",
+          "fromMemberLabel": "Unassigned",
+          "toMemberLabel": "kb@jpgrowery.com",
+          "updatedAt": "2026-10-03T04:41:38.641Z",
+          "unrelatedResponsibilitiesChanged": false
+        }
+      }
+    },
+    {
+      "name": "consequential supervisor transfer requires exact trusted human review",
+      "pass": true,
+      "outcome": {
+        "initialState": "awaiting-confirmation",
+        "finalState": "applied",
+        "humanReview": "isolated trusted review module, not browser click"
+      }
+    },
+    {
+      "name": "new account and pursuit are creator-owned and immediately usable",
+      "pass": true,
+      "outcome": {
+        "accountState": "applied",
+        "pursuitState": "applied",
+        "taskState": "applied"
+      }
+    }
+  ],
+  "fixtures": {
+    "initiativeId": "77c8633b-c989-4252-991d-1d7afe3b34af",
+    "companyId": "94b796b7-29cc-4766-b4d9-cfd3540a2490",
+    "opportunityId": "ad571f6a-34c4-4f72-9efe-987934b3f36b",
+    "taskId": "91804e81-8529-4891-a1b3-cd5f413d2705",
+    "createdCompanyId": "101af613-2edd-4885-b750-4c4651087b52",
+    "createdOpportunityId": "855f337e-2330-4556-b199-888c8837fa7f",
+    "createdTaskId": "b25ffc66-c4fd-48f9-8d95-05726e223e44"
+  },
+  "revision": "working tree on codex/coach-work-allocation, 3 October 2026",
+  "verificationOnlyPacing": "750 ms request spacing in the isolated probe only. No runtime speed optimization or guarantee."
+}

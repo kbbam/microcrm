@@ -184,6 +184,7 @@ export function createGateway({ configRoot, publicUrl, serviceFactory = loadServ
       return { version: createHash('sha256').update(instructions).digest('hex'), instructions,
         identity: service.actor, crmConfigured: !!service.adapter, authority: 'authenticated-business-os-access',
         deployment: { publicUrl: new URL(publicUrl).origin, crmOrigin: service.adapter?.baseUrl ?? null, contextKey: principal.contextKey },
+        workAllocation: { available: !!service.adapter?.work, programmeIds: service.adapter?.work?.initiativeIds ?? [], memberId: service.adapter?.work?.memberId ?? null },
         sourceConfiguration: await sourceReadiness(), permissionPreflight,
         runtime: 'Claude performs this conversation; these tools do not execute a hosted model or unattended worker' };
     });
