@@ -1,7 +1,7 @@
 import express from "express";
 import { checkDatabase, initSchema } from "./db.js";
 import { oidc, registerInteractionRoutes, requireAccessToken, requireCoachAccessToken, coachEnabled, COACH_RESOURCE } from "./oidc.js";
-import { handleCoachRequest, handleCoachUpload, handleCoachDownload, handleCoachEvidence, coachSafeLogPath } from "./coach.js";
+import { handleCoachRequest, handleCoachUpload, handleCoachDownload, handleCoachEvidence, coachSafeLogPath, resolveCoachPrincipal } from "./coach.js";
 import { createCoachReviewHandlers } from "./coach-review.js";
 import { setupGet, setupPost } from "./setup.js";
 import { accountHome, accountHelp } from "./auth-page.js";
@@ -133,6 +133,9 @@ async function main() {
   app.get("/coach/evidence/:contextKey/:id", requireCoachEnabled, requireCoachAccessToken, handleCoachEvidence);
   const coachReview = createCoachReviewHandlers({ getActor: async principal => {
     const runtime = await import(new URL("../../sales-coach/hosted.mjs", import.meta.url).href);
+    // A review may be the first request after deployment; it cannot depend on
+    // an earlier MCP request having initialized current evidence authority.
+    runtime.setPrincipalResolver(resolveCoachPrincipal);
     return runtime.getActor(principal);
   } });
   const reviewBody = express.urlencoded({ extended: false, limit: "16kb" });
